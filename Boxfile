@@ -34,6 +34,8 @@ web1:
     - pdo_mysql
     - xcache
     - redis
+    - mysqli
+    - mysql
   httpd_document_root: public
   network_dirs:
     - storage/framework
