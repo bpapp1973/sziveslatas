@@ -1,0 +1,27 @@
+#tags{
+    width: 400px;
+}
+
+#tags #tag{
+    float: left;
+    margin-left: 5px;
+    background-color: #cccccc;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+#tags #tag #name{
+    float: left;
+    padding: 5px;
+    margin-left: 5px;
+}
+
+#tags #tag #delete{
+    float: left;
+    font-size: 8pt;
+    padding: 3px;
+    font-weight: bold;
+    color: red;  
+    cursor: pointer;
+}
+

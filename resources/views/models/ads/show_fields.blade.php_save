@@ -1,0 +1,77 @@
+@if (!empty($ads->images))
+<div class="row">
+    <div class="col-md-6">
+        @foreach($images as $image)
+            <a href="{{ $image }}" data-lightbox="{{ $ads->title }}">
+                <img src="{{ $image }}" data-lightbox="{{ $ads->title }}" width="200px">
+            </a>
+        @endforeach
+    </div>
+</div>
+@endif
+<!-- Title Field -->
+<div class="form-group">
+    {!! Form::label('title', 'Cím') !!}
+    <p>{!! $ads->title !!}</p>
+</div>
+
+<!-- Companies Id Field -->
+<div class="form-group">
+    {!! Form::label('companies_id', 'Hirdető') !!}
+    <p>{!! $ads->company->title !!}</p>
+</div>
+
+<!-- Categories Id Field -->
+<div class="form-group">
+    {!! Form::label('categories_id', 'Kategória') !!}
+    <p>{!! $ads->category->name !!}</p>
+</div>
+
+<!-- Cities Id Field -->
+<div class="form-group">
+    {!! Form::label('cities_id', 'Város') !!}
+    <p>{!! $ads->city->name !!}</p>
+</div>
+
+<!-- Cities Id Field -->
+<div class="form-group">
+    {!! Form::label('address', 'Cím') !!}
+    <p>{!! $ads->address !!}</p>
+</div>
+
+<!-- Responsible Field -->
+<div class="form-group">
+    {!! Form::label('responsible', 'Kapcsolattartó') !!}
+    <p>{!! $ads->responsible !!}</p>
+</div>
+
+<!-- Phone Field -->
+<div class="form-group">
+    {!! Form::label('phone', 'Telefon') !!}
+    <p>{!! $ads->phone !!}</p>
+</div>
+
+<!-- Email Field -->
+<div class="form-group">
+    {!! Form::label('email', 'Email') !!}
+    <p>{!! $ads->email !!}</p>
+</div>
+
+<!-- Description Field -->
+<div class="form-group">
+    {!! Form::label('description', 'Leírás') !!}
+    <p>{!! $ads->description !!}</p>
+</div>
+
+<!-- Price Field -->
+<div class="form-group">
+    {!! Form::label('price', 'Ár') !!}
+    <p>{!! $ads->price !!}</p>
+</div>
+
+<!-- Visitors Field -->
+<div class="form-group">
+    {!! Form::label('visitors', 'Látogatók') !!}
+    <p>{!! $ads->visitors !!}</p>
+</div>
+

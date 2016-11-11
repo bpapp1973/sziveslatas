@@ -20,8 +20,11 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    //This is neccessary to login with username instead of email
+    protected $username = 'username';
+
     /**
-     * Where to redirect users after login.
+     * Where to redirect users after login / registration.
      *
      * @var string
      */
@@ -36,4 +39,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
+    }
+
 }
