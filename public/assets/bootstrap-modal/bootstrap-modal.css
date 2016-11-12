@@ -1,0 +1,115 @@
+.bs-modal-title {
+	line-height: 1.5
+}
+.bs-modal-content {
+	border: 1px solid rgba(0, 0, 0, .2);
+	background-clip: padding-box
+}
+.bs-modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1050;
+	display: none;
+	outline: 0;
+	-webkit-overflow-scrolling: touch
+}
+.bs-modal.fade .bs-modal-dialog {
+	transition: transform .3s ease-out;
+	transform: translate(0, -25%)
+}
+.bs-modal.in .bs-modal-dialog {
+	transform: translate(0, 0)
+}
+.bs-modal-open .bs-modal {
+	overflow-x: hidden;
+	overflow-y: auto
+}
+.bs-modal-dialog {
+	position: relative;
+	width: auto;
+	margin: 10px
+}
+.bs-modal-content {
+	position: relative;
+	background-color: #fff;
+	border-radius: .3rem;
+	outline: 0
+}
+.bs-modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	background-color: #000
+}
+.bs-modal-backdrop.fade {
+	opacity: 0
+}
+.bs-modal-backdrop.in {
+	opacity: .5
+}
+.bs-modal-header {
+	padding: 15px;
+	border-bottom: 1px solid #e5e5e5
+}
+.bs-modal-header::after {
+	content: "";
+	display: table;
+	clear: both
+}
+.bs-modal-header .close {
+	margin-top: -2px
+}
+.bs-modal-title {
+	margin: 0
+}
+.bs-modal-body {
+	position: relative;
+	padding: 15px
+}
+.bs-modal-footer {
+	padding: 15px;
+	text-align: right;
+	border-top: 1px solid #e5e5e5
+}
+.bs-modal-footer::after {
+	content: "";
+	display: table;
+	clear: both
+}
+.bs-modal-footer .btn+.btn {
+	margin-bottom: 0;
+	margin-left: 5px
+}
+.bs-modal-footer .btn-group .btn+.btn {
+	margin-left: -1px
+}
+.bs-modal-footer .btn-block+.btn-block {
+	margin-left: 0
+}
+.bs-modal-scrollbar-measure {
+	position: absolute;
+	top: -9999px;
+	width: 50px;
+	height: 50px;
+	overflow: scroll
+}
+@media (min-width:544px) {
+	.bs-modal-dialog {
+		width: 600px;
+		margin: 30px auto
+	}
+	.bs-modal-sm {
+		width: 300px
+	}
+}
+@media (min-width:768px) {
+	.bs-modal-lg {
+		width: 900px
+	}
+}

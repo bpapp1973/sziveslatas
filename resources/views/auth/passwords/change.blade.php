@@ -74,7 +74,9 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                {!! Form::submit('Jelszó megváltoztatása', ['class' => 'btn btn-primary']) !!}
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="glyphicon glyphicon-save"></i>&nbsp;Jelszó megváltoztatása
+                                </button>
                             </div>
                         </div>
                         {!! Form::close() !!}

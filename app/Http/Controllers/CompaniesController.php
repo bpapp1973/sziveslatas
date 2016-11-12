@@ -278,7 +278,7 @@ class CompaniesController extends AppBaseController
 
             return redirect(route('companies.index'));
         }
-        $companies->update(['description' => $_REQUEST['description']]);
+        $companies->update(['description' => $_REQUEST['desc']]);
         
         Flash::success('A hirdetői adatokat frissítettük ');
 
