@@ -234,7 +234,7 @@ class AdsController extends AppBaseController
         $input = Input::all();
  
         $rules = array(
-            'file' => 'image|max:1000',
+            'file' => 'image|max:'.env('MAX_FILE_SIZE',2000),
         );
  
         $validation = Validator::make($input, $rules);

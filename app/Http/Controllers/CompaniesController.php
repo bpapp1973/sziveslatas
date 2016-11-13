@@ -294,9 +294,19 @@ class CompaniesController extends AppBaseController
      */
     public function uploadImage()
     {
+
+            Flash::error('A hirdetőt nem találtuk - '.$id);
+
+            return "redirect(route('companies.index'))";
+
         $name='';
 
         $companies = $this->companiesRepository->findWithoutFail($_REQUEST['container_id']);
+        if (empty($companies)) {
+            Flash::error('A hirdetőt nem találtuk');
+
+            return redirect(route('companies.index'));
+        }
 
         if(Input::file('image')) {
             $file = Input::file('image');
@@ -304,27 +314,28 @@ class CompaniesController extends AppBaseController
             $file->move(public_path().'/images/companies/'.$companies->id.'/', $name);
         }
 
-        $image = Images::where([['container_type', $_REQUEST['container_type']],
+        $image = Images::where([['container_type', 'companies'],
                                 ['container_id',   $_REQUEST['container_id']],
-                                ['form',           $_REQUEST['form']],
-                                ['control_id',     $_REQUEST['control_id']],
+                                ['form',           'description'],
+                                ['control_id',     'logo'],
             ])->first();
         if (count($image)==0) {
             $image = new Images();
         }
     
-        $image->container_type = $_REQUEST['container_type'];
+        $image->container_type = 'companies';
         $image->container_id   = $_REQUEST['container_id'];
-        $image->form           = $_REQUEST['form'];
-        $image->control_id     = $_REQUEST['control_id'];
+        $image->form           = 'description';
+        $image->control_id     = 'logo';
         $image->filePath       = $name;
-        $image->title          = $_REQUEST['title'];
-        $image->description    = $_REQUEST['description'];
+//        $image->title          = $_REQUEST['title'];
+//        $image->description    = $_REQUEST['description'];
         $image->save();
 
-        Flash::success('A képfeltöltés sikerült');
+//        Flash::success('A képfeltöltés sikerült');
 
-        return redirect(route('companies.profile', ['id'=>$_REQUEST['container_id']]));
+//        return redirect(route('companies.profile', ['id'=>$_REQUEST['container_id']]));
+        return $name;
     }
 
     private function getList($form, $control) {
