@@ -31,7 +31,7 @@
             </label>
             <input id="logo" type="file" />
         </div>
-        {!! Form::text('newlogo', null, ['id'=>'newlogo', 'name'=>'newlogo']) !!}
+        {!! Form::hidden('newlogo', null, ['id'=>'newlogo', 'name'=>'newlogo']) !!}
         <!--
         <a href=# data-toggle="tooltip" title="Logo lecserélése">
             <img id="logo" name="logo" class="logoUpload" data-toggle="bs-modal" data-target="#imageUpload" data-id="logo" hspace="12" src="{{ $logo }}" style="cursor: pointer; float:left; height:200px; width:15%" />

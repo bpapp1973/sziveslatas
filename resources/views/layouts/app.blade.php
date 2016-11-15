@@ -23,8 +23,10 @@
     <link rel="stylesheet" href="{{ url('/') }}/assets/mobirise-gallery/style.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/mobirise/css/mbr-additional.css" type="text/css">
     <link rel='stylesheet' href='{{ url('/') }}/assets/bootstrap-glyphicons/css/bootstrap.min.css' />
+    <link rel='stylesheet' href='{{ url('/') }}/assets/gill-sans-ultrabold/stylesheet.css' />
     <style type="text/css">
     /* Local styles*/
+    /* #5cb85c */
     </style>
     @yield('css')
     
@@ -42,7 +44,7 @@
           <div class="mbr-table">
             <div class="mbr-table-cell" style="width: 10%">
               <div class="navbar-brand">
-                <a class="navbar-caption text-info" style="font-family: Montserrat;" href="{{ url('/') }}">Sziveslátás.hu</a>
+                <a class="navbar-caption text-white" style="font-family: Gill Sans Ultra; font-size: 22px;" href="{{ url('/') }}">Sziveslátás.hu</a>
               </div>
             </div>
             <div class="mbr-table-cell">

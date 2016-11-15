@@ -43,5 +43,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('tags.index') !!}" class="btn btn-default">Mégsem</a>
+    <a href="{!! route('tags.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
