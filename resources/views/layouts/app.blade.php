@@ -44,26 +44,20 @@
           <div class="mbr-table">
             <div class="mbr-table-cell" style="width: 10%">
               <div class="navbar-brand">
-                <a class="navbar-caption text-white" style="font-family: Gill Sans Ultra; font-size: 22px;" href="{{ url('/') }}">Sziveslátás.hu</a>
+                <a class="navbar-caption text-white" style="font-family: Gill Sans Ultra; font-size: 33px;" href="{{ url('/') }}">Sziveslátás.hu</a>
               </div>
-            </div>
-            <div class="mbr-table-cell">
-              <ul class="nav navbar-nav navbar-left">
-                <li class="nav-item"><a style="font-family: Montserrat;" class="nav-link link" href="{!! url('/') !!}#msg-box8-5"><strong>Ajánlatok</strong></a></li>
-                <li class="nav-item"><a style="font-family: Montserrat;" class="nav-link link" href="{!! url('/') !!}#form1-g"><strong>Kapcsolat</strong></a></li>
-              </ul>
             </div>
             <div class="mbr-table-cell">
               <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
               <div class="hamburger-icon"></div>
               </button>
-              @if (Auth::guest())
-              <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item"><a class="nav-link link" href="{{ url('/login') }}"><strong>Belépés</strong></a></li>
-                <li class="nav-item"><a class="nav-link link" href="{{ url('/register') }}"><strong>Regisztráció</strong></a></li>
-              </ul>
-              @else
               <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                  <li class="nav-item"><a class="nav-link link" href="{!! url('/') !!}#msg-box8-5">Ajánlatok</a></li>
+                  <li class="nav-item"><a class="nav-link link" href="{!! url('/') !!}#form1-g">Kapcsolat</a></li>
+                @if (Auth::guest())
+                  <li class="nav-item"><a class="nav-link link" href="{{ url('/login') }}">Belépés</a></li>
+                  <li class="nav-item"><a class="nav-link link" href="{{ url('/register') }}">Regisztráció</a></li>
+                @else
                 @if (Auth::user()->roles_id==1)
                 <li class="nav-item dropdown">
                   <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="#" aria-expanded="false">Felhasználó</a>
