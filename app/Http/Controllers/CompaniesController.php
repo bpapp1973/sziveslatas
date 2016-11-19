@@ -19,6 +19,7 @@ use App\Repositories\CompaniesRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Debugbar;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -295,9 +296,7 @@ class CompaniesController extends AppBaseController
     public function uploadImage()
     {
 
-            Flash::error('A hirdetőt nem találtuk - '.$id);
-
-            return "redirect(route('companies.index'))";
+        Debugbar::addMessage('Another message', 'mylabel');
 
         $name='';
 
