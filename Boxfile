@@ -53,6 +53,7 @@ web1:
   log_watch:
     laravel[error]: 'storage/logs/laravel.log'
   before_deploy:
+    - 'php artisan cache:clear'
     - 'php artisan migrate:refresh --no-interaction --seed'
 
 database1:
