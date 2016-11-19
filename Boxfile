@@ -1,16 +1,23 @@
 global:
   env:
-    - APP_ENV: production
-    - APP_DEBUG: false
-    - APP_KEY: SomeRandomStringWith32Characters
+    - APP_ENV: development
+    - APP_DEBUG: true
+    - APP_KEY: base64:wDD2PD/+UnXpTouW5xNiQtL8UEiplDXr+RRcHwmQwuc=
     - DB_HOST: 'MAP:DATABASE1_HOST'
     - DB_DATABASE: 'MAP:DATABASE1_NAME'
     - DB_USERNAME: 'MAP:DATABASE1_USER'
     - DB_PASSWORD: 'MAP:DATABASE1_PASS'
     - CACHE_DRIVER: file
-    - SESSION_DRIVER: redis
-    - QUEUE_DRIVER: redis
-    - MAIL_DRIVER: mail
+    - SESSION_DRIVER: file
+    - QUEUE_DRIVER: sync
+    - MAIL_DRIVER: smtp
+    - MAIL_HOST=smtp.gmail.com
+    - MAIL_PORT=465
+    - MAIL_USERNAME=gygurzo@gmail.com
+    - MAIL_PASSWORD=7N}VT[dr
+    - MAIL_ENCRYPTION=ssl
+    - GOOGLE_MAPS_API_KEY=AIzaSyCHbrVzDRdwpqAJ82yROIP2L-kzpM7bMhs
+    - MAX_FILE_SIZE=2000
 
 build:
   exec:
@@ -46,7 +53,7 @@ web1:
   log_watch:
     laravel[error]: 'storage/logs/laravel.log'
   before_deploy:
-    - 'php artisan migrate --no-interaction'
+    - 'php artisan migrate --no-interaction --seed'
 
 database1:
   type: mysql
