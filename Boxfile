@@ -11,13 +11,13 @@ global:
     - SESSION_DRIVER: file
     - QUEUE_DRIVER: sync
     - MAIL_DRIVER: smtp
-    - MAIL_HOST=smtp.gmail.com
-    - MAIL_PORT=465
-    - MAIL_USERNAME=gygurzo@gmail.com
-    - MAIL_PASSWORD=7N}VT[dr
-    - MAIL_ENCRYPTION=ssl
-    - GOOGLE_MAPS_API_KEY=AIzaSyCHbrVzDRdwpqAJ82yROIP2L-kzpM7bMhs
-    - MAX_FILE_SIZE=2000
+    - MAIL_HOST: smtp.gmail.com
+    - MAIL_PORT: 465
+    - MAIL_USERNAME: gygurzo@gmail.com
+    - MAIL_PASSWORD: 7N}VT[dr
+    - MAIL_ENCRYPTION: ssl
+    - GOOGLE_MAPS_API_KEY: AIzaSyCHbrVzDRdwpqAJ82yROIP2L-kzpM7bMhs
+    - MAX_FILE_SIZE: 2000
 
 build:
   exec:
