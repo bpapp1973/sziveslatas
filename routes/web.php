@@ -15,7 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('phpMyAdmin');
+Route::get('phpMyAdmin', function () {
+    return url('../phpMyAdmin');
+});
 
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
