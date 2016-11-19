@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                    <i class="glyphicon glyphicon-envelope" />&nbsp;Helyreállító link elküldése
+                                    <i class="glyphicon glyphicon-envelope">&nbsp;Helyreállító link elküldése</i>
                                     </button>
                                 </div>
                             </div>
