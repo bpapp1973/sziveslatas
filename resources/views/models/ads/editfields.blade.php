@@ -1,4 +1,3 @@
-
 @if (!empty($images))
 <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }}">
     {!! Form::label('images', 'Képek', ['class' => 'col-md-4 control-label']) !!}
@@ -382,8 +381,109 @@
 </div>
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
+  Helyiségek
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="rooms" tabindex="-1" role="dialog" aria-labelledby="roomModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="roomModalLabel">Helyiségek</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @include('core-templates::common.errors')
+                            <button type="button" id="newRoomForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#newRoom">Új</button>
+
+                            @include('models.rooms.table')
+
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newRoom" tabindex="-1" role="dialog" aria-labelledby="newRoomModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="newRoomModalLabel">Új helyiség</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        @include('core-templates::common.errors')
+                        {!! Form::open(['route' => 'rooms.create']) !!}
+                        
+                            {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
+                            {!! Form::textarea('error', null, ['id' => 'error']) !!}
+                            
+                            @include('models.rooms.fields')
+                            
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="newRoomSubmit" class="btn btn-primary">Hozzáadás</button>
+        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
+
+<script>
+    $('#newRoomSubmit').on('click', function(e){
+            $.ajax({
+                url: '{{ url("/") }}/ads/room?request'+request, //this is the submit URL
+                type: 'GET', //or POST
+                data: $('#newRoom').serialize(),
+                error: function(xhr, status, error) {
+                    $('#error').val(xhr.responseText);
+                    //alert(xhr.responseText);
+                    //var err = eval("(" + xhr.responseText + ")");
+                    //alert(err.Message);
+                },
+                success: function(data){
+                    var request = [];
+                    request["ads_id"]=$('#ads_id').val();
+                    request["name"]=$('#name').val();
+                    request["area"]=$('#area').val();
+                    request["seats"]=$('#seats').val();
+                    request["assets"]=$('#assets').val();
+                    request["description"]=$('#description').val();
+                    alert('success '+request["ads_id"]);
+                }
+            });
+        });
+</script>

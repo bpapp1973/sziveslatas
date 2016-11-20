@@ -117,6 +117,7 @@ accept: function(file, done) {
                     @include('core-templates::common.errors')
                     {!! Form::model($ads, ['route' => ['ads.update', $ads->id], 'method' => 'patch']) !!}
                     @include('models.ads.editfields')
+                    
                     {!! Form::close() !!}
                 </div>
             </div>

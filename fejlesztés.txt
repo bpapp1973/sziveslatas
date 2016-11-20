@@ -1,0 +1,174 @@
+Google Maps Static API key: AIzaSyCHbrVzDRdwpqAJ82yROIP2L-kzpM7bMhs
+
+bpapp.ddns.net
+https://docs.google.com/document/d/1yWWdljakfuNx3okAdZzqLQlqlW7zPQ4G5cp88h7DJ0g/edit?ts=57c420fb
+
+
+
+hirdetés feladás
+	x eredeti ár
+	x kedvezményes ár + százalék
+	x magánszemély is hirdethet, adószám nem kötelező
+	x oldalsáv nem kell
+	x fizetési módok (átutalás, voucher, csekk) - Nemes?
+	x havi/negyedéves/éves előfizetés
+	x cég profil: tevékenységi kör - legördülő
+	x cég profil: megnevezés - nem biztos, hogy a cég neve ugyanaz mint pl az étteremé
+	- kereső: kategória | hely | időpont | kategória függő keresőmezők, tbd
+	- facebook oldal
+	- programok, szálláshelyek, éttermek stb a közelben
+	x profiloldal leszabályozása
+	- éttermi ajánlatok kiszállítás
+	x cancel gombok
+	- return redirect 'index'
+	x város mentése az update formokon
+	- tooltip szövegek mint a validation 
+	- kommentek, azok ellenőrzése
+
+
+/************************/
+/* Rendezvényhelyszín:  */
+/************************/
+
+-Esküvői helyszín
+-Családi rendezvény helyszín
+-Céges oktatás
+-Csapatépítő helyszín
+-Táboroztatási helyszín
+-Gyerek szülinapi helyszín
+-Kiállítás helyszín
+
+Terem bérlet díj: van, nincs( ha van mennyi?)
+
+
+Hely megnevezése
+Cím
+Telefonszám
+Kapcsolattartó neve, email címe:
+Termek száma, termek mérete, termek férőhely száma( külön leírva termenként)
+Terem felszerelése: leírással( színpad, oktatáshoz kellék stb.)
+Rendezvényhelyszín  ajánlat:
+Adott rendezvény típus konkrét vendéglátó ajánlata: leírással és esetleg pdf-ben vagy jpg formátumban is.
+Konkrét menü ajánlat: Menü 1, Menü 2, Menü 3, Menü 4
+Itt 15 fotó a termekről és az egész helyszínről.
+Naptár( jelölve a szabad és foglalt dátumokat) Foglalható legyen a helyszín. Ez egy foglalási szándék lesz csak, a részleteket majd a felek lebeszélik, egyeztetik. emailt küld a rendszer a foglalási szándékról.
+
+A rendezvény helyszín foglalásakor kitöltendő adatlap:
+-Foglaló csak regisztrált felhasználó lehet. Megjelennek az adatlapon az adatai. Rendezvény típusa bejelölve, vendégek száma, dátum( mettől meddig- ha egy napos a rendezvény akkor hány órától-hány óráig), ételfogyasztással kérem vagy anélkül, személyzettel vagy anélkül, Menü1, Menü 2, Menü 3, Menü 4 -ből válsztani lehessen.
+
+
+/************************/
+/* Vendéglátóhely       */
+/************************/
+
+Minden vendéglátóhely (későbbiekben user) regisztrál az oldalra, felhasználónévvel, jelszóval.  Regisztráció után, ide belépve tudja majd alakítani a saját profil oldalát. Fotók, leírások, stb.
+Célja, megismerni az adott helyet konkrétan a vendéglátási szempontok alapján. Formátuma 16:9 legyen. Szélesen használjuk az oldalt, hogy minél több információt tudjunk rajta közölni.
+Vendéglátóhely neve, címe, elérhetősége, telefonszám, étterem részek (ha több van, akkor fel kell tüntetni melyik terem) konkrét férőhelyek száma, fedett vagy fedetlen terasz konkrét férőhelyek száma. Étlap feltöltése PDF formátumban. Rendezvényekre ajánlat feltöltése PDF formátumban. Esküvői ajánlat feltöltése PDF formátumban, 
+Profil oldalon fotók elhelyezése hasonló módon, mint a booking.com-on. Naptár elhelyezése. A naptárban lehessen lapozni, a szabad rendezvény időpontok között. Be legyenek rajta jelölve a foglalt időpontok. Ezeket az adott hely tölti fel profiloldalán keresztül.
+Profiloldalon kérdezési lehetőség a usertól, emailben. Minden kérdés és válasz jelenjen meg a felületen. User tudja törölni ha akarja. 
+Profioldalon legyen egy olyan, hogy kiemelt ajánlatok, ezeket is profil oldalon keresztül tudja feltölteni a user. Három kiemelt ajánlat legyen a profiloldalon.
+A kiemelt ajánlat tartalmazzon: Ajánlat megnevezése. Ajánlat konkrét leírása. Ajánlat ára. Fotók.(15 db) Jelentkezés: email cím, telefonszám, 
+
+
+
+/************************/
+/* Programfeltöltés     */
+/************************/
+
+Program megnevezése, dátum (mettől-meddig), program szervezője, program leírása, jegy árak (ha nincs jegy, akkor kiírni, hogy a részvétel ingyenes. Kérdezési lehetőség a programmal kapcsolatban a hirdetőtől. Legyen a program megjelenítési oldalon egy konkrét program leírás (letöltése pdf.ben) amit jelezni kell kis fotós ikonnal.
+
+Hírdetői Regisztráció után.
+-Program elnevezése
+-Program kategória kiválasztása( lenyíló ablak bejelölése)
+-Program dátuma( kettő naptár jelenjen meg: elsőn a kezdés, másodikon a zárás dátumát lehet beállítani)
+-Helyszín
+-Programról információs telefonszám
+-Programért felelős személy
+--Programért felelős személy email cím
+-Program részletes leírása
+-Programról fotók (15 fotót maximum)
+-Program részvételi díjszabása( ha ingyenes akkor egységes ingyenes felirat legyen mindenhol)
+-Férőhelyek
+
+
+Program megjelénése az oldalon:
+-Program elnevezése
+-Program kategória
+-Program dátuma
+-Program helyszíne( térképes megjelenéssel)
+-Program leírása
+-Program díjszabása
+-Fotók
+-Programról információs telefonszám
+-Programért felelős személy
+--Programért felelős személy email cím
+program leírás alatt szállásajánló legyen a helyszínnel azonos városban, alatta vendéglátóhely ajánló is lehet.
+Kérdezési lehetőség a programért felelős személytől emailben.
+Kedvencnek jelölés lehetősége. 
+Ha kedvencnek jelöli valaki, akkor kapjon róla hírlevelet, ha új eseményt tölt fel az adott program szervezője!  
+
+
+Hirdetés élettartama:
+- véget ér a program, automatikus
+- lejár a hirdető előfizetése, automatikus
+- a hirdető törli
+- az admin törli
+
+program: érdekel gomb, feliratkozik hírlevélre
+
+
+/************************/
+/* Szállás              */
+/************************/
+
+-A szállásadók tudnának ingyen ajánlatot feltölteni. A foglalások után 7% jutalékot számlázunk ki a szállásadó felé. Ha programokat és rendezvényhelyszín ajánlatot is szeretne a szállásadó feltölteni akkor már előfizetési díjat kell fizetnie. Éves díjban! Csak a szállásadók tudnának ingyen regisztrálni és utazási ajánlatokat feltölteni. A többi cég csak előfizetéssel tudna csak bármilyen hirdetést feltölteni. Létrehoznánk egy kedvezménykártyát, amellyel kedvezményeket lehet elérni a oldalon szereplő cégeknél. Áraikból megjelölve a profiloldalukon és az ajánlataikban a százalékos kedvezményt! A kedvezményt a szállásajánlatoknál mi adnánk és nem a szállásadó. A többi cégnél a hirdető és nem mi. Nézd meg légy szíves a másik oldalon, hogy a kedvezménykártya kártyaszám generálót és kártyaellenörzőt be tudod e illeszteni? Majd kell egy kártyaigénylő adatlap is, olyasmi amivel a végén visszavonhatatlanul megveszi a kártyát!
+
+
+Szállás utalvány ajánlatok:
+
+
+Regisztrációs adatok:
+Ha mi áruljuk az utalványt akkor mi ki tudjuk tölteni a következőket:
+Helyszín:
+Cím:
+Web cím:
+
+
+Utalvány leírása:
+Téli szuper akció a Hotel Silver****superior-ban Hajdúszoboszlón, 2 fő 2 éj félpanzióval
+
+
+Hungarospa Hajdúszoboszló 300 m
+Felhasználható: 2016. november 6. és 2017. február 28. között hétköznapokon, illetve hétvégén felár ellenében (5 000 Ft / utalvány)
+Ellátás: Félpanzió
+Wellness szolgáltatások: élménymedence, gyerekmedence, gyógymedence, részletek »
+Család- és bababarát szálláshely, részletek »
+Nagyon jó (9.2) a szálláshely értékelése 854 valós vendégvélemény alapján
+Közvetlenül a szálláshelynek utalsz
+Hotel Silver Hajdúszoboszló szerződésben garantálja, hogy mindent megkapsz, ami a csomagban le van írva
+A partnerünk a foglalásról visszaigazolást küld.
+FOTÓK a helyszínről.
+
+
+Utalvány azonosító szám: 
+Utalvány tartalmazza
+
+
+Idilli környezet, mesébe illő hotel, gyógyító termálvíz, néhány nap teljes kikapcsolódás és feltöltődés! Kell ennél több egy tökéletes téli pihenéshez? Felejtsd el néhány napra a világ minden gondját és éld át a négy csillagos wellness élményt a hajdúszoboszlói Hotel Silverben!
+
+
+- szállás 2 felnőtt és egy 6 év alatti gyermek részére 2 éjre Standard szobában
+- félpanzióval
+- minden reggel egy pohár pezsgő az étteremben
+- gyümölcscentrifuga használata a reggelinél
+- bébisarok és egészségsarok a reggelinél és a vacsoránál
+- fürdőköpeny, hajszárító, széf
+- gőzfürdő, szauna, infrakabin, hidromasszázs, pezsgőfürdő, termálmedencék, sókamra
+
+
+Időpont foglalás és utána konkrétan egy megveszem gomb. Fizetni a hírdetőnek fog a vásárló! 
+Fizetési mód: előre utalás csak! 
+
+
+
+

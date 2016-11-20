@@ -373,3 +373,42 @@
     {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
     <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
+  Helyiség hozzáadása
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="rooms" tabindex="-1" role="dialog" aria-labelledby="roomModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="roomModalLabel">Új helyiség</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        @include('core-templates::common.errors')
+
+                        {!! Form::open(['route' => 'rooms.store']) !!}
+
+                            @include('models.rooms.fields')
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer"><span>&nbsp;</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+@extends('layouts.app')
+
+@section('content')
+<div id="page-content-wrapper" style="padding-top: 10em">
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">$MODEL_NAME_HUMAN$ szerkesztése</div>
+                <div class="panel-body">
+
+                    @include('core-templates::common.errors')
+
+                    {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.update', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'patch']) !!}
+
+                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.fields')
+
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

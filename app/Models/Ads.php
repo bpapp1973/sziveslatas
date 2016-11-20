@@ -188,5 +188,13 @@ class Ads extends Model
         return $this->hasMany('App\Models\Images', 'container_id');
     }
 
+    /**
+     * Get the rooms records associated with the ad.
+     */
+    public function rooms()
+    {
+        return $this->hasMany('App\Models\Rooms', 'ads_id');
+    }
+
     
 }

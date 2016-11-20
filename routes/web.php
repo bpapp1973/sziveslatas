@@ -33,6 +33,7 @@ Route::resource('lists', 'ListsController');
 Route::resource('roles', 'RolesController');
 Route::resource('tags', 'TagsController');
 Route::resource('users', 'UserController');
+Route::resource('rooms', 'RoomsController');
 
 Route::get('companies/{company}/profile', ['as'=>'companies.profile', 'uses'=>'CompaniesController@profile']);
 Route::patch('companies/{company}/profile', ['as' => 'companies.update.profile', 'uses' => 'CompaniesController@updateProfile']);
@@ -53,4 +54,5 @@ Route::get('delete-image', function () {
 });
 
 Route::post('dropzone/uploadFiles', ['as'=>'dropzone.post', 'uses' => 'AdsController@uploadFiles']);
+Route::get('ads/room', ['as' => 'ads.room', 'uses' => 'AdsController@addRoom']);
 

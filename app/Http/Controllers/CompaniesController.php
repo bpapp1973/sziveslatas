@@ -296,8 +296,6 @@ class CompaniesController extends AppBaseController
     public function uploadImage()
     {
 
-        Debugbar::addMessage('Another message', 'mylabel');
-
         $name='';
 
         $companies = $this->companiesRepository->findWithoutFail($_REQUEST['container_id']);
@@ -313,7 +311,7 @@ class CompaniesController extends AppBaseController
             $file->move(public_path().'/images/companies/'.$companies->id.'/', $name);
         }
 
-        $image = Images::where([['container_type', 'companies'],
+        $image = Images::where([['container_type', 'company'],
                                 ['container_id',   $_REQUEST['container_id']],
                                 ['form',           'description'],
                                 ['control_id',     'logo'],
@@ -322,19 +320,18 @@ class CompaniesController extends AppBaseController
             $image = new Images();
         }
     
-        $image->container_type = 'companies';
+        $image->container_type = 'company';
         $image->container_id   = $_REQUEST['container_id'];
         $image->form           = 'description';
         $image->control_id     = 'logo';
         $image->filePath       = $name;
-//        $image->title          = $_REQUEST['title'];
-//        $image->description    = $_REQUEST['description'];
+        $image->title          = $_REQUEST['title'];
+        $image->description    = $_REQUEST['description'];
         $image->save();
 
-//        Flash::success('A képfeltöltés sikerült');
+        Flash::success('A képfeltöltés sikerült');
 
-//        return redirect(route('companies.profile', ['id'=>$_REQUEST['container_id']]));
-        return $name;
+        return redirect(route('companies.profile', ['id'=>$_REQUEST['container_id']]));
     }
 
     private function getList($form, $control) {

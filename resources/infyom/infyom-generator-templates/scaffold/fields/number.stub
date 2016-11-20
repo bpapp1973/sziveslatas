@@ -1,0 +1,12 @@
+<!-- $FIELD_NAME_TITLE$ Field -->
+<div class="form-group{{ $errors->has('$FIELD_NAME$') ? ' has-error' : '' }}">
+	{!! Form::label('$FIELD_NAME$', '$FIELD_NAME_TITLE$', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+    	{!! Form::number('$FIELD_NAME$', null, ['class' => 'form-control']) !!}
+        @if ($errors->has('$FIELD_NAME$'))
+            <span class="help-block">
+                <strong>{{ $errors->first('$FIELD_NAME$') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>

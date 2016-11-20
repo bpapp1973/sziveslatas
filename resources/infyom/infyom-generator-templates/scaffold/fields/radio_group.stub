@@ -1,0 +1,5 @@
+<!-- $FIELD_NAME_TITLE$ Field -->
+<div class="form-group col-sm-12">
+    <label class="col-md-4 control-label">'$FIELD_NAME_TITLE$'</label>
+$RADIO_BUTTONS$
+</div>

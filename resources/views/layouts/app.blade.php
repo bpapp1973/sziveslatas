@@ -26,7 +26,14 @@
     <link rel='stylesheet' href='{{ url('/') }}/assets/gill-sans-ultrabold/stylesheet.css' />
     <style type="text/css">
     /* Local styles*/
-    /* #5cb85c */
+    .btn-group-xxs>.btn,
+    .btn-xxs {
+        padding: 1px 5px;
+        font-size: 16px;
+        line-height: 1.5;
+        border-radius: 3px
+    }
+
     </style>
     @yield('css')
     

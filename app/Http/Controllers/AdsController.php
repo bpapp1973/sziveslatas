@@ -13,6 +13,7 @@ use App\Models\UserCompanies;
 use App\Models\Tags;
 use App\Models\Images;
 use App\Models\Calendars;
+use App\Models\Rooms;
 use Auth;
 use Validator;
 use Input;
@@ -24,6 +25,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Debugbar;
 
 class AdsController extends AppBaseController
 {
@@ -135,6 +137,8 @@ class AdsController extends AppBaseController
             return redirect(route('ads.index'));
         }
 
+        $rooms = $ads->rooms;
+
         $cats = Categories::whereNull('parent_id')->get(['name','id']);
         $categories = array();
         foreach ($cats as $element) {
@@ -171,7 +175,8 @@ class AdsController extends AppBaseController
                                     'subcategories' => $subcategories,
                                     'tags' => $tags,
                                     'hidden' => $hidden,
-                                    'images' => $imagesDB
+                                    'images' => $imagesDB,
+                                    'rooms' => $rooms
                                     ]);
     }
 
@@ -358,5 +363,9 @@ class AdsController extends AppBaseController
                     ]);
             }
         }
+    }
+
+    public function addRoom() {
+        Debugbar::addMessage('$id', 'AdsController@addRoom');
     }
 }

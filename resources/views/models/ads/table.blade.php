@@ -7,7 +7,7 @@
                         <img class="media-object" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri" width="100px">
                     @else
                         <img class="media-object" src="images/companies/10/27/{!! $ad->images->first()->filepath !!}" width="100px">
-                        <span class="glyphicon glyphicon-camera badge" style="position: relative; top: -75px;">&nbsp;{!! count($ad->images) !!}</span>
+                        <span class="glyphicon glyphicon-camera badge" style="color: white; position: relative; top: -75px;">&nbsp;{!! count($ad->images) !!}</span>
                     @endif
                 </a>
             </div>
@@ -24,11 +24,13 @@
                     {!! $ad->email !!}<br/>
                     {!! $ad->price !!} Ft<br/>
                 </div>
-                <div class="col-xs-2 btn-group">
-                    <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
+                {!! Form::open(['route' => ['ads.destroy', $ad->id], 'method' => 'delete']) !!}
+                <div class='col-xs-2 btn-group'>
+                    <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-warning btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
