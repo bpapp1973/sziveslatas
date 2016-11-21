@@ -366,6 +366,15 @@ class AdsController extends AppBaseController
     }
 
     public function addRoom() {
-        Debugbar::addMessage('$id', 'AdsController@addRoom');
+        $room = Rooms::create([
+            'ads_id'      => $_POST['ads_id'],
+            'name'        => $_POST['name'],
+            'area'        => $_POST['area'],
+            'seats'       => $_POST['seats'],
+            'assets'      => $_POST['assets'],
+            'description' => $_POST['description'],
+        ]);
+
+        return json_encode($room);
     }
 }

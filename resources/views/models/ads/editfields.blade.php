@@ -1,3 +1,4 @@
+<div id="errors"></div>
 @if (!empty($images))
 <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }}">
     {!! Form::label('images', 'Képek', ['class' => 'col-md-4 control-label']) !!}
@@ -167,10 +168,24 @@
 </div>
 
 <div id="eventlocation">
+    <!-- Button trigger modal -->
+    <div class="form-group{">
+        {!! Form::label('', '', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
+              Helyiségek
+            </button>
+        </div>
+    </div>
+
+
     <div class="form-group{{ $errors->has('menu1') ? ' has-error' : '' }}">
         {!! Form::label('menu1', 'Menü 1', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::textarea('menu1', $ads->menu1, ['class' => 'form-control']) !!}
+            <script type="text/javascript">  
+                CKEDITOR.replace( 'menu1');  
+            </script>  
             @if ($errors->has('menu1'))
                 <span class="help-block">
                     <strong>{{ $errors->first('menu1') }}</strong>
@@ -183,6 +198,9 @@
         {!! Form::label('menu2', 'Menü 2', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::textarea('menu2', $ads->menu2, ['class' => 'form-control']) !!}
+            <script type="text/javascript">  
+                CKEDITOR.replace( 'menu2');  
+            </script>  
             @if ($errors->has('menu2'))
                 <span class="help-block">
                     <strong>{{ $errors->first('menu2') }}</strong>
@@ -195,6 +213,9 @@
         {!! Form::label('menu3', 'Menü 3', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::textarea('menu3', $ads->menu3, ['class' => 'form-control']) !!}
+            <script type="text/javascript">  
+                CKEDITOR.replace( 'menu3');  
+            </script>  
             @if ($errors->has('menu3'))
                 <span class="help-block">
                     <strong>{{ $errors->first('menu3') }}</strong>
@@ -207,6 +228,9 @@
         {!! Form::label('menu4', 'Menü 4', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
             {!! Form::textarea('menu4', $ads->menu4, ['class' => 'form-control']) !!}
+            <script type="text/javascript">  
+                CKEDITOR.replace( 'menu4');  
+            </script>  
             @if ($errors->has('menu4'))
                 <span class="help-block">
                     <strong>{{ $errors->first('menu4') }}</strong>
@@ -338,11 +362,6 @@
                 <strong>{{ $errors->first('description') }}</strong>
             </span>
         @endif
-        @if ($errors->has('description'))
-            <span class="help-block">
-                <strong>{{ $errors->first('description') }}</strong>
-            </span>
-        @endif
     </div>
 </div>
 
@@ -381,11 +400,6 @@
 </div>
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
-  Helyiségek
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="rooms" tabindex="-1" role="dialog" aria-labelledby="roomModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -402,7 +416,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @include('core-templates::common.errors')
-                            <button type="button" id="newRoomForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#newRoom">Új</button>
+                            <button type="button" id="newRoomForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#newRoom" data-dismiss="modal">Új</button>
 
                             @include('models.rooms.table')
 
@@ -433,21 +447,20 @@
             <div class="col-md-12 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-body">
-
                         @include('core-templates::common.errors')
-                        <form>
+                        {!! Form::open(['route' => 'rooms.store']) !!}
                             {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
-                            {!! Form::textarea('error', null, ['id' => 'error']) !!}
+                            @include('models.rooms.modal_fields')
                             
-                            @include('models.rooms.fields')
-                        </form>
+
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="newRoomSubmit" class="btn btn-primary">Hozzáadás</button>
+        <button type="button" id="newRoomSubmit" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
         <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
       </div>
     </div>
@@ -461,33 +474,37 @@
 </div>
 
 <script>
+    var token = "{{ Session::getToken() }}";
     $('#newRoomSubmit').on('click', function(e){
             $.ajax({
-                url: '{{ url("/") }}/ads/room', //this is the submit URL
+                url: "{{ url('/') }}/adsroom", //this is the submit URL
                 type: 'POST', //or POST
+                dataType: "json",
                 data: {
+                    _token:token,
                     ads_id:$('#ads_id').val(),
-                    name:$('#name').val(),
-                    area:$('#area').val(),
-                    seats:$('#seats').val(),
-                    assets:$('#assets').val(),
-                    description:$('#description').val()
+                    name:$('#modal_name').val(),
+                    area:$('#modal_area').val(),
+                    seats:$('#modal_seats').val(),
+                    assets:$('#modal_assets').val(),
+                    description:$('#modal_description').val()
                 },
                 error: function(xhr, status, error) {
-                    $('#error').val(xhr.responseText);
-                    //alert(xhr.responseText);
-                    //var err = eval("(" + xhr.responseText + ")");
-                    //alert(err.Message);
+                    var responseText;
+                    $("#errors").html("");
+                    try {
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        $("#errors").append("<div><b>" + errorType + " " + exception + "</b></div>");
+                        $("#errors").append("<div><u>Exception</u>:<br /><br />" + responseText.ExceptionType + "</div>");
+                        $("#errors").append("<div><u>StackTrace</u>:<br /><br />" + responseText.StackTrace + "</div>");
+                        $("#errors").append("<div><u>Message</u>:<br /><br />" + responseText.Message + "</div>");
+                    } catch (e) {
+                        responseText = xhr.responseText;
+                        $("#errors").html(responseText);
+                    }
                 },
                 success: function(data){
-                    var request = [];
-                    request["ads_id"]=$('#ads_id').val();
-                    request["name"]=$('#name').val();
-                    request["area"]=$('#area').val();
-                    request["seats"]=$('#seats').val();
-                    request["assets"]=$('#assets').val();
-                    request["description"]=$('#description').val();
-                    alert('success '+request["ads_id"]);
+                    document.location.reload();
                 }
             });
         });
