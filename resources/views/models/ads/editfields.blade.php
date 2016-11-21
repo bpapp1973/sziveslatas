@@ -435,14 +435,12 @@
                     <div class="panel-body">
 
                         @include('core-templates::common.errors')
-                        {!! Form::open(['route' => 'rooms.create']) !!}
-                        
+                        <form>
                             {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
                             {!! Form::textarea('error', null, ['id' => 'error']) !!}
                             
                             @include('models.rooms.fields')
-                            
-                        {!! Form::close() !!}
+                        </form>
                     </div>
                 </div>
             </div>
@@ -465,9 +463,16 @@
 <script>
     $('#newRoomSubmit').on('click', function(e){
             $.ajax({
-                url: '{{ url("/") }}/ads/room?request'+request, //this is the submit URL
-                type: 'GET', //or POST
-                data: $('#newRoom').serialize(),
+                url: '{{ url("/") }}/ads/room', //this is the submit URL
+                type: 'POST', //or POST
+                data: {
+                    ads_id:$('#ads_id').val(),
+                    name:$('#name').val(),
+                    area:$('#area').val(),
+                    seats:$('#seats').val(),
+                    assets:$('#assets').val(),
+                    description:$('#description').val()
+                },
                 error: function(xhr, status, error) {
                     $('#error').val(xhr.responseText);
                     //alert(xhr.responseText);
