@@ -1,5 +1,5 @@
 <div id="errors"></div>
-@if (!empty($images))
+@if (count($images)>0)
 <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }}">
     {!! Form::label('images', 'Képek', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
@@ -465,12 +465,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
 
 <script>

@@ -117,10 +117,15 @@ accept: function(file, done) {
                     @include('core-templates::common.errors')
                     {!! Form::model($ads, ['route' => ['ads.update', $ads->id], 'method' => 'patch']) !!}
                     @include('models.ads.editfields')
-                    
+                    <!-- Submit Field -->
+                    <div class="form-group col-sm-12">
+                        {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
+                        <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+                    </div>
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
-    </div></div>
-    @endsection
+    </div>
+</div>
+@endsection

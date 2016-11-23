@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\RoomsCriteria;
 use App\Http\Requests\CreateRoomsRequest;
 use App\Http\Requests\UpdateRoomsRequest;
 use App\Repositories\RoomsRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Debugbar;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
