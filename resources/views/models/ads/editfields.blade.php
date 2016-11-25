@@ -399,6 +399,7 @@
     </div>
 </div>
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
+{!! Form::hidden('hiddenrooms', $rooms, ['id' => 'hiddenrooms']) !!}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -433,6 +434,7 @@
                                     <th colspan="3">Művelet</th>
                                 </thead>
                                 <tbody>
+                                <?php if ( ! empty($_POST['hiddenrooms'])){ $rooms = $_POST['hiddenrooms'];} ?>
                                 @for($cnt=0; $cnt<count($rooms); $cnt++)
                                 <?php $room=$rooms[$cnt]; ?>
 
@@ -443,13 +445,13 @@
                                         <td>{!! $room->seats !!}</td>
                                         <td>
                                             <div class='btn-group'>
-                                                <a href="{!! route('rooms.show', [$room->id]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                                                <a href="{!! route('rooms.edit', [$room->id]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
+                                                <a href="{!! route('rooms.show', [$cnt]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                                                <a href="{!! route('rooms.edit', [$cnt]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
                                                 <!--
                                                 {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
                                                 -->
-                                                <div class="roomDelete" data-id="{!! $room->id !!}" >
-                                                    <a id="room{{$room->id}}" href="#" class='btn btn-danger btn-xxs'><i class="glyphicon glyphicon-trash"></i></a>
+                                                <div class="roomDelete" data-id="{!! $cnt !!}" data-dismiss="modal">
+                                                    <a id="room{{$cnt}}" class='btn btn-danger btn-xxs'><i class="glyphicon glyphicon-trash"></i></a>
                                                 </div>
                                             </div>
                                         </td>
@@ -538,12 +540,16 @@
         });
 
     $('.roomDelete').on('click', function(e){
-        var id=$(this).data("id");
+        var index=$(this).data("id");
         var rooms=<?php echo json_encode($rooms); ?>;
-        var c = confirm("Biztos vagy benne?");
 
-        if (c===true) {
-            alert(rooms[id-1]['name']);
+        if (confirm("Biztos vagy benne?")===true) {
+            rooms.splice(index, 1);
+            $('#hiddenrooms').val(JSON.stringify(rooms));
+            $('body').on('hidden.bs.modal', '.modal', function () {
+                $('#rooms').removeData('bs.modal');
+            });
+            
         }
         });
 
