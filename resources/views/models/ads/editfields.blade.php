@@ -400,6 +400,12 @@
 </div>
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
 
+<!-- Submit Field -->
+<div class="form-group col-sm-12">
+    {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+</div>
+
 <!-- Modal -->
 <div class="modal fade" id="rooms" tabindex="-1" role="dialog" aria-labelledby="roomModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -418,7 +424,39 @@
                         @include('core-templates::common.errors')
                             <button type="button" id="newRoomForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#newRoom" data-dismiss="modal">Új</button>
 
-                            @include('models.rooms.table')
+                            <table class="table table-responsive" id="rooms-table">
+                                <thead>
+                                    <th>Hirdetés</th>
+                                    <th>Név</th>
+                                    <th>Méret</th>
+                                    <th>Férőhelyek</th>
+                                    <th colspan="3">Művelet</th>
+                                </thead>
+                                <tbody>
+                                @for($cnt=0; $cnt<count($rooms); $cnt++)
+                                <?php $room=$rooms[$cnt]; ?>
+
+                                    <tr>
+                                        <td>{!! $room->ads_id !!}</td>
+                                        <td>{!! $room->name !!}</td>
+                                        <td>{!! $room->area !!}</td>
+                                        <td>{!! $room->seats !!}</td>
+                                        <td>
+                                            <div class='btn-group'>
+                                                <a href="{!! route('rooms.show', [$room->id]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                                                <a href="{!! route('rooms.edit', [$room->id]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
+                                                <!--
+                                                {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
+                                                -->
+                                                <div class="roomDelete" data-id="{!! $room->id !!}" >
+                                                    <a id="room{{$room->id}}" href="#" class='btn btn-danger btn-xxs'><i class="glyphicon glyphicon-trash"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endfor
+                                </tbody>
+                            </table>
 
                     </div>
                 </div>
@@ -448,12 +486,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @include('core-templates::common.errors')
-                        {!! Form::open(['route' => 'rooms.store']) !!}
                             {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
                             @include('models.rooms.modal_fields')
-                            
-
-                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -487,7 +521,7 @@
                     var responseText;
                     $("#errors").html("");
                     try {
-                        responseText = jQuery.parseJSON(xhr.responseText);
+                        responseText = json_encode(xhr.responseText);
                         $("#errors").append("<div><b>" + errorType + " " + exception + "</b></div>");
                         $("#errors").append("<div><u>Exception</u>:<br /><br />" + responseText.ExceptionType + "</div>");
                         $("#errors").append("<div><u>StackTrace</u>:<br /><br />" + responseText.StackTrace + "</div>");
@@ -502,4 +536,15 @@
                 }
             });
         });
+
+    $('.roomDelete').on('click', function(e){
+        var id=$(this).data("id");
+        var rooms=<?php echo json_encode($rooms); ?>;
+        var c = confirm("Biztos vagy benne?");
+
+        if (c===true) {
+            alert(rooms[id-1]['name']);
+        }
+        });
+
 </script>
