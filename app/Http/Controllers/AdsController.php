@@ -202,11 +202,13 @@ class AdsController extends AppBaseController
 
         $tags = $this->saveTags($_REQUEST['hiddentags'], $id);
 
+        $rooms = $this->saveRooms($_REQUEST['hiddenrooms'], $id);
+
         $flash=$this->storeImages($ads->id);
 
         Flash::success('A hirdetést módosítottuk - '.$flash);
 
-        return redirect(route('ads.show', $ads->id));
+        return redirect(route('ads.edit', $ads->id));
         //return view('models.ads.show')->with('ads', $ads);
     }
 
@@ -365,16 +367,59 @@ class AdsController extends AppBaseController
         }
     }
 
-    public function addRoom() {
-        $room = Rooms::create([
-            'ads_id'      => $_POST['ads_id'],
-            'name'        => $_POST['name'],
-            'area'        => $_POST['area'],
-            'seats'       => $_POST['seats'],
-            'assets'      => $_POST['assets'],
-            'description' => $_POST['description'],
-        ]);
+    public function saveRooms($rooms, $id) {
+        $ads = $this->adsRepository->findWithoutFail($id);
 
-        return json_encode($room);
+        if (empty($ads)) {
+            return redirect(route('ads.index'));
+        }
+
+        $roomsOld = $ads->rooms->toArray();
+        $roomsNew = json_decode($rooms, true);
+
+        Debugbar::addMessage('old: ', gettype($roomsOld).' - '.json_encode($roomsOld));
+        Debugbar::addMessage('new: ', gettype($roomsNew).' - '.json_encode($roomsNew));
+
+        $toDelete = $this->ary_diff($roomsOld,$roomsNew);
+        Debugbar::addMessage('toDelete: ', gettype($toDelete).' - '.json_encode($toDelete));
+        $toInsert = $this->ary_diff($roomsNew,$roomsOld);
+        Debugbar::addMessage('toInsert: ', gettype($toInsert).' - '.json_encode($toInsert));
+
+
+        for ($i=0; $i < count($toDelete); $i++) { 
+            Rooms::find($toDelete[$i]["id"])->delete();
+        }
+
+        foreach ($toInsert as $room) {
+            Rooms::create([
+                'ads_id'      => $room['ads_id'],
+                'name'        => $room['name'],
+                'area'        => $room['area'],
+                'seats'       => $room['seats'],
+                'assets'      => $room['assets'],
+                'description' => $room['description'],
+            ]);
+        }
+    }
+
+
+    function ary_diff( $ary_1, $ary_2 ) {
+        // compare the value of 2 array
+        // get differences that in ary_1 but not in ary_2
+        // get difference that in ary_2 but not in ary_1
+        // return the unique difference between value of 2 array
+        $diff = array();
+
+        // get differences that in ary_1 but not in ary_2
+        foreach ( $ary_1 as $v1 ) {
+            $flag = 0;
+            foreach ( $ary_2 as $v2 ) {
+                $flag |= ( $v1 == $v2 );
+                if ( $flag ) break;
+            }
+            if ( !$flag ) array_push( $diff, $v1 );
+        }
+
+        return $diff;
     }
 }

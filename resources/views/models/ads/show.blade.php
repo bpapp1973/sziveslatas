@@ -83,12 +83,62 @@
 				</div>
 			</div>
 			<h3>Leírás</h3>
-			<?php
-			echo $ads->description;
-			?>
+			{!! $ads->description !!}
 			<div class="form-group">
 				<a href="{!! url($_SERVER['HTTP_REFERER']) !!}" >Vissza</a>
 			</div>
 		</div>
 	</div>
-	@endsection
+
+			<section class="mbr-section" id="pricing-table2-3" style="background-color: rgb(255, 255, 255); padding-top: 120px; padding-bottom: 120px;">
+
+    
+
+    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-12 text-xs-center">
+                  <h3 class="mbr-section-title display-2">Menüajánlat</h3>
+                  <small class="mbr-section-subtitle">Az alábbi menüajánlatok válaszhatók</small>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="mbr-section mbr-section-nopadding mbr-price-table">
+      <div class="row">
+
+            <div class="col-xs-12  col-md-6 col-xl-3">
+                <div class="mbr-plan card text-xs-center">
+                    <div class="mbr-plan-header card-block bg-primary">
+                      <div class="card-title">
+                        <h3 class="mbr-plan-title">Menü 1</h3>
+                        <small class="mbr-plan-subtitle">rövid leírás</small>
+                      </div>
+                      <div class="card-text">
+                          <div class="mbr-price">
+                            <span class="mbr-price-figure">5000</span>
+                            <span class="mbr-price-value">Ft</span>
+                            <small class="mbr-price-term">/fő</small>
+                          </div>
+                          <small class="mbr-plan-price-desc">More details</small>
+                      </div>
+                    </div>
+                    <div class="mbr-plan-body card-block">
+                      <div class="mbr-plan-list">
+                      	<ul class="list-group list-group-flush">
+                      		<li class="list-group-item">32 GB storage</li>
+                      		<li class="list-group-item">Unlimited users</li>
+                      		<li class="list-group-item">15 GB bandwidth</li>
+                      	</ul>
+                      </div>
+                      <div class="mbr-plan-btn">
+                      	<a href="https://mobirise.com" class="btn btn-black btn-black-outline">DEMO</a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</section>
+@endsection

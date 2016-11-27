@@ -54,4 +54,6 @@ Route::get('delete-image', function () {
 });
 
 Route::post('dropzone/uploadFiles', ['as'=>'dropzone.post', 'uses' => 'AdsController@uploadFiles']);
-Route::post('adsroom', ['as' => 'ads.room', 'uses' => 'AdsController@addRoom']);
+
+
+Route::resource('menucards', 'MenucardsController');

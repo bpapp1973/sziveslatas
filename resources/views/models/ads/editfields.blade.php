@@ -1,16 +1,27 @@
 <div id="errors"></div>
 @if (count($images)>0)
-<div class="form-group{{ $errors->has('images') ? ' has-error' : '' }}">
-    {!! Form::label('images', 'Képek', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        @for($cnt=0; $cnt<count($images); $cnt++)
-                <div id="image{{$images[$cnt]->id}}" >
-                    <img src="{{ url('/').'/images/companies/'.$ads->company->id.'/'.$ads->id.'/'.$images[$cnt]->filepath }}"  width="145px">
-                    <span onclick="removeImage('{{ $images[$cnt]->id }}')" class="glyphicon glyphicon-remove" style="position: relative; top: -40px; left: -20px; font-size: 12px; color: white">
+<section class="mbr-gallery mbr-section mbr-slider-carousel" id="gallery1-4" data-filter="false" style="background-color: rgb(255, 255, 255); padding-top: 0rem; padding-bottom: 0rem;">
+    <!-- Filter -->
+    <!-- Gallery -->
+    <div class="mbr-gallery-row">
+        <div class=" mbr-gallery-layout-default">
+            <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }}">
+                {!! Form::label('images', 'Képek', ['class' => 'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                    @for($cnt=0; $cnt<count($images); $cnt++) 
+                    <div class="mbr-gallery-item mbr-gallery-item__mobirise3 mbr-gallery-item--p0" style="width: 32%"">
+                        <div id="image{{$images[$cnt]->id}}">
+                            <img src="{{ url('/').'/images/companies/'.$ads->company->id.'/'.$ads->id.'/'.$images[$cnt]->filepath }}">
+                            <span onclick="removeImage('{{ $images[$cnt]->id }}')" class="glyphicon glyphicon-remove" style="position: relative; top: -120px; left: 150px; font-size: 12px; color: white"></span>
+                        </div>
+                    </div>
+                    @endfor
                 </div>
-        @endfor
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
 @endif
 
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
@@ -172,7 +183,7 @@
     <div class="form-group{">
         {!! Form::label('', '', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
+            <button type="button" onclick="fillRoomsTable()" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
               Helyiségek
             </button>
         </div>
@@ -399,7 +410,7 @@
     </div>
 </div>
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
-{!! Form::hidden('hiddenrooms', $rooms, ['id' => 'hiddenrooms']) !!}
+{!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -423,50 +434,26 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @include('core-templates::common.errors')
-                            <button type="button" id="newRoomForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#newRoom" data-dismiss="modal">Új</button>
+                        <button type="button" id="newRoomForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#newRoom" data-dismiss="modal">Új</button>
 
-                            <table class="table table-responsive" id="rooms-table">
-                                <thead>
-                                    <th>Hirdetés</th>
-                                    <th>Név</th>
-                                    <th>Méret</th>
-                                    <th>Férőhelyek</th>
-                                    <th colspan="3">Művelet</th>
-                                </thead>
-                                <tbody>
-                                <?php if ( ! empty($_POST['hiddenrooms'])){ $rooms = $_POST['hiddenrooms'];} ?>
-                                @for($cnt=0; $cnt<count($rooms); $cnt++)
-                                <?php $room=$rooms[$cnt]; ?>
-
-                                    <tr>
-                                        <td>{!! $room->ads_id !!}</td>
-                                        <td>{!! $room->name !!}</td>
-                                        <td>{!! $room->area !!}</td>
-                                        <td>{!! $room->seats !!}</td>
-                                        <td>
-                                            <div class='btn-group'>
-                                                <a href="{!! route('rooms.show', [$cnt]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                                                <a href="{!! route('rooms.edit', [$cnt]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
-                                                <!--
-                                                {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
-                                                -->
-                                                <div class="roomDelete" data-id="{!! $cnt !!}" data-dismiss="modal">
-                                                    <a id="room{{$cnt}}" class='btn btn-danger btn-xxs'><i class="glyphicon glyphicon-trash"></i></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endfor
-                                </tbody>
-                            </table>
-
+                        <table class="table table-responsive" id="rooms-table">
+                            <thead>
+                                <th>Hirdetés</th>
+                                <th>Név</th>
+                                <th>Méret</th>
+                                <th>Férőhelyek</th>
+                                <th colspan="3">Művelet</th>
+                            </thead>
+                            <tbody id="roomsTableBody">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
+        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Bezár</button>
       </div>
     </div>
   </div>
@@ -496,7 +483,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" id="newRoomSubmit" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
+        <button type="button" onclick="addRoom()" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
         <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
       </div>
     </div>
@@ -537,20 +524,50 @@
                     document.location.reload();
                 }
             });
-        });
+    });
 
-    $('.roomDelete').on('click', function(e){
-        var index=$(this).data("id");
-        var rooms=<?php echo json_encode($rooms); ?>;
+    function addRoom() {
+        var rooms=JSON.parse($('#hiddenrooms').val());
+        var room= {
+            "ads_id":$('#ads_id').val(),
+            "name":$('#modal_name').val(),
+            "area":$('#modal_area').val(),
+            "seats":$('#modal_seats').val(),
+            "assets":$('#modal_assets').val(),
+            "description":$('#modal_description').val()
+        };
+        rooms.push(room);
+        $('#hiddenrooms').val(JSON.stringify(rooms));
+    }
 
+    function removeRoom(index) {
+        var rooms=JSON.parse($('#hiddenrooms').val());
         if (confirm("Biztos vagy benne?")===true) {
             rooms.splice(index, 1);
             $('#hiddenrooms').val(JSON.stringify(rooms));
-            $('body').on('hidden.bs.modal', '.modal', function () {
-                $('#rooms').removeData('bs.modal');
-            });
-            
+            fillRoomsTable();
         }
-        });
+    }
+
+    function fillRoomsTable() {
+        var roomsArray = JSON.parse($("#hiddenrooms").val());
+        var baseUrl = '{{ url('/') }}';
+        $('#roomsTableBody').empty();
+        for (var i = 0; i < roomsArray.length; i++) {
+            $('#roomsTableBody').append('<tr>'+
+                '<td>'+roomsArray[i]['ads_id']+'</td>'+
+                '<td>'+roomsArray[i]['name']+'</td>'+
+                '<td>'+roomsArray[i]['area']+'</td>'+
+                '<td>'+roomsArray[i]['seats']+'</td>'+
+                '<td>'+
+                '<div class="btn-group">'+
+                '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-eye-open"></i></a>'+
+                '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'/edit" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
+                '<a onclick="removeRoom('+i+')" class="btn btn-danger btn-xxs"><i class="glyphicon glyphicon-trash"></i></a>'+
+                '</div>'+
+                '</td>'+
+                '</tr>');
+        }
+    }
 
 </script>

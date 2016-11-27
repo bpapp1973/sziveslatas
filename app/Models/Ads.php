@@ -196,5 +196,13 @@ class Ads extends Model
         return $this->hasMany('App\Models\Rooms', 'ads_id');
     }
 
+    /**
+     * Get the menucards records associated with the ad.
+     */
+    public function menucards()
+    {
+        return $this->hasMany('App\Models\Menucards', 'ads_id');
+    }
+
     
 }

@@ -6,15 +6,15 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Rooms
+ * Class Menucards
  * @package App\Models
- * @version November 20, 2016, 11:25 am CET
+ * @version November 27, 2016, 9:48 pm CET
  */
-class Rooms extends Model
+class Menucards extends Model
 {
     use SoftDeletes;
 
-    public $table = 'rooms';
+    public $table = 'menucards';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -24,12 +24,12 @@ class Rooms extends Model
 
 
     public $fillable = [
-        'id',
         'ads_id',
-        'name',
-        'area',
-        'seats',
-        'assets',
+        'label',
+        'title',
+        'subtitle',
+        'price',
+        'pricedesc',
         'description'
     ];
 
@@ -41,10 +41,11 @@ class Rooms extends Model
     protected $casts = [
         'id' => 'integer',
         'ads_id' => 'integer',
-        'name' => 'string',
-        'area' => 'integer',
-        'seats' => 'integer',
-        'assets' => 'string',
+        'label' => 'string',
+        'title' => 'string',
+        'subtitle' => 'string',
+        'price' => 'integer',
+        'pricedesc' => 'string',
         'description' => 'string'
     ];
 
@@ -64,4 +65,5 @@ class Rooms extends Model
     {
         return $this->belongsTo(\App\Models\Ads::class);
     }
+    
 }
