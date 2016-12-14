@@ -14,6 +14,7 @@ use App\Models\Tags;
 use App\Models\Images;
 use App\Models\Calendars;
 use App\Models\Rooms;
+use App\Models\Menucards;
 use Auth;
 use Validator;
 use Input;
@@ -59,6 +60,8 @@ class AdsController extends AppBaseController
      */
     public function create()
     {
+        $ads = new Ads;
+        $rooms = new Rooms;
         $cats = Categories::whereNull('parent_id')->get(['name','id']);
         $categories = array();
         foreach ($cats as $element) {
@@ -67,11 +70,13 @@ class AdsController extends AppBaseController
         $subcategories = Categories::pluck('name','id');
         $cities = Cities::pluck('name','id');
         $counties = Counties::pluck('name', 'id');
-        return view('models.ads.create', ['user' => Auth::user(), 
+        return view('models.ads.create', ['ads' => $ads,
+                                    'rooms' => $rooms,
+                                    'user' => Auth::user(), 
                                     'counties' => $counties, 
                                     'cities' => $cities,
                                     'categories' => $categories,
-                                    'subcategories' => $subcategories,
+                                    'subcategories' => $subcategories
                                     ]);
     }
 
@@ -90,6 +95,8 @@ class AdsController extends AppBaseController
 
         $tags = $this->saveTags($_REQUEST['hiddentags'], $ads->id);
         $this->storeImages($ads->id);
+        $this->saveRooms($_REQUEST['hiddenrooms'], $ads->id);
+
 
         Flash::success('A hirdetést rögzítettük');
 

@@ -17,6 +17,9 @@ $('#city').append('<option value="'+cityObj.id+'">'+cityObj.name+'</option>');
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
         <div class="row">
+            @if (Auth::guest()) 
+                @include('auth.login')
+            @else 
             @include('flash::message')
             <div class="panel panel-default">
                 <div class="panel-heading">Új felhasználó létrehozása</div>
@@ -27,6 +30,7 @@ $('#city').append('<option value="'+cityObj.id+'">'+cityObj.name+'</option>');
                     {!! Form::close() !!}
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

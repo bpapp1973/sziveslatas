@@ -2,9 +2,12 @@
 
 @section('content')
     <div class="row">
+            @if (Auth::guest()) 
+                @include('auth.login')
+            @else 
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Categories szerkesztése</div>
+                <div class="panel-heading">Kategória szerkesztése</div>
                 <div class="panel-body">
 
                     @include('core-templates::common.errors')
@@ -17,5 +20,6 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @endsection

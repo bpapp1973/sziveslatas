@@ -5,6 +5,9 @@
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
         <div class="row">
+            @if (Auth::guest()) 
+                @include('auth.login')
+            @else 
             <div class="panel panel-default">
                 <div class="panel-heading">Helyiség szerkesztése</div>
                 <div class="panel-body">
@@ -22,6 +25,7 @@
                     {!! Form::close() !!}
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

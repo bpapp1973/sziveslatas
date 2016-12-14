@@ -27,8 +27,10 @@
                 {!! Form::open(['route' => ['ads.destroy', $ad->id], 'method' => 'delete']) !!}
                 <div class='col-xs-2 btn-group'>
                     <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-warning btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
+                    @if (Auth::user()) 
+                        <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-warning btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
+                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
+                    @endif 
                 </div>
                 {!! Form::close() !!}
             </div>

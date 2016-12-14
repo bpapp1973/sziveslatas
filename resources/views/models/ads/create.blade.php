@@ -88,6 +88,9 @@ accept: function(file, done) {
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
         <div class="row">
+            @if (Auth::guest()) 
+                @include('auth.login')
+            @else 
             @include('flash::message')
             <div class="panel panel-default">
                 <div class="panel-heading">Hirdetés feladás</div>
@@ -99,6 +102,7 @@ accept: function(file, done) {
                     {!! Form::close() !!}
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </div>

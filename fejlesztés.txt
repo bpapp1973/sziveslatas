@@ -25,6 +25,8 @@ hirdetés feladás
 	- tooltip szövegek mint a validation 
 	- kommentek, azok ellenőrzése
 	- menucards tábla
+	- menü hozzáadása create és edit esetén
+	- helyiség modal edit form
 
 
 /************************/

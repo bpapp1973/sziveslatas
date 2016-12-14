@@ -189,7 +189,6 @@
         </div>
     </div>
 
-
     <div class="form-group{{ $errors->has('menu1') ? ' has-error' : '' }}">
         {!! Form::label('menu1', 'Menü 1', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
@@ -490,7 +489,10 @@
   </div>
 </div>
 
+@include('models.rooms.modal_edit')
+
 <script>
+    /* This function is not used anymore, kept it just for not to forget */
     var token = "{{ Session::getToken() }}";
     $('#newRoomSubmit').on('click', function(e){
             $.ajax({
@@ -563,6 +565,7 @@
                 '<div class="btn-group">'+
                 '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-eye-open"></i></a>'+
                 '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'/edit" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
+                '<a data-toggle="modal" data-target="#editRoom" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
                 '<a onclick="removeRoom('+i+')" class="btn btn-danger btn-xxs"><i class="glyphicon glyphicon-trash"></i></a>'+
                 '</div>'+
                 '</td>'+

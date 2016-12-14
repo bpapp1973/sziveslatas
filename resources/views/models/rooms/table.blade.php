@@ -17,8 +17,10 @@
                 {!! Form::open(['route' => ['rooms.destroy', $rooms->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('rooms.show', [$rooms->id]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    @if(Auth::user())
                     <a href="{!! route('rooms.edit', [$rooms->id]) !!}" class='btn btn-default btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
+                    @endif
                 </div>
                 {!! Form::close() !!}
             </td>
