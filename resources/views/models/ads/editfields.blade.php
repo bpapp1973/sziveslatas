@@ -189,6 +189,9 @@
         </div>
     </div>
 
+    
+    {!! Form::textarea('hiddenmenucards', $menucards[0], ['class' => 'form-control']) !!}
+
     <div class="form-group{{ $errors->has('menu1') ? ' has-error' : '' }}">
         {!! Form::label('menu1', 'Menü 1', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">

@@ -3,8 +3,6 @@ Google Maps Static API key: AIzaSyCHbrVzDRdwpqAJ82yROIP2L-kzpM7bMhs
 bpapp.ddns.net
 https://docs.google.com/document/d/1yWWdljakfuNx3okAdZzqLQlqlW7zPQ4G5cp88h7DJ0g/edit?ts=57c420fb
 
-
-
 hirdetés feladás
 	x eredeti ár
 	x kedvezményes ár + százalék

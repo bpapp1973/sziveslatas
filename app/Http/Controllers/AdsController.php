@@ -145,6 +145,7 @@ class AdsController extends AppBaseController
         }
 
         $rooms = $ads->rooms;
+        $menucards = $ads->menucards;
 
         $cats = Categories::whereNull('parent_id')->get(['name','id']);
         $categories = array();
@@ -183,7 +184,8 @@ class AdsController extends AppBaseController
                                     'tags' => $tags,
                                     'hidden' => $hidden,
                                     'images' => $imagesDB,
-                                    'rooms' => $rooms
+                                    'rooms' => $rooms,
+                                    'menucards' => $menucards
                                     ]);
     }
 
@@ -210,6 +212,8 @@ class AdsController extends AppBaseController
         $tags = $this->saveTags($_REQUEST['hiddentags'], $id);
 
         $rooms = $this->saveRooms($_REQUEST['hiddenrooms'], $id);
+
+        $menucards = $this->saveMenucards($_REQUEST['hiddenmenucards'], $id);
 
         $flash=$this->storeImages($ads->id);
 
@@ -384,14 +388,8 @@ class AdsController extends AppBaseController
         $roomsOld = $ads->rooms->toArray();
         $roomsNew = json_decode($rooms, true);
 
-        Debugbar::addMessage('old: ', gettype($roomsOld).' - '.json_encode($roomsOld));
-        Debugbar::addMessage('new: ', gettype($roomsNew).' - '.json_encode($roomsNew));
-
         $toDelete = $this->ary_diff($roomsOld,$roomsNew);
-        Debugbar::addMessage('toDelete: ', gettype($toDelete).' - '.json_encode($toDelete));
         $toInsert = $this->ary_diff($roomsNew,$roomsOld);
-        Debugbar::addMessage('toInsert: ', gettype($toInsert).' - '.json_encode($toInsert));
-
 
         for ($i=0; $i < count($toDelete); $i++) { 
             Rooms::find($toDelete[$i]["id"])->delete();
@@ -405,6 +403,36 @@ class AdsController extends AppBaseController
                 'seats'       => $room['seats'],
                 'assets'      => $room['assets'],
                 'description' => $room['description'],
+            ]);
+        }
+    }
+
+    private function saveMenucards($menucards, $id) {
+        $ads = $this->adsRepository->findWithoutFail($id);
+
+        if (empty($ads)) {
+            return redirect(route('ads.index'));
+        }
+
+        $menucardsOld = $ads->menucards->toArray();
+        $menucardsNew = json_decode($menucards, true);
+
+        $toDelete = $this->ary_diff($menucardsOld,$menucardsNew);
+        $toInsert = $this->ary_diff($menucardsNew,$menucardsOld);
+
+        for ($i=0; $i < count($toDelete); $i++) { 
+            Menucards::find($toDelete[$i]["id"])->delete();
+        }
+
+        for ($i=0; $i < count($toInsert); $i++) { 
+            $menucard = $toInsert[$i];
+            Menucards::create([
+                'ads_id'      => $menucard['ads_id'],
+                'name'        => $menucard['name'],
+                'area'        => $menucard['area'],
+                'seats'       => $menucard['seats'],
+                'assets'      => $menucard['assets'],
+                'description' => $menucard['description'],
             ]);
         }
     }
