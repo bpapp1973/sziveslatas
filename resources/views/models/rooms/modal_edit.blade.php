@@ -14,8 +14,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @include('core-templates::common.errors')
-                            {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
-                            @include('models.rooms.modal_editfields')
+                          {!! Form::hidden('room_id', null, ['id' => 'room_id']) !!}
+                          @include('models.rooms.modal_editfields')
                     </div>
                 </div>
             </div>
