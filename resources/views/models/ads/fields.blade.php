@@ -377,7 +377,8 @@
     </div>
 </div>
 {!! Form::hidden('hiddentags', null, ['id' => 'hiddentags']) !!}
-{!! Form::textarea('hiddenrooms', null, ['id' => 'hiddenrooms']) !!}
+{!! Form::textarea('hiddenrooms', $rooms, ['id' => 'hiddenrooms']) !!}
+{!! Form::hidden('hiddenmenucards', $menucards, ['class' => 'form-control']) !!}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -385,110 +386,8 @@
     <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
-  Helyiség hozzáadása
-</button>
-
 @include('models.rooms.modal_index')
 @include('models.rooms.modal_create')
 @include('models.rooms.modal_edit')
 
-<script>
-    var token = "{{ Session::getToken() }}";
-    $('#newRoomSubmit').on('click', function(e){
-            $.ajax({
-                url: "{{ url('/') }}/adsroom", //this is the submit URL
-                type: 'POST', //or POST
-                dataType: "json",
-                data: {
-                    _token:token,
-                    ads_id:$('#ads_id').val(),
-                    name:$('#modal_name').val(),
-                    area:$('#modal_area').val(),
-                    seats:$('#modal_seats').val(),
-                    assets:$('#modal_assets').val(),
-                    description:$('#modal_description').val()
-                },
-                error: function(xhr, status, error) {
-                    var responseText;
-                    $("#errors").html("");
-                    try {
-                        responseText = json_encode(xhr.responseText);
-                        $("#errors").append("<div><b>" + errorType + " " + exception + "</b></div>");
-                        $("#errors").append("<div><u>Exception</u>:<br /><br />" + responseText.ExceptionType + "</div>");
-                        $("#errors").append("<div><u>StackTrace</u>:<br /><br />" + responseText.StackTrace + "</div>");
-                        $("#errors").append("<div><u>Message</u>:<br /><br />" + responseText.Message + "</div>");
-                    } catch (e) {
-                        responseText = xhr.responseText;
-                        $("#errors").html(responseText);
-                    }
-                },
-                success: function(data){
-                    document.location.reload();
-                }
-            });
-    });
-
-    function addRoom() {
-        var rooms=JSON.parse($('#hiddenrooms').val());
-        var room= {
-            "ads_id":$('#ads_id').val(),
-            "name":$('#modal_name').val(),
-            "area":$('#modal_area').val(),
-            "seats":$('#modal_seats').val(),
-            "assets":$('#modal_assets').val(),
-            "description":$('#modal_description').val()
-        };
-        rooms.push(room);
-        $('#hiddenrooms').val(JSON.stringify(rooms));
-    }
-
-    function updateRoom(index) {
-        var rooms=JSON.parse($('#hiddenrooms').val());
-        var room= rooms[index];
-        room= {
-            "ads_id":$('#ads_id').val(),
-            "name":$('#modal_name').val(),
-            "area":$('#modal_area').val(),
-            "seats":$('#modal_seats').val(),
-            "assets":$('#modal_assets').val(),
-            "description":$('#modal_description').val()
-        };
-        rooms.splice(index, 1);
-        rooms.push(room);
-        $('#hiddenrooms').val(JSON.stringify(rooms));
-    }
-
-    function removeRoom(index) {
-        var rooms=JSON.parse($('#hiddenrooms').val());
-        if (confirm("Biztos vagy benne?")===true) {
-            rooms.splice(index, 1);
-            $('#hiddenrooms').val(JSON.stringify(rooms));
-            fillRoomsTable();
-        }
-    }
-
-    function fillRoomsTable() {
-        var roomsArray = JSON.parse($("#hiddenrooms").val());
-        var baseUrl = '{{ url('/') }}';
-        $('#roomsTableBody').empty();
-        for (var i = 0; i < roomsArray.length; i++) {
-            $('#roomsTableBody').append('<tr>'+
-                '<td>'+roomsArray[i]['ads_id']+'</td>'+
-                '<td>'+roomsArray[i]['name']+'</td>'+
-                '<td>'+roomsArray[i]['area']+'</td>'+
-                '<td>'+roomsArray[i]['seats']+'</td>'+
-                '<td>'+
-                '<div class="btn-group">'+
-                '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-eye-open"></i></a>'+
-                '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'/edit" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
-                '<a data-toggle="modal" data-target="#editRoom" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
-                '<a onclick="removeRoom('+i+')" class="btn btn-danger btn-xxs"><i class="glyphicon glyphicon-trash"></i></a>'+
-                '</div>'+
-                '</td>'+
-                '</tr>');
-        }
-    }
-
-</script>
+@include('js.sziveslatas')

@@ -190,8 +190,6 @@
     </div>
 
     
-    {!! Form::textarea('hiddenmenucards', $menucards[0], ['class' => 'form-control']) !!}
-
     <div class="form-group{{ $errors->has('menu1') ? ' has-error' : '' }}">
         {!! Form::label('menu1', 'Menü 1', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
@@ -413,6 +411,8 @@
 </div>
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
 {!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
+{!! Form::hidden('hiddenmenucards', $menucards, ['class' => 'form-control']) !!}
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
@@ -420,160 +420,10 @@
     <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="rooms" tabindex="-1" role="dialog" aria-labelledby="roomModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="roomModalLabel">Helyiségek</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-md-12 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        @include('core-templates::common.errors')
-                        <button type="button" id="newRoomForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#newRoom" data-dismiss="modal">Új</button>
 
-                        <table class="table table-responsive" id="rooms-table">
-                            <thead>
-                                <th>Hirdetés</th>
-                                <th>Név</th>
-                                <th>Méret</th>
-                                <th>Férőhelyek</th>
-                                <th colspan="3">Művelet</th>
-                            </thead>
-                            <tbody id="roomsTableBody">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Bezár</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="newRoom" tabindex="-1" role="dialog" aria-labelledby="newRoomModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title" id="newRoomModalLabel">Új helyiség</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-            <div class="col-md-12 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        @include('core-templates::common.errors')
-                            {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
-                            @include('models.rooms.modal_fields')
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" onclick="addRoom()" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
-        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
-      </div>
-    </div>
-  </div>
-</div>
-
+@include('models.rooms.modal_index')
+@include('models.rooms.modal_create')
 @include('models.rooms.modal_edit')
 
-<script>
-    /* This function is not used anymore, kept it just for not to forget */
-    var token = "{{ Session::getToken() }}";
-    $('#newRoomSubmit').on('click', function(e){
-            $.ajax({
-                url: "{{ url('/') }}/adsroom", //this is the submit URL
-                type: 'POST', //or POST
-                dataType: "json",
-                data: {
-                    _token:token,
-                    ads_id:$('#ads_id').val(),
-                    name:$('#modal_name').val(),
-                    area:$('#modal_area').val(),
-                    seats:$('#modal_seats').val(),
-                    assets:$('#modal_assets').val(),
-                    description:$('#modal_description').val()
-                },
-                error: function(xhr, status, error) {
-                    var responseText;
-                    $("#errors").html("");
-                    try {
-                        responseText = json_encode(xhr.responseText);
-                        $("#errors").append("<div><b>" + errorType + " " + exception + "</b></div>");
-                        $("#errors").append("<div><u>Exception</u>:<br /><br />" + responseText.ExceptionType + "</div>");
-                        $("#errors").append("<div><u>StackTrace</u>:<br /><br />" + responseText.StackTrace + "</div>");
-                        $("#errors").append("<div><u>Message</u>:<br /><br />" + responseText.Message + "</div>");
-                    } catch (e) {
-                        responseText = xhr.responseText;
-                        $("#errors").html(responseText);
-                    }
-                },
-                success: function(data){
-                    document.location.reload();
-                }
-            });
-    });
-
-    function addRoom() {
-        var rooms=JSON.parse($('#hiddenrooms').val());
-        var room= {
-            "ads_id":$('#ads_id').val(),
-            "name":$('#modal_name').val(),
-            "area":$('#modal_area').val(),
-            "seats":$('#modal_seats').val(),
-            "assets":$('#modal_assets').val(),
-            "description":$('#modal_description').val()
-        };
-        rooms.push(room);
-        $('#hiddenrooms').val(JSON.stringify(rooms));
-    }
-
-    function removeRoom(index) {
-        var rooms=JSON.parse($('#hiddenrooms').val());
-        if (confirm("Biztos vagy benne?")===true) {
-            rooms.splice(index, 1);
-            $('#hiddenrooms').val(JSON.stringify(rooms));
-            fillRoomsTable();
-        }
-    }
-
-    function fillRoomsTable() {
-        var roomsArray = JSON.parse($("#hiddenrooms").val());
-        var baseUrl = '{{ url('/') }}';
-        $('#roomsTableBody').empty();
-        for (var i = 0; i < roomsArray.length; i++) {
-            $('#roomsTableBody').append('<tr>'+
-                '<td>'+roomsArray[i]['ads_id']+'</td>'+
-                '<td>'+roomsArray[i]['name']+'</td>'+
-                '<td>'+roomsArray[i]['area']+'</td>'+
-                '<td>'+roomsArray[i]['seats']+'</td>'+
-                '<td>'+
-                '<div class="btn-group">'+
-                '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-eye-open"></i></a>'+
-                '<a href="'+baseUrl+'/rooms/'+roomsArray[i]['id']+'/edit" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
-                '<a data-toggle="modal" data-target="#editRoom" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
-                '<a onclick="removeRoom('+i+')" class="btn btn-danger btn-xxs"><i class="glyphicon glyphicon-trash"></i></a>'+
-                '</div>'+
-                '</td>'+
-                '</tr>');
-        }
-    }
-
-</script>
+@include('js.sziveslatas')

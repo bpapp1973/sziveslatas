@@ -62,6 +62,7 @@ class AdsController extends AppBaseController
     {
         $ads = new Ads;
         $rooms = new Rooms;
+        $menucards = new Menucards;
         $cats = Categories::whereNull('parent_id')->get(['name','id']);
         $categories = array();
         foreach ($cats as $element) {
@@ -72,6 +73,7 @@ class AdsController extends AppBaseController
         $counties = Counties::pluck('name', 'id');
         return view('models.ads.create', ['ads' => $ads,
                                     'rooms' => $rooms,
+                                    'menucards' => $menucards,
                                     'user' => Auth::user(), 
                                     'counties' => $counties, 
                                     'cities' => $cities,
@@ -388,16 +390,48 @@ class AdsController extends AppBaseController
         $roomsOld = $ads->rooms->toArray();
         $roomsNew = json_decode($rooms, true);
 
-        $toDelete = $this->ary_diff($roomsOld,$roomsNew);
-        $toInsert = $this->ary_diff($roomsNew,$roomsOld);
+        $toUpdate=array();
+        $toInsert=array();
+        $toDelete=array();
+
+        for ($i=0; $i < count($roomsNew); $i++) { 
+            if (array_key_exists("id",$roomsNew[$i])) {
+                array_push($toUpdate, $roomsNew[$i]);
+            } else {
+                array_push($toInsert, $roomsNew[$i]);
+            }
+        }
+
+        for ($i=0; $i < count($roomsOld); $i++) { 
+            $exists=false;
+            for ($j=0; $j < count($toUpdate); $j++) { 
+                if ($roomsOld[$i]["id"]==$toUpdate[$j]["id"]) {
+                    $exists=true;
+                }
+            }
+            if (!$exists) {
+                array_push($toDelete,$roomsOld[$i]);
+            }
+        }
 
         for ($i=0; $i < count($toDelete); $i++) { 
             Rooms::find($toDelete[$i]["id"])->delete();
         }
 
+        for ($i=0; $i < count($toUpdate); $i++) { 
+            $room=Rooms::find($toUpdate[$i]["id"]);
+            $room->ads_id      = $id;
+            $room->name        = $toUpdate[$i]['name'];
+            $room->area        = $toUpdate[$i]['area'];
+            $room->seats       = $toUpdate[$i]['seats'];
+            $room->assets      = $toUpdate[$i]['assets'];
+            $room->description = $toUpdate[$i]['description'];
+            $room->save();
+        }
+
         foreach ($toInsert as $room) {
             Rooms::create([
-                'ads_id'      => $room['ads_id'],
+                'ads_id'      => $id,
                 'name'        => $room['name'],
                 'area'        => $room['area'],
                 'seats'       => $room['seats'],
@@ -417,24 +451,59 @@ class AdsController extends AppBaseController
         $menucardsOld = $ads->menucards->toArray();
         $menucardsNew = json_decode($menucards, true);
 
-        $toDelete = $this->ary_diff($menucardsOld,$menucardsNew);
-        $toInsert = $this->ary_diff($menucardsNew,$menucardsOld);
+        $toUpdate=array();
+        $toInsert=array();
+        $toDelete=array();
 
-        for ($i=0; $i < count($toDelete); $i++) { 
-            Menucards::find($toDelete[$i]["id"])->delete();
+        for ($i=0; $i < count($menucardsNew); $i++) { 
+            if ($menucardsNew[$i]["id"]) {
+                array_push($toUpdate, $menucardsNew[$i]);
+            } else {
+                array_push($toInsert, $menucardsNew[$i]);
+            }
+        }
+
+        for ($i=0; $i < count($menucardsOld); $i++) { 
+            $exists=false;
+            for ($j=0; $j < count($menucardsNew); $j++) { 
+                if ($menucardsOld[$i]["id"]==$menucardsNew[$j]["id"]) {
+                    $exists=true;
+                }
+            }
+            if (!$exists) {
+                array_push($toDelete,$menucardsOld[$i]);
+            }
+        }
+
+        for ($i=0; $i < count($toUpdate); $i++) { 
+            $menucard=Menucards::find($toUpdate[$i]["id"]);
+            $menucard['ads_id']     =$toUpdate[$i]["ads_id"];
+            $menucard['label']      =$toUpdate[$i]["label"];
+            $menucard['title']      =$toUpdate[$i]["title"];
+            $menucard['subtitle']   =$toUpdate[$i]["subtitle"];
+            $menucard['price']      =$toUpdate[$i]["price"];
+            $menucard['pricedesc']  =$toUpdate[$i]["pricedesc"];
+            $menucard['description']=$toUpdate[$i]["description"];
+            $menucard->save();
         }
 
         for ($i=0; $i < count($toInsert); $i++) { 
             $menucard = $toInsert[$i];
             Menucards::create([
-                'ads_id'      => $menucard['ads_id'],
-                'name'        => $menucard['name'],
-                'area'        => $menucard['area'],
-                'seats'       => $menucard['seats'],
-                'assets'      => $menucard['assets'],
-                'description' => $menucard['description'],
+                'ads_id'        => $menucard['ads_id'],
+                'label'         => $menucard['label'],
+                'title'         => $menucard['title'],
+                'subtitle'      => $menucard['subtitle'],
+                'price'         => $menucard['price'],
+                'pricedesc'     => $menucard['pricedesc'],
+                'description'   => $menucard['description']
             ]);
         }
+
+        for ($i=0; $i < count($toDelete); $i++) { 
+            Menucards::find($toDelete[$i]["id"])->delete();
+        }
+
     }
 
 
