@@ -189,68 +189,17 @@
         </div>
     </div>
 
+    <!-- Button trigger modal -->
+    <div class="form-group{">
+        {!! Form::label('', '', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            <button type="button" onclick="fillMenucardsTable()" class="btn btn-primary" data-toggle="modal" data-target="#menucards">
+              Menü ajánlatok
+            </button>
+        </div>
+    </div>
+
     
-    <div class="form-group{{ $errors->has('menu1') ? ' has-error' : '' }}">
-        {!! Form::label('menu1', 'Menü 1', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::textarea('menu1', $ads->menu1, ['class' => 'form-control']) !!}
-            <script type="text/javascript">  
-                CKEDITOR.replace( 'menu1');  
-            </script>  
-            @if ($errors->has('menu1'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('menu1') }}</strong>
-                </span>
-            @endif
-        </div>
-    </div>
-
-    <div class="form-group{{ $errors->has('menu2') ? ' has-error' : '' }}">
-        {!! Form::label('menu2', 'Menü 2', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::textarea('menu2', $ads->menu2, ['class' => 'form-control']) !!}
-            <script type="text/javascript">  
-                CKEDITOR.replace( 'menu2');  
-            </script>  
-            @if ($errors->has('menu2'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('menu2') }}</strong>
-                </span>
-            @endif
-        </div>
-    </div>
-
-    <div class="form-group{{ $errors->has('menu3') ? ' has-error' : '' }}">
-        {!! Form::label('menu3', 'Menü 3', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::textarea('menu3', $ads->menu3, ['class' => 'form-control']) !!}
-            <script type="text/javascript">  
-                CKEDITOR.replace( 'menu3');  
-            </script>  
-            @if ($errors->has('menu3'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('menu3') }}</strong>
-                </span>
-            @endif
-        </div>
-    </div>
-
-    <div class="form-group{{ $errors->has('menu4') ? ' has-error' : '' }}">
-        {!! Form::label('menu4', 'Menü 4', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::textarea('menu4', $ads->menu4, ['class' => 'form-control']) !!}
-            <script type="text/javascript">  
-                CKEDITOR.replace( 'menu4');  
-            </script>  
-            @if ($errors->has('menu4'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('menu4') }}</strong>
-                </span>
-            @endif
-        </div>
-    </div>
-</div>
-
 <div id="program">
     <div class="form-group{{ $errors->has('menu4') ? ' has-error' : '' }}">
         {!! Form::label('menu4', 'program', ['class' => 'col-md-4 control-label']) !!}
@@ -411,7 +360,7 @@
 </div>
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
 {!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
-{!! Form::hidden('hiddenmenucards', $menucards, ['class' => 'form-control']) !!}
+{!! Form::hidden('hiddenmenucards', json_encode($menucards), ['id' => 'hiddenmenucards']) !!}
 
 
 <!-- Submit Field -->
@@ -425,5 +374,9 @@
 @include('models.rooms.modal_index')
 @include('models.rooms.modal_create')
 @include('models.rooms.modal_edit')
+@include('js.rooms')
 
-@include('js.sziveslatas')
+@include('models.menucards.modal_index')
+@include('models.menucards.modal_create')
+@include('models.menucards.modal_edit')
+@include('js.menucards')

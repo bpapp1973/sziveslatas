@@ -35,29 +35,6 @@
             });
     });
 
-    function addRoom() {
-        var rooms=JSON.parse($('#hiddenrooms').val());
-        var room= {
-            "ads_id":$('#ads_id').val(),
-            "name":$('#modal_name').val(),
-            "area":$('#modal_area').val(),
-            "seats":$('#modal_seats').val(),
-            "assets":$('#modal_assets').val(),
-            "description":$('#modal_description').val()
-        };
-        rooms.push(room);
-        $('#hiddenrooms').val(JSON.stringify(rooms));
-    }
-
-    function removeRoom(index) {
-        var rooms=JSON.parse($('#hiddenrooms').val());
-        if (confirm("Biztos vagy benne?")===true) {
-            rooms.splice(index, 1);
-            $('#hiddenrooms').val(JSON.stringify(rooms));
-            fillRoomsTable();
-        }
-    }
-
     function fillRoomsTable() {
         var roomsArray = JSON.parse($("#hiddenrooms").val());
         var baseUrl = '{{ url('/') }}';
@@ -75,6 +52,30 @@
                 '</div>'+
                 '</td>'+
                 '</tr>');
+        }
+    }
+
+    function addRoom() {
+        var rooms=JSON.parse($('#hiddenrooms').val());
+        var room= {
+            "ads_id":$('#ads_id').val(),
+            "name":$('#modal_name').val(),
+            "area":$('#modal_area').val(),
+            "seats":$('#modal_seats').val(),
+            "assets":$('#modal_assets').val(),
+            "description":$('#modal_description').val()
+        };
+        rooms.push(room);
+        $('#hiddenrooms').val(JSON.stringify(rooms));
+        fillRoomsTable();
+    }
+
+    function removeRoom(index) {
+        var rooms=JSON.parse($('#hiddenrooms').val());
+        if (confirm("Biztos vagy benne?")===true) {
+            rooms.splice(index, 1);
+            $('#hiddenrooms').val(JSON.stringify(rooms));
+            fillRoomsTable();
         }
     }
 

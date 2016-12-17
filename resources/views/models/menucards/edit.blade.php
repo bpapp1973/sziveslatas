@@ -15,7 +15,7 @@
 
                     {!! Form::model($menucards, ['route' => ['menucards.update', $menucards->id], 'method' => 'patch']) !!}
 
-                    @include('models.menucards.fields')
+                    @include('models.menucards.editfields')
 
                     {!! Form::close() !!}
                 </div>

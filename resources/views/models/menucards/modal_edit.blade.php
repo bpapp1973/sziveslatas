@@ -1,12 +1,12 @@
 <!-- Modal -->
-<div class="modal fade" id="createRoom" tabindex="-1" role="dialog" aria-labelledby="createRoomModalLabel" aria-hidden="true">
+<div class="modal fade" id="editMenucard" tabindex="-1" role="dialog" aria-labelledby="editMenucardModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="createRoomModalLabel">Új helyiség</h4>
+        <h4 class="modal-title" id="editMenucardModalLabel">Menüajánlat módosítása</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -14,15 +14,15 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @include('core-templates::common.errors')
-                            {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
-                            @include('models.rooms.modal_fields')
+                          {!! Form::hidden('menucard_id', null, ['id' => 'menucard_id']) !!}
+                          @include('models.menucards.modal_editfields')
                     </div>
                 </div>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick="addRoom()" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
+        <button type="button" onclick="updateMenucard()" class="btn btn-primary" data-dismiss="modal">Módosítás</button>
         <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
       </div>
     </div>

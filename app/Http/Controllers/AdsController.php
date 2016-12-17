@@ -456,7 +456,7 @@ class AdsController extends AppBaseController
         $toDelete=array();
 
         for ($i=0; $i < count($menucardsNew); $i++) { 
-            if ($menucardsNew[$i]["id"]) {
+            if (array_key_exists("id",$menucardsNew[$i])) {
                 array_push($toUpdate, $menucardsNew[$i]);
             } else {
                 array_push($toInsert, $menucardsNew[$i]);
@@ -465,8 +465,8 @@ class AdsController extends AppBaseController
 
         for ($i=0; $i < count($menucardsOld); $i++) { 
             $exists=false;
-            for ($j=0; $j < count($menucardsNew); $j++) { 
-                if ($menucardsOld[$i]["id"]==$menucardsNew[$j]["id"]) {
+            for ($j=0; $j < count($toUpdate); $j++) { 
+                if ($menucardsOld[$i]["id"]==$toUpdate[$j]["id"]) {
                     $exists=true;
                 }
             }
