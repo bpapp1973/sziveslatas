@@ -98,6 +98,7 @@ class AdsController extends AppBaseController
         $tags = $this->saveTags($_REQUEST['hiddentags'], $ads->id);
         $this->storeImages($ads->id);
         $this->saveRooms($_REQUEST['hiddenrooms'], $ads->id);
+        $this->saveMenucards($_REQUEST['hiddenmenucards'], $ads->id);
 
 
         Flash::success('A hirdetést rögzítettük');
@@ -481,7 +482,7 @@ class AdsController extends AppBaseController
 
         for ($i=0; $i < count($toUpdate); $i++) { 
             $menucard=Menucards::find($toUpdate[$i]["id"]);
-            $menucard['ads_id']     =$toUpdate[$i]["ads_id"];
+            $menucard['ads_id']     =$id;
             $menucard['label']      =$toUpdate[$i]["label"];
             $menucard['title']      =$toUpdate[$i]["title"];
             $menucard['subtitle']   =$toUpdate[$i]["subtitle"];
@@ -494,7 +495,7 @@ class AdsController extends AppBaseController
         for ($i=0; $i < count($toInsert); $i++) { 
             $menucard = $toInsert[$i];
             Menucards::create([
-                'ads_id'        => $menucard['ads_id'],
+                'ads_id'        => $id,
                 'label'         => $menucard['label'],
                 'title'         => $menucard['title'],
                 'subtitle'      => $menucard['subtitle'],
