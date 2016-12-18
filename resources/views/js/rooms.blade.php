@@ -105,4 +105,16 @@
         $('#hiddenrooms').val(JSON.stringify(rooms));
     }
 
+    function showRoom(id) {
+        var roomsArray = JSON.parse($("#hiddenrooms").val());
+        var room = roomsArray[id];
+        $('.modal-dialog #room_id').val(id);
+        $('.modal-dialog #room_modal_show_id').html(room["id"]);
+        $('.modal-dialog #room_modal_show_name').html(room["name"]);
+        $('.modal-dialog #room_modal_show_area').html("Terület: "+room["area"]);
+        $('.modal-dialog #room_modal_show_seats').html("Férőhelyek: "+room["seats"]);
+        $('.modal-dialog #room_modal_show_assets').html("Felszerelés: "+ room["assets"]);
+        $('.modal-dialog #room_modal_show_description').html(room["description"]);
+    }
+
 </script>

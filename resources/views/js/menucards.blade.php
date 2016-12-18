@@ -78,6 +78,17 @@
         fillMenucardsTable();
     }
 
-
+    function showMenucard(id) {
+        var menucardsArray = JSON.parse($("#hiddenmenucards").val());
+        var menucard = menucardsArray[id];
+        $('.modal-dialog #menucard_id').val(id);
+        $('.modal-dialog #menucard_modal_show_id').val(menucard["id"]);
+        $('.modal-dialog #menucard_modal_show_label').html(menucard["label"]);
+        $('.modal-dialog #menucard_modal_show_title').html(menucard["title"]);
+        $('.modal-dialog #menucard_modal_show_subtitle').html(menucard["subtitle"]);
+        $('.modal-dialog #menucard_modal_show_price').html(menucard["price"]+" Ft/fő");
+        $('.modal-dialog #menucard_modal_show_pricedesc').html(menucard["pricedesc"]);
+        $('.modal-dialog #menucard_modal_show_description').html(menucard["description"]);
+    }
 
 </script>

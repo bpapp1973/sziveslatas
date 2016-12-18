@@ -1407,7 +1407,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     position: relative;
     top: -1.25rem; }
   .mbr-price-figure {
-    font-size: 3.75rem;
+    font-size: 3.75em;
     line-height: inherit;
     padding-left: 0.625rem; }
   .mbr-price-term {

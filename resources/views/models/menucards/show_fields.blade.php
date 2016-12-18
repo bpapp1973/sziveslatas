@@ -1,15 +1,3 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $menucards->id !!}</p>
-</div>
-
-<!-- Ads Id Field -->
-<div class="form-group">
-    {!! Form::label('ads_id', 'Ads Id:') !!}
-    <p>{!! $menucards->ads_id !!}</p>
-</div>
-
 <!-- Label Field -->
 <div class="form-group">
     {!! Form::label('label', 'Label:') !!}
