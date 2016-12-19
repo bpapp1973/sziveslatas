@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\NullableFields;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Menucards extends Model
 {
     use SoftDeletes;
+    use NullableFields;
 
     public $table = 'menucards';
     
@@ -40,11 +42,11 @@ class Menucards extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'ads_id' => 'integer',
+        'ads_id' => 'int',
         'label' => 'string',
         'title' => 'string',
         'subtitle' => 'string',
-        'price' => 'integer',
+        'price' => 'int',
         'pricedesc' => 'string',
         'description' => 'string'
     ];
@@ -57,6 +59,12 @@ class Menucards extends Model
     public static $rules = [
         
     ];
+
+    public function setPriceAttribute($price)
+    {
+        $this->attributes['price'] = $this->nullIfEmpty($price);
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

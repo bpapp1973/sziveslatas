@@ -58,7 +58,7 @@
         $('.modal-dialog #menucard_modal_edit_subtitle').val(menucard["subtitle"]);
         $('.modal-dialog #menucard_modal_edit_price').val(menucard["price"]);
         $('.modal-dialog #menucard_modal_edit_pricedesc').val(menucard["pricedesc"]);
-        $('.modal-dialog #menucard_modal_edit_description').val(menucard["description"]);
+        CKEDITOR.instances.menucard_modal_edit_description.setData(menucard["description"]);
     }
 
     function updateMenucard() {
@@ -71,8 +71,7 @@
         menucard["subtitle"]=$('#menucard_modal_edit_subtitle').val();
         menucard["price"]=$('#menucard_modal_edit_price').val();
         menucard["pricedesc"]=$('#menucard_modal_edit_pricedesc').val();
-        menucard["description"]=$('#menucard_modal_edit_description').val();
-        alert(JSON.stringify(menucard));
+        menucard["description"]=CKEDITOR.instances.menucard_modal_edit_description.getData();
         menucards.splice(id,1,menucard);
         $('#hiddenmenucards').val(JSON.stringify(menucards));
         fillMenucardsTable();

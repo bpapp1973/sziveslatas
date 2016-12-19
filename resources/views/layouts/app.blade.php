@@ -39,8 +39,9 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="{{ url('/') }}/editor/ckeditor/ckeditor.js"></script>
+    
 </head>
-  <body>
+  <body bgcolor="#EAEAEA">
     <input name="animation" type="hidden">
     <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon"></i></a></div>
     <input name="cookieData" type="hidden" data-cookie-text="Ez a weboldal cookie-kat (sütiket) használ azért, hogy weboldalunk használata során a lehető legjobb élményt tudjuk biztosítani. <br/>
@@ -147,6 +148,7 @@
     <script src="{{ url('/') }}/assets/mobirise-slider-video/script.js"></script>
     <script src="{{ url('/') }}/assets/mobirise-gallery/script.js"></script>
     <script src="{{ url('/') }}/assets/formoid/formoid.min.js"></script>
+    <script src="{{ url('/') }}/js/bootstrap-ckeditor-modal-fix.js"></script>
     
     @yield('scripts')
   </body>

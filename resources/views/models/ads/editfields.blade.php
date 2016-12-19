@@ -171,11 +171,69 @@
 </div>
 
 <div id="accomodation">
-    szállás
+    <!-- szállás -->
+    <!-- Price Field -->
+    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+        {!! Form::label('price', 'Eredeti ár', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::text('price', null, ['class' => 'form-control']) !!}
+            @if ($errors->has('price'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('price') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <!-- Price Field -->
+    <div class="form-group{{ $errors->has('discountprice') ? ' has-error' : '' }}">
+        {!! Form::label('discountprice', 'Kedvezményes ár', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::text('discountprice', null, ['class' => 'form-control']) !!}
+            @if ($errors->has('discountprice'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('discountprice') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <!-- Price Field -->
+    <div class="form-group{{ $errors->has('discount') ? ' has-error' : '' }}">
+        {!! Form::label('discount', 'Kedvezmény', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::text('discount', null, ['class' => 'form-control', 'readonly']) !!}
+            @if ($errors->has('discount'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('discount') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+     
 </div>
 
 <div id="catering">
-    vendéglátás
+    <!-- vendéglátás -->
+    <!-- Button trigger modal -->
+    <div class="form-group{">
+        {!! Form::label('', '', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            <button type="button" onclick="fillRoomsTable()" class="btn btn-primary" data-toggle="modal" data-target="#rooms">
+              Helyiségek
+            </button>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <div class="form-group{">
+        {!! Form::label('', '', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            <button type="button" onclick="fillMenucardsTable()" class="btn btn-primary" data-toggle="modal" data-target="#menucards">
+              Menü ajánlatok
+            </button>
+        </div>
+    </div>
 </div>
 
 <div id="eventlocation">
@@ -198,102 +256,89 @@
             </button>
         </div>
     </div>
-
+</div>
     
 <div id="program">
-    <div class="form-group{{ $errors->has('menu4') ? ' has-error' : '' }}">
-        {!! Form::label('menu4', 'program', ['class' => 'col-md-4 control-label']) !!}
+    
+    <!-- Price Field -->
+    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
+        {!! Form::label('price', 'Eredeti ár', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-            {!! Form::textarea('menu4', null, ['class' => 'form-control']) !!}
-            @if ($errors->has('menu4'))
+            {!! Form::text('price', null, ['class' => 'form-control']) !!}
+            @if ($errors->has('price'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('menu4') }}</strong>
+                    <strong>{{ $errors->first('price') }}</strong>
                 </span>
             @endif
         </div>
     </div>
-</div>
 
-<!-- Price Field -->
-<div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
-    {!! Form::label('price', 'Eredeti ár', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-    	{!! Form::text('price', null, ['class' => 'form-control']) !!}
-        @if ($errors->has('price'))
-            <span class="help-block">
-                <strong>{{ $errors->first('price') }}</strong>
-            </span>
-        @endif
+    <!-- Discount Price Field -->
+    <div class="form-group{{ $errors->has('discountprice') ? ' has-error' : '' }}">
+        {!! Form::label('discountprice', 'Kedvezményes ár', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::text('discountprice', null, ['class' => 'form-control']) !!}
+            @if ($errors->has('discountprice'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('discountprice') }}</strong>
+                </span>
+            @endif
+        </div>
     </div>
-</div>
 
-<!-- Price Field -->
-<div class="form-group{{ $errors->has('discountprice') ? ' has-error' : '' }}">
-    {!! Form::label('discountprice', 'Kedvezményes ár', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::text('discountprice', null, ['class' => 'form-control']) !!}
-        @if ($errors->has('discountprice'))
-            <span class="help-block">
-                <strong>{{ $errors->first('discountprice') }}</strong>
-            </span>
-        @endif
+    <!-- Discount Field -->
+    <div class="form-group{{ $errors->has('discount') ? ' has-error' : '' }}">
+        {!! Form::label('discount', 'Kedvezmény', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::text('discount', null, ['class' => 'form-control', 'readonly']) !!}
+            @if ($errors->has('discount'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('discount') }}</strong>
+                </span>
+            @endif
+        </div>
     </div>
-</div>
-
-<!-- Price Field -->
-<div class="form-group{{ $errors->has('discount') ? ' has-error' : '' }}">
-    {!! Form::label('discount', 'Kedvezmény', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::text('discount', null, ['class' => 'form-control', 'readonly']) !!}
-        @if ($errors->has('discount'))
-            <span class="help-block">
-                <strong>{{ $errors->first('discount') }}</strong>
-            </span>
-        @endif
+     
+    <!-- Visitors Field -->
+    <div class="form-group{{ $errors->has('visitors') ? ' has-error' : '' }}">
+        {!! Form::label('visitors', 'Férőhelyek', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::number('visitors', null, ['class' => 'form-control']) !!}
+            @if ($errors->has('visitors'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('visitors') }}</strong>
+                </span>
+            @endif
+        </div>
     </div>
-</div>
- 
-<!-- Visitors Field -->
-<div class="form-group{{ $errors->has('visitors') ? ' has-error' : '' }}">
-    {!! Form::label('visitors', 'Férőhelyek', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-    	{!! Form::number('visitors', null, ['class' => 'form-control']) !!}
-        @if ($errors->has('visitors'))
-            <span class="help-block">
-                <strong>{{ $errors->first('visitors') }}</strong>
-            </span>
-        @endif
+
+    <!-- startdate Field -->
+    <div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
+        {!! Form::label('startdate', 'Kezdődik', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::date('startdate', $ads->startdate, ['class' => 'form-control']) !!}
+            @if ($errors->has('startdate'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('startdate') }}</strong>
+                </span>
+            @endif
+        </div>
     </div>
-</div>
 
-
-<!-- startdate Field -->
-<div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
-    {!! Form::label('startdate', 'Kezdődik', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::date('startdate', $ads->startdate, ['class' => 'form-control']) !!}
-        @if ($errors->has('startdate'))
-            <span class="help-block">
-                <strong>{{ $errors->first('startdate') }}</strong>
-            </span>
-        @endif
+    <!-- enddate Field -->
+    <div class="form-group{{ $errors->has('enddate') ? ' has-error' : '' }}">
+        {!! Form::label('enddate', 'Zárul', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::date('enddate', $ads->enddate, ['class' => 'form-control']) !!}
+            @if ($errors->has('enddate'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('enddate') }}</strong>
+                </span>
+            @endif
+        </div>
     </div>
+
 </div>
-
-
-<!-- enddate Field -->
-<div class="form-group{{ $errors->has('enddate') ? ' has-error' : '' }}">
-    {!! Form::label('enddate', 'Zárul', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::date('enddate', $ads->enddate, ['class' => 'form-control']) !!}
-        @if ($errors->has('enddate'))
-            <span class="help-block">
-                <strong>{{ $errors->first('enddate') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
-
 
 <!-- Expireson Field -->
 <div class="form-group{{ $errors->has('expireson') ? ' has-error' : '' }}">

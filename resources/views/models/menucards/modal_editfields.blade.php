@@ -72,7 +72,10 @@
 <div class="form-group{{ $errors->has('menucard_modal_edit_description') ? ' has-error' : '' }}">
 	{!! Form::label('menucard_modal_edit_description', 'Leírás', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-    	{!! Form::textarea('menucard_modal_edit_description', null, ['class' => 'form-control']) !!}
+    	{!! Form::textarea('menucard_modal_edit_description', null, ['class' => 'ckeditor']) !!}
+        <script type="text/javascript">
+            CKEDITOR.replace('menucard_modal_edit_description');
+        </script>
         @if ($errors->has('menucard_modal_edit_description'))
             <span class="help-block">
                 <strong>{{ $errors->first('menucard_modal_edit_description') }}</strong>

@@ -17,13 +17,15 @@
 @endsection
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 10em">
-	<div class="container-fluid">
+	<div class="container">
 		@include('flash::message')
 
         <div class="input-group">
 			<a href="#description" class="btn btn-default">Leírás</a>
+			@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
 			<a href="#menucards"   class="btn btn-default">Menüajánlatok</a>
 			<a href="#rooms"       class="btn btn-default">Helyiségek</a>
+			@endif
 			<a href="#map"         class="btn btn-default">Térkép</a>
         </div>
 
@@ -83,11 +85,12 @@
 			            <div class="col-xs-12 text-xs-center">
 			                <h3 class="mbr-section-title display-2">Leírás</h3>
 			            </div>
+			            {!! $ads->description !!}
 			        </div>
 			    </div>
 			</div>
-			{!! $ads->description !!}
-
+			
+			@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
 			<section id="menucards" class="mbr-section" id="pricing-table2-3" style="background-color: rgb(255, 255, 255); padding-top: 120px; padding-bottom: 120px;">
 			    <div class="mbr-section mbr-section__container mbr-section__container--middle">
 			        <div class="container">
@@ -161,7 +164,7 @@
 			        @endfor
 			    </div>
 			</section>
-
+			@endif
 
 		    <section id="map" class="mbr-section mbr-section__container" id="map2-c" style="background-color: rgb(255, 255, 255); padding-top: 80px; padding-bottom: 80px;">
 		        <div class="container">
