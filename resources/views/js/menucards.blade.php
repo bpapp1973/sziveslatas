@@ -32,7 +32,7 @@
             "subtitle":$('#menucard_modal_subtitle').val(),
             "price":$('#menucard_modal_price').val(),
             "pricedesc":$('#menucard_modal_pricedesc').val(),
-            "description":$('#menucard_modal_description').val()
+            "description":CKEDITOR.instances.menucard_modal_description.getData()
         };
         menucards.push(menucard);
         $('#hiddenmenucards').val(JSON.stringify(menucards));

@@ -73,6 +73,9 @@
 	{!! Form::label('menucard_modal_description', 'Leírás', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
     	{!! Form::textarea('menucard_modal_description', null, ['class' => 'form-control']) !!}
+        <script type="text/javascript">
+            CKEDITOR.replace('menucard_modal_description');
+        </script>
         @if ($errors->has('menucard_modal_description'))
             <span class="help-block">
                 <strong>{{ $errors->first('menucard_modal_description') }}</strong>

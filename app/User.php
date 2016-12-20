@@ -91,6 +91,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the comments records associated with the user.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\comments', 'users_id');
+    }
+
+    /**
      * Send the password reset notification.
      *
      * @param  string  $token

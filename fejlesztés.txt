@@ -22,9 +22,9 @@ hirdetés feladás
 	x város mentése az update formokon
 	- tooltip szövegek mint a validation 
 	- kommentek, azok ellenőrzése
-	- menucards tábla
-	- menü hozzáadása create és edit esetén
-	- helyiség modal edit form
+	x menucards tábla
+	x menü hozzáadása create és edit esetén
+	x helyiség modal edit form
 
 
 /************************/

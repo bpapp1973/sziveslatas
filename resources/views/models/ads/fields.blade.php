@@ -385,6 +385,7 @@
         @endif
     </div>
 </div>
+
 {!! Form::hidden('hiddentags', null, ['id' => 'hiddentags']) !!}
 {!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
 {!! Form::hidden('hiddenmenucards', json_encode($menucards), ['id' => 'hiddenmenucards']) !!}
@@ -404,3 +405,4 @@
 @include('models.menucards.modal_create')
 @include('models.menucards.modal_edit')
 @include('js.menucards')
+

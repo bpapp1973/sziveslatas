@@ -196,5 +196,13 @@ class Ads extends Model
         return $this->hasMany('App\Models\Menucards', 'ads_id');
     }
 
+    /**
+     * Get the comments records associated with the ad.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comments', 'ads_id');
+    }
+
     
 }

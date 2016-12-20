@@ -57,3 +57,5 @@ Route::post('dropzone/uploadFiles', ['as'=>'dropzone.post', 'uses' => 'AdsContro
 
 
 Route::resource('menucards', 'MenucardsController');
+
+Route::resource('comments', 'CommentsController');

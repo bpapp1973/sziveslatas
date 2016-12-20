@@ -5,14 +5,14 @@
     <div class="container">
         <div class="row">
             <div class="panel panel-default">
-                <div class="panel-heading">$MODEL_NAME_HUMAN$ szerkesztése</div>
+                <div class="panel-heading">Új megjegyzés létrehozása</div>
                 <div class="panel-body">
 
                     @include('core-templates::common.errors')
 
-                    {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => ['$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.update', $$MODEL_NAME_CAMEL$->$PRIMARY_KEY_NAME$], 'method' => 'patch']) !!}
+                    {!! Form::open(['route' => 'comments.store']) !!}
 
-                    @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.editfields')
+                        @include('models.comments.fields')
 
                     {!! Form::close() !!}
                 </div>

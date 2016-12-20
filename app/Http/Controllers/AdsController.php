@@ -15,6 +15,7 @@ use App\Models\Images;
 use App\Models\Calendars;
 use App\Models\Rooms;
 use App\Models\Menucards;
+use App\Models\Comments;
 use Auth;
 use Validator;
 use Input;
@@ -153,6 +154,7 @@ class AdsController extends AppBaseController
 
         $rooms = $ads->rooms;
         $menucards = $ads->menucards;
+        $comments = $ads->comments;
 
         $cats = Categories::whereNull('parent_id')->get(['name','id']);
         $categories = array();
@@ -192,7 +194,8 @@ class AdsController extends AppBaseController
                                     'hidden' => $hidden,
                                     'images' => $imagesDB,
                                     'rooms' => $rooms,
-                                    'menucards' => $menucards
+                                    'menucards' => $menucards,
+                                    'comments' => $comments
                                     ]);
     }
 
