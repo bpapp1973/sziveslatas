@@ -27,6 +27,7 @@
 			<a href="#rooms"       class="btn btn-default">Helyiségek</a>
 			@endif
 			<a href="#map"         class="btn btn-default">Térkép</a>
+			<a href="#comments"    class="btn btn-default">Hozzászólások</a>
         </div>
 
 		<h1>{!! Form::label(null, $ads->title) !!}</h1>
@@ -177,17 +178,54 @@
 		            </div>
 		        </div>
 		    </section>
+
+			<section id="comments" class="mbr-cards mbr-section mbr-section-nopadding" id="features3-n" style="background-color: rgb(255, 255, 255);">
+			    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+			        <div class="container">
+			            <div class="row">
+			                <div class="col-xs-12 text-xs-center">
+			                    <h3 class="mbr-section-title display-2">Hozzászólások</h3>
+			                    <small class="mbr-section-subtitle">Mondd el te is a véleményed!</small>
+					            <button type="button" id="newCommentForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#createComment">Új</button>
+
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="mbr-cards-row row">
+			    	@for($i = 0; $i < count($comments); $i++)
+			        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
+			            <div class="container">
+			                <div class="card cart-block">
+			                    <div class="card-block">
+			                        <h5 class="card-subtitle">Felhasználó: {!! $comments[$i]->user->username !!}</h5>
+			                        <p class="card-text">{!! $comments[$i]->comment !!}</p>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			        @endfor
+			    </div>
+			</section>
+
 		</div>
 	</div>
 
 
 {!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
 {!! Form::hidden('hiddenmenucards', json_encode($menucards), ['id' => 'hiddenmenucards']) !!}
+{!! Form::hidden('hiddencomments', json_encode($comments), ['id' => 'hiddencomments']) !!}
 
 @include('models.rooms.modal_show')
 @include('js.rooms')
 
 @include('models.menucards.modal_show')
 @include('js.menucards')
+
+@include('models.comments.modal_index')
+@include('models.comments.modal_create')
+@include('models.comments.modal_edit')
+@include('js.comments')
+
 
 @endsection

@@ -18,18 +18,12 @@
                 '</td>'+
                 '</tr>');
         }
-        
     }
 
     function addComment() {
         var comments=JSON.parse($('#hiddencomments').val());
         var comment= {
-            "ads_id":$('#ads_id').val(),
-            "comment":$('#comments_modal_comment').val(),
-            "title":$('#comment_modal_title').val(),
-            "subtitle":$('#comment_modal_subtitle').val(),
-            "price":$('#comment_modal_price').val(),
-            "pricedesc":$('#comment_modal_pricedesc').val(),
+            "users_id":{!! Auth::user() !!}
             "comment":CKEDITOR.instances.comments_modal_comment.getData()
         };
         comments.push(comment);

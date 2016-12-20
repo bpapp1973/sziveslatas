@@ -404,20 +404,9 @@
     </div>
 </div>
 
-<!-- Button trigger modal -->
-<div class="form-group{">
-    {!! Form::label('', '', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        <button type="button" onclick="fillCommentsTable()" class="btn btn-primary" data-toggle="modal" data-target="#comments">
-          Megjegyzések
-        </button>
-    </div>
-</div>
-
 {!! Form::hidden('hiddentags', $hidden, ['id' => 'hiddentags']) !!}
 {!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
 {!! Form::hidden('hiddenmenucards', json_encode($menucards), ['id' => 'hiddenmenucards']) !!}
-{!! Form::hidden('hiddencomments', json_encode($comments), ['id' => 'hiddencomments']) !!}
 
 
 <!-- Submit Field -->
@@ -438,7 +427,3 @@
 @include('models.menucards.modal_edit')
 @include('js.menucards')
 
-@include('models.comments.modal_index')
-@include('models.comments.modal_create')
-@include('models.comments.modal_edit')
-@include('js.comments')

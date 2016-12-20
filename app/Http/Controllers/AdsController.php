@@ -127,11 +127,13 @@ class AdsController extends AppBaseController
         $images = $this->getImagesArray($ads);
         $menucards = $ads->menucards;
         $rooms = $ads->rooms;
+        $comments = $ads->comments;
         
         return view('models.ads.show')->with(['ads' => $ads,
                                               'images' => $images,
                                               'rooms' => $rooms,
-                                              'menucards' => $menucards]
+                                              'menucards' => $menucards,
+                                              'comments' => $comments]
                                             );
     }
 
