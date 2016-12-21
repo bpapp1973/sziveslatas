@@ -22,6 +22,7 @@
                                 <th>Név</th>
                                 <th>Méret</th>
                                 <th>Férőhelyek</th>
+                                <th>Ár</th>
                                 <th colspan="3">Művelet</th>
                             </thead>
                             <tbody id="roomsTableBody">

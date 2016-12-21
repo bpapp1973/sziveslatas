@@ -55,6 +55,20 @@
 </div>
 
 
+<!-- Seats Field -->
+<div class="form-group{{ $errors->has('modal_price') ? ' has-error' : '' }}">
+    {!! Form::label('modal_price', 'Ár', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::number('modal_price', null, ['class' => 'form-control']) !!}
+        @if ($errors->has('modal_price'))
+            <span class="help-block">
+                <strong>{{ $errors->first('modal_price') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+
 <!-- Description Field -->
 <div class="form-group{{ $errors->has('modal_description') ? ' has-error' : '' }}">
 	{!! Form::label('modal_description', 'Leírás', ['class' => 'col-md-4 control-label']) !!}

@@ -24,4 +24,5 @@ class CommentsRepository extends BaseRepository
     {
         return Comments::class;
     }
+
 }

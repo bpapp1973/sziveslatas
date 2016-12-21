@@ -56,6 +56,20 @@
 </div>
 
 
+<!-- Seats Field -->
+<div class="form-group{{ $errors->has('edit_price') ? ' has-error' : '' }}">
+    {!! Form::label('edit_price', 'Ár', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::number('edit_price', null, ['class' => 'form-control']) !!}
+        @if ($errors->has('edit_price'))
+            <span class="help-block">
+                <strong>{{ $errors->first('edit_price') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+
 <!-- Description Field -->
 <div class="form-group{{ $errors->has('edit_description') ? ' has-error' : '' }}">
 	{!! Form::label('edit_description', 'Leírás', ['class' => 'col-md-4 control-label']) !!}

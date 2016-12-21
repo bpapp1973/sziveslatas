@@ -30,6 +30,7 @@ class Rooms extends Model
         'area',
         'seats',
         'assets',
+        'price',
         'description'
     ];
 
@@ -45,6 +46,7 @@ class Rooms extends Model
         'area' => 'integer',
         'seats' => 'integer',
         'assets' => 'string',
+        'price' => 'integer',
         'description' => 'string'
     ];
 

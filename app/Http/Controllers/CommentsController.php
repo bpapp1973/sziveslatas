@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Debugbar;
 
 class CommentsController extends AppBaseController
 {
@@ -122,12 +123,11 @@ class CommentsController extends AppBaseController
 
             return redirect(route('home'));
         }
-
         $comments = $this->commentsRepository->update($request->all(), $id);
-
-        Flash::success('A hozzászólást módosítottuk. A hirdetés tulajdonosának engedélyeznie kell a megjelenés előtt.');
-
-        return view('models.comments.show')->with('comments', $comments);
+        
+        Flash::success('A hozzászólást módosítottuk.');
+        return redirect(route('ads.show', $comments->ads_id));
+        //return view('models.comments.show')->with('comments', $comments);
     }
 
     /**

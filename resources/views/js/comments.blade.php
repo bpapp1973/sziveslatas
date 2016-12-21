@@ -1,4 +1,6 @@
 <script>
+    
+/*
     function fillCommentsTable() {
         var commentsArray = JSON.parse($("#hiddencomments").val());
 //        alert("fillCommentsTable "+$("#hiddencomments").val());
@@ -80,6 +82,12 @@
         $('.modal-dialog #comment_modal_show_price').html(comment["price"]+" Ft/fő");
         $('.modal-dialog #comment_modal_show_pricedesc').html(comment["pricedesc"]);
         $('.modal-dialog #comment_modal_show_description').html(comment["description"]);
+    }
+*/
+    function toggleApprove(id) {
+
+        var comments = {!! json_encode($comments) !!};
+        alert(id + ' - ' + JSON.stringify(comments));
     }
 
 </script>

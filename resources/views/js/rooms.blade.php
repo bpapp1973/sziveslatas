@@ -13,6 +13,7 @@
                     area:$('#modal_area').val(),
                     seats:$('#modal_seats').val(),
                     assets:$('#modal_assets').val(),
+                    price:$('#modal_price').val(),
                     description:$('#modal_description').val()
                 },
                 error: function(xhr, status, error) {
@@ -45,6 +46,7 @@
                 '<td>'+roomsArray[i]['name']+'</td>'+
                 '<td>'+roomsArray[i]['area']+'</td>'+
                 '<td>'+roomsArray[i]['seats']+'</td>'+
+                '<td>'+roomsArray[i]['price']+'</td>'+
                 '<td>'+
                 '<div class="btn-group">'+
                 '<a data-toggle="modal" data-target="#editRoom" onclick="editRoom('+i+')" class="btn btn-default btn-xxs"><i class="glyphicon glyphicon-edit"></i></a>'+
@@ -63,6 +65,7 @@
             "area":$('#modal_area').val(),
             "seats":$('#modal_seats').val(),
             "assets":$('#modal_assets').val(),
+            "price":$('#modal_price').val(),
             "description":$('#modal_description').val()
         };
         rooms.push(room);
@@ -88,6 +91,7 @@
         $('.modal-dialog #edit_area').val(room["area"]);
         $('.modal-dialog #edit_seats').val(room["seats"]);
         $('.modal-dialog #edit_assets').val(room["assets"]);
+        $('.modal-dialog #edit_price').val(room["price"]);
         $('.modal-dialog #edit_description').val(room["description"]);
     }
 
@@ -100,6 +104,7 @@
         room["area"]=$('#edit_area').val();
         room["seats"]=$('#edit_seats').val();
         room["assets"]=$('#edit_assets').val();
+        room["price"]=$('#edit_price').val();
         room["description"]=$('#edit_description').val();
         rooms.splice(id,1,room);
         $('#hiddenrooms').val(JSON.stringify(rooms));
@@ -114,6 +119,7 @@
         $('.modal-dialog #room_modal_show_area').html("Terület: "+room["area"]);
         $('.modal-dialog #room_modal_show_seats').html("Férőhelyek: "+room["seats"]);
         $('.modal-dialog #room_modal_show_assets').html("Felszerelés: "+ room["assets"]);
+        $('.modal-dialog #room_modal_show_price').html("Ár: "+ room["price"]);
         $('.modal-dialog #room_modal_show_description').html(room["description"]);
     }
 

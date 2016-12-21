@@ -13,6 +13,7 @@
                       <div id="room_modal_show_area"></div>
                       <div id="room_modal_show_seats"></div>
                       <div id="room_modal_show_assets"></div>
+                      <div id="room_modal_show_price"></div>
                       <div id="room_modal_show_description"></div>
       </div>
       <div class="modal-footer">

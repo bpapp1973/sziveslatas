@@ -156,7 +156,7 @@
 			                        <h5 class="card-subtitle">Terület: {!! $rooms[$i]->area !!}</h5>
 			                        <h5 class="card-subtitle">Férőhelyek: {!! $rooms[$i]->seats !!}</h5>
 			                        <h5 class="card-subtitle">Felszerelés: {!! $rooms[$i]->assets !!}</h5>
-			                        <p class="card-text">{!! $rooms[$i]->description !!}</p>
+			                        <h5 class="card-subtitle">Ár: {!! $rooms[$i]->price !!} Ft</h5>
 			                        <div class="card-btn" onclick="showRoom({!!$i!!})" data-toggle="modal" data-target="#showRoom"><a class="btn btn-primary">Részletek</a></div>
 			                    </div>
 			                </div>
@@ -212,25 +212,28 @@
 			    </div>
 			    @if(count($comments)>0)
 				    <div class="mbr-section__container mbr-section__container--isolated container">
-			    	@for($i = 0; $i < count($comments); $i++)
+				    @foreach($comments as $comment)
 				        <div class="row">
-				            {!! Form::label($comments[$i]->username, null, ['class' => 'col-md-1 control-label']) !!}
+				            {!! Form::label($comment->username, null, ['class' => 'col-md-1 control-label']) !!}
 				            <div class="col-md-10">
-					            {!! $comments[$i]->comment !!}
+					            {!! $comment->comment !!}
 					        </div>
 					        @if(Auth::user()->id == $owner->id)
-				            <div class="col-md-1">
-					            <a class='btn btn-default btn-xxs'>
-					            @if($comments[$i]->approved==0)
-					            <i class="glyphicon glyphicon-unchecked"></i>
+				            <div class="col-md-1 btn-group">
+				            {!! Form::model($comment, ['route' => ['comments.update', $comment->id], 'method' => 'patch']) !!}
+				            	{!! Form::hidden('approved', abs($comment->approved-1), ['id' => 'approved']) !!}
+					            <button type="submit" class='btn btn-default btn-xxs'>
+					            @if($comment->approved==0)
+					            <span class="glyphicon glyphicon-unchecked"></span>
 					            @else
-					            <i class="glyphicon glyphicon-check"></i>
+					            <span class="glyphicon glyphicon-check"></span>
 					            @endif
-					            </a>
+					            </button>
+					          {!! Form::close() !!}
 					        </div>
 					        @endif
 			            </div>
-			        @endfor
+			        @endforeach
 			        </div>
 			    @endif
 			</section>
@@ -241,11 +244,14 @@
 
 {!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
 {!! Form::hidden('hiddenmenucards', json_encode($menucards), ['id' => 'hiddenmenucards']) !!}
+{!! Form::hidden('hiddencomments', json_encode($comments), ['id' => 'hiddencomments']) !!}
 
 @include('models.rooms.modal_show')
 @include('js.rooms')
 
 @include('models.menucards.modal_show')
 @include('js.menucards')
+
+@include('js.comments')
 
 @endsection

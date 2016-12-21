@@ -133,6 +133,7 @@ class AdsController extends AppBaseController
         } else {
             $comments = $ads->comments->where('approved',1);
         }
+        //Debugbar::addMessage('Comments', json_encode($comments));
         
         return view('models.ads.show')->with(['ads' => $ads,
                                               'images' => $images,
@@ -441,6 +442,7 @@ class AdsController extends AppBaseController
             $room->area        = $toUpdate[$i]['area'];
             $room->seats       = $toUpdate[$i]['seats'];
             $room->assets      = $toUpdate[$i]['assets'];
+            $room->price       = $toUpdate[$i]['price'];
             $room->description = $toUpdate[$i]['description'];
             $room->save();
         }
@@ -452,6 +454,7 @@ class AdsController extends AppBaseController
                 'area'        => $room['area'],
                 'seats'       => $room['seats'],
                 'assets'      => $room['assets'],
+                'price'       => $room['price'],
                 'description' => $room['description'],
             ]);
         }
