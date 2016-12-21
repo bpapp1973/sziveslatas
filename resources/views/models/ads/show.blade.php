@@ -179,33 +179,60 @@
 		        </div>
 		    </section>
 
-			<section id="comments" class="mbr-cards mbr-section mbr-section-nopadding" id="features3-n" style="background-color: rgb(255, 255, 255);">
-			    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+			<section id="comments" class="mbr-section mbr-section__comments" style="background-color: rgb(255, 255, 255);">
+			    <div class="mbr-section__container mbr-section__container--isolated container">
 			        <div class="container">
 			            <div class="row">
 			                <div class="col-xs-12 text-xs-center">
 			                    <h3 class="mbr-section-title display-2">Hozzászólások</h3>
+			                    @if (count($comments)>0)
 			                    <small class="mbr-section-subtitle">Mondd el te is a véleményed!</small>
-					            <button type="button" id="newCommentForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#createComment">Új</button>
+			                    @else
+			                    <small class="mbr-section-subtitle">Legyél te az első! Mondd el a véleményed!</small>
+			                    @endif
+			                </div>
+			            </div>
+                    {!! Form::open(['route' => 'comments.store']) !!}
+                    	{!! Form::hidden('ads_id', $ads->id) !!}
+                    	{!! Form::hidden('users_id', Auth::user()->id) !!}
+                    	{!! Form::hidden('username', Auth::user()->username) !!}
+						<div class="col-md-12">
+						  	{!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
+						  	<script type="text/javascript">
+						  		CKEDITOR.replace('comment');
+						  	</script>
+						</div>
+						<!-- Submit Field -->
+						<div class="col-sm-12">
+						    {!! Form::submit('Elküldöm', ['class' => 'btn btn-primary']) !!}
+						</div>
+                    {!! Form::close() !!}
 
-			                </div>
-			            </div>
 			        </div>
 			    </div>
-			    <div class="mbr-cards-row row">
+			    @if(count($comments)>0)
+				    <div class="mbr-section__container mbr-section__container--isolated container">
 			    	@for($i = 0; $i < count($comments); $i++)
-			        <div class="mbr-cards-col col-xs-12 col-lg-3" style="padding-top: 80px; padding-bottom: 80px;">
-			            <div class="container">
-			                <div class="card cart-block">
-			                    <div class="card-block">
-			                        <h5 class="card-subtitle">Felhasználó: {!! $comments[$i]->user->username !!}</h5>
-			                        <p class="card-text">{!! $comments[$i]->comment !!}</p>
-			                    </div>
-			                </div>
+				        <div class="row">
+				            {!! Form::label($comments[$i]->username, null, ['class' => 'col-md-1 control-label']) !!}
+				            <div class="col-md-10">
+					            {!! $comments[$i]->comment !!}
+					        </div>
+					        @if(Auth::user()->id == $owner->id)
+				            <div class="col-md-1">
+					            <a class='btn btn-default btn-xxs'>
+					            @if($comments[$i]->approved==0)
+					            <i class="glyphicon glyphicon-unchecked"></i>
+					            @else
+					            <i class="glyphicon glyphicon-check"></i>
+					            @endif
+					            </a>
+					        </div>
+					        @endif
 			            </div>
-			        </div>
 			        @endfor
-			    </div>
+			        </div>
+			    @endif
 			</section>
 
 		</div>
@@ -214,18 +241,11 @@
 
 {!! Form::hidden('hiddenrooms', json_encode($rooms), ['id' => 'hiddenrooms']) !!}
 {!! Form::hidden('hiddenmenucards', json_encode($menucards), ['id' => 'hiddenmenucards']) !!}
-{!! Form::hidden('hiddencomments', json_encode($comments), ['id' => 'hiddencomments']) !!}
 
 @include('models.rooms.modal_show')
 @include('js.rooms')
 
 @include('models.menucards.modal_show')
 @include('js.menucards')
-
-@include('models.comments.modal_index')
-@include('models.comments.modal_create')
-@include('models.comments.modal_edit')
-@include('js.comments')
-
 
 @endsection

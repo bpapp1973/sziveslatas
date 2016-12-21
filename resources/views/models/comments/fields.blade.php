@@ -27,7 +27,7 @@
 
 
 <!-- Comment Field -->
-div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
 	{!! Form::label('comment', 'Comment', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
     	{!! Form::textarea('comment', null, ['class' => 'form-control']) !!}

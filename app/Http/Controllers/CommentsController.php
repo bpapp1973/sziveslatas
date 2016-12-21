@@ -59,9 +59,10 @@ class CommentsController extends AppBaseController
 
         $comments = $this->commentsRepository->create($input);
 
-        Flash::success('A Comments létrehoztuk');
+        Flash::success('A hozzászólást mentettük. A hirdetés tulajdonosának engedélyeznie kell a megjelenés előtt.');
 
-        return redirect(route('comments.edit', $comments->id));
+        return redirect(route('ads.show', $comments->ads_id));
+        //return redirect(route('comments.edit', $comments->id));
     }
 
     /**
@@ -76,7 +77,7 @@ class CommentsController extends AppBaseController
         $comments = $this->commentsRepository->findWithoutFail($id);
 
         if (empty($comments)) {
-            Flash::error('A Comments nem találjuk');
+            Flash::error('A hozzászólást nem találjuk');
 
             return redirect(route('home'));
         }
@@ -96,7 +97,7 @@ class CommentsController extends AppBaseController
         $comments = $this->commentsRepository->findWithoutFail($id);
 
         if (empty($comments)) {
-            Flash::error('A Comments nem találjuk');
+            Flash::error('A hozzászólást nem találjuk');
 
             return redirect(route('home'));
         }
@@ -117,14 +118,14 @@ class CommentsController extends AppBaseController
         $comments = $this->commentsRepository->findWithoutFail($id);
 
         if (empty($comments)) {
-            Flash::error('A Comments nem találjuk');
+            Flash::error('A hozzászólást nem találjuk');
 
             return redirect(route('home'));
         }
 
         $comments = $this->commentsRepository->update($request->all(), $id);
 
-        Flash::success('A Comments mentettük');
+        Flash::success('A hozzászólást módosítottuk. A hirdetés tulajdonosának engedélyeznie kell a megjelenés előtt.');
 
         return view('models.comments.show')->with('comments', $comments);
     }
@@ -141,14 +142,14 @@ class CommentsController extends AppBaseController
         $comments = $this->commentsRepository->findWithoutFail($id);
 
         if (empty($comments)) {
-            Flash::error('A Comments nem találjuk');
+            Flash::error('A hozzászólást nem találjuk');
 
             return redirect(route('home'));
         }
 
         $this->commentsRepository->delete($id);
 
-        Flash::success('A Comments töröltük');
+        Flash::success('A hozzászólást töröltük');
 
         return redirect(route('home'));
     }

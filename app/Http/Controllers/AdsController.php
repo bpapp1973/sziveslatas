@@ -127,12 +127,18 @@ class AdsController extends AppBaseController
         $images = $this->getImagesArray($ads);
         $menucards = $ads->menucards;
         $rooms = $ads->rooms;
-        $comments = $ads->comments;
+        $owner = $ads->company->users->first();
+        if (Auth::user()->id == $owner->id) {
+            $comments = $ads->comments;
+        } else {
+            $comments = $ads->comments->where('approved',1);
+        }
         
         return view('models.ads.show')->with(['ads' => $ads,
                                               'images' => $images,
                                               'rooms' => $rooms,
                                               'menucards' => $menucards,
+                                              'owner' => $owner,
                                               'comments' => $comments]
                                             );
     }

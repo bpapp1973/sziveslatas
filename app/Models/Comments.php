@@ -26,6 +26,7 @@ class Comments extends Model
     public $fillable = [
         'ads_id',
         'users_id',
+        'username',
         'approved',
         'comment'
     ];
@@ -39,6 +40,7 @@ class Comments extends Model
         'id' => 'integer',
         'ads_id' => 'integer',
         'users_id' => 'integer',
+        'username' => 'string',
         'comment' => 'string'
     ];
 
@@ -56,7 +58,7 @@ class Comments extends Model
      **/
     public function ad()
     {
-        return $this->belongsTo(\App\Models\Ad::class);
+        return $this->belongsTo(\App\Models\Ads::class);
     }
 
     /**
@@ -64,6 +66,6 @@ class Comments extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\User::class);
     }
 }
