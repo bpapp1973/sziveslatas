@@ -142,6 +142,18 @@
     </div>
 </div>
 
+<div class="form-group{{ $errors->has('zip') ? ' has-error' : '' }}">
+    {!! Form::label('zip', 'Irányítószám', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('zip', null, ['class' => 'form-control']) !!}
+        @if ($errors->has('zip'))
+            <span class="help-block">
+                <strong>{{ $errors->first('zip') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
 <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
     {!! Form::label('contact', 'Kapcsolattartó', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
