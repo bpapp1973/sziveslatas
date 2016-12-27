@@ -102,7 +102,7 @@ class AdsController extends AppBaseController
         $this->saveMenucards($_REQUEST['hiddenmenucards'], $ads->id);
 
 
-        Flash::success('A hirdetést rögzítettük');
+        Flash::overlay('A hirdetést rögzítettük');
 
         return redirect(route('ads.edit', $ads->id));
     }
@@ -236,7 +236,7 @@ class AdsController extends AppBaseController
 
         $flash=$this->storeImages($ads->id);
 
-        Flash::success('A hirdetést módosítottuk - '.$flash);
+        Flash::overlay('A hirdetést módosítottuk');
 
         return redirect(route('ads.edit', $ads->id));
         //return view('models.ads.show')->with('ads', $ads);
@@ -261,7 +261,7 @@ class AdsController extends AppBaseController
 
         $this->adsRepository->delete($id);
 
-        Flash::success('A hirdetést töröltük ');
+        Flash::overlay('A hirdetést töröltük ');
 
         return redirect(route('ads.index'));
     }
