@@ -1,12 +1,12 @@
 <!-- Modal -->
-<div class="modal fade" id="create$MODEL_NAME_HUMAN$" tabindex="-1" role="dialog" aria-labelledby="create$MODEL_NAME_HUMAN$ModalLabel" aria-hidden="true">
+<div class="modal fade" id="createOrder Details" tabindex="-1" role="dialog" aria-labelledby="createOrder DetailsModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="create$MODEL_NAME_HUMAN$ModalLabel">Új $MODEL_NAME_HUMAN$</h4>
+        <h4 class="modal-title" id="createOrder DetailsModalLabel">Új Order Details</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -15,14 +15,14 @@
                     <div class="panel-body">
                         @include('core-templates::common.errors')
                             {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
-                            @include('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.modal_fields')
+                            @include('models.order_details.modal_fields')
                     </div>
                 </div>
             </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick="add$MODEL_NAME_HUMAN$()" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
+        <button type="button" onclick="addOrder Details()" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
         <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
       </div>
     </div>

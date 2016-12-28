@@ -6,15 +6,15 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class OrderDetails
+ * Class Favourites
  * @package App\Models
- * @version December 28, 2016, 3:46 pm CET
+ * @version December 28, 2016, 3:47 pm CET
  */
-class OrderDetails extends Model
+class Favourites extends Model
 {
     use SoftDeletes;
 
-    public $table = 'order_details';
+    public $table = 'favourites';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -24,13 +24,8 @@ class OrderDetails extends Model
 
 
     public $fillable = [
-        'orders_id',
-        'ads_id',
-        'startdate',
-        'enddate',
-        'menu_id',
-        'guests',
-        'personnel'
+        'users_id',
+        'ads_id'
     ];
 
     /**
@@ -40,11 +35,8 @@ class OrderDetails extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'orders_id' => 'integer',
-        'ads_id' => 'integer',
-        'menu_id' => 'integer',
-        'guests' => 'integer',
-        'personnel' => 'integer'
+        'users_id' => 'integer',
+        'ads_id' => 'integer'
     ];
 
     /**
@@ -67,16 +59,8 @@ class OrderDetails extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function order()
+    public function user()
     {
-        return $this->belongsTo(\App\Models\Orders::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     **/
-    public function menucard()
-    {
-        return $this->belongsTo(\App\Models\Menucards::class);
+        return $this->belongsTo(\App\User::class);
     }
 }

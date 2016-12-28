@@ -6,6 +6,7 @@
         <th>Enddate</th>
         <th>Menu Id</th>
         <th>Guests</th>
+        <th>Personnel</th>
         <th colspan="3">Művelet</th>
     </thead>
     <tbody>
@@ -17,6 +18,7 @@
             <td>{!! $orderDetails->enddate !!}</td>
             <td>{!! $orderDetails->menu_id !!}</td>
             <td>{!! $orderDetails->guests !!}</td>
+            <td>{!! $orderDetails->personnel !!}</td>
             <td>
                 {!! Form::open(['route' => ['orderDetails.destroy', $orderDetails->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

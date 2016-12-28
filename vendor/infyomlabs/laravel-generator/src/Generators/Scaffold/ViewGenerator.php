@@ -87,6 +87,9 @@ class ViewGenerator extends BaseGenerator
         FileUtil::createFile($this->path, 'table.blade.php', $templateData);
 
         $this->commandData->commandInfo('table.blade.php created');
+
+        FileUtil::createFile($this->path, 'modal_index.blade.php', $templateData);
+        $this->commandData->commandInfo('table.blade.php created');
     }
 
     private function generateDataTableBody()
@@ -183,6 +186,7 @@ class ViewGenerator extends BaseGenerator
         FileUtil::createFile($this->path, 'index.blade.php', $templateData);
 
         $this->commandData->commandInfo('index.blade.php created');
+        $this->generateModal('index');
     }
 
     private function generateFields()
@@ -319,6 +323,12 @@ class ViewGenerator extends BaseGenerator
 
         FileUtil::createFile($this->path, 'fields.blade.php', $templateData);
         $this->commandData->commandInfo('field.blade.php created');
+        FileUtil::createFile($this->path, 'editfields.blade.php', $templateData);
+        $this->commandData->commandInfo('editfield.blade.php created');
+        FileUtil::createFile($this->path, 'modal_fields.blade.php', $templateData);
+        $this->commandData->commandInfo('modal_field.blade.php created');
+        FileUtil::createFile($this->path, 'modal_editfields.blade.php', $templateData);
+        $this->commandData->commandInfo('modal_editfield.blade.php created');
     }
 
     private function generateCreate()
@@ -329,6 +339,7 @@ class ViewGenerator extends BaseGenerator
 
         FileUtil::createFile($this->path, 'create.blade.php', $templateData);
         $this->commandData->commandInfo('create.blade.php created');
+        $this->generateModal('create');
     }
 
     private function generateUpdate()
@@ -339,6 +350,7 @@ class ViewGenerator extends BaseGenerator
 
         FileUtil::createFile($this->path, 'edit.blade.php', $templateData);
         $this->commandData->commandInfo('edit.blade.php created');
+        $this->generateModal('edit');
     }
 
     private function generateShowFields()
@@ -368,6 +380,7 @@ class ViewGenerator extends BaseGenerator
 
         FileUtil::createFile($this->path, 'show.blade.php', $templateData);
         $this->commandData->commandInfo('show.blade.php created');
+        $this->generateModal('show');
     }
 
     public function rollback()
@@ -392,4 +405,16 @@ class ViewGenerator extends BaseGenerator
             }
         }
     }
+
+    private function generateModal($action)
+    {
+        $templateData = get_template('scaffold.views.modal_'.$action, $this->templateType);
+
+        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
+
+        FileUtil::createFile($this->path, 'modal_'.$action.'.blade.php', $templateData);
+        $this->commandData->commandInfo('modal_'.$action.'.blade.php created');
+    }
+
+
 }

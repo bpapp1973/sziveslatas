@@ -40,3 +40,27 @@
     <p>{!! $orderDetails->guests !!}</p>
 </div>
 
+<!-- Personnel Field -->
+<div class="form-group">
+    {!! Form::label('personnel', 'Personnel:') !!}
+    <p>{!! $orderDetails->personnel !!}</p>
+</div>
+
+<!-- Created At Field -->
+<div class="form-group">
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $orderDetails->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $orderDetails->updated_at !!}</p>
+</div>
+
+<!-- Deleted At Field -->
+<div class="form-group">
+    {!! Form::label('deleted_at', 'Deleted At:') !!}
+    <p>{!! $orderDetails->deleted_at !!}</p>
+</div>
+

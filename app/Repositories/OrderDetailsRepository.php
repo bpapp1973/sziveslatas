@@ -16,7 +16,8 @@ class OrderDetailsRepository extends BaseRepository
         'startdate',
         'enddate',
         'menu_id',
-        'guests'
+        'guests',
+        'personnel'
     ];
 
     /**

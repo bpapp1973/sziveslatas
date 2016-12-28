@@ -1,12 +1,12 @@
 <!-- Modal -->
-<div class="modal fade" id="$MODEL_NAME_PLURAL_SNAKE$" tabindex="-1" role="dialog" aria-labelledby="$MODEL_NAME_PLURAL_SNAKE$ModalLabel" aria-hidden="true">
+<div class="modal fade" id="order_details" tabindex="-1" role="dialog" aria-labelledby="order_detailsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="$MODEL_NAME_PLURAL_SNAKE$ModalLabel">$MODEL_NAME_HUMAN$</h4>
+        <h4 class="modal-title" id="order_detailsModalLabel">Order Details</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -14,14 +14,14 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @include('core-templates::common.errors')
-                        <button type="button" id="new$MODEL_NAME_HUMAN$Form" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#create$MODEL_NAME_HUMAN$">Új</button>
+                        <button type="button" id="newOrder DetailsForm" data-id="{!! $ads->id !!}" class="btn btn-primary" data-toggle="modal" data-target="#createOrder Details">Új</button>
 
-                        <table class="table table-responsive" id="$MODEL_NAME_PLURAL_SNAKE$-table">
+                        <table class="table table-responsive" id="order_details-table">
                             <thead>
                               $FIELD_HEADERS$
                               <th colspan="3">Művelet</th>
                             </thead>
-                            <tbody id="$MODEL_NAME_PLURAL_SNAKE$TableBody">
+                            <tbody id="order_detailsTableBody">
                             </tbody>
                         </table>
                     </div>

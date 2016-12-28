@@ -6,15 +6,15 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class OrderDetails
+ * Class Orders
  * @package App\Models
  * @version December 28, 2016, 3:46 pm CET
  */
-class OrderDetails extends Model
+class Orders extends Model
 {
     use SoftDeletes;
 
-    public $table = 'order_details';
+    public $table = 'orders';
     
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
@@ -24,13 +24,12 @@ class OrderDetails extends Model
 
 
     public $fillable = [
-        'orders_id',
-        'ads_id',
-        'startdate',
-        'enddate',
-        'menu_id',
-        'guests',
-        'personnel'
+        'companies_id',
+        'users_id',
+        'first_name',
+        'last_name',
+        'email',
+        'phone'
     ];
 
     /**
@@ -40,11 +39,12 @@ class OrderDetails extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'orders_id' => 'integer',
-        'ads_id' => 'integer',
-        'menu_id' => 'integer',
-        'guests' => 'integer',
-        'personnel' => 'integer'
+        'companies_id' => 'integer',
+        'users_id' => 'integer',
+        'first_name' => 'string',
+        'last_name' => 'string',
+        'email' => 'string',
+        'phone' => 'string'
     ];
 
     /**
@@ -59,24 +59,24 @@ class OrderDetails extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function ad()
+    public function user()
     {
-        return $this->belongsTo(\App\Models\Ads::class);
+        return $this->belongsTo(\App\User::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function order()
+    public function company()
     {
-        return $this->belongsTo(\App\Models\Orders::class);
+        return $this->belongsTo(\App\Models\Companies::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function menucard()
+    public function orderDetails()
     {
-        return $this->belongsTo(\App\Models\Menucards::class);
+        return $this->hasMany(\App\Models\OrderDetails::class);
     }
 }
