@@ -5,6 +5,7 @@ namespace App;
 use App\Notifications\ActivateAccount as ActivateAccountNotification;
 use App\Notifications\ResendActivation as ResendActivateAccountNotification;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
+use App\Notifications\AdChangedNotification as AdChangedNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -129,6 +130,11 @@ class User extends Authenticatable
     public function resendActivateAccountNotification($token)
     {
         $this->notify(new ResendActivateAccountNotification($token));
+    }
+
+    public function sendAdChangedNotification($ads_id)
+    {
+        $this->notify(new AdChangedNotification($ads_id));
     }
 
 }

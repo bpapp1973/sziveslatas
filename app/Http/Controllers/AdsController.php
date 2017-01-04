@@ -16,6 +16,7 @@ use App\Models\Calendars;
 use App\Models\Rooms;
 use App\Models\Menucards;
 use App\Models\Comments;
+use App\Models\Favourites;
 use Auth;
 use Validator;
 use Input;
@@ -236,6 +237,8 @@ class AdsController extends AppBaseController
 
         $flash=$this->storeImages($ads->id);
 
+        $this->sendNotifications($id);
+
         Flash::overlay('A hirdetést módosítottuk');
 
         return redirect(route('ads.edit', $ads->id));
@@ -264,6 +267,23 @@ class AdsController extends AppBaseController
         Flash::overlay('A hirdetést töröltük ');
 
         return redirect(route('ads.index'));
+    }
+
+    protected function sendNotifications($id) {
+        $ads = $this->adsRepository->findWithoutFail($id);
+
+        if (empty($ads)) {
+            Flash::error('A hirdetést nem találjuk');
+
+            return redirect(route('ads.index'));
+        }
+
+        $favourites = Favourites::where('ads_id',$id)->get();
+        Debugbar::addMessage('Favourites', json_encode($favourites));
+        foreach ($favourites as $favourite) {
+            $user = User::find($favourite->users_id);
+            $user->sendAdChangedNotification($id);
+        }
     }
 
     public function uploadFiles(Request $request) {

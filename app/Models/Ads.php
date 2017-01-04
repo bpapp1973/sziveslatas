@@ -115,6 +115,7 @@ class Ads extends Model
             }
         } 
     }
+
     /**
      * Get the calendar of the ad.
      */

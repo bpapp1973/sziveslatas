@@ -59,9 +59,10 @@ class FavouritesController extends AppBaseController
 
         $favourites = $this->favouritesRepository->create($input);
 
-        Flash::success('A Favourites létrehoztuk');
+        Flash::overlay('A Favourites létrehoztuk');
 
-        return redirect(route('favourites.edit', $favourites->id));
+        //return redirect(route('favourites.edit', $favourites->id));
+        return redirect(route('ads.show', $favourites->ads_id));
     }
 
     /**

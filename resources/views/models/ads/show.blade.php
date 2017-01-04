@@ -42,6 +42,9 @@
 	<div class="container">
 		@include('flash::message')
 
+        <div class="col-md-12 col-md-offset-12">
+        	<a class="btn btn-secondary" onclick="" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
+        </div>
         <div class="input-group">
 			<a href="#description" class="btn btn-default">Leírás</a>
 			@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
@@ -50,7 +53,6 @@
 			@endif
 			<a href="#map"         class="btn btn-default">Térkép</a>
 			<a href="#comments"    class="btn btn-default">Hozzászólások</a>
-			<a href="#comments"    class="btn btn-secondary">Érdekel</a>
         </div>
 
 		<h1>{!! Form::label(null, $ads->title) !!}</h1>
@@ -276,5 +278,7 @@
 @include('js.menucards')
 
 @include('js.comments')
+
+@include('models.favourites.modal_create')
 
 @endsection
