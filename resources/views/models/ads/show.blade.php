@@ -6,6 +6,28 @@
 	height:480px;
 	width:480px;
 }
+
+.btn-secondary {
+  background-color: #155092;
+  border-color: #155092;
+  color: #ffffff;
+}
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary.focus,
+.btn-secondary:active,
+.btn-secondary.active {
+  color: #ffffff;
+  background-color: #0D3058;
+  border-color: #0D3058;
+}
+.btn-secondary.disabled,
+.btn-secondary:disabled {
+  color: #ffffff !important;
+  background-color: #0D3058 !important;
+  border-color: #0D3058 !important;
+}
+
 </style>
 @endsection
 @section('scripts')
@@ -28,6 +50,7 @@
 			@endif
 			<a href="#map"         class="btn btn-default">Térkép</a>
 			<a href="#comments"    class="btn btn-default">Hozzászólások</a>
+			<a href="#comments"    class="btn btn-secondary">Érdekel</a>
         </div>
 
 		<h1>{!! Form::label(null, $ads->title) !!}</h1>

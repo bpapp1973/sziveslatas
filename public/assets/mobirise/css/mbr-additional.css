@@ -110,8 +110,8 @@ h6,
   border-color: #ea8100 !important;
 }
 .btn-secondary {
-  background-color: #bfcecb;
-  border-color: #bfcecb;
+  background-color: #155092;
+  border-color: #155092;
   color: #ffffff;
 }
 .btn-secondary:hover,
@@ -120,14 +120,14 @@ h6,
 .btn-secondary:active,
 .btn-secondary.active {
   color: #ffffff;
-  background-color: #94ada8;
-  border-color: #94ada8;
+  background-color: #0D3058;
+  border-color: #0D3058;
 }
 .btn-secondary.disabled,
 .btn-secondary:disabled {
   color: #ffffff !important;
-  background-color: #94ada8 !important;
-  border-color: #94ada8 !important;
+  background-color: #0D3058 !important;
+  border-color: #0D3058 !important;
 }
 .btn-info {
   background-color: #7e9b9f;
