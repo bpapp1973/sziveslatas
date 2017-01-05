@@ -96,9 +96,16 @@ class User extends Authenticatable
      */
     public function comments()
     {
-        return $this->hasMany('App\Models\comments', 'users_id');
+        return $this->hasMany('App\Models\Comments', 'users_id');
     }
 
+    /**
+     * Get the favourites records associated with the user.
+     */
+    public function favourites()
+    {
+        return $this->hasMany('App\Models\Favourites', 'users_id');
+    }
     /**
      * Send the password reset notification.
      *

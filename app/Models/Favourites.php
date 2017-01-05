@@ -45,7 +45,8 @@ class Favourites extends Model
      * @var array
      */
     public static $rules = [
-        
+        'user_id' => 'required|unique_with:ads_id',
+        'ads_id' => 'required'
     ];
 
     /**

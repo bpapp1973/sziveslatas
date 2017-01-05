@@ -38,20 +38,26 @@
 <script src="{!! asset('js/galleria-config.js') !!}"></script>
 @endsection
 @section('content')
-<div id="page-content-wrapper" style="padding-top: 10em">
+<div id="page-content-wrapper" style="padding-top: 5em">
+	<div class="container-fluid">
+		<div class="form-group">
+	        <div class="col-md-8">
+				<a href="#description" class="btn btn-default">Leírás</a>
+				@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
+				<a href="#menucards"   class="btn btn-default">Menüajánlatok</a>
+				<a href="#rooms"       class="btn btn-default">Helyiségek</a>
+				@endif
+				<a href="#map"         class="btn btn-default">Térkép</a>
+				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
+	        </div>
+		    <div class="col-md-4">
+				<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+				<a class="btn btn-secondary" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		@include('flash::message')
-
-        <div class="input-group">
-			<a href="#description" class="btn btn-default">Leírás</a>
-			@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
-			<a href="#menucards"   class="btn btn-default">Menüajánlatok</a>
-			<a href="#rooms"       class="btn btn-default">Helyiségek</a>
-			@endif
-			<a href="#map"         class="btn btn-default">Térkép</a>
-			<a href="#comments"    class="btn btn-default">Hozzászólások</a>
-			<a class="btn btn-secondary col-md-offset-12" onclick="" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
-        </div>
 
 		<h1>{!! Form::label(null, $ads->title) !!}</h1>
 		<div class="row">
@@ -278,5 +284,6 @@
 @include('js.comments')
 
 @include('models.favourites.modal_create')
+@include('models.orders.modal_create')
 
 @endsection
