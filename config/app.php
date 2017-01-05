@@ -172,6 +172,7 @@ return [
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        Felixkiss\UniqueWithValidator\UniqueWithValidatorServiceProvider::class,
         
         
         /*

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Favourites extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
 
     public $table = 'favourites';
     
@@ -45,7 +45,7 @@ class Favourites extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required|unique_with:ads_id',
+        'users_id' => 'required|unique_with:favourites,ads_id',
         'ads_id' => 'required'
     ];
 

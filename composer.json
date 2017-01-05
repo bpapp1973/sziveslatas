@@ -12,7 +12,8 @@
         "laravelcollective/html": "dev-master",
         "infyomlabs/core-templates": "5.3.x-dev",
         "doctrine/dbal": "~2.3",
-        "barryvdh/laravel-debugbar": "^2.3"
+        "barryvdh/laravel-debugbar": "^2.3",
+        "felixkiss/uniquewith-validator": "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

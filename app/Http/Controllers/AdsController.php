@@ -134,6 +134,11 @@ class AdsController extends AppBaseController
         } else {
             $comments = $ads->comments->where('approved',1);
         }
+
+        $favourite = Favourites::where([['ads_id',$id],
+                                        ['users_id',Auth::user()->id],
+                                        ['deleted_at',null]
+                                        ])->first();
         //Debugbar::addMessage('Comments', json_encode($comments));
         
         return view('models.ads.show')->with(['ads' => $ads,
@@ -141,7 +146,8 @@ class AdsController extends AppBaseController
                                               'rooms' => $rooms,
                                               'menucards' => $menucards,
                                               'owner' => $owner,
-                                              'comments' => $comments]
+                                              'comments' => $comments,
+                                              'favourite' => $favourite]
                                             );
     }
 

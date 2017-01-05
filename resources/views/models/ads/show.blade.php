@@ -52,9 +52,14 @@
 	        </div>
 		    <div class="col-md-4">
 				<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+				@if(count($favourite)==0)
 				<a class="btn btn-secondary" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
+				@else
+				<a class="btn btn-secondary" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
+				@endif
 			</div>
 		</div>
+		
 	</div>
 	<div class="container">
 		@include('flash::message')
@@ -284,6 +289,10 @@
 @include('js.comments')
 
 @include('models.favourites.modal_create')
+@if(count($favourite)>0)
+	@include('models.favourites.modal_delete')
+@endif
+
 @include('models.orders.modal_create')
 
 @endsection

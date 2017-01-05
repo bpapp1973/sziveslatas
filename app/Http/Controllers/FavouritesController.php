@@ -59,7 +59,7 @@ class FavouritesController extends AppBaseController
 
         $favourites = $this->favouritesRepository->create($input);
 
-        Flash::overlay('A Favourites létrehoztuk');
+        Flash::overlay('Sikeres feliratkozás');
 
         //return redirect(route('favourites.edit', $favourites->id));
         return redirect(route('ads.show', $favourites->ads_id));
@@ -149,8 +149,9 @@ class FavouritesController extends AppBaseController
 
         $this->favouritesRepository->delete($id);
 
-        Flash::success('A Favourites töröltük');
+        Flash::overlay('A Favourites töröltük');
 
-        return redirect(route('home'));
+        return redirect(route('ads.show', $favourites->ads_id));
+        //return redirect(route('home'));
     }
 }
