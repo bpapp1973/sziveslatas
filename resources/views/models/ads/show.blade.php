@@ -51,7 +51,9 @@
 				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
 	        </div>
 		    <div class="col-md-4">
+		    <!--
 				<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+			-->
 				@if(count($favourite)==0)
 				<a class="btn btn-secondary" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
 				@else
