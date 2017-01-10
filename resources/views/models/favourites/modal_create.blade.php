@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="createFavourites" tabindex="-1" role="dialog" aria-labelledby="createFavouritesModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -15,7 +15,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         @include('core-templates::common.errors')
-                        Ha szeretnél értesülni a hirdetés további információiról e-mail-ben, akkor kattints az Érdekel gombra.
+                        Ha szeretnél értesülni a hirdetés további információiról e-mail-ben, <br/>
+                        akkor kattints az Érdekel gombra.
                         {!! Form::hidden('ads_id', $ads->id, ['id' => 'ads_id']) !!}
                         {!! Form::hidden('users_id', Auth::user()->id, ['id' => 'users_id']) !!}
                     </div>
