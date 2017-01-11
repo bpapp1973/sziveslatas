@@ -12,7 +12,6 @@ use App\Models\Lists;
 use App\Models\UserCompanies;
 use App\Models\Tags;
 use App\Models\Images;
-use App\Models\Calendars;
 use App\Models\Rooms;
 use App\Models\Menucards;
 use App\Models\Comments;
@@ -127,7 +126,18 @@ class AdsController extends AppBaseController
 
         $images = $this->getImagesArray($ads);
         $menucards = $ads->menucards;
+        
+        $menucardsArray = array();
+        foreach ($menucards as $element) {
+            $menucardsArray[$element->id]=$element->title;
+        }
+
         $rooms = $ads->rooms;
+        $roomsArray = array();
+        foreach ($rooms as $element) {
+            $roomsArray[$element->id]=$element->name;
+        }
+
         $owner = $ads->company->users->first();
         if (Auth::user()->id == $owner->id) {
             $comments = $ads->comments;
@@ -144,7 +154,9 @@ class AdsController extends AppBaseController
         return view('models.ads.show')->with(['ads' => $ads,
                                               'images' => $images,
                                               'rooms' => $rooms,
+                                              'roomsArray' => $roomsArray,
                                               'menucards' => $menucards,
+                                              'menucardsArray' => $menucardsArray,
                                               'owner' => $owner,
                                               'comments' => $comments,
                                               'favourite' => $favourite]

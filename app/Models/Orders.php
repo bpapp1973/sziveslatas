@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Orders
  * @package App\Models
- * @version December 28, 2016, 3:46 pm CET
+ * @version January 11, 2017, 10:02 pm CET
  */
 class Orders extends Model
 {
@@ -25,6 +25,13 @@ class Orders extends Model
 
     public $fillable = [
         'companies_id',
+        'ads_id',
+        'menucards_id',
+        'rooms_id',
+        'startdate',
+        'enddate',
+        'guests',
+        'personnel',
         'users_id',
         'first_name',
         'last_name',
@@ -40,6 +47,11 @@ class Orders extends Model
     protected $casts = [
         'id' => 'integer',
         'companies_id' => 'integer',
+        'ads_id' => 'integer',
+        'menucards_id' => 'integer',
+        'rooms_id' => 'integer',
+        'guests' => 'integer',
+        'personnel' => 'integer',
         'users_id' => 'integer',
         'first_name' => 'string',
         'last_name' => 'string',
@@ -59,9 +71,33 @@ class Orders extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
+    public function ad()
+    {
+        return $this->belongsTo(\App\Models\Ads::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
     public function user()
     {
-        return $this->belongsTo(\App\User::class);
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function menucard()
+    {
+        return $this->belongsTo(\App\Models\Menucards::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function room()
+    {
+        return $this->belongsTo(\App\Models\Rooms::class);
     }
 
     /**
@@ -70,13 +106,5 @@ class Orders extends Model
     public function company()
     {
         return $this->belongsTo(\App\Models\Companies::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     **/
-    public function orderDetails()
-    {
-        return $this->hasMany(\App\Models\OrderDetails::class);
     }
 }

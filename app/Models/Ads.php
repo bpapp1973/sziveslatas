@@ -117,14 +117,6 @@ class Ads extends Model
     }
 
     /**
-     * Get the calendar of the ad.
-     */
-    public function calendar()
-    {
-        return $this->hasMany('App\Models\Calendars', 'ads_id');
-    }
-
-    /**
      * Get the city of the ad.
      */
 

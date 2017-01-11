@@ -12,6 +12,13 @@ class OrdersRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'companies_id',
+        'ads_id',
+        'menucards_id',
+        'rooms_id',
+        'startdate',
+        'enddate',
+        'guests',
+        'personnel',
         'users_id',
         'first_name',
         'last_name',

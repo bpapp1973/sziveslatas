@@ -23,7 +23,6 @@ Route::get('pwdchange', ['as' => 'pwdchange', 'uses' => 'UserController@showPwdC
 Route::patch('pwdchange/{id}', ['as' => 'pwdchange.patch', 'uses' => 'UserController@pwdChange']);
 
 Route::resource('ads', 'AdsController');
-Route::resource('calendars', 'CalendarsController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('cities', 'CitiesController');
 Route::resource('companies', 'CompaniesController');
@@ -37,7 +36,6 @@ Route::resource('rooms', 'RoomsController');
 Route::resource('menucards', 'MenucardsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('orders', 'OrdersController');
-Route::resource('orderDetails', 'OrderDetailsController');
 Route::resource('favourites', 'FavouritesController');
 
 Route::get('companies/{company}/profile', ['as'=>'companies.profile', 'uses'=>'CompaniesController@profile']);
@@ -61,3 +59,6 @@ Route::get('delete-image', function () {
 Route::post('dropzone/uploadFiles', ['as'=>'dropzone.post', 'uses' => 'AdsController@uploadFiles']);
 
 
+
+
+Route::resource('orders', 'OrdersController');

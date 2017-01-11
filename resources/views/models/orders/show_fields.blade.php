@@ -10,6 +10,48 @@
     <p>{!! $orders->companies_id !!}</p>
 </div>
 
+<!-- Ads Id Field -->
+<div class="form-group">
+    {!! Form::label('ads_id', 'Ads Id:') !!}
+    <p>{!! $orders->ads_id !!}</p>
+</div>
+
+<!-- Menucards Id Field -->
+<div class="form-group">
+    {!! Form::label('menucards_id', 'Menucards Id:') !!}
+    <p>{!! $orders->menucards_id !!}</p>
+</div>
+
+<!-- Rooms Id Field -->
+<div class="form-group">
+    {!! Form::label('rooms_id', 'Rooms Id:') !!}
+    <p>{!! $orders->rooms_id !!}</p>
+</div>
+
+<!-- Startdate Field -->
+<div class="form-group">
+    {!! Form::label('startdate', 'Startdate:') !!}
+    <p>{!! $orders->startdate !!}</p>
+</div>
+
+<!-- Enddate Field -->
+<div class="form-group">
+    {!! Form::label('enddate', 'Enddate:') !!}
+    <p>{!! $orders->enddate !!}</p>
+</div>
+
+<!-- Guests Field -->
+<div class="form-group">
+    {!! Form::label('guests', 'Guests:') !!}
+    <p>{!! $orders->guests !!}</p>
+</div>
+
+<!-- Personnel Field -->
+<div class="form-group">
+    {!! Form::label('personnel', 'Personnel:') !!}
+    <p>{!! $orders->personnel !!}</p>
+</div>
+
 <!-- Users Id Field -->
 <div class="form-group">
     {!! Form::label('users_id', 'Users Id:') !!}
