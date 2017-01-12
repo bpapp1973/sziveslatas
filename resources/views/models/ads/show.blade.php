@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('css')
-<link rel="stylesheet" href="{!! asset('daterangepicker/daterangepicker.css') !!}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.css"/>
 <style type="text/css">
 /* This rule is read by Galleria to define the gallery height: */
 #galleria {
@@ -37,9 +37,13 @@
 <script src="{!! asset('galleria/galleria-1.4.7.js') !!}"></script>
 <script src="{!! asset('galleria/themes/classic/galleria.classic.js') !!}"></script>
 <script src="{!! asset('js/galleria-config.js') !!}"></script>
-<script src="{!! asset('daterangepicker/moment.js') !!}"></script>
-<script src="{!! asset('daterangepicker/daterangepicker.js') !!}"></script>
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.hu.min.js"></script>
+
 @endsection
+
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 5em">
 	<div class="container-fluid">
@@ -297,5 +301,53 @@
 @endif
 
 @include('models.orders.modal_create')
+
+<script type="text/javascript">
+$(function() {
+    $('input[name="daterange"]').daterangepicker({
+    "showDropdowns": true,
+    "showISOWeekNumbers": true,
+    "alwaysShowCalendars": true,
+    "timePicker": true,
+    "timePicker24Hour": true,
+    "timePickerIncrement": 30,
+    "minDate": new Date(),
+    "maxDate": new Date("{!! $ads->expireson !!}"),
+    "locale": {
+        "format": "YYYY-MM-DD HH:mm:ss",
+        "separator": " - ",
+        "applyLabel": "Alkalmaz",
+        "cancelLabel": "Mégsem",
+        "fromLabel": "Tól",
+        "toLabel": "Ig",
+        "customRangeLabel": "Custom",
+        "weekLabel": "H",
+        "daysOfWeek": [
+            "V",
+            "H",
+            "K",
+            "Sz",
+            "Cs",
+            "P",
+            "Sz"
+        ],
+        "monthNames": [
+            "Január",
+            "Február",
+            "Március",
+            "Április",
+            "Május",
+            "Június",
+            "Július",
+            "Augusztus",
+            "Szeptember",
+            "Október",
+            "November",
+            "December"
+        ],
+        "firstDay": 1
+    },    });
+});
+</script>
 
 @endsection

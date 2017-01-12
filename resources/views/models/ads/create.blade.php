@@ -5,25 +5,25 @@
 <script type="text/javascript" src="{{ asset('js/sziveslatas.js') }}"></script>
 <script>
 $('#county').on('change', function(e) {
-    var county = e.target.value;
-    //ajax
-    $.get('{{ url(' / ') }}/city-dropdown?county=' + county, function(data) {
-        $('#city').empty();
-        $.each(data, function(index, cityObj) {
-            $('#city').append('<option value="' + cityObj.id + '">' + cityObj.name + '</option>');
-        });
-    });
+var county = e.target.value;
+//ajax
+$.get('{{ url('/') }}/city-dropdown?county=' + county, function(data) {
+$('#city').empty();
+$.each(data, function(index, cityObj) {
+$('#city').append('<option value="' + cityObj.id + '">' + cityObj.name + '</option>');
+});
+});
 });
 $('#parent_id').on('change', function(e) {
-    var parent_id = e.target.value;
-    //ajax
-    $.get('{{ url(' / ') }}/category-dropdown?parent_id=' + parent_id, function(data) {
-        $('#category').empty();
-        $.each(data, function(index, categoryObj) {
-            $('#category').append('<option value="' + categoryObj.id + '">' + categoryObj.name + '</option>');
-        });
-    });
-    toggleElements(parent_id);
+var parent_id = e.target.value;
+//ajax
+$.get('{{ url('/') }}/category-dropdown?parent_id=' + parent_id, function(data) {
+$('#category').empty();
+$.each(data, function(index, categoryObj) {
+$('#category').append('<option value="' + categoryObj.id + '">' + categoryObj.name + '</option>');
+});
+});
+toggleElements(parent_id);
 });
 $('#price').on('change', function(e) {
     var price = e.target.value;

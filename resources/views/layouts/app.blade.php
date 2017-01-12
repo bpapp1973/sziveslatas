@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ url('/') }}/assets/mobirise/css/mbr-additional.css" type="text/css">
     <link rel='stylesheet' href='{{ url('/') }}/assets/bootstrap-glyphicons/css/bootstrap.min.css' />
     <link rel='stylesheet' href='{{ url('/') }}/assets/gill-sans-ultrabold/stylesheet.css' />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />    
+
     <style type="text/css">
     /* Local styles*/
     .btn-group-xxs>.btn,
@@ -149,7 +151,9 @@
     <script src="{{ url('/') }}/assets/mobirise-gallery/script.js"></script>
     <script src="{{ url('/') }}/assets/formoid/formoid.min.js"></script>
     <script src="{{ url('/') }}/js/bootstrap-ckeditor-modal-fix.js"></script>
-    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     @yield('scripts')
   </body>
 </html>
