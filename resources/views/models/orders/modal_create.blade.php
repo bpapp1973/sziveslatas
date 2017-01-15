@@ -8,6 +8,7 @@
         </button>
         <h4 class="modal-title" id="createOrdersModalLabel">Új megrendelés</h4>
       </div>
+      {!! Form::open(['route' => 'orders.store']) !!}
       <div class="modal-body">
         <div class="row">
             <div class="col-md-12 col-md-offset-1">
@@ -22,9 +23,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick="addOrders()" class="btn btn-primary" data-dismiss="modal">Hozzáadás</button>
-        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
+        <div class="form-group col-sm-12">
+          {!! Form::submit('Megrendelem', ['class' => 'btn btn-primary']) !!}
+          <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+        </div>
       </div>
+      {!! Form::close() !!}
     </div>
   </div>
 </div>
