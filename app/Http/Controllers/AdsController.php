@@ -149,6 +149,17 @@ class AdsController extends AppBaseController
                                         ['users_id',Auth::user()->id],
                                         ['deleted_at',null]
                                         ])->first();
+
+        $isordered = false;
+        $orders = Auth::user()->orders;
+        foreach (Auth::user()->orders as $element) {
+            if($element->ads_id == $id) {
+                $isordered = true;
+                break;
+            }
+        }
+
+
         //Debugbar::addMessage('Comments', json_encode($comments));
         
         return view('models.ads.show')->with(['ads' => $ads,
@@ -159,7 +170,8 @@ class AdsController extends AppBaseController
                                               'menucardsArray' => $menucardsArray,
                                               'owner' => $owner,
                                               'comments' => $comments,
-                                              'favourite' => $favourite]
+                                              'favourite' => $favourite,
+                                              'isordered' => $isordered]
                                             );
     }
 

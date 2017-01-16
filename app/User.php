@@ -106,6 +106,17 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Favourites', 'users_id');
     }
+
+
+    /**
+     * Get the orders records associated with the user.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Orders', 'users_id');
+    }
+
+
     /**
      * Send the password reset notification.
      *

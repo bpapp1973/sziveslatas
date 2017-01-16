@@ -31,3 +31,47 @@ function toggleElements(newCategoryId) {
 }
 
 
+drpoptions={
+    "showDropdowns": true,
+    "showISOWeekNumbers": true,
+    "alwaysShowCalendars": true,
+    "timePicker": true,
+    "timePicker24Hour": true,
+    "timePickerIncrement": 30,
+    "minDate": new Date(),
+    "maxDate": new Date("{!! $ads->expireson !!}"),
+    "locale": {
+        "format": "YYYY-MM-DD HH:mm:ss",
+        "separator": " - ",
+        "applyLabel": "Alkalmaz",
+        "cancelLabel": "Mégsem",
+        "fromLabel": "Tól",
+        "toLabel": "Ig",
+        "customRangeLabel": "Custom",
+        "weekLabel": "H",
+        "daysOfWeek": [
+            "V",
+            "H",
+            "K",
+            "Sz",
+            "Cs",
+            "P",
+            "Sz"
+        ],
+        "monthNames": [
+            "Január",
+            "Február",
+            "Március",
+            "Április",
+            "Május",
+            "Június",
+            "Július",
+            "Augusztus",
+            "Szeptember",
+            "Október",
+            "November",
+            "December"
+        ],
+        "firstDay": 1
+    },    
+};

@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.css"/>
 <style type="text/css">
 /* This rule is read by Galleria to define the gallery height: */
 #galleria {
@@ -38,10 +37,6 @@
 <script src="{!! asset('galleria/themes/classic/galleria.classic.js') !!}"></script>
 <script src="{!! asset('js/galleria-config.js') !!}"></script>
 
-<!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.hu.min.js"></script>
-
 @endsection
 
 @section('content')
@@ -58,7 +53,9 @@
 				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
 	        </div>
 		    <div class="col-md-4">
+		    	@if(!$isordered && Auth::user()->id != $owner->id)
 				<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+				@endif
 				@if(count($favourite)==0)
 				<a class="btn btn-secondary" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
 				@else
@@ -303,6 +300,7 @@
 @include('models.orders.modal_create')
 
 <script type="text/javascript">
+
 $(function() {
     $('input[name="daterange"]').daterangepicker({
     "showDropdowns": true,
@@ -346,8 +344,42 @@ $(function() {
             "December"
         ],
         "firstDay": 1
-    },    });
+    }, 
+    "template": '<div class="daterangepicker dropdown-menu">' +
+                '<div class="calendar left">' +
+                    '<div class="daterangepicker_input">' +
+                      '<input class="input-mini form-control" type="text" name="daterangepicker_start" value="" />' +
+                      '<i class="fa fa-calendar glyphicon glyphicon-calendar"></i>' +
+                      '<div class="calendar-time">' +
+                        '<div></div>' +
+                        '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
+                      '</div>' +
+                    '</div>' +
+                    '<div class="calendar-table"></div>' +
+                '</div>' +
+                '<div class="calendar right">' +
+                    '<div class="daterangepicker_input">' +
+                      '<input class="input-mini form-control" type="text" name="daterangepicker_end" value="" />' +
+                      '<i class="fa fa-calendar glyphicon glyphicon-calendar"></i>' +
+                      '<div class="calendar-time">' +
+                        '<div></div>' +
+                        '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
+                      '</div>' +
+                    '</div>' +
+                    '<div class="calendar-table"></div>' +
+                '</div>' +
+                '<div class="row">' +
+                '<div class="ranges">' +
+                    '<div class="range_inputs col-md-12">' +
+                        '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
+                        '<button class="cancelBtn" type="button"></button>' +
+                    '</div>' +
+                '</div>' +
+                '</div>' +
+            '</div>'
 });
+});
+
 </script>
 
 @endsection
