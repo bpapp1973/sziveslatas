@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\NullableFields;
 use Illuminate\Database\Eloquent\Model;
 
 class Counties extends Model

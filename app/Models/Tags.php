@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\NullableFields;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

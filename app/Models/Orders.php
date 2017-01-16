@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\NullableFields;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Orders extends Model
 {
     use SoftDeletes;
+    use NullableFields;
 
     public $table = 'orders';
     
@@ -67,6 +69,26 @@ class Orders extends Model
     public static $rules = [
         
     ];
+
+    public function setMenucardsIdAttribute($menucards_id)
+    {
+        $this->attributes['menucards_id'] = $this->nullIfEmpty($menucards_id);
+    }
+
+    public function setRoomsIdAttribute($rooms_id)
+    {
+        $this->attributes['rooms_id'] = $this->nullIfEmpty($rooms_id);
+    }
+
+    public function setGuestsAttribute($guests)
+    {
+        $this->attributes['guests'] = $this->nullIfEmpty($guests);
+    }
+
+    public function setPersonnelAttribute($personnel)
+    {
+        $this->attributes['personnel'] = $this->nullIfEmpty($personnel);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

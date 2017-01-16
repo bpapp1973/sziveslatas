@@ -1,6 +1,6 @@
 <!-- Companies Id Field -->
 {!! Form::hidden('companies_id', $ads->companies_id, ['id' => 'companies_id']) !!}
-
+<!--
 <div class="form-group{{ $errors->has('company') ? ' has-error' : '' }}">
 	{!! Form::label('company', 'Hirdető', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
@@ -12,7 +12,7 @@
         @endif
     </div>
 </div>
-
+-->
 
 <!-- Users Id Field -->
 {!! Form::hidden('users_id', Auth::user()->id, ['id' => 'users_id']) !!}

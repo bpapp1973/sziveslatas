@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1 class="pull-left">Orders</h1>
-        <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('orders.create') !!}">Új</a>
+<div id="page-content-wrapper" style="padding-top: 6em">
+        <h1 class="pull-left">Megrendelések</h1>
 
         <div class="clearfix"></div>
 
@@ -12,4 +12,5 @@
 
         @include('models.orders.table')
         
+</div>        
 @endsection

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Debugbar;
 
 class OrdersController extends AppBaseController
 {
@@ -30,7 +31,7 @@ class OrdersController extends AppBaseController
     public function index(Request $request)
     {
         $this->ordersRepository->pushCriteria(new RequestCriteria($request));
-        $orders = $this->ordersRepository->all();
+        $orders = $this->ordersRepository->paginate(5);
 
         return view('models.orders.index')
             ->with('orders', $orders);
@@ -55,13 +56,18 @@ class OrdersController extends AppBaseController
      */
     public function store(CreateOrdersRequest $request)
     {
+
         $input = $request->all();
+        $range=$this->parseDateRange($input["daterange"]);
+        $input["startdate"] = $range[0];
+        $input["enddate"]   = $range[1];
 
         $orders = $this->ordersRepository->create($input);
 
-        Flash::success('A Orders létrehoztuk');
+        Flash::success('Emailben értesítettük a hirdetőt a foglalási szándékodról. Hamarosan felveszi veled a kapcsolatot.');
 
-        return redirect(route('orders.edit', $orders->id));
+        //return redirect(route('orders.edit', $orders->id));
+        return redirect(route('ads.show', $orders->ads_id));
     }
 
     /**
@@ -76,7 +82,7 @@ class OrdersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('A Orders nem találjuk');
+            Flash::error('A megrendelést nem találjuk');
 
             return redirect(route('home'));
         }
@@ -96,7 +102,7 @@ class OrdersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('A Orders nem találjuk');
+            Flash::error('A megrendelést nem találjuk');
 
             return redirect(route('home'));
         }
@@ -117,14 +123,14 @@ class OrdersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('A Orders nem találjuk');
+            Flash::error('A megrendelést nem találjuk');
 
             return redirect(route('home'));
         }
 
         $orders = $this->ordersRepository->update($request->all(), $id);
 
-        Flash::success('A Orders mentettük');
+        Flash::success('A megrendelést mentettük');
 
         return view('models.orders.show')->with('orders', $orders);
     }
@@ -141,15 +147,22 @@ class OrdersController extends AppBaseController
         $orders = $this->ordersRepository->findWithoutFail($id);
 
         if (empty($orders)) {
-            Flash::error('A Orders nem találjuk');
+            Flash::error('A megrendelést nem találjuk');
 
             return redirect(route('home'));
         }
 
         $this->ordersRepository->delete($id);
 
-        Flash::success('A Orders töröltük');
+        Flash::success('A megrendelést töröltük');
 
         return redirect(route('home'));
+    }
+
+    private function parseDateRange($daterange) {
+        $pos = strpos($daterange, ' - ');
+        $startDate = substr($daterange,0,$pos);
+        $endDate = substr($daterange, $pos+3);
+        return [$startDate,$endDate];
     }
 }
