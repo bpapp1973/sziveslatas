@@ -103,7 +103,7 @@ class Orders extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(\App\User::class, 'users_id');
     }
 
     /**
@@ -111,7 +111,7 @@ class Orders extends Model
      **/
     public function menucard()
     {
-        return $this->belongsTo(\App\Models\Menucards::class);
+        return $this->belongsTo(\App\Models\Menucards::class, 'menucards_id');
     }
 
     /**
@@ -119,7 +119,7 @@ class Orders extends Model
      **/
     public function room()
     {
-        return $this->belongsTo(\App\Models\Rooms::class);
+        return $this->belongsTo(\App\Models\Rooms::class, 'rooms_id');
     }
 
     /**
@@ -127,6 +127,6 @@ class Orders extends Model
      **/
     public function company()
     {
-        return $this->belongsTo(\App\Models\Companies::class);
+        return $this->belongsTo(\App\Models\Companies::class, 'companies_id');
     }
 }

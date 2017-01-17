@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateOrdersRequest;
 use App\Repositories\OrdersRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Auth;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -64,7 +65,10 @@ class OrdersController extends AppBaseController
 
         $orders = $this->ordersRepository->create($input);
 
-        Flash::success('Emailben értesítettük a hirdetőt a foglalási szándékodról. Hamarosan felveszi veled a kapcsolatot.');
+        $orders->user->sendOrderCreatedUserNotification($orders->ads_id);
+        $orders->company->users->first()->sendOrderCreatedSellerNotification($orders->ads_id);
+
+        Flash::success('Emailben értesítettük a hirdetőt a foglalási szándékodról és hamarosan felveszi veled a kapcsolatot.');
 
         //return redirect(route('orders.edit', $orders->id));
         return redirect(route('ads.show', $orders->ads_id));

@@ -198,5 +198,13 @@ class Ads extends Model
         return $this->hasMany('App\Models\Comments', 'ads_id');
     }
 
+    /**
+     * Get the orders records associated with the ad.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Orders', 'ads_id');
+    }
+
     
 }
