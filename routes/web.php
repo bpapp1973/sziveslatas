@@ -58,7 +58,4 @@ Route::get('delete-image', function () {
 
 Route::post('dropzone/uploadFiles', ['as'=>'dropzone.post', 'uses' => 'AdsController@uploadFiles']);
 
-
-
-
-Route::resource('orders', 'OrdersController');
+Route::get('myorders', ['as' => 'orders.myorders', 'uses' => 'OrdersController@myOrders']);

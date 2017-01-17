@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Event;
 use App\Http\Requests\CreateOrdersRequest;
 use App\Http\Requests\UpdateOrdersRequest;
 use App\Repositories\OrdersRepository;
@@ -9,6 +10,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Auth;
 use Flash;
+use App\Criteria\MyOrdersCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Debugbar;
@@ -32,10 +34,26 @@ class OrdersController extends AppBaseController
     public function index(Request $request)
     {
         $this->ordersRepository->pushCriteria(new RequestCriteria($request));
-        $orders = $this->ordersRepository->paginate(5);
+        $orders = $this->ordersRepository->all();
 
         return view('models.orders.index')
             ->with('orders', $orders);
+    }
+
+    /**
+     * Display a listing of the current user's Orders.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function myOrders(Request $request)
+    {
+        $this->ordersRepository->pushCriteria(new MyOrdersCriteria());
+        $orders = $this->ordersRepository->all();
+        $eventsArray = $this->generateEvents($orders);
+
+        return view('models.orders.index')
+            ->with('events', $eventsArray);
     }
 
     /**
@@ -168,5 +186,14 @@ class OrdersController extends AppBaseController
         $startDate = substr($daterange,0,$pos);
         $endDate = substr($daterange, $pos+3);
         return [$startDate,$endDate];
+    }
+
+    private function generateEvents($orders) {
+        $eventsArray = array();
+        for ($i=0; $i < count($orders); $i++) { 
+            $event = new Event($orders[$i]);
+            $eventsArray[] = $event;
+        }
+        return $eventsArray;
     }
 }

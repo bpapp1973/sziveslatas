@@ -293,7 +293,7 @@
     <div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
         {!! Form::label('startdate', 'Kezdődik', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-            {!! Form::date('startdate', null, ['class' => 'form-control']) !!}
+            {!! Form::date('startdate', date('Y-m-d H:i:s'), ['class' => 'form-control']) !!}
             @if ($errors->has('startdate'))
                 <span class="help-block">
                     <strong>{{ $errors->first('startdate') }}</strong>

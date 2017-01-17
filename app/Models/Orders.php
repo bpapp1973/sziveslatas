@@ -30,6 +30,7 @@ class Orders extends Model
         'ads_id',
         'menucards_id',
         'rooms_id',
+        'eventtype',
         'startdate',
         'enddate',
         'guests',
@@ -52,6 +53,7 @@ class Orders extends Model
         'ads_id' => 'integer',
         'menucards_id' => 'integer',
         'rooms_id' => 'integer',
+        'eventtype' => 'string',
         'guests' => 'integer',
         'personnel' => 'integer',
         'users_id' => 'integer',
@@ -95,7 +97,7 @@ class Orders extends Model
      **/
     public function ad()
     {
-        return $this->belongsTo(\App\Models\Ads::class);
+        return $this->belongsTo(\App\Models\Ads::class, 'ads_id');
     }
 
     /**

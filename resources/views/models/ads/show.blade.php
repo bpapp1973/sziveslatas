@@ -179,7 +179,7 @@
 			            <div class="row">
 			                <div class="col-xs-12 text-xs-center">
 			                    <h3 class="mbr-section-title display-2">Helyiségek</h3>
-			                    <small class="mbr-section-subtitle">Az alábbi helyiségekben tarthatod meg a rendeszvényedet</small>
+			                    <small class="mbr-section-subtitle">Az alábbi helyiségekben tarthatod meg a rendezvényedet</small>
 			                </div>
 			            </div>
 			        </div>

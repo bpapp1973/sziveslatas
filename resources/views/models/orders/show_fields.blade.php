@@ -1,102 +1,130 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $orders->id !!}</p>
-</div>
+<div id="page-content-wrapper">
+    <div class="container">
 
-<!-- Companies Id Field -->
-<div class="form-group">
-    {!! Form::label('companies_id', 'Companies Id:') !!}
-    <p>{!! $orders->companies_id !!}</p>
-</div>
+        <div class="row">
+        <!-- Ads Id Field -->
+        <div class="form-group">
+            {!! Form::label('ads_id', 'Hirdetés:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->ad->title !!}
+            </div>
+        </div>
+        </div>
 
-<!-- Ads Id Field -->
-<div class="form-group">
-    {!! Form::label('ads_id', 'Ads Id:') !!}
-    <p>{!! $orders->ads_id !!}</p>
-</div>
+        <!-- Menucards Id Field -->
+        @if($orders->menucards_id)
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('menucards_id', 'Menü:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->menucard->title !!}
+            </div>
+        </div>
+        </div>
+        @endif
 
-<!-- Menucards Id Field -->
-<div class="form-group">
-    {!! Form::label('menucards_id', 'Menucards Id:') !!}
-    <p>{!! $orders->menucards_id !!}</p>
-</div>
+        @if($orders->rooms_id)
+        <!-- Rooms Id Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('rooms_id', 'Helyiség:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->room->name !!}
+            </div>
+        </div>
+        </div>
+        @endif
 
-<!-- Rooms Id Field -->
-<div class="form-group">
-    {!! Form::label('rooms_id', 'Rooms Id:') !!}
-    <p>{!! $orders->rooms_id !!}</p>
-</div>
+        @if($orders->eventtype)
+        <!-- Event type Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('eventtype', 'Rendezvény típusa:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->eventtype !!}
+            </div>
+        </div>
+        </div>
+        @endif
 
-<!-- Startdate Field -->
-<div class="form-group">
-    {!! Form::label('startdate', 'Startdate:') !!}
-    <p>{!! $orders->startdate !!}</p>
-</div>
+        <!-- Startdate Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('startdate', 'Kezdés:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->startdate !!}
+            </div>
+        </div>
+        </div>
 
-<!-- Enddate Field -->
-<div class="form-group">
-    {!! Form::label('enddate', 'Enddate:') !!}
-    <p>{!! $orders->enddate !!}</p>
-</div>
+        <!-- Enddate Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('enddate', 'Vég:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->enddate !!}
+            </div>
+        </div>
+        </div>
 
-<!-- Guests Field -->
-<div class="form-group">
-    {!! Form::label('guests', 'Guests:') !!}
-    <p>{!! $orders->guests !!}</p>
-</div>
+        <!-- Guests Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('guests', 'Vendégek száma:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->guests !!}
+            </div>
+        </div>
+        </div>
 
-<!-- Personnel Field -->
-<div class="form-group">
-    {!! Form::label('personnel', 'Personnel:') !!}
-    <p>{!! $orders->personnel !!}</p>
-</div>
+        <!-- Personnel Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('personnel', 'Kér személyzetet:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->personnel !!}
+            </div>
+        </div>
+        </div>
 
-<!-- Users Id Field -->
-<div class="form-group">
-    {!! Form::label('users_id', 'Users Id:') !!}
-    <p>{!! $orders->users_id !!}</p>
-</div>
+        <!-- First Name Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('first_name', 'Megrendelő:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->last_name !!} {!! $orders->first_name !!}
+            </div>
+        </div>
+        </div>
 
-<!-- First Name Field -->
-<div class="form-group">
-    {!! Form::label('first_name', 'First Name:') !!}
-    <p>{!! $orders->first_name !!}</p>
-</div>
+        <!-- Email Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('email', 'Email:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                <a href="mailto:{!! $orders->email !!}">{!! $orders->email !!}</a>
+            </div>
+        </div>
+        </div>
 
-<!-- Last Name Field -->
-<div class="form-group">
-    {!! Form::label('last_name', 'Last Name:') !!}
-    <p>{!! $orders->last_name !!}</p>
-</div>
+        <!-- Phone Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('phone', 'Telefon:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                <a href="tel:{!! $orders->phone !!}">{!! $orders->phone !!}</a>
+            </div>
+        </div>
+        </div>
 
-<!-- Email Field -->
-<div class="form-group">
-    {!! Form::label('email', 'Email:') !!}
-    <p>{!! $orders->email !!}</p>
+        <!-- Created At Field -->
+        <div class="row">
+        <div class="form-group">
+            {!! Form::label('created_at', 'Megrendelés időpontja:', ['class' => 'col-md-4 control-label']) !!}
+            <div >
+                {!! $orders->created_at !!}
+            </div>
+        </div>
+        </div>
+    </div>
 </div>
-
-<!-- Phone Field -->
-<div class="form-group">
-    {!! Form::label('phone', 'Phone:') !!}
-    <p>{!! $orders->phone !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $orders->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $orders->updated_at !!}</p>
-</div>
-
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $orders->deleted_at !!}</p>
-</div>
-

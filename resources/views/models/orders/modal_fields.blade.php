@@ -112,7 +112,9 @@
     </div>
 </div>
 
+@if($ads->category->parent_id==3)
 
+@if(count($ads->menucards)>0)
 <!-- Menucards Id Field -->
 <div class="form-group{{ $errors->has('menucards_id') ? ' has-error' : '' }}">
     {!! Form::label('menucards_id', 'Menü', ['class' => 'col-md-4 control-label']) !!}
@@ -125,7 +127,23 @@
         @endif
     </div>
 </div>
+@endif
 
+<!-- Eventtype Field -->
+<div class="form-group{{ $errors->has('eventtype') ? ' has-error' : '' }}">
+    {!! Form::label('eventtype', 'Rendezvény típusa', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('eventtype', null, ['class' => 'form-control']) !!}
+        @if ($errors->has('eventtype'))
+            <span class="help-block">
+                <strong>{{ $errors->first('eventtype') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+
+@if(count($ads->rooms)>0)
 <!-- Rooms Id Field -->
 <div class="form-group{{ $errors->has('rooms_id') ? ' has-error' : '' }}">
     {!! Form::label('rooms_id', 'Helyiség', ['class' => 'col-md-4 control-label']) !!}
@@ -138,7 +156,21 @@
         @endif
     </div>
 </div>
+@endif
 
+<!-- Personnel Field -->
+<div class="form-group{{ $errors->has('personnel') ? ' has-error' : '' }}">
+    {!! Form::label('personnel', 'Személyzet', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::select('personnel', ['1' => 'Igen', '0' => 'Nem'], null, ['class' => 'form-control', 'placeholder' => 'Kérsz személyzetet?']) !!}
+        @if ($errors->has('personnel'))
+            <span class="help-block">
+                <strong>{{ $errors->first('personnel') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+@endif
 
 <!-- Guests Field -->
 <div class="form-group{{ $errors->has('guests') ? ' has-error' : '' }}">
@@ -153,17 +185,4 @@
     </div>
 </div>
 
-
-<!-- Personnel Field -->
-<div class="form-group{{ $errors->has('personnel') ? ' has-error' : '' }}">
-    {!! Form::label('personnel', 'Személyzet', ['class' => 'col-md-4 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::number('personnel', null, ['class' => 'form-control']) !!}
-        @if ($errors->has('personnel'))
-            <span class="help-block">
-                <strong>{{ $errors->first('personnel') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
 

@@ -25,6 +25,7 @@
     <link rel='stylesheet' href='{{ url('/') }}/assets/bootstrap-glyphicons/css/bootstrap.min.css' />
     <link rel='stylesheet' href='{{ url('/') }}/assets/gill-sans-ultrabold/stylesheet.css' />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />    
+    <link rel='stylesheet' href='{{ url('/') }}/fullcalendar/fullcalendar.css' />
 
     <style type="text/css">
     /* Local styles*/
@@ -85,6 +86,7 @@
                     <a class="dropdown-item" href="{!! url('/companies/'.Auth::user()->companies->first()->id).'/profile' !!}">Profil szerkesztése</a>
                     <a class="dropdown-item" href="{!! url('/ads/create') !!}">Hirdetés feladása</a>
                     <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
+                    <a class="dropdown-item" href="{!! url('/myorders') !!}">Megrendeléseim</a>
                     <a class="dropdown-item" href="#">Feltöltés alatt</a>
                   </div>
                 </li>
@@ -155,6 +157,9 @@
     <!-- Include Date Range Picker -->
     <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
     <script src="{{ url('/') }}/js/sziveslatas.js"></script>
+    <script src='{{ url('/') }}/fullcalendar/fullcalendar.js'></script>
+    <script src='{{ url('/') }}/fullcalendar/locale/hu.js'></script>
+
     @yield('scripts')
   </body>
 </html>
