@@ -11,9 +11,16 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
+Route::get('/citysearch', ['as' => 'citysearch', 'uses' => 'WelcomeController@citysearch']);
+Route::get('/textsearch', ['as' => 'textsearch', 'uses' => 'WelcomeController@textsearch']);
+
 
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 

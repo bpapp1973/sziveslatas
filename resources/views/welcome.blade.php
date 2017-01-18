@@ -3,8 +3,8 @@
 <style>
 .search-form {
 position: relative;
-padding-top: 100px;
-padding-bottom: 0px;
+padding-top: 6em;
+padding-bottom: 0.5em;
 background-position: 50% 50%;
 background-repeat: no-repeat;
 background-size: cover;
@@ -39,7 +39,14 @@ background-size: cover;
   background: -ms-linear-gradient(left, rgba(85, 67, 70, 0.85), rgba(69, 80, 91, 0.85)) !important;
   background: linear-gradient(left, rgba(85, 67, 70, 0.85), rgba(69, 80, 91, 0.85)) !important;
   -webkit-transition: .2s background ease-in-out;
-  transition: .2s background ease-in-out; }
+  transition: .2s background ease-in-out;
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-left: 0rem;
+    padding-right: 0rem
+}
 </style>
 @endsection
 @section('content')
@@ -47,14 +54,25 @@ background-size: cover;
     {!! Form::open(['url' => '#', 'method' => 'get']) !!}
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-2 text-xs-center">
-                <div class="input-group">
-                    {!! Form::text('search', null, ['placeholder' => 'Kereső','class' => 'form-control']) !!}
-                    <span class="input-group-btn">
-                        <button class="btn btn-info" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
+            <div class="col-md-12 text-xs-center">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Kategória', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-md-2">
+                        {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Alkategória', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-md-2">
+                        {!! Form::text('citysearch', null, ['id' => 'citysearch', 'placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
+                    </div>
+                    <div class=" input-group col-md-6">
+                        {!! Form::text('search', null, ['placeholder' => 'Kereső', 'class' => 'form-control']) !!}
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-xs" type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
                 </div><!-- /input-group -->
             </div>
         </div>
@@ -340,4 +358,27 @@ background-size: cover;
         </div>
     </footer>
 </section>
+
+<script type="text/javascript">
+    var path = "{{ route('citysearch') }}";
+    $('#citysearch').typeahead({
+        source:  function (query, process) {
+        return $.get(path, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+    $('#parent_id').on('change', function(e) {
+        var parent_id = e.target.value;
+        //ajax
+        $.get('{{ url('/') }}/category-dropdown?parent_id=' + parent_id, function(data) {
+            $('#category').empty();
+            $.each(data, function(index, categoryObj) {
+                $('#category').append('<option value="' + categoryObj.id + '">' + categoryObj.name + '</option>');
+            });
+        });
+    });
+
+</script>
 @endsection
