@@ -52,6 +52,7 @@
 				<a href="#map"         class="btn btn-default">Térkép</a>
 				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
 	        </div>
+	        @if(Auth::user())
 		    <div class="col-md-4">
 		    	@if(!$isordered && Auth::user()->id != $owner->id)
 				<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
@@ -62,6 +63,7 @@
 				<a class="btn btn-secondary" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
 				@endif
 			</div>
+			@endif
 		</div>
 		
 	</div>
@@ -223,29 +225,32 @@
 			            <div class="row">
 			                <div class="col-xs-12 text-xs-center">
 			                    <h3 class="mbr-section-title display-2">Hozzászólások</h3>
-			                    @if (count($comments)>0)
-			                    <small class="mbr-section-subtitle">Mondd el te is a véleményed!</small>
-			                    @else
-			                    <small class="mbr-section-subtitle">Legyél te az első! Mondd el a véleményed!</small>
+			                    @if(Auth::user())
+				                    @if (count($comments)>0)
+				                    	<small class="mbr-section-subtitle">Mondd el te is a véleményed!</small>
+				                    @else
+				                    	<small class="mbr-section-subtitle">Legyél te az első! Mondd el a véleményed!</small>
+				                    @endif
 			                    @endif
 			                </div>
 			            </div>
-                    {!! Form::open(['route' => 'comments.store']) !!}
-                    	{!! Form::hidden('ads_id', $ads->id) !!}
-                    	{!! Form::hidden('users_id', Auth::user()->id) !!}
-                    	{!! Form::hidden('username', Auth::user()->username) !!}
-						<div class="col-md-12">
-						  	{!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
-						  	<script type="text/javascript">
-						  		CKEDITOR.replace('comment');
-						  	</script>
-						</div>
-						<!-- Submit Field -->
-						<div class="col-sm-12">
-						    {!! Form::submit('Elküldöm', ['class' => 'btn btn-primary']) !!}
-						</div>
-                    {!! Form::close() !!}
-
+			            @if(Auth::user())
+		                    {!! Form::open(['route' => 'comments.store']) !!}
+		                    	{!! Form::hidden('ads_id', $ads->id) !!}
+		                    	{!! Form::hidden('users_id', Auth::user()->id) !!}
+		                    	{!! Form::hidden('username', Auth::user()->username) !!}
+								<div class="col-md-12">
+								  	{!! Form::textarea('comment', null, ['class' => 'form-control']) !!}
+								  	<script type="text/javascript">
+								  		CKEDITOR.replace('comment');
+								  	</script>
+								</div>
+								<!-- Submit Field -->
+								<div class="col-sm-12">
+								    {!! Form::submit('Elküldöm', ['class' => 'btn btn-primary']) !!}
+								</div>
+		                    {!! Form::close() !!}
+		                @endif
 			        </div>
 			    </div>
 			    @if(count($comments)>0)
@@ -256,19 +261,21 @@
 				            <div class="col-md-10">
 					            {!! $comment->comment !!}
 					        </div>
-					        @if(Auth::user()->id == $owner->id)
-				            <div class="col-md-1 btn-group">
-				            {!! Form::model($comment, ['route' => ['comments.update', $comment->id], 'method' => 'patch']) !!}
-				            	{!! Form::hidden('approved', abs($comment->approved-1), ['id' => 'approved']) !!}
-					            <button type="submit" class='btn btn-default btn-xxs'>
-					            @if($comment->approved==0)
-					            <span class="glyphicon glyphicon-unchecked"></span>
-					            @else
-					            <span class="glyphicon glyphicon-check"></span>
-					            @endif
-					            </button>
-					          {!! Form::close() !!}
-					        </div>
+					        @if(Auth::user())
+						        @if(Auth::user()->id == $owner->id)
+						            <div class="col-md-1 btn-group">
+						            {!! Form::model($comment, ['route' => ['comments.update', $comment->id], 'method' => 'patch']) !!}
+						            	{!! Form::hidden('approved', abs($comment->approved-1), ['id' => 'approved']) !!}
+							            <button type="submit" class='btn btn-default btn-xxs'>
+							            @if($comment->approved==0)
+							            	<span class="glyphicon glyphicon-unchecked"></span>
+							            @else
+							            	<span class="glyphicon glyphicon-check"></span>
+							            @endif
+							            </button>
+							          {!! Form::close() !!}
+							        </div>
+						        @endif
 					        @endif
 			            </div>
 			        @endforeach
@@ -292,13 +299,14 @@
 
 @include('js.comments')
 
-@include('models.favourites.modal_create')
-@if(count($favourite)>0)
-	@include('models.favourites.modal_delete')
+@if(Auth::user())
+	@include('models.favourites.modal_create')
+	@if(count($favourite)>0)
+		@include('models.favourites.modal_delete')
+	@endif
+
+	@include('models.orders.modal_create')
 @endif
-
-@include('models.orders.modal_create')
-
 <script type="text/javascript">
 
 $(function() {

@@ -44,11 +44,18 @@ background-size: cover;
 @endsection
 @section('content')
 <div class="search-form">
-    {!! Form::open(['url' => '#']) !!}
+    {!! Form::open(['url' => '#', 'method' => 'get']) !!}
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-2 text-xs-center">
-                <p style="text-align: left;">Ide kerül majd a kereső</p>
+                <div class="input-group">
+                    {!! Form::text('search', null, ['placeholder' => 'Kereső','class' => 'form-control']) !!}
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div><!-- /input-group -->
             </div>
         </div>
     </div>

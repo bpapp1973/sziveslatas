@@ -138,24 +138,31 @@ class AdsController extends AppBaseController
             $roomsArray[$element->id]=$element->name;
         }
 
+        $userid = -1;
+        if(Auth::user()){
+            $userid = Auth::user()->id;
+        }
+
+        $favourite = Favourites::where([['ads_id',$id],
+                                        ['users_id',$userid],
+                                        ['deleted_at',null]
+                                        ])->first();
+
         $owner = $ads->company->users->first();
-        if (Auth::user()->id == $owner->id) {
+        if ($userid == $owner->id) {
             $comments = $ads->comments;
         } else {
             $comments = $ads->comments->where('approved',1);
         }
 
-        $favourite = Favourites::where([['ads_id',$id],
-                                        ['users_id',Auth::user()->id],
-                                        ['deleted_at',null]
-                                        ])->first();
-
         $isordered = false;
-        $orders = Auth::user()->orders;
-        foreach (Auth::user()->orders as $element) {
-            if($element->ads_id == $id) {
-                $isordered = true;
-                break;
+        if($userid>1) {
+            $orders = Auth::user()->orders;
+            foreach (Auth::user()->orders as $element) {
+                if($element->ads_id == $id) {
+                    $isordered = true;
+                    break;
+                }
             }
         }
 
