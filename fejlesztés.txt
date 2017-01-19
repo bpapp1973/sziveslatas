@@ -26,6 +26,7 @@ hirdetés feladás
 	x menü hozzáadása create és edit esetén
 	x helyiség modal edit form
 	- hirdetések érvényességi idejének validálása
+	- megrendelések jóváhagyása
 
 
 /************************/

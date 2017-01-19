@@ -17,9 +17,10 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
-Route::get('/citysearch', ['as' => 'citysearch', 'uses' => 'WelcomeController@citysearch']);
-Route::get('/textsearch', ['as' => 'textsearch', 'uses' => 'WelcomeController@textsearch']);
+Route::get('/', ['as' => 'welcome', 'uses' => 'SearchController@index']);
+Route::get('/citysearch', ['as' => 'citysearch', 'uses' => 'SearchController@citysearch']);
+Route::get('/textsearch', ['as' => 'textsearch', 'uses' => 'SearchController@textsearch']);
+Route::get('/search', ['as' => 'search', 'uses' => 'SearchController@search']);
 
 
 Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);

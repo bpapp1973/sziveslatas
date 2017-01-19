@@ -51,7 +51,7 @@ background-size: cover;
 @endsection
 @section('content')
 <div class="search-form">
-    {!! Form::open(['url' => '#', 'method' => 'get']) !!}
+    {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-xs-center">
@@ -63,10 +63,10 @@ background-size: cover;
                         {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Alkategória', 'class' => 'form-control']) !!}
                     </div>
                     <div class="col-md-2">
-                        {!! Form::text('citysearch', null, ['id' => 'citysearch', 'placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
+                        {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
                     </div>
                     <div class=" input-group col-md-6">
-                        {!! Form::text('search', null, ['placeholder' => 'Kereső', 'class' => 'form-control']) !!}
+                        {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Kereső', 'class' => 'typeahead form-control']) !!}
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-xs" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
@@ -360,10 +360,19 @@ background-size: cover;
 </section>
 
 <script type="text/javascript">
-    var path = "{{ route('citysearch') }}";
+    var citypath = "{{ route('citysearch') }}";
     $('#citysearch').typeahead({
         source:  function (query, process) {
-        return $.get(path, { query: query }, function (data) {
+        return $.get(citypath, { query: query }, function (data) {
+                return process(data);
+            });
+        }
+    });
+
+    var textpath = "{{ route('textsearch') }}";
+    $('#textsearch').typeahead({
+        source:  function (query, process) {
+        return $.get(textpath, { query: query }, function (data) {
                 return process(data);
             });
         }
