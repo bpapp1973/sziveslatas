@@ -383,6 +383,7 @@ background-size: cover;
         //ajax
         $.get('{{ url('/') }}/category-dropdown?parent_id=' + parent_id, function(data) {
             $('#category').empty();
+            $('#category').append('<option value="" disabled selected>Válassz</option>');
             $.each(data, function(index, categoryObj) {
                 $('#category').append('<option value="' + categoryObj.id + '">' + categoryObj.name + '</option>');
             });
