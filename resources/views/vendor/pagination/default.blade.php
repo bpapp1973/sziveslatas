@@ -1,26 +1,30 @@
 @if ($paginator->hasPages())
-    <ul class="pagination">
-        {{-- Previous Page Link --}}
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+    <div class="btn-group" role="group" aria-label="...">
         @if ($paginator->onFirstPage())
-            <li class="disabled"><span>&laquo;</span></li>
+            <button type="button" class="btn btn-info disabled">
+                <span>&laquo;</span>
+            </button>
         @else
-            <li><a href="{{ $paginator->previousPageUrl() }}" rel="prev">&laquo;</a></li>
+            <a href="{{ $paginator->previousPageUrl() }}" class="btn btn-info" rel="prev">&laquo;</a>
         @endif
 
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <li class="disabled"><span>{{ $element }}</span></li>
+                <button type="button" class="btn btn-info disabled"><span>{{ $element }}</span></button>
             @endif
 
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="active"><span>{{ $page }}</span></li>
+                        <button type="button" class="btn btn-info active">
+                            <span>{{ $page }}</span>
+                        </button>
                     @else
-                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        <a href="{{ $url }}" class="btn btn-info">{{ $page }}</a>
                     @endif
                 @endforeach
             @endif
@@ -28,9 +32,13 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li><a href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a></li>
+                <a href="{{ $paginator->nextPageUrl() }}" class="btn btn-info" rel="next">&raquo;</a>
         @else
-            <li class="disabled"><span>&raquo;</span></li>
+            <button type="button" class="btn btn-info disabled">
+                <span>&laquo;</span>
+            </button>
         @endif
-    </ul>
+
+    </div>
+</div>
 @endif

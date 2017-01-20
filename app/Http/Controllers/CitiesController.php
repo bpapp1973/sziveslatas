@@ -30,7 +30,8 @@ class CitiesController extends AppBaseController
     public function index(Request $request)
     {
         $this->citiesRepository->pushCriteria(new RequestCriteria($request));
-        $cities = $this->citiesRepository->all();
+        //$cities = $this->citiesRepository->all();
+        $cities = $this->citiesRepository->paginate(5);
 
         return view('models.cities.index')
             ->with('cities', $cities);

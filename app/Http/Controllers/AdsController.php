@@ -48,7 +48,7 @@ class AdsController extends AppBaseController
     public function index(Request $request)
     {
         $this->adsRepository->pushCriteria(new RequestCriteria($request));
-        $ads = $this->adsRepository->all();
+        $ads = $this->adsRepository->paginate(4);
 
         return view('models.ads.index')
             ->with('ads', $ads);
