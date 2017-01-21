@@ -67,21 +67,34 @@ class SearchController extends Controller
         if(isset($input['category']) && $input['category']!="") {
             array_push($query, ["categories_id","=",$input['category']]);
         }
-        if(isset($input['textsearch']) && $input['textsearch']!="") {
-            array_push($query, ["title","LIKE","%".$input['textsearch']."%"]);
-        }
         //http://laravel.io/forum/09-18-2014-orm-query-where-clause-on-related-table
-        $ads = Ads::with('city','category')
+        $ads = Ads::with('city','category','tag')
                 ->where($query)
-                ->when($input['citysearch'], function($q) use ($input) {
-                    $q->whereHas('city', function($cq) use ($input) {
-                        $cq->where('name', $input["citysearch"]);
-                });
+                ->where(function ($query) use ($input) {
+                    $query->where("title","LIKE","%".$input['textsearch']."%")
+                          ->orWhere("description","LIKE","%".$input['textsearch']."%")
+                          ->orWhere(function($q) use ($input) {
+                                $q->whereHas('tag', function($cq) use ($input) {
+                                    $cq->where([['name', $input["textsearch"]],
+                                                ['container_type', 'ad']
+                                        ]);
+                                });
+                          })
+                          ;
                 })
-                ->when($input['parent_id'], function($q) use ($input){
-                    $q->whereHas('category', function($cq) use ($input) {
-                        $cq->where('parent_id', $input["parent_id"]);
-                });
+                ->where(function($q) use ($input) {
+                    if(isset($input['citysearch']) && $input['citysearch']!="") {
+                        $q->whereHas('city', function($cq) use ($input) {
+                            $cq->where('name', $input["citysearch"]);
+                        });
+                }
+                })
+                ->where(function($q) use ($input){
+                    if(isset($input['parent_id']) && $input['parent_id']!="") {
+                        $q->whereHas('category', function($cq) use ($input) {
+                            $cq->where('parent_id', $input["parent_id"]);
+                        });
+                    }
                 })
                 ->paginate(4);
         return view('models.ads.index')->with('ads', $ads);
