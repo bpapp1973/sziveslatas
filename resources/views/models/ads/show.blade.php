@@ -87,35 +87,39 @@
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-3">Hirdető</div>
-					<div class="col-md-3"><a href="{!! url('/companies/'.$ads->company->id.'/profile') !!}">{!! $ads->company->name !!}</a></div>
+					<div class="col-md-6"><a href="{!! url('/companies/'.$ads->company->id.'/profile') !!}">{!! $ads->company->name !!}</a></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Website</div>
-					<div class="col-md-3"><a href="{!!$ads->website!!}">{!!$ads->website!!}</a></div>
+					<div class="col-md-6"><a href="{!!$ads->website!!}">{!!$ads->website!!}</a></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Kapcsolattartó</div>
-					<div class="col-md-3">{!! $ads->responsible !!}</div>
+					<div class="col-md-6">{!! $ads->responsible !!}</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Email</div>
-					<div class="col-md-3"><a href="mailto:{!! $ads->email !!}">{!! $ads->email !!}</a></div>
+					<div class="col-md-6"><a href="mailto:{!! $ads->email !!}">{!! $ads->email !!}</a></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Telefon</div>
-					<div class="col-md-3"><a href="tel:{!! $ads->phone !!}">{!! $ads->phone !!}</a></div>
+					<div class="col-md-6"><a href="tel:{!! $ads->phone !!}">{!! $ads->phone !!}</a></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Megye</div>
-					<div class="col-md-3">{!! $ads->city->county->name !!}</div>
+					<div class="col-md-6">{!! $ads->city->county->name !!}</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Város</div>
-					<div class="col-md-3">{!! $ads->city->name !!}</div>
+					<div class="col-md-6">{!! $ads->city->name !!}</div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Cím</div>
-					<div class="col-md-3">{!! $ads->address !!}</div>
+					<div class="col-md-6">{!! $ads->address !!}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Érvényes</div>
+					<div class="col-md-6">{!! date_format($ads->startdate,'Y.m.d') !!} - {!! date_format($ads->enddate,'Y.m.d') !!}</div>
 				</div>
 				
 			</div>

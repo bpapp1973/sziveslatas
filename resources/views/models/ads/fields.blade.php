@@ -287,33 +287,32 @@
             @endif
         </div>
     </div>
+</div>
 
-
-   <!-- Startdate Field -->
-    <div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
-        {!! Form::label('startdate', 'Kezdődik', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::date('startdate', date('Y-m-d H:i:s'), ['class' => 'form-control']) !!}
-            @if ($errors->has('startdate'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('startdate') }}</strong>
-                </span>
-            @endif
-        </div>
+<!-- Startdate Field -->
+<div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
+    {!! Form::label('startdate', 'Kezdődik', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::date('startdate', \Carbon\Carbon::now(), ['class' => 'form-control']) !!}
+        @if ($errors->has('startdate'))
+            <span class="help-block">
+                <strong>{{ $errors->first('startdate') }}</strong>
+            </span>
+        @endif
     </div>
+</div>
 
 
-    <!-- Enddate Field -->
-    <div class="form-group{{ $errors->has('enddate') ? ' has-error' : '' }}">
-        {!! Form::label('enddate', 'Zárul', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::date('enddate', null, ['class' => 'form-control']) !!}
-            @if ($errors->has('enddate'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('enddate') }}</strong>
-                </span>
-            @endif
-        </div>
+<!-- Enddate Field -->
+<div class="form-group{{ $errors->has('enddate') ? ' has-error' : '' }}">
+    {!! Form::label('enddate', 'Zárul', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::date('enddate', $user->companies->first()->licence, ['class' => 'form-control']) !!}
+        @if ($errors->has('enddate'))
+            <span class="help-block">
+                <strong>{{ $errors->first('enddate') }}</strong>
+            </span>
+        @endif
     </div>
 </div>
 

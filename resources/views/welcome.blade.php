@@ -63,9 +63,12 @@ background-size: cover;
                         {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Alkategória', 'class' => 'form-control']) !!}
                     </div>
                     <div class="col-md-2">
+                        {!! Form::date('when', date('Y-m-d H:i:s'), ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-md-2">
                         {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
                     </div>
-                    <div class=" input-group col-md-6">
+                    <div class=" input-group col-md-4">
                         {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Kereső', 'class' => 'typeahead form-control']) !!}
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-xs" type="submit">

@@ -1,4 +1,5 @@
 @if ($paginator->hasPages())
+<br/>
 <div class="btn-toolbar" role="toolbar" aria-label="...">
     <div class="btn-group" role="group" aria-label="...">
         @if ($paginator->onFirstPage())

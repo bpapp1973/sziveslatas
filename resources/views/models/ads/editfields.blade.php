@@ -312,32 +312,32 @@
         </div>
     </div>
 
-    <!-- startdate Field -->
-    <div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
-        {!! Form::label('startdate', 'Kezdődik', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::date('startdate', $ads->startdate, ['class' => 'form-control']) !!}
-            @if ($errors->has('startdate'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('startdate') }}</strong>
-                </span>
-            @endif
-        </div>
-    </div>
+</div>
 
-    <!-- enddate Field -->
-    <div class="form-group{{ $errors->has('enddate') ? ' has-error' : '' }}">
-        {!! Form::label('enddate', 'Zárul', ['class' => 'col-md-4 control-label']) !!}
-        <div class="col-md-6">
-            {!! Form::date('enddate', $ads->enddate, ['class' => 'form-control']) !!}
-            @if ($errors->has('enddate'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('enddate') }}</strong>
-                </span>
-            @endif
-        </div>
+<!-- startdate Field -->
+<div class="form-group{{ $errors->has('startdate') ? ' has-error' : '' }}">
+    {!! Form::label('startdate', 'Kezdődik', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::date('startdate', $ads->startdate, ['class' => 'form-control']) !!}
+        @if ($errors->has('startdate'))
+            <span class="help-block">
+                <strong>{{ $errors->first('startdate') }}</strong>
+            </span>
+        @endif
     </div>
+</div>
 
+<!-- enddate Field -->
+<div class="form-group{{ $errors->has('enddate') ? ' has-error' : '' }}">
+    {!! Form::label('enddate', 'Zárul', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::date('enddate', $ads->enddate, ['class' => 'form-control']) !!}
+        @if ($errors->has('enddate'))
+            <span class="help-block">
+                <strong>{{ $errors->first('enddate') }}</strong>
+            </span>
+        @endif
+    </div>
 </div>
 
 <!-- Expireson Field -->
