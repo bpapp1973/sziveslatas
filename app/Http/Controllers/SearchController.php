@@ -73,7 +73,7 @@ class SearchController extends Controller
             array_push($query, ['enddate','>=',$input['when']]);
         }
         if(isset($input['textsearch']) && $input['textsearch']!="") {
-            $textsearch=$input['when'];
+            $textsearch=$input['textsearch'];
         }
         //http://laravel.io/forum/09-18-2014-orm-query-where-clause-on-related-table
         //https://github.com/jarektkaczyk/eloquence

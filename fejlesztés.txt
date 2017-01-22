@@ -12,7 +12,7 @@ hirdetés feladás
 	x havi/negyedéves/éves előfizetés
 	x cég profil: tevékenységi kör - legördülő
 	x cég profil: megnevezés - nem biztos, hogy a cég neve ugyanaz mint pl az étteremé
-	- kereső: kategória | hely | időpont | kategória függő keresőmezők, tbd
+	x kereső: kategória | hely | időpont | kategória függő keresőmezők, tbd
 	- facebook oldal
 	- programok, szálláshelyek, éttermek stb a közelben
 	x profiloldal leszabályozása
@@ -21,11 +21,11 @@ hirdetés feladás
 	- return redirect 'index'
 	x város mentése az update formokon
 	- tooltip szövegek mint a validation 
-	- kommentek, azok ellenőrzése
+	x kommentek, azok ellenőrzése
 	x menucards tábla
 	x menü hozzáadása create és edit esetén
 	x helyiség modal edit form
-	- hirdetések érvényességi idejének validálása
+	x hirdetések érvényességi idejének validálása
 	- megrendelések jóváhagyása
 
 
