@@ -87,7 +87,7 @@
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-3">Hirdető</div>
-					<div class="col-md-6"><a href="{!! url('/companies/'.$ads->company->id.'/profile/show') !!}">{!! $ads->company->name !!}</a></div>
+					<div class="col-md-6"><a href="{!! url('/companies/'.$ads->company->id) !!}">{!! $ads->company->name !!}</a></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Website</div>
