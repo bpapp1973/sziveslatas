@@ -46,7 +46,7 @@ Route::resource('comments', 'CommentsController');
 Route::resource('orders', 'OrdersController');
 Route::resource('favourites', 'FavouritesController');
 
-Route::get('companies/{company}/profile', ['as'=>'companies.profile', 'uses'=>'CompaniesController@profile']);
+Route::get('companies/{company}/profile/show', ['as'=>'companies.profile', 'uses'=>'CompaniesController@profile']);
 Route::patch('companies/{company}/profile', ['as' => 'companies.update.profile', 'uses' => 'CompaniesController@updateProfile']);
 Route::post('companies/image', ['as' => 'companies.image', 'uses' => 'CompaniesController@uploadImage']);
 

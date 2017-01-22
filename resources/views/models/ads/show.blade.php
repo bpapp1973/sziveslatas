@@ -87,7 +87,7 @@
 			<div class="col-md-6">
 				<div class="row">
 					<div class="col-md-3">Hirdető</div>
-					<div class="col-md-6"><a href="{!! url('/companies/'.$ads->company->id.'/profile') !!}">{!! $ads->company->name !!}</a></div>
+					<div class="col-md-6"><a href="{!! url('/companies/'.$ads->company->id.'/profile/show') !!}">{!! $ads->company->name !!}</a></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">Website</div>
@@ -322,7 +322,7 @@ $(function() {
     "timePicker24Hour": true,
     "timePickerIncrement": 30,
     "minDate": new Date(Math.max(new Date("{!! $ads->startdate !!}"), new Date())),
-    "maxDate": new Date(Math.min(new Date("{!! $ads->expireson !!}"),new Date("{!! $ads->enddate !!}"))),
+    "maxDate": new Date(Math.max(new Date("{!! $ads->expireson !!}"),new Date("{!! $ads->enddate !!}"))),
     "locale": {
         "format": "YYYY-MM-DD HH:mm:ss",
         "separator": " - ",
