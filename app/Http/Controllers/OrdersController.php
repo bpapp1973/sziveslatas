@@ -52,7 +52,7 @@ class OrdersController extends AppBaseController
         $orders = $this->ordersRepository->all();
         $eventsArray = $this->generateEvents($orders);
 
-        return view('models.orders.index')
+        return view('models.orders.calendar')
             ->with('events', $eventsArray);
     }
 

@@ -1,34 +1,22 @@
 <table class="table table-responsive" id="orders-table">
     <thead>
-        <th>Companies Id</th>
-        <th>Ads Id</th>
-        <th>Menucards Id</th>
-        <th>Rooms Id</th>
-        <th>Startdate</th>
-        <th>Enddate</th>
-        <th>Guests</th>
-        <th>Personnel</th>
-        <th>Users Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Hirdetés</th>
+        <th>Időpont</th>
+        <th>Vendégek</th>
+        <th>Személyzet</th>
+        <th>Név</th>
         <th>Email</th>
-        <th>Phone</th>
+        <th>Telefon</th>
         <th colspan="3">Művelet</th>
     </thead>
     <tbody>
     @foreach($orders as $orders)
         <tr>
-            <td>{!! $orders->companies_id !!}</td>
-            <td>{!! $orders->ads_id !!}</td>
-            <td>{!! $orders->menucards_id !!}</td>
-            <td>{!! $orders->rooms_id !!}</td>
-            <td>{!! $orders->startdate !!}</td>
-            <td>{!! $orders->enddate !!}</td>
+            <td><a href="{!! route('ads.show', [$orders->ads_id]) !!}">{!! $orders->ad->title !!}</a></td>
+            <td>{!! $orders->startdate !!} - {!! $orders->enddate !!}</td>
             <td>{!! $orders->guests !!}</td>
             <td>{!! $orders->personnel !!}</td>
-            <td>{!! $orders->users_id !!}</td>
-            <td>{!! $orders->first_name !!}</td>
-            <td>{!! $orders->last_name !!}</td>
+            <td>{!! $orders->last_name !!} {!! $orders->first_name !!}</td>
             <td>{!! $orders->email !!}</td>
             <td>{!! $orders->phone !!}</td>
             <td>

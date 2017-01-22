@@ -12,36 +12,8 @@
 
         <div class="clearfix"></div>
 
-        @include('models.orders.calendar')
+        @include('models.orders.table')
 	</div>
 </div>        
-
-<script type="text/javascript">
-$(document).ready(function() {
-	var eventsArray = {!! json_encode($events); !!};
-
-    // page is now ready, initialize the calendar...
-
-    $('#calendar').fullCalendar({
-	    header: { center: 'month,agendaWeek,listMonth' }, 
-	    googleCalendarApiKey: '{!! env('GOOGLE_CALENDAR_API_KEY') !!}',
-	    eventSources: [
-	        {
-				events: eventsArray
-			}
-		],
-	    views: {
-	        month: { // name of view
-	            columnFormat: 'dddd'
-	            // other view-specific options here
-	        }
-	    },
-	    buttonText: {
-	    	listMonth: 'Lista'
-	    }
-    })
-
-});
-</script>
 
 @endsection
