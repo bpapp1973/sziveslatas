@@ -45,9 +45,6 @@
 		<h3>A cég kiemelt ajánlatai</h3>
 		<p>...ide jönnek majd a képek...</p>
 		<br/>
-		<div class="form-group">
-			<a href="{!! url($_SERVER['HTTP_REFERER']) !!}" >Vissza</a>
-		</div>
 	</div>
 </div>
 @endsection

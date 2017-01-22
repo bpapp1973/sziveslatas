@@ -77,7 +77,7 @@ class SearchController extends Controller
         }
         //http://laravel.io/forum/09-18-2014-orm-query-where-clause-on-related-table
         //https://github.com/jarektkaczyk/eloquence
-        $ads = Ads::with('city','category','tag', 'company')
+        $ads = Ads::with('city','category','tag', 'company','rooms')
                 ->where($query)
                 ->where(function ($query) use ($textsearch) {
                     $query->where("title","LIKE","%".$textsearch."%")
@@ -92,6 +92,11 @@ class SearchController extends Controller
                           ->orWhere(function($q) use ($textsearch) {
                                 $q->whereHas('company', function($cq) use ($textsearch) {
                                     $cq->where('name',"LIKE","%".$textsearch."%");
+                                });
+                          })
+                          ->orWhere(function($q) use ($textsearch) {
+                                $q->whereHas('rooms', function($cq) use ($textsearch) {
+                                    $cq->where('assets',"LIKE","%".$textsearch."%");
                                 });
                           })
                           ;
