@@ -26,6 +26,7 @@ class Orders extends Model
 
 
     public $fillable = [
+        'confirmed',
         'companies_id',
         'ads_id',
         'menucards_id',
@@ -49,6 +50,7 @@ class Orders extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'confirmed' => 'integer',
         'companies_id' => 'integer',
         'ads_id' => 'integer',
         'menucards_id' => 'integer',

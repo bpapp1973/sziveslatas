@@ -160,6 +160,7 @@
     <script src="{{ url('/') }}/js/sziveslatas.js"></script>
     <script src='{{ url('/') }}/fullcalendar/fullcalendar.js'></script>
     <script src='{{ url('/') }}/fullcalendar/locale/hu.js'></script>
+    <script src='{{ url('/') }}/fullcalendar/gcal.js'></script>
 
     @yield('scripts')
   </body>

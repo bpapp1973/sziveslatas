@@ -18,7 +18,8 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	var eventsArray = {!! json_encode($events); !!};
+	var confirmedEventsArray = {!! json_encode($confirmedevents); !!};
+	var notConfirmedEventsArray = {!! json_encode($notconfirmedevents); !!};
 
     // page is now ready, initialize the calendar...
 
@@ -27,7 +28,18 @@ $(document).ready(function() {
 	    googleCalendarApiKey: '{!! env('GOOGLE_CALENDAR_API_KEY') !!}',
 	    eventSources: [
 	        {
-				events: eventsArray
+				events: confirmedEventsArray,
+				color: 'green'
+			},
+	        {
+				events: notConfirmedEventsArray,
+				color: 'orange',
+				textColor: 'black'
+			},
+			{
+				googleCalendarId: 'hu.hungarian#holiday@group.v.calendar.google.com',
+				color: 'white',
+				textColor: 'red'
 			}
 		],
 	    views: {

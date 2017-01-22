@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Flash;
 use App\Criteria\MyOrdersCriteria;
+use App\Criteria\ConfirmedOrdersCriteria;
+use App\Criteria\NotConfirmedOrdersCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Debugbar;
@@ -48,12 +50,23 @@ class OrdersController extends AppBaseController
      */
     public function myOrders(Request $request)
     {
-        $this->ordersRepository->pushCriteria(new MyOrdersCriteria());
-        $orders = $this->ordersRepository->all();
-        $eventsArray = $this->generateEvents($orders);
+        $confirmedOrdersCriteria = new ConfirmedOrdersCriteria();
+        $notConfirmedOrdersCriteria = new NotConfirmedOrdersCriteria();
 
-        return view('models.orders.calendar')
-            ->with('events', $eventsArray);
+        $this->ordersRepository->pushCriteria(new MyOrdersCriteria());
+        $this->ordersRepository->pushCriteria($confirmedOrdersCriteria);
+        $orders = $this->ordersRepository->all();
+        $confirmedEventsArray = $this->generateEvents($orders);
+        $this->ordersRepository->popCriteria($confirmedOrdersCriteria);
+
+        $this->ordersRepository->pushCriteria($notConfirmedOrdersCriteria);
+        $orders = $this->ordersRepository->all();
+        $notConfirmedEventsArray = $this->generateEvents($orders);
+
+        return view('models.orders.calendar', [
+                        'confirmedevents' => $confirmedEventsArray,
+                        'notconfirmedevents' => $notConfirmedEventsArray
+                    ]);
     }
 
     /**
