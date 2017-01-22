@@ -63,7 +63,7 @@ background-size: cover;
                         {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Alkategória', 'class' => 'form-control']) !!}
                     </div>
                     <div class="col-md-2">
-                        {!! Form::date('when', date('Y-m-d H:i:s'), ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'form-control']) !!}
+                        {!! Form::date('when', \Carbon\Carbon::now(), ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'form-control']) !!}
                     </div>
                     <div class="col-md-2">
                         {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
