@@ -321,8 +321,8 @@ $(function() {
     "timePicker": true,
     "timePicker24Hour": true,
     "timePickerIncrement": 30,
-    "minDate": new Date(),
-    "maxDate": new Date("{!! $ads->expireson !!}"),
+    "minDate": new Date(Math.max(new Date("{!! $ads->startdate !!}"), new Date())),
+    "maxDate": new Date(Math.min(new Date("{!! $ads->expireson !!}"),new Date("{!! $ads->enddate !!}"))),
     "locale": {
         "format": "YYYY-MM-DD HH:mm:ss",
         "separator": " - ",
