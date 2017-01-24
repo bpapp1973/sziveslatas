@@ -17,6 +17,7 @@
 @include('flash::message')
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
+        @if (Auth::guest()) @include('auth.login') @else 
         <h1>{!! Form::label(null, $companies->title) !!}</h1>
         <h4>{!! Form::label(null, $companies->name) !!}</h4> 
 
@@ -66,17 +67,37 @@
             @if ($errors->has('desc'))
             <span class="help-block">
                 <strong>{{ $errors->first('desc') }}</strong>
-            </span> @endif
+            </span> 
+            @endif
         </div>
+        <br/>
         <div class="form-group">
             <div class="col-md-6">
                 {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
             </div>
         </div>
         {!! Form::close() !!}
-        <br/>
-        <h3>A cég kiemelt ajánlatai</h3>
-        <p>...ide jönnek majd a képek...</p>
+<!--
+        <h3>Kiemelt ajánlataink</h3>
+        @foreach($companies->ads as $ad)
+            <div class="row">
+                {!! Form::model($ad, ['route' => ['ads.update', $ad->id], 'method' => 'patch']) !!}
+                    <div class="col-md-10">
+                        <a href="{!! route('ads.show', [$ad->id]) !!}">{!! $ad->title !!}</a>
+                    </div>
+                    <div class="col-md-2">
+                        {!! Form::text('highlighted', abs($ad->highlighted-1), ['id' => 'highlighted']) !!}
+                        @if($ad->highlighted==0)
+                            <span class="fa fa-unchecked glyphicon glyphicon-unchecked"></span>
+                        @else
+                            <span class="fa fa-check glyphicon glyphicon-check"></span>
+                        @endif
+                    </div>
+                {!! Form::close() !!}
+            </div>
+        @endforeach
+-->
+    @endif
     </div>
 </div>
 <div id="imageUpload" class="modal fade">
@@ -96,7 +117,9 @@
                         {!! Form::hidden('container_id', $companies->id) !!}
                         {!! Form::hidden('form', 'description') !!}
                         {!! Form::hidden('control_id', null, ['id'=>'control_id', 'name'=>'control_id']) !!}
-
+                        {!! Form::hidden('title', $companies->name, ['id'=>'title', 'class' => 'form-control']) !!}
+                        {!! Form::hidden('description', null, ['id'=>'description', 'class' => 'form-control']) !!}
+<!--
                         <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                             {!! Form::label('title', 'Cím', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
@@ -120,7 +143,7 @@
                                 @endif
                             </div>
                         </div>
-                       
+-->                       
                         <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                             {!! Form::label('image', 'Válassz egy képet', ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">

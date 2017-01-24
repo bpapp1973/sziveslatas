@@ -67,3 +67,6 @@ Route::get('delete-image', function () {
 Route::post('dropzone/uploadFiles', ['as'=>'dropzone.post', 'uses' => 'AdsController@uploadFiles']);
 
 Route::get('myorders', ['as' => 'orders.myorders', 'uses' => 'OrdersController@myOrders']);
+Route::patch('orders/{order}/confirm', ['as' => 'orders.confirm', 'uses' => 'OrdersController@confirm']);
+
+Route::get('myads', ['as' => 'ads.myads', 'uses' => 'AdsController@myAds']);

@@ -8,6 +8,7 @@ use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\AdChangedNotification as AdChangedNotification;
 use App\Notifications\OrderCreatedSellerNotification as OrderCreatedSellerNotification;
 use App\Notifications\OrderCreatedUserNotification as OrderCreatedUserNotification;
+use App\Notifications\OrderConfirmedNotification as OrderConfirmedNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -165,6 +166,11 @@ class User extends Authenticatable
     public function sendOrderCreatedUserNotification($ads_id)
     {
         $this->notify(new OrderCreatedUserNotification($ads_id));
+    }
+
+    public function sendOrderConfirmedNotification($orders_id)
+    {
+        $this->notify(new OrderConfirmedNotification($orders_id));
     }
 
 }

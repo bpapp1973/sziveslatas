@@ -86,7 +86,7 @@
                     <a class="dropdown-item" href="{!! url('/companies/'.Auth::user()->companies->first()->id) !!}">Profil</a>
                     <a class="dropdown-item" href="{!! url('/companies/'.Auth::user()->companies->first()->id).'/profile' !!}">Profil szerkesztése</a>
                     <a class="dropdown-item" href="{!! url('/ads/create') !!}">Hirdetés feladása</a>
-                    <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
+                    <a class="dropdown-item" href="{!! url('/myads') !!}">Hirdetéseim</a>
                     <a class="dropdown-item" href="{!! url('/myorders') !!}">Megrendeléseim</a>
                     <a class="dropdown-item" href="#">Feltöltés alatt</a>
                   </div>

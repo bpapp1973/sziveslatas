@@ -2,27 +2,25 @@
 
 namespace App\Notifications;
 
-use App\Models\Ads;
+use App\Models\Orders;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class OrderCreatedSellerNotification extends Notification
+class OrderConfirmedNotification extends Notification
 {
     use Queueable;
-    public $ads_id;
-    public $ads;
+    public $orders;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($ads_id)
+    public function __construct($orders_id)
     {
-        $this->ads_id = $ads_id;
-        $this->ads = Ads::find($ads_id);
+        $this->orders = Orders::find($orders_id);
     }
 
     /**
@@ -45,11 +43,11 @@ class OrderCreatedSellerNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Értesítés megrendelésről - '.$this->ads->title)
+                    ->subject('Értesítés megrendelés visszaigazolásáról - '.$this->orders->ad->title)
                     ->greeting('Szia!')
-                    ->line('Ezt az emailt azért küldtük neked, mert az egyik hirdetésedre megrendelés érkezett:')
-                    ->action('Hirdetés megtekintése', url('ads/'.$this->ads_id))
-                    ->line('Kérlek vedd fel a kapcsolatot a megrendelővel.')
+                    ->line('Ezt az emailt azért küldtük neked, mert a hirdető visszaigazolta rendszerünkben az alábbi foglalási szándékodat:')
+                    ->action('Foglalás megtekintése', url('orders/'.$this->orders->id))
+                    ->line('A hirdető hamarosan felveszi veled a kapcsolatot.')
                     ;
     }
 

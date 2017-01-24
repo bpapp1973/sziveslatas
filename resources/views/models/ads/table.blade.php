@@ -29,7 +29,7 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="...">
                     <div class="btn-group" role="group" aria-label="...">
                         <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning btn-xxs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                        @if (Auth::user()) 
+                        @if (null!==Auth::user() && Auth::user()->id==$ad->company->users->first()->id) 
                             <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-warning btn-xxs'><i class="glyphicon glyphicon-edit"></i></a>
                             {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xxs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
                         @endif 

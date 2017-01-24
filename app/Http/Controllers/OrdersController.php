@@ -88,7 +88,7 @@ class OrdersController extends AppBaseController
      */
     public function store(CreateOrdersRequest $request)
     {
-
+        Debugbar::info("orders.store");
         $input = $request->all();
         $range=$this->parseDateRange($input["daterange"]);
         $input["startdate"] = $range[0];
@@ -192,6 +192,32 @@ class OrdersController extends AppBaseController
         Flash::success('A megrendelést töröltük');
 
         return redirect(route('home'));
+    }
+
+    /**
+     * Confirm the specified Orders in storage.
+     *
+     * @param  int              $id
+     * @param UpdateOrdersRequest $request
+     *
+     * @return Response
+     */
+    public function confirm($id, UpdateOrdersRequest $request)
+    {
+        $orders = $this->ordersRepository->findWithoutFail($id);
+
+        if (empty($orders)) {
+            Flash::error('A megrendelést nem találjuk');
+
+            return redirect(route('home'));
+        }
+
+        $orders = $this->ordersRepository->update($request->all(), $id);
+
+        $orders->user->sendOrderConfirmedNotification($id);
+        flash()->success('A visszaigazolást elküldtük a megrendelőnek. Kérlek vedd fel vele a kapcsolatot.');
+
+        return redirect(route('orders.myorders'));
     }
 
     private function parseDateRange($daterange) {

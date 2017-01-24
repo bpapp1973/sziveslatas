@@ -25,6 +25,7 @@ use App\Repositories\AdsRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use App\Criteria\MyAdsCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Debugbar;
@@ -54,6 +55,20 @@ class AdsController extends AppBaseController
             ->with('ads', $ads);
     }
 
+    /**
+     * Display a listing of the Ads.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function myAds(Request $request)
+    {
+        $this->adsRepository->pushCriteria(new MyAdsCriteria());
+        $ads = $this->adsRepository->paginate(4);
+
+        return view('models.ads.index')
+            ->with('ads', $ads);
+    }
     /**
      * Show the form for creating a new Ads.
      *

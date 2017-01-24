@@ -40,7 +40,10 @@ class Companies extends Model
         'phone',
         'website',
         'licence',
-        'description'
+        'description',
+        'highlight1',
+        'highlight2',
+        'highlight3'
     ];
 
     /**
@@ -63,7 +66,10 @@ class Companies extends Model
         'phone' => 'string',
         'website' => 'string',
         'licence' => 'date',
-        'description' => 'string'
+        'description' => 'string',
+        'highlight1' => 'integer',
+        'highlight2' => 'integer',
+        'highlight3' => 'integer'
     ];
 
     /**
@@ -121,7 +127,7 @@ class Companies extends Model
     }
 
     /**
-     * Get the company records associated with the user.
+     * Get the company records associated with the company.
      */
     public function users()
     {
@@ -129,7 +135,7 @@ class Companies extends Model
     }
 
     /**
-     * Get the tags records associated with the user.
+     * Get the tags records associated with the company.
      */
     public function tags()
     {
@@ -137,11 +143,31 @@ class Companies extends Model
     }
 
     /**
-     * Get the images records associated with the user.
+     * Get the ads records associated with the company.
+     */
+    public function ads()
+    {
+        return $this->hasMany('App\Models\Ads', 'companies_id');
+    }
+
+    /**
+     * Get the images records associated with the company.
      */
     public function images()
     {
         return $this->hasMany('App\Models\Images', 'container_id');
     }
 
+    public function highlight1ad()
+    {
+        return $this->belongsTo('App\Models\Ads', 'highlight1');
+    }
+    public function highlight2ad()
+    {
+        return $this->belongsTo('App\Models\Ads', 'highlight2');
+    }
+    public function highlight3ad()
+    {
+        return $this->belongsTo('App\Models\Ads', 'highlight3');
+    }
 }

@@ -25,6 +25,7 @@ class Ads extends Model
 
 
     public $fillable = [
+        'highlighted',
         'isvalid',
         'title',
         'website',
