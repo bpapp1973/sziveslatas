@@ -62,13 +62,16 @@ background-size: cover;
                     <div class="col-md-2">
                         {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Alkategória', 'class' => 'form-control']) !!}
                     </div>
-                    <div class="col-md-2">
-                        {!! Form::date('when', \Carbon\Carbon::now(), ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'form-control']) !!}
+                    <div name="whendiv" class="input-group col-md-2">
+                        {!! Form::text('when', null, ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'input-sm form-control']) !!}
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+                        </span>
                     </div>
                     <div class="col-md-2">
                         {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
                     </div>
-                    <div class=" input-group col-md-4">
+                    <div class="input-group col-md-4">
                         {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Kereső', 'class' => 'typeahead form-control']) !!}
                         <span class="input-group-btn">
                             <button class="btn btn-info btn-xs" type="submit">
@@ -393,5 +396,22 @@ background-size: cover;
         });
     });
 
+    $(function() {
+        $('div[name="whendiv"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minDate: new Date(),
+            locale: {
+                format: "YYYY-MM-DD"
+            }
+ 
+        }, 
+    function(start, end, label) {
+        $('#when').val(start.format('YYYY-MM-DD'));
+        });
+    });
+</script>
+<script type="text/javascript">
+    
 </script>
 @endsection
