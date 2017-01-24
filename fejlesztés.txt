@@ -27,6 +27,7 @@ hirdetés feladás
 	x helyiség modal edit form
 	x hirdetések érvényességi idejének validálása
 	x megrendelések jóváhagyása
+	- jogosulatlan hozzáférések ellenőrzése és javítása
 
 
 /************************/
