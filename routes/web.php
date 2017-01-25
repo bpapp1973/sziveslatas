@@ -70,3 +70,5 @@ Route::get('myorders', ['as' => 'orders.myorders', 'uses' => 'OrdersController@m
 Route::patch('orders/{order}/confirm', ['as' => 'orders.confirm', 'uses' => 'OrdersController@confirm']);
 
 Route::get('myads', ['as' => 'ads.myads', 'uses' => 'AdsController@myAds']);
+
+Route::patch('ads/{ad}/highlight', ['as' => 'ads.highlight', 'uses' => 'AdsController@highlight']);

@@ -277,7 +277,7 @@
 							            	<span class="glyphicon glyphicon-check"></span>
 							            @endif
 							            </button>
-							          {!! Form::close() !!}
+							        {!! Form::close() !!}
 							        </div>
 						        @endif
 					        @endif

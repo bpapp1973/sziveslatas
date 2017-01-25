@@ -271,6 +271,7 @@ class AdsController extends AppBaseController
      */
     public function update($id, UpdateAdsRequest $request)
     {
+        Debugbar::info('ads.update');
         $ads = $this->adsRepository->findWithoutFail($id);
 
         if (empty($ads)) {
@@ -320,6 +321,35 @@ class AdsController extends AppBaseController
 
         return redirect(route('ads.index'));
     }
+
+    /**
+     * Highlight the specified Ads in storage.
+     *
+     * @param  int              $id
+     * @param UpdateAdsRequest $request
+     *
+     * @return Response
+     */
+    public function highlight($id, UpdateAdsRequest $request)
+    {
+        Debugbar::info('ads.highlight');
+        $ads = $this->adsRepository->findWithoutFail($id);
+
+        if (empty($ads)) {
+            Flash::error('A hirdetést nem találjuk');
+
+            return redirect(route('ads.index'));
+        }
+
+        $ads = $this->adsRepository->update($request->all(), $id);
+
+        Flash::overlay('A hirdetést kiemeltük');
+
+        return redirect(route('ads.edit', $ads->id));
+        //return view('models.ads.show')->with('ads', $ads);
+    }
+
+
 
     protected function sendNotifications($id) {
         $ads = $this->adsRepository->findWithoutFail($id);

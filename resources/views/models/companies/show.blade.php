@@ -39,9 +39,7 @@
 			</tbody>
 		</table>
 		<h3>Bemutatkozás</h3>
-		<?php
-		echo $companies->description;
-		?>
+		{!! $companies->description !!}
 		<h3>A cég kiemelt ajánlatai</h3>
 		<p>...ide jönnek majd a képek...</p>
 		<br/>

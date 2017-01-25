@@ -23,9 +23,19 @@
         </div>
       </div>
       <div class="modal-footer">
-        <div class="form-group col-sm-12">
-          {!! Form::submit('Megrendelem', ["onclick" => "window.open('" . $ads->ticket_url . "', '_blank')", 'class' => 'btn btn-primary']) !!}
-          <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+        <div class="row">
+          @if($ads->category->parent_id==4)
+            <div class="form-group col-md-6">A Megrendelem gombra kattintás után új lapon megnyitjuk a rendezvény weblapját</div>
+            <div class="form-group col-md-6">
+              {!! Form::submit('Megrendelem', ["onclick" => "window.open('" . $ads->ticket_url . "', '_blank')", 'class' => 'btn btn-primary']) !!}
+              <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+            </div>
+          @else
+            <div class="form-group col-md-6">
+              {!! Form::submit('Megrendelem', ['class' => 'btn btn-primary']) !!}
+              <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+            </div>
+          @endif
         </div>
       </div>
       {!! Form::close() !!}
