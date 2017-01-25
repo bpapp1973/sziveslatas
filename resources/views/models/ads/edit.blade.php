@@ -42,6 +42,7 @@ $.each(data, function(index, categoryObj) {
 $('#category').append('<option value="' + categoryObj.id + '">' + categoryObj.name + '</option>');
 });
 });
+toggleElements(parent_id);
 });
 $('#price').on('change', function(e) {
     var price = e.target.value;

@@ -312,6 +312,17 @@
         </div>
     </div>
 
+    <div class="form-group{{ $errors->has('ticket_url') ? ' has-error' : '' }}">
+        {!! Form::label('ticket_url', 'Jegyvásárlás', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::text('ticket_url', null, ['class' => 'form-control']) !!}
+            @if ($errors->has('ticket_url'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('ticket_url') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
 </div>
 
 <!-- startdate Field -->
@@ -412,7 +423,7 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('ads.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+    <a href="{!! route('ads.myads') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
 
 

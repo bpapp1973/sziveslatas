@@ -43,6 +43,7 @@ class Ads extends Model
         'visitors',
         'startdate',
         'enddate',
+        'ticket_url',
         'expireson',
         'created_by',
         'updated_by'
@@ -70,6 +71,7 @@ class Ads extends Model
         'visitors' => 'integer',
         'startdate' => 'date',
         'enddate' => 'date',
+        'ticket_url' => 'string',
         'expireson' => 'date',
         'created_by' => 'integer',
         'updated_by' => 'integer'
@@ -92,6 +94,7 @@ class Ads extends Model
         'visitors'        => 'integer',
         'startdate'       => 'date',
         'enddate'         => 'date',
+        'ticket_url'      => 'max:1024',
         'expireson'       => 'date'
     ];
 

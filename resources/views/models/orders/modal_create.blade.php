@@ -24,7 +24,7 @@
       </div>
       <div class="modal-footer">
         <div class="form-group col-sm-12">
-          {!! Form::submit('Megrendelem', ['class' => 'btn btn-primary']) !!}
+          {!! Form::submit('Megrendelem', ["onclick" => "window.open('" . $ads->ticket_url . "', '_blank')", 'class' => 'btn btn-primary']) !!}
           <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
         </div>
       </div>
