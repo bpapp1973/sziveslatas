@@ -28,6 +28,7 @@ hirdetés feladás
 	x hirdetések érvényességi idejének validálása
 	x megrendelések jóváhagyása
 	- jogosulatlan hozzáférések ellenőrzése és javítása
+	- program esetén megrendelés után átirányítani a hirdető oldalára
 
 
 /************************/
