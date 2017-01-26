@@ -1,5 +1,5 @@
 @foreach($ads as $ad)
-    <div id="{!! $ad->id !!}" class="row" style="padding: 10px; border-bottom: 1px solid grey; border-radius: 5px;">
+    <div id="{!! $ad->id !!}" class="row" style="padding: 10px; border-bottom: 1px solid grey">
         <div class="media">
             <div class="media-left media-top">
                 <a href="{!! route('ads.show', [$ad->id]) !!}">
