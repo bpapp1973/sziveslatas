@@ -78,29 +78,6 @@
         </div>
         {!! Form::close() !!}
 
-        <h3>Kiemelt ajánlataink</h3>
-        @foreach($companies->ads as $ad)
-            <div class="row">
-                    <div class="col-md-10">
-                        <a href="{!! route('ads.show', [$ad->id]) !!}">{!! $ad->title !!}</a>
-                    </div>
-                    <div class="col-md-2">
-                        {!! Form::model($ad, ['route' => ['ads.highlight', $ad->id], 'method' => 'patch']) !!}
-                            {!! Form::hidden('highlighted', $ad->highlighted, ['id' => 'highlighted']) !!}
-                            <button id="togglehighlight" type="submit" class='btn btn-default btn-xxs'>
-                            @if($ad->highlighted==0)
-                                {!! $ad->highlighted !!}
-                                <span class="fa fa-unchecked glyphicon glyphicon-unchecked"></span>
-                            @else
-                                {!! $ad->highlighted !!}
-                                <span class="fa fa-check glyphicon glyphicon-check"></span>
-                            @endif
-                            </button>
-                        {!! Form::close() !!}
-                    </div>
-            </div>
-        @endforeach
-
     @endif
     </div>
     <div id="errors"></div>
@@ -187,38 +164,4 @@
 
 </script>
 
-<script type="text/javascript">
-    var token = "{{ Session::getToken() }}";
-    $('#togglehighlight').on('click', function(e){
-        alert('highlight');
-            $.ajax({
-                url: "{{ url('/') }}/ads/{!! $ad->id !!}", //this is the submit URL
-                type: 'PATCH', //or POST
-                dataType: "json",
-                data: {
-                    _token:token,
-                    highlighted: Math.abs($('#highlighted').val()-1)
-                },
-                error: function(xhr, status, error) {
-                    var responseText;
-                    $("#errors").html("");
-                    try {
-                        responseText = json_encode(xhr.responseText);
-                        $("#errors").append("<div><b>" + errorType + " " + exception + "</b></div>");
-                        $("#errors").append("<div><u>Exception</u>:<br /><br />" + responseText.ExceptionType + "</div>");
-                        $("#errors").append("<div><u>StackTrace</u>:<br /><br />" + responseText.StackTrace + "</div>");
-                        $("#errors").append("<div><u>Message</u>:<br /><br />" + responseText.Message + "</div>");
-                    } catch (e) {
-                        responseText = xhr.responseText;
-                        $("#errors").html(responseText);
-                        alert(responseText);
-                    }
-                } /*,
-                success: function(data){
-                    document.location.reload();
-                } */
-            });
-    });
-    
-</script>
 @endsection

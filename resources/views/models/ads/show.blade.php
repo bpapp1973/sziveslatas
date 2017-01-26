@@ -54,13 +54,29 @@
 	        </div>
 	        @if(Auth::user())
 		    <div class="col-md-4">
-		    	@if(!$isordered && Auth::user()->id != $owner->id)
-				<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
-				@endif
-				@if(count($favourite)==0)
-				<a class="btn btn-secondary" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
-				@else
-				<a class="btn btn-secondary" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
+		    	@if(Auth::user()->id != $owner->id)
+			    	@if(!$isordered)
+						<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+					@endif
+					@if(count($favourite)==0)
+						<a class="btn btn-secondary" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
+					@else
+						<a class="btn btn-secondary" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
+					@endif
+				@else 
+		            {!! Form::model($ads, ['route' => ['ads.highlight', $ads->id], 'method' => 'patch']) !!}
+		                <div style="display: none;">
+		                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
+		                {!! Form::hidden('price', $ads->price, ['id' => 'price']) !!}
+		                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
+		                {!! Form::hidden('highlighted', abs($ads->highlighted-1), ['id' => 'highlighted']) !!}
+		                </div>
+		                @if($ads->highlighted==0)
+		                    <button class="btn btn-primary pull-right" type="submit">Kiemelem</button>
+		                @else
+		                    <button class="btn btn-danger pull-right" type="submit">Kiemelés megszüntetése</button>
+		                @endif
+		            {!! Form::close() !!}
 				@endif
 			</div>
 			@endif

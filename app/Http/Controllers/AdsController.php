@@ -332,7 +332,6 @@ class AdsController extends AppBaseController
      */
     public function highlight($id, UpdateAdsRequest $request)
     {
-        Debugbar::info('ads.highlight');
         $ads = $this->adsRepository->findWithoutFail($id);
 
         if (empty($ads)) {
@@ -343,9 +342,10 @@ class AdsController extends AppBaseController
 
         $ads = $this->adsRepository->update($request->all(), $id);
 
-        Flash::overlay('A hirdetést kiemeltük');
+        //Flash::overlay('A hirdetést kiemeltük');
 
-        return redirect(route('ads.edit', $ads->id));
+//        return redirect(route('ads.myads'));
+//        return redirect(route('ads.edit', $ads->id));
         //return view('models.ads.show')->with('ads', $ads);
     }
 

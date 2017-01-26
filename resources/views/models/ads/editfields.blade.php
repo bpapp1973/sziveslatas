@@ -12,7 +12,7 @@
                     <div class="mbr-gallery-item mbr-gallery-item__mobirise3 mbr-gallery-item--p0" style="width: 32%"">
                         <div id="image{{$images[$cnt]->id}}">
                             <img src="{{ url('/').'/images/companies/'.$ads->company->id.'/'.$ads->id.'/'.$images[$cnt]->filepath }}">
-                            <span onclick="removeImage('{{ $images[$cnt]->id }}')" class="glyphicon glyphicon-remove" style="position: relative; top: -120px; left: 150px; font-size: 12px; color: white"></span>
+                            <span onclick="removeImage('{{ $images[$cnt]->id }}')" class="glyphicon glyphicon-remove" style="position: relative; top: -8em; left: 9.5em; font-size: 12px; color: white"></span>
                         </div>
                     </div>
                     @endfor

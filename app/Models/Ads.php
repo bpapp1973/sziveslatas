@@ -89,7 +89,7 @@ class Ads extends Model
         'phone'           => 'max:255',
         'email'           => 'max:255',
         'description'     => 'required',
-        'price'           => 'integer|required',
+        'price'           => 'integer',
         'discountprice'   => 'integer',
         'visitors'        => 'integer',
         'startdate'       => 'date',
@@ -100,7 +100,8 @@ class Ads extends Model
 
 
     protected $nullable = ['visitors',
-                           'discountprice'];
+                           'discountprice',
+                           'price'];
 
     public static function boot()
     {

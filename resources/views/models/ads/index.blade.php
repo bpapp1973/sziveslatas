@@ -11,5 +11,82 @@
 		<div class="clearfix"></div>
 		@include('models.ads.table')
 	</div>
+	<div id="errors"></div>
 </div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    var token = "{{ Session::getToken() }}";
+    $('.delete-btn').on('click', function(){
+        var recordID = $(this).data('recordid');
+        var ajax = $.ajax({
+            url: "{{ url('/') }}/ads/" + recordID ,
+            type: "DELETE",
+            dataType: "json",
+            data: {
+                    _token:token,
+                    ads_id:$('#ads_id').val()
+                },
+                error: function(xhr, status, error) {
+                    var responseText;
+                    $("#errors").html("");
+                    responseText = xhr.responseText;
+                    $("#errors").html(responseText);
+                },
+                complete: function(data){
+                    recordID = -1;
+                    document.location.reload();
+                }
+        })
+    });
+
+    $('.check-btn').on('click', function(){
+        var recordID = $(this).data('recordid');
+        var ajax = $.ajax({
+            url: "{{ url('/') }}/ads/" + recordID + "/highlight" ,
+            type: "PATCH",
+            dataType: "json",
+            data: {
+                    _token:token,
+                    title:$('#title'+recordID).val(),
+                    description:$('#description'+recordID).val(),
+                    highlighted:$('#highlighted'+recordID).val()
+                },
+                error: function(xhr, status, error) {
+                    var responseText;
+                    $("#errors").html("");
+                    responseText = xhr.responseText;
+                    $("#errors").html(responseText);
+                },
+                complete: function(data){
+                    recordID = -1;
+                    location.reload();
+                }
+        })
+    });
+
+    $('.uncheck-btn').on('click', function(){
+        var recordID = $(this).data('recordid');
+        var ajax = $.ajax({
+            url: "{{ url('/') }}/ads/" + recordID + '/highlight' ,
+            type: "PATCH",dataType: "json",
+            data: {
+                    _token:token,
+                    title:$('#title'+recordID).val(),
+                    description:$('#description'+recordID).val(),
+                    highlighted:$('#highlighted'+recordID).val()
+                },
+                error: function(xhr, status, error) {
+                    var responseText;
+                    $("#errors").html("");
+                    responseText = xhr.responseText;
+                    $("#errors").html(responseText);
+                },
+                complete: function(data){
+                    recordID = -1;
+                    location.reload();
+                }
+        })
+    });
+</script>
 @endsection

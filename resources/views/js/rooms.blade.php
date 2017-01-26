@@ -1,5 +1,5 @@
 <script>
-    /* This function is not used anymore, kept it just for not to forget */
+    /* This function is not used anymore, kept it just for reference */
     var token = "{{ Session::getToken() }}";
     $('#newRoomSubmit').on('click', function(e){
             $.ajax({
