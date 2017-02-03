@@ -85,22 +85,22 @@ var baseUrl = "{{ url('/') }}";
 var token = "{{ Session::getToken() }}";
 Dropzone.autoDiscover = false;
 var myDropzone = new Dropzone("div#dropzoneFileUpload", {
-    url: baseUrl + "/dropzone/uploadFiles",
-    addRemoveLinks: true,
-    maxFiles: 15,
-    filesizeBase: 100,
-    acceptedFiles: "image/*",
-    dictRemoveFile: "Eltávolítás",
-    dictCancelUpload: "Mégsem",
-    dictCancelUploadConfirmation: "Biztos?",
-    dictDefaultMessage: "Húzd ide a képeket",
-    dictFallbackMessage: "A böngésződ nem támogatja a drag'n'drop fájl feltöltést.",
-    dictFallbackText: "Kattints ide a feltöltéshez.",
-    dictInvalidFileType: "Nem támogatott fájltípus.",
-    dictRemoveFileConfirmation: null,
-    dictMaxFilesExceeded: "Nem tölthetsz fel több fájlt.",
-    params: {
-        _token: token
+    url                          : baseUrl + "/dropzone/uploadFiles",
+    addRemoveLinks               : true,
+    maxFiles                     : 15,
+    filesizeBase                 : 100,
+    acceptedFiles                : "image/*",
+    dictRemoveFile               : "Eltávolítás",
+    dictCancelUpload             : "Mégsem",
+    dictCancelUploadConfirmation : "Biztos?",
+    dictDefaultMessage           : "Húzd ide a képeket",
+    dictFallbackMessage          : "A böngésződ nem támogatja a drag'n'drop fájl feltöltést.",
+    dictFallbackText             : "Kattints ide a feltöltéshez.",
+    dictInvalidFileType          : "Nem támogatott fájltípus.",
+    dictRemoveFileConfirmation   : null,
+    dictMaxFilesExceeded         : "Nem tölthetsz fel több fájlt.",
+    params                       : {
+    _token                       : token
     }
 });
 Dropzone.options.myDropzone = {

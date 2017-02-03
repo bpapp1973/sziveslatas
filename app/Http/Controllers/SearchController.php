@@ -115,7 +115,7 @@ class SearchController extends Controller
                         });
                     }
                 })
-                ->paginate(4);
+                ->paginate(env('PAGINATION_SIZE'));
         return view('models.ads.index')->with('ads', $ads);
     }
 }

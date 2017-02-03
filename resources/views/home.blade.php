@@ -3,7 +3,6 @@
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
         <div class="row">
-            <h1 class="pull-left">Kezdőlap</h1>
             @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}
@@ -20,28 +19,71 @@
             </div>
             @endif
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Nyitott megrendelések</h4>
+        @if (Auth::guest())
+            {!! redirect(route('welcome')) !!}
+        @else
+            @if(Auth::user()->roles_id == 1)
+                Felhasználó
+            @elseif (Auth::user()->roles_id == 2)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Nyitott megrendelések</h4>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-responsive" id="orders-table">
+                                    <thead>
+                                        <th>Hirdetés</th>
+                                        <th>Megrendelő</th>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($notconfirmedevents as $orders)
+                                        <tr>
+                                            <td><a href="{!! route('orders.show', [$orders->id]) !!}">{!! $orders->ad->title !!}</a></td>
+                                            <td>{!! $orders->last_name !!} {!! $orders->first_name !!}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                {!!  $notconfirmedevents->links()  !!}
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        megrendelések
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Hirdetéseim</h4>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-responsive" id="orders-table">
+                                    <tbody>
+                                    @foreach($ads as $ad)
+                                        <tr>
+                                            <td><a href="{!! route('ads.show', [$ad->id]) !!}">{!! $ad->title !!}</a></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                {!!  $ads->links()  !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Hirdetéseim</h4>
-                    </div>
-                    <div class="panel-body">
-                        hirdetések
+            @else
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4>Új hirdetések</h4>
+                            </div>
+                            <div class="panel-body">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            @endif
+        @endif
     </div>
 </div>
 @endsection

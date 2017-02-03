@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class CategoriesController extends AppBaseController
 {
@@ -29,6 +30,10 @@ class CategoriesController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
+
         $this->categoriesRepository->pushCriteria(new RequestCriteria($request));
         $categories = $this->categoriesRepository->all();
 
@@ -43,6 +48,9 @@ class CategoriesController extends AppBaseController
      */
     public function create()
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         return view('models.categories.create');
     }
 
@@ -55,6 +63,9 @@ class CategoriesController extends AppBaseController
      */
     public function store(CreateCategoriesRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $input = $request->all();
 
         $categories = $this->categoriesRepository->create($input);
@@ -73,6 +84,9 @@ class CategoriesController extends AppBaseController
      */
     public function show($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $categories = $this->categoriesRepository->findWithoutFail($id);
 
         if (empty($categories)) {
@@ -93,6 +107,9 @@ class CategoriesController extends AppBaseController
      */
     public function edit($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $categories = $this->categoriesRepository->findWithoutFail($id);
 
         if (empty($categories)) {
@@ -138,6 +155,9 @@ class CategoriesController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $categories = $this->categoriesRepository->findWithoutFail($id);
 
         if (empty($categories)) {

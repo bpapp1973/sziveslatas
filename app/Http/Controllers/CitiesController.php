@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class CitiesController extends AppBaseController
 {
@@ -29,6 +30,9 @@ class CitiesController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $this->citiesRepository->pushCriteria(new RequestCriteria($request));
         //$cities = $this->citiesRepository->all();
         $cities = $this->citiesRepository->paginate(5);
@@ -44,6 +48,9 @@ class CitiesController extends AppBaseController
      */
     public function create()
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         return view('models.cities.create');
     }
 
@@ -56,6 +63,9 @@ class CitiesController extends AppBaseController
      */
     public function store(CreateCitiesRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $input = $request->all();
 
         $cities = $this->citiesRepository->create($input);
@@ -74,6 +84,9 @@ class CitiesController extends AppBaseController
      */
     public function show($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $cities = $this->citiesRepository->findWithoutFail($id);
 
         if (empty($cities)) {
@@ -94,6 +107,9 @@ class CitiesController extends AppBaseController
      */
     public function edit($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $cities = $this->citiesRepository->findWithoutFail($id);
 
         if (empty($cities)) {
@@ -115,6 +131,9 @@ class CitiesController extends AppBaseController
      */
     public function update($id, UpdateCitiesRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $cities = $this->citiesRepository->findWithoutFail($id);
 
         if (empty($cities)) {
@@ -139,6 +158,9 @@ class CitiesController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $cities = $this->citiesRepository->findWithoutFail($id);
 
         if (empty($cities)) {

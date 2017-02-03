@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>sziveslátás.hu</title>
     <!-- Site made with Mobirise Website Builder v3.8.5, https://mobirise.com -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,6 +65,7 @@
               <div class="hamburger-icon"></div>
               </button>
               <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+                  <li class="nav-item"><a class="nav-link link" href="{!! url('/') !!}/home">Kezdőlap</a></li>
                   <li class="nav-item"><a class="nav-link link" href="{!! url('/') !!}#msg-box8-5">Ajánlatok</a></li>
                   <li class="nav-item"><a class="nav-link link" href="{!! url('/') !!}#form1-g">Kapcsolat</a></li>
                 @if (Auth::guest())

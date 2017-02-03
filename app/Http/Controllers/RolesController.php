@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class RolesController extends AppBaseController
 {
@@ -29,6 +30,9 @@ class RolesController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $this->rolesRepository->pushCriteria(new RequestCriteria($request));
         $roles = $this->rolesRepository->all();
 
@@ -43,6 +47,9 @@ class RolesController extends AppBaseController
      */
     public function create()
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         return view('models.roles.create');
     }
 
@@ -55,6 +62,9 @@ class RolesController extends AppBaseController
      */
     public function store(CreateRolesRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $input = $request->all();
 
         $roles = $this->rolesRepository->create($input);
@@ -73,6 +83,9 @@ class RolesController extends AppBaseController
      */
     public function show($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $roles = $this->rolesRepository->findWithoutFail($id);
 
         if (empty($roles)) {
@@ -93,6 +106,9 @@ class RolesController extends AppBaseController
      */
     public function edit($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $roles = $this->rolesRepository->findWithoutFail($id);
 
         if (empty($roles)) {
@@ -114,6 +130,9 @@ class RolesController extends AppBaseController
      */
     public function update($id, UpdateRolesRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $roles = $this->rolesRepository->findWithoutFail($id);
 
         if (empty($roles)) {
@@ -138,6 +157,9 @@ class RolesController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $roles = $this->rolesRepository->findWithoutFail($id);
 
         if (empty($roles)) {

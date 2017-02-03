@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class ListsController extends AppBaseController
 {
@@ -29,6 +30,9 @@ class ListsController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $this->listsRepository->pushCriteria(new RequestCriteria($request));
         $lists = $this->listsRepository->all();
 
@@ -43,6 +47,9 @@ class ListsController extends AppBaseController
      */
     public function create()
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         return view('models.lists.create');
     }
 
@@ -55,6 +62,9 @@ class ListsController extends AppBaseController
      */
     public function store(CreateListsRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $input = $request->all();
 
         $lists = $this->listsRepository->create($input);
@@ -73,6 +83,9 @@ class ListsController extends AppBaseController
      */
     public function show($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $lists = $this->listsRepository->findWithoutFail($id);
 
         if (empty($lists)) {
@@ -93,6 +106,9 @@ class ListsController extends AppBaseController
      */
     public function edit($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $lists = $this->listsRepository->findWithoutFail($id);
 
         if (empty($lists)) {
@@ -114,6 +130,9 @@ class ListsController extends AppBaseController
      */
     public function update($id, UpdateListsRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $lists = $this->listsRepository->findWithoutFail($id);
 
         if (empty($lists)) {
@@ -138,6 +157,9 @@ class ListsController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $lists = $this->listsRepository->findWithoutFail($id);
 
         if (empty($lists)) {

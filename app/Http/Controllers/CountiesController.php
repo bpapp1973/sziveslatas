@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Auth;
 
 class CountiesController extends AppBaseController
 {
@@ -29,6 +30,9 @@ class CountiesController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $this->countiesRepository->pushCriteria(new RequestCriteria($request));
         $counties = $this->countiesRepository->all();
 
@@ -43,6 +47,9 @@ class CountiesController extends AppBaseController
      */
     public function create()
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         return view('models.counties.create');
     }
 
@@ -55,6 +62,9 @@ class CountiesController extends AppBaseController
      */
     public function store(CreateCountiesRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $input = $request->all();
 
         $counties = $this->countiesRepository->create($input);
@@ -73,6 +83,9 @@ class CountiesController extends AppBaseController
      */
     public function show($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $counties = $this->countiesRepository->findWithoutFail($id);
 
         if (empty($counties)) {
@@ -93,6 +106,9 @@ class CountiesController extends AppBaseController
      */
     public function edit($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $counties = $this->countiesRepository->findWithoutFail($id);
 
         if (empty($counties)) {
@@ -114,6 +130,9 @@ class CountiesController extends AppBaseController
      */
     public function update($id, UpdateCountiesRequest $request)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $counties = $this->countiesRepository->findWithoutFail($id);
 
         if (empty($counties)) {
@@ -138,6 +157,9 @@ class CountiesController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (Auth::guest() || Auth::user()->roles_id < 3) {
+            return redirect(route('welcome'));
+        }
         $counties = $this->countiesRepository->findWithoutFail($id);
 
         if (empty($counties)) {

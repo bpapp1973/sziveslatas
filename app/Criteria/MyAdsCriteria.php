@@ -22,7 +22,15 @@ class MyAdsCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->where('companies_id','=', Auth::user()->companies->first()->id );
+        if(Auth::user()->roles_id==1) {
+            //
+        }
+        elseif(Auth::user()->roles_id==2) {
+            $model = $model->where('companies_id','=', Auth::user()->companies->first()->id );
+        }
+        elseif (Auth::user()->roles_id>=3) {
+            # code...
+        }
         return $model;
     }
 }

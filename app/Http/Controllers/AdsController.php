@@ -49,7 +49,7 @@ class AdsController extends AppBaseController
     public function index(Request $request)
     {
         $this->adsRepository->pushCriteria(new RequestCriteria($request));
-        $ads = $this->adsRepository->paginate(4);
+        $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.ads.index')
             ->with('ads', $ads);
@@ -64,7 +64,7 @@ class AdsController extends AppBaseController
     public function myAds(Request $request)
     {
         $this->adsRepository->pushCriteria(new MyAdsCriteria());
-        $ads = $this->adsRepository->paginate(4);
+        $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.ads.index')
             ->with('ads', $ads);

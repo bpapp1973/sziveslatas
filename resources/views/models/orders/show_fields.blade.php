@@ -131,10 +131,15 @@
             </div>
         </div>
 
-        @if(null!==Auth::user() && Auth::user()->id==$orders->company->users->first()->id && $orders->confirmed !== 1)
-            {!! Form::model($orders, ['route' => ['orders.confirm', $orders->id], 'method' => 'patch']) !!}
-                {!! Form::hidden('confirmed', 1, ['id' => 'confirmed']) !!}
-                {!! Form::submit('Megerősítem', ['class' => 'btn btn-primary']) !!}
+        @if(null!==Auth::user() && Auth::user()->id==$orders->company->users->first()->id)
+            @if($orders->confirmed !== 1)
+                {!! Form::model($orders, ['route' => ['orders.confirm', $orders->id], 'method' => 'patch']) !!}
+                    {!! Form::hidden('confirmed', 1, ['id' => 'confirmed']) !!}
+                    {!! Form::submit('Megerősítem', ['class' => 'btn btn-primary']) !!}
+                {!! Form::close() !!}
+            @endif
+            {!! Form::open(['route' => ['orders.destroy', $orders->id], 'method' => 'delete']) !!}
+                {!! Form::button('Elutasítom', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
             {!! Form::close() !!}
         @endif
     </div>
