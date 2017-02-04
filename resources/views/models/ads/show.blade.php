@@ -40,34 +40,36 @@
 @endsection
 
 @section('content')
-<div id="page-content-wrapper" style="padding-top: 5em">
-	<div class="container-fluid">
+<div id="page-content-wrapper" style="padding-top: 8em">
+	<div class="container">
 		<div class="form-group">
-	        <div class="col-md-8">
-				<a href="#description" class="btn btn-default">Leírás</a>
-				@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
-				<a href="#menucards"   class="btn btn-default">Menüajánlatok</a>
-				<a href="#rooms"       class="btn btn-default">Helyiségek</a>
-				@endif
-				<a href="#map"         class="btn btn-default">Térkép</a>
-				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
-	        </div>
 	        @if(Auth::user())
-		    <div class="col-md-4">
+		    <div class="row">
+		    	@if(Auth::user()->roles_id>=3)
+		    		@if($ads->isvalid==0)
+		            {!! Form::model($ads, ['route' => ['ads.confirm', $ads->id], 'method' => 'patch']) !!}
+		                <div style="display: none;">
+		                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
+		                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
+		                {!! Form::hidden('isvalid', 1, ['id' => 'isvalid']) !!}
+		                </div>
+		                <button class="btn btn-success pull-right" type="submit">Engedélyezem</button>
+		            {!! Form::close() !!}
+					@endif
+		    	@endif
 		    	@if(Auth::user()->id != $owner->id)
 			    	@if(!$isordered)
-						<a class="btn btn-primary" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+						<a class="btn btn-primary pull-right" data-toggle="modal" data-target="#createOrders">Megveszem</a>
 					@endif
 					@if(count($favourite)==0)
-						<a class="btn btn-secondary" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
+						<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
 					@else
-						<a class="btn btn-secondary" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
+						<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
 					@endif
 				@else 
 		            {!! Form::model($ads, ['route' => ['ads.highlight', $ads->id], 'method' => 'patch']) !!}
 		                <div style="display: none;">
 		                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
-		                {!! Form::hidden('price', $ads->price, ['id' => 'price']) !!}
 		                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
 		                {!! Form::hidden('highlighted', abs($ads->highlighted-1), ['id' => 'highlighted']) !!}
 		                </div>
@@ -80,6 +82,15 @@
 				@endif
 			</div>
 			@endif
+	        <div class="row">
+				<a href="#description" class="btn btn-default">Leírás</a>
+				@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
+				<a href="#menucards"   class="btn btn-default">Menüajánlatok</a>
+				<a href="#rooms"       class="btn btn-default">Helyiségek</a>
+				@endif
+				<a href="#map"         class="btn btn-default">Térkép</a>
+				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
+	        </div>
 		</div>
 		
 	</div>

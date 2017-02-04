@@ -26,6 +26,8 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use App\Criteria\MyAdsCriteria;
+use App\Criteria\ConfirmedAdsCriteria;
+use App\Criteria\NotConfirmedAdsCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Debugbar;
@@ -49,6 +51,22 @@ class AdsController extends AppBaseController
     public function index(Request $request)
     {
         $this->adsRepository->pushCriteria(new RequestCriteria($request));
+        $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
+
+        return view('models.ads.index')
+            ->with('ads', $ads);
+    }
+
+    /**
+     * Display a listing of the Ads.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function notConfirmedAds(Request $request)
+    {
+        $this->adsRepository->pushCriteria(new RequestCriteria($request));
+        $this->adsRepository->pushCriteria(new NotConfirmedAdsCriteria());
         $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.ads.index')
@@ -344,11 +362,38 @@ class AdsController extends AppBaseController
 
         //Flash::overlay('A hirdetést kiemeltük');
 
-//        return redirect(route('ads.myads'));
+        return redirect(route('home'));
 //        return redirect(route('ads.edit', $ads->id));
         //return view('models.ads.show')->with('ads', $ads);
     }
 
+    /**
+     * Highlight the specified Ads in storage.
+     *
+     * @param  int              $id
+     * @param UpdateAdsRequest $request
+     *
+     * @return Response
+     */
+    public function confirm($id, UpdateAdsRequest $request)
+    {
+        Debugbar::info('confirm');
+        $ads = $this->adsRepository->findWithoutFail($id);
+
+        if (empty($ads)) {
+            Flash::error('A hirdetést nem találjuk');
+
+            return redirect(route('ads.index'));
+        }
+
+        $ads = $this->adsRepository->update($request->all(), $id);
+
+        Flash::success('A hirdetést engedélyezted');
+
+        return redirect(route('home'));
+//        return redirect(route('ads.edit', $ads->id));
+//        return view('models.ads.show')->with('ads', $ads);
+    }
 
 
     protected function sendNotifications($id) {

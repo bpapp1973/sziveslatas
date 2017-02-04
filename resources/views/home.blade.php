@@ -23,7 +23,7 @@
             {!! redirect(route('welcome')) !!}
         @else
             @if(Auth::user()->roles_id == 1)
-                Felhasználó
+                Felhasználó->átirányítás a keresőhöz
             @elseif (Auth::user()->roles_id == 2)
                 <div class="row">
                     <div class="col-md-6">
@@ -78,6 +78,16 @@
                                 <h4>Új hirdetések</h4>
                             </div>
                             <div class="panel-body">
+                                <table class="table table-responsive" id="orders-table">
+                                    <tbody>
+                                    @foreach($ads as $ad)
+                                        <tr>
+                                            <td><a href="{!! route('ads.show', [$ad->id]) !!}">{!! $ad->title !!}</a></td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                {!!  $ads->links()  !!}
                             </div>
                         </div>
                     </div>

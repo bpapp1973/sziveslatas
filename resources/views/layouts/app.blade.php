@@ -72,15 +72,7 @@
                   <li class="nav-item"><a class="nav-link link" href="{{ url('/login') }}">Belépés</a></li>
                   <li class="nav-item"><a class="nav-link link" href="{{ url('/register') }}">Regisztráció</a></li>
                 @else
-                @if (Auth::user()->roles_id==1)
-                <li class="nav-item dropdown">
-                  <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="#" aria-expanded="false">Felhasználó</a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{!! url('/companies/create') !!}">Hirdető hozzáadása</a>
-                    <a class="dropdown-item" href="#">Feltöltés alatt</a>
-                  </div>
-                </li>
-                @elseif (Auth::user()->roles_id==2)
+                @if (Auth::user()->roles_id==2)
                 <li class="nav-item dropdown">
                   <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="#" aria-expanded="false">Hirdető</a>
                   <div class="dropdown-menu">
@@ -90,14 +82,13 @@
                     <a class="dropdown-item" href="{!! url('/ads/create') !!}">Hirdetés feladása</a>
                     <a class="dropdown-item" href="{!! url('/myads') !!}">Hirdetéseim</a>
                     <a class="dropdown-item" href="{!! url('/myorders') !!}">Megrendeléseim</a>
-                    <a class="dropdown-item" href="#">Feltöltés alatt</a>
                   </div>
                 </li>
                 @elseif (Auth::user()->roles_id==3)
                 <li class="nav-item dropdown">
                   <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="#" aria-expanded="false">Operátor</a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Feltöltés alatt</a>
+                    <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
                   </div>
                 </li>
                 @elseif (Auth::user()->roles_id==4)
@@ -107,13 +98,15 @@
                     <a class="dropdown-item" href="{!! url('/users/index') !!}">Felhasználók</a>
                     <a class="dropdown-item" href="{!! url('/companies/index') !!}">Hirdetők</a>
                     <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
-                    <a class="dropdown-item" href="#">Feltöltés alatt</a>
                   </div>
                 </li>
                 @endif
                 <li class="nav-item dropdown open">
                   <a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="#" aria-expanded="true">Felhasználó</a>
                   <div class="dropdown-menu">
+                    @if (Auth::user()->roles_id==1)
+                    <a class="dropdown-item" href="{!! url('/companies/create') !!}">Hirdető hozzáadása</a>
+                    @endif
                     <a class="dropdown-item" href="{!! url('/users/'.Auth::user()->id.'/edit') !!}">Adatmódosítás</a>
                     <a class="dropdown-item" href="{{ route('pwdchange') }}">Jelszó megváltoztatása</a>
                     <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Kilépés

@@ -9,6 +9,8 @@ use App\Criteria\NotConfirmedOrdersCriteria;
 
 use App\Repositories\AdsRepository;
 use App\Criteria\MyAdsCriteria;
+use App\Criteria\ConfirmedAdsCriteria;
+use App\Criteria\NotConfirmedAdsCriteria;
 
 use Prettus\Repository\Criteria\RequestCriteria;
 use Illuminate\Http\Request;
@@ -45,19 +47,29 @@ class HomeController extends Controller
             return redirect(route('welcome'));
         }
 
-        $notConfirmedOrdersCriteria = new NotConfirmedOrdersCriteria();
+        if (Auth::user()->roles_id == 2) {
+            $notConfirmedOrdersCriteria = new NotConfirmedOrdersCriteria();
 
-        $this->ordersRepository->pushCriteria(new MyOrdersCriteria());
-        $this->ordersRepository->pushCriteria($notConfirmedOrdersCriteria);
-        $orders = $this->ordersRepository->paginate(env('PAGINATION_SIZE'));
-        $notConfirmedEvents = $orders;
+            $this->ordersRepository->pushCriteria(new MyOrdersCriteria());
+            $this->ordersRepository->pushCriteria($notConfirmedOrdersCriteria);
+            $orders = $this->ordersRepository->paginate(env('PAGINATION_SIZE'));
+            $notConfirmedEvents = $orders;
 
-        $this->adsRepository->pushCriteria(new MyAdsCriteria());
-        $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
+            $this->adsRepository->pushCriteria(new MyAdsCriteria());
+            $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
-        return view('home', [
-                        'notconfirmedevents' => $notConfirmedEvents,
-                        'ads'                => $ads
-                    ]);
+            return view('home', [
+                            'notconfirmedevents' => $notConfirmedEvents,
+                            'ads'                => $ads
+                        ]);
+        }
+
+        if (Auth::user()->roles_id >= 3) {
+            $this->adsRepository->pushCriteria(new NotConfirmedAdsCriteria());
+            $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
+
+            return view('home')
+                ->with('ads', $ads);
+        }
     }
 }

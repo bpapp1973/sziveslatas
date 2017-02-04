@@ -62,7 +62,7 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $input = $request->all();
-        $query = [];
+        $query = [['isvalid','=',1]];
         $textsearch="";
 
         if(isset($input['category']) && $input['category']!="") {
