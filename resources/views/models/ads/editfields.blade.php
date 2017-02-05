@@ -51,6 +51,20 @@
 </div>
 
 
+<!-- Summary Field -->
+<div class="form-group{{ $errors->has('summary') ? ' has-error' : '' }}">
+    {!! Form::label('summary', 'Rövid leírás', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('summary', null, ['class' => 'form-control']) !!}
+        @if ($errors->has('summary'))
+            <span class="help-block">
+                <strong>{{ $errors->first('summary') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
+
 <!-- Companies Id Field -->
 <div class="form-group{{ $errors->has('advertiser') ? ' has-error' : '' }}">
     {!! Form::label('advertiser', 'Hirdető', ['class' => 'col-md-4 control-label']) !!}

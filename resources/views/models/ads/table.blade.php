@@ -13,6 +13,7 @@
             </div>
             <div class="media-body">
                 <h5 class="media-heading"><a href="{!! route('ads.show', [$ad->id]) !!}">{!! $ad->title !!}</a></h5>
+                <p>{!! $ad->summary !!}</p>
                 <div class="col-md-5">
                     {!! $ad->company->name!!}<br/>
                     {!! $ad->category->name !!}<br/>

@@ -78,82 +78,79 @@
         </div>
         {!! Form::close() !!}
 
+        <section id="highlights" class="mbr-cards mbr-section mbr-section-nopadding" id="features3-n" style="background-color: rgb(255, 255, 255);">
+            <div class="mbr-section mbr-section__container mbr-section__container--middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-xs-center">
+                            <h3 class="mbr-section-title display-2">Kiemelt ajánlataink</h3>
+                            <small class="mbr-section-subtitle">Nézd meg a legjobb akcióinkat</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mbr-cards-row row">
+                <div id="highlight1" class="mbr-cards-col col-xs-12 col-lg-3" style="cursor: pointer; padding-top: 80px; padding-bottom: 80px;" data-toggle="modal" data-target="#ads" data-id="{!! $companies->highlight1 !!}" data-boxid="1">
+                    <div class="container">
+                        <div class="card cart-block">
+                            <div class="card-img">
+                                @if (count($companies->highlight1ad->images)==0)
+                                    <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
+                                @else
+                                    <img class="card-img-top" src="{!! url('/') !!}/images/companies/{!! $companies->id !!}/{!! $companies->highlight1ad->id !!}/{!! $companies->highlight1ad->images->first()->filepath !!}">
+                                @endif
+                                <span class="mbr-gallery-title">
+                                    <strong>{!! $companies->highlight1ad->title !!}</strong><br/>
+                                    {!! $companies->highlight1ad->summary !!}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="highlight2" class="mbr-cards-col col-xs-12 col-lg-3" style="cursor: pointer; padding-top: 80px; padding-bottom: 80px;" data-toggle="modal" data-target="#ads" data-id="{!! $companies->highlight2 !!}" data-boxid="2">
+                    <div class="container">
+                        <div class="card cart-block">
+                            <div class="card-img">
+                                @if (count($companies->highlight2ad->images)==0)
+                                    <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
+                                @else
+                                    <img class="card-img-top" src="{!! url('/') !!}/images/companies/{!! $companies->id !!}/{!! $companies->highlight2ad->id !!}/{!! $companies->highlight2ad->images->first()->filepath !!}">
+                                @endif
+                                <span class="mbr-gallery-title">
+                                    <strong>{!! $companies->highlight2ad->title !!}</strong><br/>
+                                    {!! $companies->highlight2ad->summary !!}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="highlight3" class="mbr-cards-col col-xs-12 col-lg-3" style="cursor: pointer; padding-top: 80px; padding-bottom: 80px;" data-toggle="modal" data-target="#ads" data-id="{!! $companies->highlight3 !!}" data-boxid="3">
+                    <div class="container">
+                        <div class="card cart-block">
+                            <div class="card-img">
+                                @if (count($companies->highlight3ad->images)==0)
+                                    <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
+                                @else
+                                    <img class="card-img-top" src="{!! url('/') !!}/images/companies/{!! $companies->id !!}/{!! $companies->highlight3ad->id !!}/{!! $companies->highlight3ad->images->first()->filepath !!}">
+                                @endif
+                                <span class="mbr-gallery-title">
+                                    <strong>{!! $companies->highlight3ad->title !!}</strong><br/>
+                                    {!! $companies->highlight3ad->summary !!}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
     @endif
     </div>
     <div id="errors"></div>
 </div>
-<div id="imageUpload" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                 <h4 class="modal-title">Képfeltöltés</h4>
-            </div>
-            <div class="modal-body">
-        <div class="row">
-            <div class="col-md-12 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        {!! Form::open(['route'=>'companies.image', 'files'=>true]) !!}
-
-                        {!! Form::hidden('container_type', 'company') !!}
-                        {!! Form::hidden('container_id', $companies->id) !!}
-                        {!! Form::hidden('form', 'description') !!}
-                        {!! Form::hidden('control_id', null, ['id'=>'control_id', 'name'=>'control_id']) !!}
-                        {!! Form::hidden('title', $companies->name, ['id'=>'title', 'class' => 'form-control']) !!}
-                        {!! Form::hidden('description', null, ['id'=>'description', 'class' => 'form-control']) !!}
-<!--
-                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                            {!! Form::label('title', 'Cím', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::text('title', null, ['class' => 'form-control']) !!}
-                                @if ($errors->has('title'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                       
-                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            {!! Form::label('description', 'Leírás', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-                                @if ($errors->has('description'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
--->                       
-                        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                            {!! Form::label('image', 'Válassz egy képet', ['class' => 'col-md-4 control-label']) !!}
-                            <div class="col-md-6">
-                                {!! Form::file('image', null, ['class' => 'form-control']) !!}
-                                @if ($errors->has('image'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                       
-                        <div class="form-group col-sm-12">
-                            {!! Form::submit('Feltöltés', ['class' => 'btn btn-primary']) !!}
-                            {!! Form::submit('Mégsem', ['data-dismiss'=>'modal', 'class' => 'nav-link btn btn-warning-outline btn-warning']) !!}
-                        </div>
-
-                        {!! Form::close() !!}
-                    </div>
-                </div>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+@include('models.companies.modal_imageupload')
+@include('models.ads.modal_index')
 @endsection 
 @section('scripts')
 <script type="text/javascript">
@@ -161,7 +158,41 @@
     $("#logo").on('click',function (e) {
         $('#control_id').val('logo');
     });
+/*
+    $(document).on("click", ".mbr-cards-col", function () {
+        var hl = $(this).data('id');
+        var box = $(this).data('boxid');
+        //alert(box);
+    });
+*/
+    $('#ads').on('show.bs.modal', function(e) {
+        var baseUrl = '{{ url('/') }}';
+        var ads_id = $(e.relatedTarget).data('id');
+        var box_id = $(e.relatedTarget).data('boxid');
+        var company = {!!  $companies !!};
+        var ads =  {!!  $companies->ads->where('isvalid','1') !!};
 
+        $('#ads_list').empty();
+        
+        for (var i = 0; i < ads.length; i++) {
+            var cls="list-group-item";
+            if(ads[i]["id"]==ads_id) cls+=" active";
+            else if(ads[i]["highlighted"]==1) cls+=" disabled";
+            else cls+=" list-group-item-success";
+            $('#ads_list').append('<a href="#" class="'+cls+'">'+
+                '<h4 class="list-group-item-heading">'+ads[i]["title"]+'</h4>'+
+                '<p class="list-group-item-text">'+ads[i]["summary"]+'</p>'+
+                '</a>'
+                );
+            /*
+                '<a href="#" class="list-group-item">'+
+                '<h4 class="list-group-item-heading">'+ads[i]["title"]+'</h4>'+
+                '<p class="list-group-item-text">'+ads[i]["summary"]+'</p>'+
+                '</a>'+
+                );
+*/
+        }
+    });
 </script>
 
 @endsection

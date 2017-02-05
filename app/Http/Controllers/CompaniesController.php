@@ -125,7 +125,9 @@ class CompaniesController extends AppBaseController
             $logo = url('/').'/images/companies/'.$companies->id.'/'.$logo[0]->filePath;
         }
 
-        $highlights = $companies->ads->where('highlighted',1);
+        $highlights = $companies->ads->where('isvalid',1);
+        $highlights = $highlights->where('highlighted',1);
+
         return view('models.companies.show', ['companies' => $companies,
                                                'logo' => $logo,
                                                'highlights' => $highlights]);

@@ -28,6 +28,7 @@ class Ads extends Model
         'highlighted',
         'isvalid',
         'title',
+        'summary',
         'website',
         'companies_id',
         'categories_id',
@@ -55,26 +56,27 @@ class Ads extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'title' => 'string',
-        'website' => 'string',
-        'companies_id' => 'integer',
+        'id'            => 'integer',
+        'title'         => 'string',
+        'summary'       => 'string',
+        'website'       => 'string',
+        'companies_id'  => 'integer',
         'categories_id' => 'integer',
-        'tags' => 'string',
-        'cities_id' => 'integer',
-        'responsible' => 'string',
-        'phone' => 'string',
-        'email' => 'string',
-        'description' => 'string',
-        'price' => 'integer',
+        'tags'          => 'string',
+        'cities_id'     => 'integer',
+        'responsible'   => 'string',
+        'phone'         => 'string',
+        'email'         => 'string',
+        'description'   => 'string',
+        'price'         => 'integer',
         'discountprice' => 'integer',
-        'visitors' => 'integer',
-        'startdate' => 'date',
-        'enddate' => 'date',
-        'ticket_url' => 'string',
-        'expireson' => 'date',
-        'created_by' => 'integer',
-        'updated_by' => 'integer'
+        'visitors'      => 'integer',
+        'startdate'     => 'date',
+        'enddate'       => 'date',
+        'ticket_url'    => 'string',
+        'expireson'     => 'date',
+        'created_by'    => 'integer',
+        'updated_by'    => 'integer'
     ];
 
     /**
@@ -83,19 +85,20 @@ class Ads extends Model
      * @var array
      */
     public static $rules = [
-        'title'           => 'required|max:255',
-        'website'         => 'max:255',
-        'responsible'     => 'max:255',
-        'phone'           => 'max:255',
-        'email'           => 'max:255',
-        'description'     => 'required',
-        'price'           => 'integer',
-        'discountprice'   => 'integer',
-        'visitors'        => 'integer',
-        'startdate'       => 'date',
-        'enddate'         => 'date',
-        'ticket_url'      => 'max:1024',
-        'expireson'       => 'date'
+        'title'         => 'required|max:255',
+        'summary'       => 'required|max:512',
+        'website'       => 'max:255',
+        'responsible'   => 'max:255',
+        'phone'         => 'max:255',
+        'email'         => 'max:255',
+        'description'   => 'required',
+        'price'         => 'integer',
+        'discountprice' => 'integer',
+        'visitors'      => 'integer',
+        'startdate'     => 'date',
+        'enddate'       => 'date',
+        'ticket_url'    => 'max:1024',
+        'expireson'     => 'date'
     ];
 
 

@@ -162,10 +162,12 @@ class Companies extends Model
     {
         return $this->belongsTo('App\Models\Ads', 'highlight1');
     }
+
     public function highlight2ad()
     {
         return $this->belongsTo('App\Models\Ads', 'highlight2');
     }
+
     public function highlight3ad()
     {
         return $this->belongsTo('App\Models\Ads', 'highlight3');

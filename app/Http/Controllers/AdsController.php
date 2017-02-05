@@ -202,16 +202,16 @@ class AdsController extends AppBaseController
 
         //Debugbar::addMessage('Comments', json_encode($comments));
         
-        return view('models.ads.show')->with(['ads' => $ads,
-                                              'images' => $images,
-                                              'rooms' => $rooms,
-                                              'roomsArray' => $roomsArray,
-                                              'menucards' => $menucards,
+        return view('models.ads.show')->with(['ads'            => $ads,
+                                              'images'         => $images,
+                                              'rooms'          => $rooms,
+                                              'roomsArray'     => $roomsArray,
+                                              'menucards'      => $menucards,
                                               'menucardsArray' => $menucardsArray,
-                                              'owner' => $owner,
-                                              'comments' => $comments,
-                                              'favourite' => $favourite,
-                                              'isordered' => $isordered]
+                                              'owner'          => $owner,
+                                              'comments'       => $comments,
+                                              'favourite'      => $favourite,
+                                              'isordered'      => $isordered]
                                             );
     }
 
@@ -265,17 +265,17 @@ class AdsController extends AppBaseController
             array_push($images,$dir.$element->filePath);
         }
         return view('models.ads.edit')->with(['ads' => $ads,
-                                    'user' => Auth::user(), 
-                                    'counties' => $counties, 
-                                    'cities' => $cities,
-                                    'categories' => $categories,
+                                    'user'          => Auth::user(),
+                                    'counties'      => $counties,
+                                    'cities'        => $cities,
+                                    'categories'    => $categories,
                                     'subcategories' => $subcategories,
-                                    'tags' => $tags,
-                                    'hidden' => $hidden,
-                                    'images' => $imagesDB,
-                                    'rooms' => $rooms,
-                                    'menucards' => $menucards,
-                                    'comments' => $comments
+                                    'tags'          => $tags,
+                                    'hidden'        => $hidden,
+                                    'images'        => $imagesDB,
+                                    'rooms'         => $rooms,
+                                    'menucards'     => $menucards,
+                                    'comments'      => $comments
                                     ]);
     }
 

@@ -147,7 +147,8 @@ return [
         'description'      => 'leírás',
         'enddate'          => 'záró dátum',
         'startdate'        => 'kezdő dátum',
-        'expireson'        => 'lejárati dátum'
+        'expireson'        => 'lejárati dátum',
+        'summary'          => 'rövid leírás'
     ],
 
 ];
