@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Models\Ads;
 use App\Models\Categories;
 use App\Models\Counties;
 use App\Models\Cities;
@@ -125,8 +126,18 @@ class CompaniesController extends AppBaseController
             $logo = url('/').'/images/companies/'.$companies->id.'/'.$logo[0]->filePath;
         }
 
-        $highlights = $companies->ads->where('isvalid',1);
-        $highlights = $highlights->where('highlighted',1);
+        $highlights = [];
+        if($companies->highlight1) {
+            array_push($highlights, $companies->highlight1ad);
+        }
+        if($companies->highlight2) {
+            array_push($highlights, $companies->highlight2ad);
+        }
+        if($companies->highlight3) {
+            array_push($highlights, $companies->highlight3ad);
+        }
+        //$highlights = $companies->ads->where('isvalid',1);
+        //$highlights = $highlights->where('highlighted',1);
 
         return view('models.companies.show', ['companies' => $companies,
                                                'logo' => $logo,
@@ -267,8 +278,15 @@ class CompaniesController extends AppBaseController
             $logo = url('/').'/images/companies/'.$companies->id.'/'.$logo[0]->filePath;
         }
 
+        $ads = Ads::where([['companies_id',$id],
+                           ['isvalid','1']])->get(['id','title','summary','highlighted','description']);
+        //$ads = $companies->ads->where('isvalid','1');
+        //$ads = $ads->get(['title','summary']);
+
+
         return view('models.companies.profile', ['companies' => $companies,
-                                               'logo' => $logo]);
+                                               'logo' => $logo,
+                                               'ads' => $ads]);
     }
 
     /**

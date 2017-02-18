@@ -77,6 +77,7 @@
             </div>
         </div>
         {!! Form::close() !!}
+        <br/><br/>
 
         <section id="highlights" class="mbr-cards mbr-section mbr-section-nopadding" id="features3-n" style="background-color: rgb(255, 255, 255);">
             <div class="mbr-section mbr-section__container mbr-section__container--middle">
@@ -94,6 +95,7 @@
                     <div class="container">
                         <div class="card cart-block">
                             <div class="card-img">
+                            @if($companies->highlight1ad)
                                 @if (count($companies->highlight1ad->images)==0)
                                     <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
                                 @else
@@ -103,6 +105,12 @@
                                     <strong>{!! $companies->highlight1ad->title !!}</strong><br/>
                                     {!! $companies->highlight1ad->summary !!}
                                 </span>
+                            @else
+                                <img class="card-img-top" src="http://fpoimg.com/500?font=calibri">
+                                <span class="mbr-gallery-title">
+                                    <strong>Kiemelés hozzáadásához kattints ide</strong>
+                                </span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -111,6 +119,7 @@
                     <div class="container">
                         <div class="card cart-block">
                             <div class="card-img">
+                            @if($companies->highlight2ad)
                                 @if (count($companies->highlight2ad->images)==0)
                                     <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
                                 @else
@@ -120,6 +129,12 @@
                                     <strong>{!! $companies->highlight2ad->title !!}</strong><br/>
                                     {!! $companies->highlight2ad->summary !!}
                                 </span>
+                            @else
+                                <img class="card-img-top" src="http://fpoimg.com/500?font=calibri">
+                                <span class="mbr-gallery-title">
+                                    <strong>Kiemelés hozzáadásához kattints ide</strong>
+                                </span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -128,6 +143,7 @@
                     <div class="container">
                         <div class="card cart-block">
                             <div class="card-img">
+                            @if($companies->highlight3ad)
                                 @if (count($companies->highlight3ad->images)==0)
                                     <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
                                 @else
@@ -137,6 +153,12 @@
                                     <strong>{!! $companies->highlight3ad->title !!}</strong><br/>
                                     {!! $companies->highlight3ad->summary !!}
                                 </span>
+                            @else
+                                <img class="card-img-top" src="http://fpoimg.com/500?font=calibri">
+                                <span class="mbr-gallery-title">
+                                    <strong>Kiemelés hozzáadásához kattints ide</strong>
+                                </span>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -158,41 +180,73 @@
     $("#logo").on('click',function (e) {
         $('#control_id').val('logo');
     });
-/*
-    $(document).on("click", ".mbr-cards-col", function () {
-        var hl = $(this).data('id');
-        var box = $(this).data('boxid');
-        //alert(box);
-    });
-*/
+
     $('#ads').on('show.bs.modal', function(e) {
         var baseUrl = '{{ url('/') }}';
         var ads_id = $(e.relatedTarget).data('id');
         var box_id = $(e.relatedTarget).data('boxid');
-        var company = {!!  $companies !!};
-        var ads =  {!!  $companies->ads->where('isvalid','1') !!};
+        var ads =  {!!  $ads !!};
 
         $('#ads_list').empty();
         
         for (var i = 0; i < ads.length; i++) {
             var cls="list-group-item";
-            if(ads[i]["id"]==ads_id) cls+=" active";
-            else if(ads[i]["highlighted"]==1) cls+=" disabled";
+            if(ads[i]["id"]==ads_id) cls+=" list-group-item-info";
+            else if(ads[i]["highlighted"]==1) continue;
             else cls+=" list-group-item-success";
-            $('#ads_list').append('<a href="#" class="'+cls+'">'+
+            $('#ads_list').append('<button type="button" data-boxid="'+box_id+'" data-recordid="'+ads[i]["id"]+'" data-id="'+i+'" class="'+cls+'">'+
                 '<h4 class="list-group-item-heading">'+ads[i]["title"]+'</h4>'+
                 '<p class="list-group-item-text">'+ads[i]["summary"]+'</p>'+
-                '</a>'
+                '</button>'
                 );
-            /*
-                '<a href="#" class="list-group-item">'+
-                '<h4 class="list-group-item-heading">'+ads[i]["title"]+'</h4>'+
-                '<p class="list-group-item-text">'+ads[i]["summary"]+'</p>'+
-                '</a>'+
-                );
-*/
         }
     });
+
+    $(document).on("dblclick", ".list-group-item", function () {
+        var token = "{{ Session::getToken() }}";
+        var ads =  {!!  $ads !!};
+        var id = $(this).data('id');
+        var recordID = $(this).data('recordid');
+        var boxId = $(this).data('boxid');
+        var ajax = $.ajax({
+            url: "{{ url('/') }}/ads/" + recordID + '/highlight' ,
+            type: "PATCH",
+            dataType: "json",
+            data: {
+                    _token:token,
+                    title:ads[id]["title"],
+                    summary:ads[id]["summary"],
+                    description:ads[id]["description"],
+                    highlighted:"1",
+                    boxId:boxId
+                },
+            error: function(xhr, status, error) {
+                var responseText;
+                $("#errors").html("");
+                responseText = xhr.responseText;
+                $("#errors").html(responseText);
+            },
+            complete: function(data){
+                recordID = -1;
+                location.reload();
+            }
+        })
+    });
+
+    $("#txtSearch").on('keyup', function() {
+        var search = $(this).val().toLowerCase();
+
+        $(".list-group-item").each(function() {
+            if ($(this).html().toLowerCase().indexOf(search) != -1) {
+                $(this).show();
+            }
+            else {
+                $(this).hide();  
+            }
+     
+        });
+    });
+
 </script>
 
 @endsection

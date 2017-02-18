@@ -49,6 +49,7 @@
             data: {
                     _token:token,
                     title:$('#title'+recordID).val(),
+                    summary:$('#summary'+recordID).val(),
                     description:$('#description'+recordID).val(),
                     highlighted:$('#highlighted'+recordID).val()
                 },
@@ -73,6 +74,7 @@
             data: {
                     _token:token,
                     title:$('#title'+recordID).val(),
+                    summary:$('#summary'+recordID).val(),
                     description:$('#description'+recordID).val(),
                     highlighted:$('#highlighted'+recordID).val()
                 },
@@ -81,6 +83,7 @@
                     $("#errors").html("");
                     responseText = xhr.responseText;
                     $("#errors").html(responseText);
+                    alert(responseText);
                 },
                 complete: function(data){
                     recordID = -1;

@@ -66,19 +66,6 @@
 					@else
 						<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
 					@endif
-				@else 
-		            {!! Form::model($ads, ['route' => ['ads.highlight', $ads->id], 'method' => 'patch']) !!}
-		                <div style="display: none;">
-		                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
-		                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
-		                {!! Form::hidden('highlighted', abs($ads->highlighted-1), ['id' => 'highlighted']) !!}
-		                </div>
-		                @if($ads->highlighted==0)
-		                    <button class="btn btn-primary pull-right" type="submit">Kiemelem</button>
-		                @else
-		                    <button class="btn btn-danger pull-right" type="submit">Kiemelés megszüntetése</button>
-		                @endif
-		            {!! Form::close() !!}
 				@endif
 			</div>
 			@endif

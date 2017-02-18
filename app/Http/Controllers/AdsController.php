@@ -335,6 +335,21 @@ class AdsController extends AppBaseController
 
         $this->adsRepository->delete($id);
 
+        if($ads->highlighted==1){
+            if($ads->company->highlight1==$id) {
+                $ads->company->highlight1=null;
+                $ads->company->save();
+            }
+            if($ads->company->highlight2==$id) {
+                $ads->company->highlight2=null;
+                $ads->company->save();
+            }
+            if($ads->company->highlight3==$id) {
+                $ads->company->highlight3=null;
+                $ads->company->save();
+            }
+        }
+
         Flash::overlay('A hirdetést töröltük ');
 
         return redirect(route('ads.index'));
@@ -360,10 +375,20 @@ class AdsController extends AppBaseController
 
         $ads = $this->adsRepository->update($request->all(), $id);
 
-        //Flash::overlay('A hirdetést kiemeltük');
+        $old = Ads::find($ads->company["highlight".$request["boxId"]]);
+        if($old) {
+            $old->highlighted=0;
+            $old->save();
+        }
 
-        return redirect(route('home'));
-//        return redirect(route('ads.edit', $ads->id));
+        $ads->company["highlight".$request["boxId"]]=$id;
+        $ads->company->save();
+
+        Flash::success('A hirdetést kiemeltük');
+
+        //return redirect(route('home'));
+        //return redirect(route('companies.profile', $ads->companies_id));
+        //return "true";
         //return view('models.ads.show')->with('ads', $ads);
     }
 

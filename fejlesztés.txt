@@ -18,7 +18,7 @@ hirdetés feladás
 	x profiloldal leszabályozása
 	- éttermi ajánlatok kiszállítás
 	x cancel gombok
-	- return redirect 'index'
+	x return redirect 'index'
 	x város mentése az update formokon
 	- tooltip szövegek mint a validation 
 	x kommentek, azok ellenőrzése
@@ -29,7 +29,7 @@ hirdetés feladás
 	x megrendelések jóváhagyása
 	- jogosulatlan hozzáférések ellenőrzése és javítása
 	x program esetén megrendelés után átirányítani a hirdető oldalára
-	- kiemelések 
+	- kiemelések hozzáadása és megszüntetése 
 	- adminisztráció - hirdetők, hirdetések ellenőrzése, jóváhagyása
 
 

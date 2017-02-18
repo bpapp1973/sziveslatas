@@ -118,22 +118,6 @@ Dropzone.options.myDropzone = {
         <div class="row">
             @if (Auth::guest()) @include('auth.login') @else 
             @include('flash::message')
-            <div>
-            {!! Form::model($ads, ['route' => ['ads.highlight', $ads->id], 'method' => 'patch']) !!}
-                <div style="display: none;">
-                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
-                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
-                {!! Form::hidden('highlighted', abs($ads->highlighted-1), ['id' => 'highlighted']) !!}
-                </div>
-                <div>
-                @if($ads->highlighted==0)
-                    <button class="btn btn-primary pull-right" type="submit">Kiemelem</button>
-                @else
-                    <button class="btn btn-danger pull-right" type="submit">Kiemelés megszüntetése</button>
-                @endif
-                </div>
-            {!! Form::close() !!}
-            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Hirdetés szerkesztése
                 </div>
