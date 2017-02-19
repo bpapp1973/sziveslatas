@@ -106,13 +106,13 @@ class AdsController extends AppBaseController
         $cities = Cities::pluck('name','id');
         $counties = Counties::pluck('name', 'id');
         return view('models.ads.create', ['ads' => $ads,
-                                    'rooms' => $rooms,
-                                    'menucards' => $menucards,
-                                    'user' => Auth::user(), 
-                                    'counties' => $counties, 
-                                    'cities' => $cities,
-                                    'categories' => $categories,
-                                    'subcategories' => $subcategories
+                               'rooms'          => $rooms,
+                               'menucards'      => $menucards,
+                               'user'           => Auth::user(),
+                               'counties'       => $counties,
+                               'cities'         => $cities,
+                               'categories'     => $categories,
+                               'subcategories'  => $subcategories
                                     ]);
     }
 

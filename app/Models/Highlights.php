@@ -55,6 +55,6 @@ class Highlights extends Model
      **/
     public function ad()
     {
-        return $this->belongsTo(\App\Models\Ads::class);
+        return $this->belongsTo('App\Models\Ads', 'ads_id');
     }
 }

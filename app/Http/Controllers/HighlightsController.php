@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ads;
 use App\Http\Requests\CreateHighlightsRequest;
 use App\Http\Requests\UpdateHighlightsRequest;
 use App\Repositories\HighlightsRepository;
@@ -32,8 +33,11 @@ class HighlightsController extends AppBaseController
         $this->highlightsRepository->pushCriteria(new RequestCriteria($request));
         $highlights = $this->highlightsRepository->all();
 
+        $ads = Ads::where('isvalid','1')->get(['id','title','summary','highlighted','description']);
+
         return view('models.highlights.index')
-            ->with('highlights', $highlights);
+            ->with(['highlights'=> $highlights,
+                    'ads'       => $ads]);
     }
 
     /**
@@ -59,7 +63,7 @@ class HighlightsController extends AppBaseController
 
         $highlights = $this->highlightsRepository->create($input);
 
-        Flash::success('A Highlights létrehoztuk');
+        Flash::success('A kiemelést létrehoztuk');
 
         return redirect(route('highlights.edit', $highlights->id));
     }
@@ -76,7 +80,7 @@ class HighlightsController extends AppBaseController
         $highlights = $this->highlightsRepository->findWithoutFail($id);
 
         if (empty($highlights)) {
-            Flash::error('A Highlights nem találjuk');
+            Flash::error('A kiemelést nem találjuk');
 
             return redirect(route('home'));
         }
@@ -96,7 +100,7 @@ class HighlightsController extends AppBaseController
         $highlights = $this->highlightsRepository->findWithoutFail($id);
 
         if (empty($highlights)) {
-            Flash::error('A Highlights nem találjuk');
+            Flash::error('A kiemelést nem találjuk');
 
             return redirect(route('home'));
         }
@@ -117,14 +121,14 @@ class HighlightsController extends AppBaseController
         $highlights = $this->highlightsRepository->findWithoutFail($id);
 
         if (empty($highlights)) {
-            Flash::error('A Highlights nem találjuk');
+            Flash::error('A kiemelést nem találjuk');
 
             return redirect(route('home'));
         }
 
         $highlights = $this->highlightsRepository->update($request->all(), $id);
 
-        Flash::success('A Highlights mentettük');
+        Flash::success('A kiemelést mentettük');
 
         return view('models.highlights.show')->with('highlights', $highlights);
     }
@@ -141,14 +145,14 @@ class HighlightsController extends AppBaseController
         $highlights = $this->highlightsRepository->findWithoutFail($id);
 
         if (empty($highlights)) {
-            Flash::error('A Highlights nem találjuk');
+            Flash::error('A kiemelést nem találjuk');
 
             return redirect(route('home'));
         }
 
         $this->highlightsRepository->delete($id);
 
-        Flash::success('A Highlights töröltük');
+        Flash::success('A kiemelést töröltük');
 
         return redirect(route('home'));
     }

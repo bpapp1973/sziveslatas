@@ -6,6 +6,7 @@ use App\Models\Ads;
 use App\Models\Categories;
 use App\Models\Cities;
 use App\Models\Tags;
+use App\Models\Highlights;
 use Illuminate\Http\Request;
 
 use Debugbar;
@@ -25,8 +26,10 @@ class SearchController extends Controller
             $categories[$element->id]=$element->name;
         }
         $subcategories = Categories::pluck('name','id');
+        $highlights = Highlights::all();
         return view('welcome', ['categories' => $categories,
-                                'subcategories' => $subcategories
+                                'subcategories' => $subcategories,
+                                'highlights' => $highlights
                                 ]);
     }
 

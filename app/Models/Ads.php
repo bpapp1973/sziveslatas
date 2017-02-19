@@ -214,5 +214,13 @@ class Ads extends Model
         return $this->hasMany('App\Models\Orders', 'ads_id');
     }
 
-    
+    /**
+     * Get the orders records associated with the ad.
+     */
+    public function highlight()
+    {
+        return $this->hasOne('App\Models\Highlights', 'ads_id');    
+    }
+
+
 }
