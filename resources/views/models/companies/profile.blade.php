@@ -97,7 +97,7 @@
                             <div class="card-img">
                             @if($companies->highlight1ad)
                                 @if (count($companies->highlight1ad->images)==0)
-                                    <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
+                                    <img class="card-img-top" src="http://fpoimg.com/500?text=Kép nélkül&font=calibri">
                                 @else
                                     <img class="card-img-top" src="{!! url('/') !!}/images/companies/{!! $companies->id !!}/{!! $companies->highlight1ad->id !!}/{!! $companies->highlight1ad->images->first()->filepath !!}">
                                 @endif

@@ -73,3 +73,6 @@ Route::get('myads', ['as' => 'ads.myads', 'uses' => 'AdsController@myAds']);
 
 Route::patch('ads/{ad}/highlight', ['as' => 'ads.highlight', 'uses' => 'AdsController@highlight']);
 Route::patch('ads/{ad}/confirm', ['as' => 'ads.confirm', 'uses' => 'AdsController@confirm']);
+
+
+Route::resource('highlights', 'HighlightsController');

@@ -98,6 +98,7 @@
                     <a class="dropdown-item" href="{!! url('/users/index') !!}">Felhasználók</a>
                     <a class="dropdown-item" href="{!! url('/companies/index') !!}">Hirdetők</a>
                     <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
+                    <a class="dropdown-item" href="{!! url('/highlights') !!}">Kiemelések</a>
                   </div>
                 </li>
                 @endif
