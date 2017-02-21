@@ -50,14 +50,14 @@ background-size: cover;
 <div class="search-form">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
-        <div class="row">
+        <div class="row" style="padding:5px; border-style: solid; border-width: 5px; border-color: rgb(250,140,0); border-radius: 5px">
             <div class="col-md-12 text-xs-center">
                 <div class="form-group">
                     <div class="col-md-2">
-                        {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Kategória', 'class' => 'form-control']) !!}
+                        {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Mit keres?', 'class' => 'form-control']) !!}
                     </div>
                     <div class="col-md-2">
-                        {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Alkategória', 'class' => 'form-control']) !!}
+                        {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Válasszon', 'class' => 'form-control']) !!}
                     </div>
                     <div name="whendiv" class="input-group col-md-2">
                         {!! Form::text('when', null, ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'input-sm form-control']) !!}
@@ -69,9 +69,9 @@ background-size: cover;
                         {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
                     </div>
                     <div class="input-group col-md-4">
-                        {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Kereső', 'class' => 'typeahead form-control']) !!}
+                        {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Keres', 'class' => 'typeahead form-control']) !!}
                         <span class="input-group-btn">
-                            <button class="btn btn-info btn-xs" type="submit">
+                            <button class="btn btn-primary" type="submit">Keresés
                                 <span class="glyphicon glyphicon-search"></span>
                             </button>
                         </span>
@@ -82,7 +82,7 @@ background-size: cover;
     </div>
     {!! Form::close() !!}
 </div>
-<section class="mbr-gallery mbr-section mbr-section-full mbr-slider-carousel" id="gallery1-4" data-filter="false" style="background-color: rgb(255, 255, 255); padding-top: 0rem; padding-bottom: 0rem;">
+<section class="mbr-gallery mbr-section  mbr-slider-carousel" id="gallery1-4" data-filter="false" style="background-color: rgb(255, 255, 255); padding-top: 0rem; padding-bottom: 0rem;">
     <!-- Filter -->
     <!-- Gallery -->
 <div class="mbr-gallery-row">
@@ -116,9 +116,8 @@ background-size: cover;
     </div>
 </div>
 </section>
-<section class="mbr-section article mbr-parallax-background" id="msg-box8-5" style="background-image: url(assets/images/desert.jpg); padding-top: 120px; padding-bottom: 120px;">
-    <div class="mbr-overlay" style="opacity: 0.5; background-color: rgb(34, 34, 34);">
-    </div>
+<br/><br/>
+<section class="mbr-section article article" id="msg-box8-5" style=" padding-top: 20px; padding-bottom: 20px; background-color: #6bb767;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">

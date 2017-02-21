@@ -46,7 +46,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
     
 </head>
-  <body bgcolor="#EAEAEA">
+  <body style="background-color: #EAEAEA">
     <input name="animation" type="hidden">
     <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon"></i></a></div>
     <input name="cookieData" type="hidden" data-cookie-text="Ez a weboldal cookie-kat (sütiket) használ azért, hogy weboldalunk használata során a lehető legjobb élményt tudjuk biztosítani. <br/>

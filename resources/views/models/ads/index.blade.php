@@ -2,6 +2,7 @@
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 10em">
 	<div class="container">
+        <div style="background-color: #ffffff">
 		<h1 class="pull-left">Hirdetések</h1>
 		@if (!Auth::guest() && Auth::user()->roles_id>1)
 			<a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('ads.create') !!}">Új</a>
@@ -11,6 +12,7 @@
 		<div class="clearfix"></div>
 		@include('models.ads.table')
 	</div>
+    </div>
 	<div id="errors"></div>
 </div>
 @endsection

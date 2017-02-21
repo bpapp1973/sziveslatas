@@ -43,7 +43,7 @@
         }
     });
 
-    $(document).on("dblclick", ".list-group-item", function () {
+    $(document).on("click", ".list-group-item", function () {
         var token = "{{ Session::getToken() }}";
         var ads =  {!!  $ads !!};
         var id = $(this).data('id');
@@ -65,13 +65,13 @@
                 var responseText;
                 $("#errors").html("");
                 responseText = xhr.responseText;
-                $("#errors").html(responseText);
+                //$("#errors").html(responseText);
                 //alert(responseText);
             },
             complete: function(data){
                 recordID = -1;
-                location.reload();
-                //alert("complete");
+                $('#ads').modal('hide');
+                window.location.reload(true);
             }
         })
     });

@@ -27,7 +27,7 @@
                     {!! $ad->price !!} Ft<br/>
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="...">
-                    <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning btn-xxs' data-toggle="tooltip" data-placement="top" title="Megnézem"><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning btn-xxs' data-toggle="tooltip" data-placement="top" title="Megnézem">Bővebben</a>
                     @if (null!==Auth::user() && Auth::user()->id==$ad->company->users->first()->id) 
                         <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-warning btn-xxs' data-toggle="tooltip" data-placement="top" title="Szerkesztem"><i class="glyphicon glyphicon-edit"></i></a>
                             {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['data-recordid' => $ad->id, 'data-toggle'=>'tooltip', 'title'=>'Törlöm', 'class' => 'btn btn-danger btn-xxs delete-btn']) !!}
