@@ -138,7 +138,36 @@
 					<div class="col-md-3">Érvényes</div>
 					<div class="col-md-6">{!! date_format($ads->startdate,'Y.m.d') !!} - {!! date_format($ads->enddate,'Y.m.d') !!}</div>
 				</div>
+				<br/><br/>
 				
+
+				<section class="mbr-section mbr-section-md-padding" id="social-buttons3-e" style="background-color: rgb(46, 46, 46); padding-top: 12px; padding-bottom: 12px;">
+				    
+				    <div class="container">
+				        <div class="row">
+				            <div class="col-md-8 col-md-offset-2 text-xs-center">
+				                <h5 class="mbr-section-title display-2">Oszd meg!</h5>
+				                <div>
+				                    <div class="mbr-social-likes" data-counters="false">
+				                        <span class="btn btn-social facebook" title="Facebook">
+				                            <i class="socicon socicon-facebook"></i>
+				                        </span>
+				                        <span class="btn btn-social twitter" title="Twitter">
+				                            <i class="socicon socicon-twitter"></i>
+				                        </span>
+				                        <span class="btn btn-social plusone" title="Google+">
+				                            <i class="socicon socicon-google"></i>
+				                        </span>
+				                        
+				                        
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</section>
+
+
 			</div>
 		</div>
 			<div id="description" class="mbr-section mbr-section__container mbr-section__container--middle">
