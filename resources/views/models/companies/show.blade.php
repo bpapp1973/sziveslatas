@@ -3,6 +3,7 @@
 @include('flash::message')
 <div id="page-content-wrapper" style="padding-top: 10em">
 	<div class="container">
+	<div style="padding: 3em; background-color: #ffffff">
 		<h1>{!! Form::label(null, $companies->title) !!}</h1>
 		<h4>{!! Form::label(null, $companies->name) !!}</h4>
 		<img hspace="12" src="{{ $logo }}" style="float:left; height:100%; width:15%" />
@@ -77,6 +78,7 @@
 		    </div>
 		</section>
 		<br/>
+	</div>
 	</div>
 </div>
 @endsection

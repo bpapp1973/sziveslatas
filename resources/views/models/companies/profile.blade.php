@@ -17,6 +17,7 @@
 @include('flash::message')
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
+    <div style="padding: 3em; background-color: #ffffff">
         @if (Auth::guest()) @include('auth.login') @else 
         <h1>{!! Form::label(null, $companies->title) !!}</h1>
         <h4>{!! Form::label(null, $companies->name) !!}</h4> 
@@ -168,6 +169,7 @@
 
 
     @endif
+    </div>
     </div>
     <div id="errors"></div>
 </div>

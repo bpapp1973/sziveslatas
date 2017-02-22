@@ -4,6 +4,7 @@
 
 <div id="page-content-wrapper" style="padding-top: 6em">
 	<div class="container">
+	<div style="padding: 3em; background-color: #ffffff">
         <h1 class="pull-left">Megrendeléseim</h1>
 
         <div class="clearfix"></div>
@@ -13,6 +14,7 @@
         <div class="clearfix"></div>
 
 		<div id='calendar'></div>
+	</div>
 	</div>
 </div>        
 

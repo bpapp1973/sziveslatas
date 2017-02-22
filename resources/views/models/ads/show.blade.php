@@ -42,6 +42,7 @@
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 8em">
 	<div class="container">
+	<div style="padding: 3em; background-color: #ffffff">
 		<div class="form-group">
 	        @if(Auth::user())
 		    <div class="row">
@@ -79,9 +80,11 @@
 				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
 	        </div>
 		</div>
+	</div>
 		
 	</div>
 	<div class="container">
+	<div style="padding: 3em; background-color: #ffffff">
 		@include('flash::message')
 
 		<h1>{!! Form::label(null, $ads->title) !!}</h1>
@@ -302,6 +305,7 @@
 			</section>
 
 		</div>
+	</div>
 	</div>
 
 

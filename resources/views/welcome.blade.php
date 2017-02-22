@@ -50,7 +50,7 @@ background-size: cover;
 <div class="search-form">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
-        <div class="row" style="padding:5px; border-style: solid; border-width: 5px; border-color: rgb(250,140,0); border-radius: 5px">
+        <div class="row" style="background-color: #ffffff; padding:1em; border-style: solid; border-width: 5px; border-color: rgb(250,140,0); border-radius: 5px">
             <div class="col-md-12 text-xs-center">
                 <div class="form-group">
                     <div class="col-md-2">

@@ -16,6 +16,7 @@ $('#city').append('<option value="'+cityObj.id+'">'+cityObj.name+'</option>');
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
+    <div style="padding: 3em; background-color: #ffffff">
         <div class="row">
             @if (Auth::guest()) 
                 @include('auth.login')
@@ -32,6 +33,7 @@ $('#city').append('<option value="'+cityObj.id+'">'+cityObj.name+'</option>');
             </div>
             @endif
         </div>
+    </div>
     </div>
 </div>
 @endsection

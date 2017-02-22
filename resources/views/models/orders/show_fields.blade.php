@@ -1,5 +1,6 @@
 <div id="page-content-wrapper">
     <div class="container">
+    <div style="padding: 3em; background-color: #ffffff">
 
         <div class="row">
             <!-- Ads Id Field -->
@@ -142,5 +143,6 @@
                 {!! Form::button('Elutasítom', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
             {!! Form::close() !!}
         @endif
+    </div>
     </div>
 </div>

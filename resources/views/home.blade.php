@@ -2,6 +2,7 @@
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 10em">
     <div class="container">
+    <div style="padding: 3em; background-color: #ffffff">
         <div class="row">
             @if (session('status'))
             <div class="alert alert-success">
@@ -94,6 +95,7 @@
                 </div>
             @endif
         @endif
+    </div>
     </div>
 </div>
 @endsection
