@@ -57,7 +57,7 @@
           <div class="mbr-table">
             <div class="mbr-table-cell" style="width: 10%">
               <div class="navbar-brand">
-                <a class="navbar-caption text-white" style="font-family: Gill Sans Ultra; font-size: 33px;" href="{{ url('/') }}">Sziveslátás.hu</a>
+                <a class="navbar-caption" style="color: #fa8c00; font-family: Gill Sans Ultra; font-size: 33px;" href="{{ url('/') }}">Sziveslátás.hu</a>
               </div>
             </div>
             <div class="mbr-table-cell">

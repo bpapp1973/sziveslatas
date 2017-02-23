@@ -50,7 +50,7 @@ background-size: cover;
 <div class="search-form">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
-        <div class="row" style="background-color: #ffffff; padding:0.3em; border-style: solid; border-width: 5px; border-color: #fa8c00; border-radius: 5px">
+        <div class="row" style="background-color: #ffffff; border-style: solid; border-width: 5px; border-color: #fa8c00; border-radius: 5px">
             <div class="col-md-12 text-xs-center">
                 <div class="form-group">
                     <div class="col-md-2">
@@ -121,7 +121,7 @@ background-size: cover;
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
-                <h3 class="mbr-section-title display-2">Kiemelt ajánlatok</h3>
+                <h3 class="mbr-section-title display-2" style="color: #fa8c00">Kiemelt ajánlatok</h3>
                 <div class="lead"><p></p></div>
             </div>
         </div>
@@ -156,7 +156,7 @@ background-size: cover;
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
-                <h3 class="mbr-section-title display-2">Ajánlatok</h3>
+                <h3 class="mbr-section-title display-2" style="color: #6bb767">Ajánlatok</h3>
                 <div class="lead"><p></p></div>
             </div>
         </div>
