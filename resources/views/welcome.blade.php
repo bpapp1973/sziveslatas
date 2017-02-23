@@ -82,7 +82,7 @@ background-size: cover;
     </div>
     {!! Form::close() !!}
 </div>
-<section class="mbr-gallery mbr-section  mbr-slider-carousel" id="gallery1-4" data-filter="false" style="background-color: rgb(255, 255, 255); padding-top: 0rem; padding-bottom: 0rem;">
+<section class="mbr-gallery mbr-section  mbr-slider-carousel" id="gallery1-4" data-filter="false" style="background-color: #ffffff; padding-top: 0rem; padding-bottom: 0rem;">
     <!-- Filter -->
     <!-- Gallery -->
 <div class="mbr-gallery-row">
@@ -121,7 +121,7 @@ background-size: cover;
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
-                <h3 class="mbr-section-title display-2" style="color: #fa8c00">Kiemelt ajánlatok</h3>
+                <h3 class="mbr-section-title display-2" style="color: #ffffff">Kiemelt ajánlatok</h3>
                 <div class="lead"><p></p></div>
             </div>
         </div>
@@ -156,7 +156,7 @@ background-size: cover;
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
-                <h3 class="mbr-section-title display-2" style="color: #6bb767">Ajánlatok</h3>
+                <h3 class="mbr-section-title display-2" style="color: #ffffff">Ajánlatok</h3>
                 <div class="lead"><p></p></div>
             </div>
         </div>
