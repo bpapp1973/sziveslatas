@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+<div id="page-content-wrapper" style="padding-top: 10em">
+    <div class="container">
+    <div style="padding: 3em; background-color: #ffffff">
+        <div class="row">
             @if (Auth::guest()) 
                 @include('auth.login')
             @else 
@@ -14,12 +17,14 @@
 
                     {!! Form::model($categories, ['route' => ['categories.update', $categories->id], 'method' => 'patch']) !!}
 
-                    @include('models.categories.fields')
+                    @include('models.categories.editfields')
 
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
         @endif
+    </div>
+    </div>
     </div>
 @endsection

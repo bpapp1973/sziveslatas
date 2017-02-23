@@ -50,5 +50,13 @@ class Categories extends Model
         
     ];
 
-    
+    /**
+     * Get the parent.
+     */
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Categories', 'parent_id');
+    }
+
+     
 }

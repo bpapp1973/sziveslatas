@@ -99,6 +99,7 @@
                     <a class="dropdown-item" href="{!! url('/companies/index') !!}">Hirdetők</a>
                     <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
                     <a class="dropdown-item" href="{!! url('/highlights') !!}">Kiemelések</a>
+                    <a class="dropdown-item" href="{!! url('/categories') !!}">Kategóriák</a>
                   </div>
                 </li>
                 @endif

@@ -1,22 +1,26 @@
 <table class="table table-responsive" id="categories-table">
     <thead>
-        <th>Parent Id</th>
-        <th>Name</th>
-        <th>Isenabled</th>
+        <th>Főkategória</th>
+        <th>Alkategória</th>
+        <th>Engedélyezve</th>
         <th colspan="3">Művelet</th>
     </thead>
     <tbody>
-    @foreach($categories as $categories)
+    @foreach($categories as $category)
         <tr>
-            <td>{!! $categories->parent_id !!}</td>
-            <td>{!! $categories->name !!}</td>
-            <td>{!! $categories->isenabled !!}</td>
+            @if(isset($category->parent_id))
+            <td>{!! $category->parent->name !!}</td>
+            @else
+            <td></td>
+            @endif
+            <td>{!! $category->name !!}</td>
+            <td>{!! $category->isenabled !!}</td>
             <td>
-                {!! Form::open(['route' => ['categories.destroy', $categories->id], 'method' => 'delete']) !!}
+                {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('categories.show', [$categories->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('categories.show', [$category->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     @if(Auth::user())
-                    <a href="{!! route('categories.edit', [$categories->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="{!! route('categories.edit', [$category->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Biztos vagy benne?')"]) !!}
                     @endif
                 </div>
@@ -26,3 +30,4 @@
     @endforeach
     </tbody>
 </table>
+{!!  $categories->links()  !!}

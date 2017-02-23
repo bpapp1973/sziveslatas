@@ -35,7 +35,7 @@ class CategoriesController extends AppBaseController
         }
 
         $this->categoriesRepository->pushCriteria(new RequestCriteria($request));
-        $categories = $this->categoriesRepository->all();
+        $categories = $this->categoriesRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.categories.index')
             ->with('categories', $categories);
@@ -111,6 +111,7 @@ class CategoriesController extends AppBaseController
             return redirect(route('welcome'));
         }
         $categories = $this->categoriesRepository->findWithoutFail($id);
+        $parents = $this->categoriesRepository->findByField('parent_id',null)->pluck('name','id');
 
         if (empty($categories)) {
             Flash::error('A Categories nem találjuk');
@@ -118,7 +119,8 @@ class CategoriesController extends AppBaseController
             return redirect(route('home'));
         }
 
-        return view('models.categories.edit')->with('categories', $categories);
+        return view('models.categories.edit', ['categories' => $categories,
+                                                  'parents' => $parents]);
     }
 
     /**
