@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('css')
+<link rel="stylesheet" href="{{ url('/') }}/css/hover.css" />
 <style>
 .search-form {
 position: relative;
@@ -44,80 +45,68 @@ background-size: cover;
     padding-left: 0rem;
     padding-right: 0rem
 }
+.btn {
+  margin-bottom: 0rem; }
+
 </style>
 @endsection
 @section('content')
 <div class="search-form">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
-        <div class="row" style="background-color: #ffffff; border-style: solid; border-width: 5px; border-color: #fa8c00; border-radius: 5px">
-            <div class="col-md-12 text-xs-center">
-                <div class="form-group">
-                    <div class="col-md-2">
-                        {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Mit keres?', 'class' => 'form-control']) !!}
-                    </div>
-                    <div class="col-md-2">
-                        {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Válasszon', 'class' => 'form-control']) !!}
-                    </div>
-                    <div name="whendiv" class="input-group col-md-2">
-                        {!! Form::text('when', null, ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'input-sm form-control']) !!}
-                        <span class="input-group-addon">
-                            <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-                        </span>
-                    </div>
-                    <div class="col-md-2">
-                        {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
-                    </div>
-                    <div class="input-group col-md-4">
-                        {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Keres', 'class' => 'typeahead form-control']) !!}
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit">Keresés
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                    </div>
-                </div><!-- /input-group -->
-            </div>
+        <div class="row">
+            <div class="input-group" style="background-color: #fff; border: solid 0.2rem #fa8c00; border-radius: 5px">
+                <div class="col-md-2">
+                    {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Mit keres?', 'class' => 'form-control']) !!}
+                </div>
+                <div class="col-md-2">
+                    {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Válasszon', 'class' => 'form-control']) !!}
+                </div>
+                <div name="whendiv" class="input-group col-md-2">
+                    {!! Form::text('when', null, ['id' => 'when', 'autocomplete'=>'off','placeholder' => 'Mikor', 'class' => 'input-sm form-control']) !!}
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+                <div class="col-md-2">
+                    {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
+                </div>
+                <div class="col-md-2">
+                    {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Keres', 'class' => 'typeahead form-control']) !!}
+                </div>
+                <div class="col-md-2">
+                        <button class="btn btn-primary btn-block" style="padding: 0.78rem 0; border: solid 0.2rem #fa8c00;" type="submit">Keresés <span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div><!-- /input-group -->
         </div>
     </div>
     {!! Form::close() !!}
 </div>
-<section class="mbr-gallery mbr-section  mbr-slider-carousel" id="gallery1-4" data-filter="false" style="background-color: #ffffff; padding-top: 0rem; padding-bottom: 0rem;">
-    <!-- Filter -->
-    <!-- Gallery -->
-<div class="mbr-gallery-row">
-    <div class=" mbr-gallery-layout-default">
-        <div>
-            <div>
-            @for ($i = 0; $i < 6; $i++)
-                <div class="mbr-gallery-item mbr-gallery-item__mobirise3 mbr-gallery-item--p0">
-                    <div href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
-                    @if($highlights[$i]->ad)
-                        @if (count($highlights[$i]->ad->images)==0)
-                            <img src="http://fpoimg.com/600x290?text=Kép nélkül&font=calibri">
-                        @else
-                            <img class="bp-div-bd-image" src="{!! url('/') !!}/images/companies/{!! $highlights[$i]->ad->companies_id !!}/{!! $highlights[$i]->ads_id !!}/{!!  $highlights[$i]->ad->images->first()->filepath !!}">
-                        @endif
-                        <span class="mbr-gallery-title">
-                        <a href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
-                            <strong>{!!  $highlights[$i]->ad->title !!}</strong><br/>
-                            {!!  $highlights[$i]->ad->summary !!}
-                        </a>
-                        </span>
-                    @else
-                        <img src="http://fpoimg.com/600x300?font=calibri">
-                    @endif
-                    </div>
-                </div>
-            @endfor
-            </div>
+<section class="mbr-section article" id="content7-a" style="padding-top: 2em; padding-bottom: 2em;">
+    <div class="row" style="padding: 1em">
+        @for ($i = 0; $i < 6; $i++)
+        <div class="col-md-4 hvr-glow">
+            @if($highlights[$i]->ad)
+                <a href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
+                @if (count($highlights[$i]->ad->images)==0)
+                    <img class="bp-div-bd-image" src="http://fpoimg.com/600x300?text=Kép nélkül&font=calibri">
+                @else
+                    <img class="bp-div-bd-image" style="width: 100%" src="{!! url('/') !!}/images/companies/{!! $highlights[$i]->ad->companies_id !!}/{!! $highlights[$i]->ads_id !!}/{!!  $highlights[$i]->ad->images->first()->filepath !!}">
+                @endif
+                <span class="mbr-gallery-title">
+                    <strong>{!!  $highlights[$i]->ad->title !!}</strong><br/>
+                    {!!  $highlights[$i]->ad->summary !!}
+                </span>
+                </a>
+            @else
+                <img class="bp-div-bd-image" src="http://fpoimg.com/600x300?font=calibri">
+            @endif
         </div>
-        <div class="clearfix"></div>
+        @endfor
     </div>
-</div>
 </section>
 <br/><br/>
-<section class="mbr-section article article" id="msg-box8-5" style=" padding-top: 20px; padding-bottom: 20px; background-color: #6bb767;">
+<section class="mbr-section article article" id="msg-box8-5" style=" padding-top: 2em; padding-bottom: 2em; background-color: #6bb767;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
@@ -127,32 +116,30 @@ background-size: cover;
         </div>
     </div>
 </section>
-<section class="mbr-section article" id="content7-a" style="background-color: rgb(255, 255, 255); padding-top: 20px; padding-bottom: 20px;">
-    <div>
-        <div class="row" style="padding: 50px">
-            @for ($i = 6; $i < 14; $i++)
-            <div class="col-md-3" style="padding: 0px" >
-                @if($highlights[$i]->ad)
-                    @if (count($highlights[$i]->ad->images)==0)
-                        <img class="bp-div-bd-image" src="http://fpoimg.com/500?text=Kép nélkül&font=calibri">
-                    @else
-                        <img class="bp-div-bd-image" src="{!! url('/') !!}/images/companies/{!! $highlights[$i]->ad->companies_id !!}/{!! $highlights[$i]->ads_id !!}/{!!  $highlights[$i]->ad->images->first()->filepath !!}">
-                    @endif
-                    <span class="mbr-gallery-title">
-                        <a href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
-                            <strong>{!!  $highlights[$i]->ad->title !!}</strong><br/>
-                            {!!  $highlights[$i]->ad->summary !!}
-                        </a>
-                    </span>
+<section class="mbr-section article" id="content7-a" style="padding-top: 2em; padding-bottom: 2em;">
+    <div class="row" style="padding: 1em">
+        @for ($i = 6; $i < 14; $i++)
+        <div class="col-md-3 hvr-glow">
+            @if($highlights[$i]->ad)
+                <a href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
+                @if (count($highlights[$i]->ad->images)==0)
+                    <img class="bp-div-bd-image" style="width: 100%" src="http://fpoimg.com/500?text=Kép nélkül&font=calibri">
                 @else
-                    <img class="bp-div-bd-image" src="http://fpoimg.com/500?font=calibri">
+                    <img class="bp-div-bd-image" style="width: 100%" src="{!! url('/') !!}/images/companies/{!! $highlights[$i]->ad->companies_id !!}/{!! $highlights[$i]->ads_id !!}/{!!  $highlights[$i]->ad->images->first()->filepath !!}">
                 @endif
-            </div>
-            @endfor
+                <span class="mbr-gallery-title">
+                    <strong>{!!  $highlights[$i]->ad->title !!}</strong><br/>
+                    {!!  $highlights[$i]->ad->summary !!}
+                </span>
+                </a>
+            @else
+                <img class="bp-div-bd-image" style="width: 100%" src="http://fpoimg.com/500?font=calibri">
+            @endif
         </div>
+        @endfor
     </div>
 </section>
-<section class="mbr-section article article" id="msg-box8-5" style=" padding-top: 20px; padding-bottom: 20px; background-color: #fa8c00;">
+<section class="mbr-section article article" id="msg-box8-5" style="padding-top: 2em; padding-bottom: 2em; background-color: #fa8c00;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
@@ -162,29 +149,27 @@ background-size: cover;
         </div>
     </div>
 </section>
-<section class="mbr-section article mbr-section-full" id="content7-a" style="background-color: rgb(255, 255, 255); padding-top: 20px; padding-bottom: 20px;">
-    <div>
-        <div class="row" style="padding: 50px">
-            @for ($i = 14; $i < 22; $i++)
-            <div class="col-md-3" style="padding: 0px" >
-                @if($highlights[$i]->ad)
-                    @if (count($highlights[$i]->ad->images)==0)
-                        <img class="bp-div-bd-image" src="http://fpoimg.com/500?text=Kép nélkül&font=calibri">
-                    @else
-                        <img class="bp-div-bd-image" src="{!! url('/') !!}/images/companies/{!! $highlights[$i]->ad->companies_id !!}/{!! $highlights[$i]->ads_id !!}/{!!  $highlights[$i]->ad->images->first()->filepath !!}">
-                    @endif
-                    <span class="mbr-gallery-title">
-                        <a href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
-                            <strong>{!!  $highlights[$i]->ad->title !!}</strong><br/>
-                            {!!  $highlights[$i]->ad->summary !!}
-                        </a>
-                    </span>
+<section class="mbr-section article mbr-section-full" id="content7-a" style="padding-top: 2em; padding-bottom: 2em;">
+    <div class="row" style="padding: 1em">
+        @for ($i = 14; $i < 22; $i++)
+        <div class="col-md-3 hvr-glow">
+            @if($highlights[$i]->ad)
+                <a href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
+                @if (count($highlights[$i]->ad->images)==0)
+                    <img class="bp-div-bd-image" style="width: 100%" src="http://fpoimg.com/500?text=Kép nélkül&font=calibri">
                 @else
-                    <img class="bp-div-bd-image" src="http://fpoimg.com/500?font=calibri">
+                    <img class="bp-div-bd-image" style="width: 100%" src="{!! url('/') !!}/images/companies/{!! $highlights[$i]->ad->companies_id !!}/{!! $highlights[$i]->ads_id !!}/{!!  $highlights[$i]->ad->images->first()->filepath !!}">
                 @endif
-            </div>
-            @endfor
+                <span class="mbr-gallery-title">
+                    <strong>{!!  $highlights[$i]->ad->title !!}</strong><br/>
+                    {!!  $highlights[$i]->ad->summary !!}
+                </span>
+                    </a>
+            @else
+                <img class="bp-div-bd-image" style="width: 100%" src="http://fpoimg.com/500?font=calibri">
+            @endif
         </div>
+        @endfor
     </div>
 </section>
 <section class="mbr-section" id="form1-g" style="background-color: rgb(200, 200, 200); padding-top: 50px; padding-bottom: 15px;">

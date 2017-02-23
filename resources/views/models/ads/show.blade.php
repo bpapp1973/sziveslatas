@@ -51,6 +51,7 @@
 		            {!! Form::model($ads, ['route' => ['ads.confirm', $ads->id], 'method' => 'patch']) !!}
 		                <div style="display: none;">
 		                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
+		                {!! Form::hidden('summary', $ads->summary, ['id' => 'summary']) !!}
 		                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
 		                {!! Form::hidden('isvalid', 1, ['id' => 'isvalid']) !!}
 		                </div>

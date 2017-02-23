@@ -25,7 +25,7 @@ class SearchController extends Controller
         foreach ($cats as $element) {
             $categories[$element->id]=$element->name;
         }
-        $subcategories = Categories::pluck('name','id');
+        $subcategories = array();//Categories::pluck('name','id');
         $highlights = Highlights::all();
         return view('welcome', ['categories' => $categories,
                                 'subcategories' => $subcategories,

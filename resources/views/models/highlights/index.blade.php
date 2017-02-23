@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('css')
+<link rel="stylesheet" href="{{ url('/') }}/css/hover.css" />
 <style type="text/css">
 .col-xs-offset-0_5 {
     margin-left: 5px;
