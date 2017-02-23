@@ -42,9 +42,9 @@
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 8em">
 	<div class="container">
-	<div style="padding: 3em; background-color: #ffffff">
+	<div style="padding: 3em; padding-top: 1em; padding-bottom: 1em; background-color: #ffffff">
 		<div class="form-group">
-	        @if(Auth::user())
+		@if(Auth::user())
 		    <div class="row">
 		    	@if(Auth::user()->roles_id>=3)
 		    		@if($ads->isvalid==0)
@@ -69,6 +69,9 @@
 					@endif
 				@endif
 			</div>
+			@else
+				<a href="{{ url('/') }}/home" class="btn btn-primary pull-right">Megveszem</a>
+				<a href="{{ url('/') }}/home" class="btn btn-secondary pull-right">Érdekel</a>
 			@endif
 	        <div class="row">
 				<a href="#description" class="btn btn-default">Leírás</a>
@@ -84,7 +87,7 @@
 		
 	</div>
 	<div class="container">
-	<div style="padding: 3em; background-color: #ffffff">
+	<div style="padding: 3em; padding-top: 1em; padding-bottom: 1em; background-color: #ffffff">
 		@include('flash::message')
 
 		<h1>{!! Form::label(null, $ads->title) !!}</h1>
@@ -141,28 +144,27 @@
 				<br/><br/>
 				
 
-				<section class="mbr-section mbr-section-md-padding" id="social-buttons3-e" style="background-color: rgb(46, 46, 46); padding-top: 12px; padding-bottom: 12px;">
+				<section class="mbr-section mbr-section-md-padding" id="social-buttons3-e" style="background-color: #ffffff; padding-top: 12px; padding-bottom: 12px;">
 				    
 				    <div class="container">
 				        <div class="row">
 				            <div class="col-md-8 col-md-offset-2 text-xs-center">
-				                <h5 class="mbr-section-title display-2">Oszd meg!</h5>
+				                <h5 class="mbr-section-title display-2" style="color: rgb(250,140,0)">Oszd meg!</h5>
 				                <div>
 				                    <div class="mbr-social-likes" data-counters="false">
-				                        <span class="btn btn-social facebook" title="Facebook">
+				                        <span class="btn btn-social facebook" style="background: #3e5b98" title="Facebook">
 				                            <i class="socicon socicon-facebook"></i>
 				                        </span>
-				                        <span class="btn btn-social twitter" title="Twitter">
+				                        <span class="btn btn-social twitter" style="background: #4da7de" title="Twitter">
 				                            <i class="socicon socicon-twitter"></i>
 				                        </span>
-				                        <span class="btn btn-social plusone" title="Google+">
+				                        <span class="btn btn-social plusone" style="background: #d93e2d" title="Google+">
 				                            <i class="socicon socicon-google"></i>
 				                        </span>
-				                        
-				                        
 				                    </div>
 				                </div>
 				            </div>
+
 				        </div>
 				    </div>
 				</section>

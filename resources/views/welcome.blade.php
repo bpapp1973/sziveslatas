@@ -50,7 +50,7 @@ background-size: cover;
 <div class="search-form">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
-        <div class="row" style="background-color: #ffffff; padding:1em; border-style: solid; border-width: 5px; border-color: rgb(250,140,0); border-radius: 5px">
+        <div class="row" style="background-color: #ffffff; padding:0.3em; border-style: solid; border-width: 5px; border-color: #fa8c00; border-radius: 5px">
             <div class="col-md-12 text-xs-center">
                 <div class="form-group">
                     <div class="col-md-2">
@@ -122,7 +122,42 @@ background-size: cover;
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">
                 <h3 class="mbr-section-title display-2">Kiemelt ajánlatok</h3>
-                <div class="lead"><p>A lejobb ajánlatok egy helyen</p></div>
+                <div class="lead"><p></p></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="mbr-section article" id="content7-a" style="background-color: rgb(255, 255, 255); padding-top: 20px; padding-bottom: 20px;">
+    <div>
+        <div class="row" style="padding: 50px">
+            @for ($i = 6; $i < 14; $i++)
+            <div class="col-md-3" style="padding: 0px" >
+                @if($highlights[$i]->ad)
+                    @if (count($highlights[$i]->ad->images)==0)
+                        <img class="bp-div-bd-image" src="http://fpoimg.com/500?text=Kép nélkül&font=calibri">
+                    @else
+                        <img class="bp-div-bd-image" src="{!! url('/') !!}/images/companies/{!! $highlights[$i]->ad->companies_id !!}/{!! $highlights[$i]->ads_id !!}/{!!  $highlights[$i]->ad->images->first()->filepath !!}">
+                    @endif
+                    <span class="mbr-gallery-title">
+                        <a href="{!! url('/') !!}/ads/{!! $highlights[$i]->ads_id !!}">
+                            <strong>{!!  $highlights[$i]->ad->title !!}</strong><br/>
+                            {!!  $highlights[$i]->ad->summary !!}
+                        </a>
+                    </span>
+                @else
+                    <img class="bp-div-bd-image" src="http://fpoimg.com/500?font=calibri">
+                @endif
+            </div>
+            @endfor
+        </div>
+    </div>
+</section>
+<section class="mbr-section article article" id="msg-box8-5" style=" padding-top: 20px; padding-bottom: 20px; background-color: #fa8c00;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-xs-center">
+                <h3 class="mbr-section-title display-2">Ajánlatok</h3>
+                <div class="lead"><p></p></div>
             </div>
         </div>
     </div>
@@ -130,7 +165,7 @@ background-size: cover;
 <section class="mbr-section article mbr-section-full" id="content7-a" style="background-color: rgb(255, 255, 255); padding-top: 20px; padding-bottom: 20px;">
     <div>
         <div class="row" style="padding: 50px">
-            @for ($i = 6; $i < 14; $i++)
+            @for ($i = 14; $i < 22; $i++)
             <div class="col-md-3" style="padding: 0px" >
                 @if($highlights[$i]->ad)
                     @if (count($highlights[$i]->ad->images)==0)
