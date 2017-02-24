@@ -1,0 +1,84 @@
+.btn-back {
+    top: 6em;
+    left: 1em;
+    position: fixed;
+    text-align: center;
+    z-index: 5000;
+}
+
+@media (max-width: 991px) {
+    .btn-back {
+        bottom: 31px;
+    }
+}
+
+@media (max-width: 320px) {
+    .btn-back {
+        bottom: 21px;
+    }
+}
+
+@media all and (device-width: 320px) and (device-height: 568px) and (orientation: portrait) {
+    .btn-back {
+        bottom: 31px;
+    }
+}
+
+.btn-back a {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    color: #fff;
+    height: 46px;
+    outline-style: none !important;
+    position: relative;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    width: 46px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-back a:hover {
+    background: #2d2d2d;
+    color: #fa8c00;
+}
+
+.btn-back-icon {
+  display: block;
+}
+
+.btn-back-icon::before {
+    content: "\203a";
+    display: inline-block;
+    font-family: serif;
+    font-size: 32px;
+    line-height: 1;
+    font-style: normal;
+    position: relative;
+    top: 6px;
+    left: -4px;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.btn-back:hover .btn-back-icon {
+    -webkit-animation: floating-arrow-up 1.6s ease-in-out infinite 0s;
+    animation: floating-arrow-up 1.6s ease-in-out infinite 0s;
+}
+
+@media (max-width: 768px) {
+    .btn-back {
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        text-align: center;
+        bottom: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+    .mbr-right-padding-md-up {
+        padding-right: 85px;
+    }
+}

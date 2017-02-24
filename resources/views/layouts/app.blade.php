@@ -28,6 +28,9 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />    
     <link rel='stylesheet' href='{{ url('/') }}/fullcalendar/fullcalendar.css' />
 
+
+    <link rel="stylesheet" href="{{ url('/') }}/css/buttons.css">
+
     <style type="text/css">
     /* Local styles*/
     .btn-group-xxs>.btn,
@@ -53,11 +56,11 @@
     A weboldalunkon történő további böngészéssel hozzájárul a cookie-k használatához. <a href='privacy.html'>További információkért kattintson ide!</a>.">
     <section id="menu-1">
       <nav class="navbar navbar-dropdown navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
           <div class="mbr-table">
             <div class="mbr-table-cell" style="width: 10%">
               <div class="navbar-brand">
-                <a class="navbar-caption" style="color: #ffffff; font-family: Gill Sans Ultra; font-size: 33px;" href="{{ url('/') }}">Sziveslátás.hu</a>
+                <a class="navbar-caption" style="color: #ffffff; font-family: Gill Sans Ultra; font-size: 33px;" href="{{ url('/') }}">&nbsp;Sziveslátás.hu</a>
               </div>
             </div>
             <div class="mbr-table-cell">
@@ -128,6 +131,11 @@
         </div>
       </nav>
     </section>
+    <div class="btn-back">
+      <a href="{!! url()->previous() !!}" data-toggle="tooltip" data-placement="left" title="Vissza">
+        <i class="glyphicon glyphicon-backward"></i>
+      </a>
+    </div>
     <!-- Page Content -->
     @yield('content')
     <!-- Scripts -->

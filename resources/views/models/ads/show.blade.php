@@ -45,7 +45,6 @@
 	<div style="padding: 3em; padding-top: 1em; padding-bottom: 1em; background-color: #ffffff">
 		<div class="form-group">
 		    <div class="row">
-				<a class="btn btn-primary" href="javascript:history.go(-1)">Vissza</a>
 				@if(Auth::user())
 			    	@if(Auth::user()->roles_id>=3)
 			    		@if($ads->isvalid==0)

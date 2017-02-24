@@ -5,7 +5,6 @@
 .search-form {
     position: relative;
     padding-top: 6em;
-    padding-bottom: 0.5em;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
