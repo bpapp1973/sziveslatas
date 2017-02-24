@@ -44,37 +44,37 @@
 	<div class="container">
 	<div style="padding: 3em; padding-top: 1em; padding-bottom: 1em; background-color: #ffffff">
 		<div class="form-group">
-		@if(Auth::user())
 		    <div class="row">
-		<a class="btn btn-primary" href="javascript:history.go(-1)">Vissza</a>
-		    	@if(Auth::user()->roles_id>=3)
-		    		@if($ads->isvalid==0)
-		            {!! Form::model($ads, ['route' => ['ads.confirm', $ads->id], 'method' => 'patch']) !!}
-		                <div style="display: none;">
-		                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
-		                {!! Form::hidden('summary', $ads->summary, ['id' => 'summary']) !!}
-		                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
-		                {!! Form::hidden('isvalid', 1, ['id' => 'isvalid']) !!}
-		                </div>
-		                <button class="btn btn-success pull-right" type="submit">Engedélyezem</button>
-		            {!! Form::close() !!}
+				<a class="btn btn-primary" href="javascript:history.go(-1)">Vissza</a>
+				@if(Auth::user())
+			    	@if(Auth::user()->roles_id>=3)
+			    		@if($ads->isvalid==0)
+			            {!! Form::model($ads, ['route' => ['ads.confirm', $ads->id], 'method' => 'patch']) !!}
+			                <div style="display: none;">
+			                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
+			                {!! Form::hidden('summary', $ads->summary, ['id' => 'summary']) !!}
+			                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
+			                {!! Form::hidden('isvalid', 1, ['id' => 'isvalid']) !!}
+			                </div>
+			                <button class="btn btn-success pull-right" type="submit">Engedélyezem</button>
+			            {!! Form::close() !!}
+						@endif
+			    	@endif
+			    	@if(Auth::user()->id != $owner->id)
+				    	@if(!$isordered)
+							<a class="btn btn-primary pull-right" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+						@endif
+						@if(count($favourite)==0)
+							<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
+						@else
+							<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
+						@endif
 					@endif
-		    	@endif
-		    	@if(Auth::user()->id != $owner->id)
-			    	@if(!$isordered)
-						<a class="btn btn-primary pull-right" data-toggle="modal" data-target="#createOrders">Megveszem</a>
-					@endif
-					@if(count($favourite)==0)
-						<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
-					@else
-						<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
-					@endif
+				@else
+					<a href="{{ url('/') }}/home" class="btn btn-primary pull-right">Megveszem</a>
+					<a href="{{ url('/') }}/home" class="btn btn-secondary pull-right">Érdekel</a>
 				@endif
 			</div>
-			@else
-				<a href="{{ url('/') }}/home" class="btn btn-primary pull-right">Megveszem</a>
-				<a href="{{ url('/') }}/home" class="btn btn-secondary pull-right">Érdekel</a>
-			@endif
 	        <div class="row">
 				<a href="#description" class="btn btn-default">Leírás</a>
 				@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
