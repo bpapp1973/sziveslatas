@@ -87,7 +87,7 @@
 	</div>
 		
 	</div>
-	<div class="container">
+	<div class="container mbr-section-full">
 	<div style="padding: 3em; padding-top: 1em; padding-bottom: 1em; background-color: #ffffff">
 		@include('flash::message')
 
