@@ -3,6 +3,12 @@
         <div class="media">
             <div class="media-left media-top">
                 <a href="{!! route('ads.show', [$ad->id]) !!}">
+                    @if($ad->discountprice)
+                    <h5>
+                        -{!! 100-$ad->discountprice/$ad->price*100 !!}%
+                        <span class="glyphicon glyphicon-star badge"/>
+                    </h5>
+                    @endif
                     @if (count($ad->images)==0)
                         <img class="media-object" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri" width="100px">
                     @else
@@ -12,7 +18,11 @@
                 </a>
             </div>
             <div class="media-body">
-                <h5 class="media-heading"><a href="{!! route('ads.show', [$ad->id]) !!}">{!! $ad->title !!}</a></h5>
+                <h5 class="media-heading">
+                    <a href="{!! route('ads.show', [$ad->id]) !!}">
+                        {!! $ad->title !!}
+                    </a>
+                </h5>
                 <p>{!! $ad->summary !!}</p>
                 <div class="col-md-5">
                     {!! $ad->company->name!!}<br/>
@@ -24,7 +34,14 @@
                     {!! $ad->responsible!!}<br/>
                     {!! $ad->phone !!}<br/>
                     {!! $ad->email !!}<br/>
-                    {!! $ad->price !!} Ft<br/>
+                    @if($ad->discountprice)
+                        <strike>{!!  $ad->price !!} Ft</strike>
+                        &nbsp;
+                        <strong>{!! $ad->discountprice !!} Ft</strong>
+                        @else
+                        {!!  $ad->price !!} Ft
+                    @endif
+                    <br/>
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="Megnézem">Bővebben</a>

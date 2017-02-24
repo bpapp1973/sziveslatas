@@ -51,7 +51,8 @@ class CategoriesController extends AppBaseController
         if (Auth::guest() || Auth::user()->roles_id < 3) {
             return redirect(route('welcome'));
         }
-        return view('models.categories.create');
+        $parents = $this->categoriesRepository->findByField('parent_id',null)->pluck('name','id');
+        return view('models.categories.create')->with('parents', $parents);
     }
 
     /**

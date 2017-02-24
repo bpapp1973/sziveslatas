@@ -91,7 +91,14 @@
 	<div style="padding: 3em; padding-top: 1em; padding-bottom: 1em; background-color: #ffffff">
 		@include('flash::message')
 
-		<h1>{!! Form::label(null, $ads->title) !!}</h1>
+		<h1>
+			{!! Form::label(null, $ads->title) !!}
+            @if($ads->discountprice)
+            	&nbsp;
+                -{!! 100-$ads->discountprice/$ads->price*100 !!}%
+                <span class="glyphicon glyphicon-star badge"/>
+            @endif
+		</h1>
 		<div class="row">
 			<div class="col-md-6">
 				<div id="galleria">
@@ -141,6 +148,18 @@
 				<div class="row">
 					<div class="col-md-3">Érvényes</div>
 					<div class="col-md-6">{!! date_format($ads->startdate,'Y.m.d') !!} - {!! date_format($ads->enddate,'Y.m.d') !!}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Ár</div>
+					<div class="col-md-6">
+                    @if($ads->discountprice)
+                        <strike>{!!  $ads->price !!} Ft</strike>
+                        &nbsp;
+                        <strong>{!! $ads->discountprice !!} Ft</strong>
+                        @else
+                        {!!  $ads->price !!} Ft
+                    @endif
+					</div>
 				</div>
 				<br/><br/>
 				
