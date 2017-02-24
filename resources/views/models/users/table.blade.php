@@ -4,10 +4,7 @@
         <th>Email</th>
         <th>Szerepkör</th>
         <th>Név</th>
-        <th>Születésnap</th>
         <th>Város</th>
-        <th>Cím</th>
-        <th>Telefon</th>
         <th colspan="3">Művelet</th>
     </thead>
     <tbody>
@@ -17,10 +14,7 @@
             <td>{!! $user->email !!}</td>
             <td>{!! $user->role->name !!}</td>
             <td>{!! $user->last_name.' '.$user->first_name !!}</td>
-            <td>{!! $user->birthday !!}</td>
             <td>{!! $user->city->name !!}</td>
-            <td>{!! $user->address !!}</td>
-            <td>{!! $user->phone !!}</td>
             <td>
                 {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
@@ -36,3 +30,4 @@
     @endforeach
     </tbody>
 </table>
+{!!  $users->links()  !!}

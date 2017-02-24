@@ -46,6 +46,7 @@
 		<div class="form-group">
 		@if(Auth::user())
 		    <div class="row">
+		<a class="btn btn-primary" href="javascript:history.go(-1)">Vissza</a>
 		    	@if(Auth::user()->roles_id>=3)
 		    		@if($ads->isvalid==0)
 		            {!! Form::model($ads, ['route' => ['ads.confirm', $ads->id], 'method' => 'patch']) !!}

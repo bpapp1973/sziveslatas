@@ -2,13 +2,9 @@
     <thead>
         <th>Név</th>
         <th>Üzlet név</th>
-        <th>Email</th>
-        <th>Adószám</th>
         <th>Kategória</th>
         <th>Város</th>
         <th>Cím</th>
-        <th>Kapcsolattartó</th>
-        <th>Telefon</th>
         <th>Weblap</th>
         <th colspan="3">Művelet</th>
     </thead>
@@ -17,13 +13,9 @@
         <tr>
             <td>{!! $companies->name !!}</td>
             <td>{!! $companies->title !!}</td>
-            <td>{!! $companies->email !!}</td>
-            <td>{!! $companies->tax_id !!}</td>
             <td>{!! $companies->category->name !!}</td>
             <td>{!! $companies->city->name !!}</td>
             <td>{!! $companies->address !!}</td>
-            <td>{!! $companies->contact !!}</td>
-            <td>{!! $companies->phone !!}</td>
             <td>{!! $companies->website !!}</td>
             <td>
                 {!! Form::open(['route' => ['companies.destroy', $companies->id], 'method' => 'delete']) !!}
@@ -40,3 +32,4 @@
     @endforeach
     </tbody>
 </table>
+{!!  $companies->links()  !!}

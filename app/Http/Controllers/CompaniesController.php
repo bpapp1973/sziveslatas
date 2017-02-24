@@ -43,7 +43,7 @@ class CompaniesController extends AppBaseController
     public function index(Request $request)
     {
         $this->companiesRepository->pushCriteria(new RequestCriteria($request));
-        $companies = $this->companiesRepository->all();
+        $companies = $this->companiesRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.companies.index')
             ->with('companies', $companies);

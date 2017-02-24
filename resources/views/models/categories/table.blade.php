@@ -7,7 +7,7 @@
     </thead>
     <tbody>
     @foreach($categories as $category)
-        <tr>
+        <tr id="category">
             @if(isset($category->parent_id))
             <td>{!! $category->parent->name !!}</td>
             @else
@@ -31,3 +31,21 @@
     </tbody>
 </table>
 {!!  $categories->links()  !!}
+<script type="text/javascript">
+/*
+    $("#txtSearch").on('keyup', function() {
+        var search = $(this).val().toLowerCase();
+
+        $("#category").each(function() {
+            alert($(this).html());
+            if ($(this).html().toLowerCase().indexOf(search) != -1) {
+                $(this).show();
+            }
+            else {
+                $(this).hide();  
+            }
+     
+        });
+    });
+*/
+</script>

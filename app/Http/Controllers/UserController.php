@@ -36,7 +36,7 @@ class UserController extends AppBaseController
     public function index(Request $request)
     {
         $this->userRepository->pushCriteria(new RequestCriteria($request));
-        $users = $this->userRepository->all();
+        $users = $this->userRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.users.index')
             ->with('users', $users);
