@@ -90,7 +90,9 @@
                         {!!  $highlights[$i]->ad->summary !!}
                     </div>
                     <div class="col-md-1" style="text-align: right;">
+                    @if($highlights[$i]->ad->price)
                         Ár:
+                    @endif
                     </div>
                     <div class="col-md-3" style="text-align: right;">
                         @if($highlights[$i]->ad->discountprice)
@@ -146,7 +148,9 @@
                         {!!  $highlights[$i]->ad->summary !!}
                     </div>
                     <div class="col-md-1" style="text-align: right;">
+                    @if($highlights[$i]->ad->price)
                         Ár:
+                    @endif
                     </div>
                     <div class="col-md-3" style="text-align: right;">
                         @if($highlights[$i]->ad->discountprice)
@@ -201,7 +205,9 @@
                         {!!  $highlights[$i]->ad->summary !!}
                     </div>
                     <div class="col-md-1" style="text-align: right;">
+                    @if($highlights[$i]->ad->price)
                         Ár:
+                    @endif
                     </div>
                     <div class="col-md-3" style="text-align: right;">
                         @if($highlights[$i]->ad->discountprice)
