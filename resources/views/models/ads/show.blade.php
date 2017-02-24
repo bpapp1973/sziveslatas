@@ -149,6 +149,7 @@
 					<div class="col-md-3">Érvényes</div>
 					<div class="col-md-6">{!! date_format($ads->startdate,'Y.m.d') !!} - {!! date_format($ads->enddate,'Y.m.d') !!}</div>
 				</div>
+                @if($ads->price)
 				<div class="row">
 					<div class="col-md-3">Ár</div>
 					<div class="col-md-6">
@@ -161,6 +162,7 @@
                     @endif
 					</div>
 				</div>
+                @endif
 				<br/><br/>
 				
 

@@ -97,7 +97,7 @@
                         <strike>{!!  $highlights[$i]->ad->price !!} Ft</strike>
                         <br/>
                         <strong>{!! $highlights[$i]->ad->discountprice !!} Ft</strong>
-                        @else
+                        @elseif($highlights[$i]->ad->price)
                         {!!  $highlights[$i]->ad->price !!} Ft
                         @endif
                     </div>
@@ -153,7 +153,7 @@
                         <strike>{!!  $highlights[$i]->ad->price !!} Ft</strike>
                         <br/>
                         <strong>{!! $highlights[$i]->ad->discountprice !!} Ft</strong>
-                        @else
+                        @elseif($highlights[$i]->ad->price)
                         {!!  $highlights[$i]->ad->price !!} Ft
                         @endif
                     </div>
@@ -208,7 +208,7 @@
                         <strike>{!!  $highlights[$i]->ad->price !!} Ft</strike>
                         <br/>
                         <strong>{!! $highlights[$i]->ad->discountprice !!} Ft</strong>
-                        @else
+                        @elseif($highlights[$i]->ad->price)
                         {!!  $highlights[$i]->ad->price !!} Ft
                         @endif
                     </div>

@@ -38,7 +38,7 @@
                         <strike>{!!  $ad->price !!} Ft</strike>
                         &nbsp;
                         <strong>{!! $ad->discountprice !!} Ft</strong>
-                        @else
+                    @elseif($ad->price)
                         {!!  $ad->price !!} Ft
                     @endif
                     <br/>
