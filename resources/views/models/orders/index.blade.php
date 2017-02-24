@@ -3,7 +3,7 @@
 @section('content')
 
 <div id="page-content-wrapper" style="padding-top: 6em">
-	<div class="container">
+	<div class="container mbr-section-full">
 	<div style="padding: 3em; background-color: #ffffff">
         <h1 class="pull-left">Megrendeléseim</h1>
 

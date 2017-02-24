@@ -64,7 +64,7 @@
     </div>
     {!! Form::close() !!}
 </div>
-<section class="mbr-section article" id="content7-a" style="padding-top: 2em; padding-bottom: 2em;">
+<section class="mbr-section article mbr-section-full" id="content7-a" style="padding-top: 2em; padding-bottom: 2em;">
     <div class="row" style="padding: 1em">
         @for ($i = 0; $i < 6; $i++)
         <div class="col-md-4 hvr-glow">
@@ -122,7 +122,7 @@
         </div>
     </div>
 </section>
-<section class="mbr-section article" id="content7-a" style="padding-top: 2em; padding-bottom: 2em;">
+<section class="mbr-section article mbr-section-full" id="content7-a" style="padding-top: 2em; padding-bottom: 2em;">
     <div class="row" style="padding: 1em">
         @for ($i = 6; $i < 14; $i++)
         <div class="col-md-3 hvr-glow">
@@ -302,40 +302,6 @@
             </div>
         </div>
     </div>
-</section>
-<section class="mbr-section mbr-section-md-padding mbr-footer footer1" id="contacts1-i" style="background-color: rgb(46, 46, 46); padding-top: 10px; padding-bottom: 10px;">
-    
-    <div class="container">
-        <div class="row">
-            <div class="mbr-footer-content col-xs-12 col-md-3">
-                <!--<div><img src="assets/images/logo.png"></div>-->
-            </div>
-            <div class="mbr-footer-content col-xs-12 col-md-3">
-                <p><strong>Cím</strong><br>
-                    xxxx Város<br>
-                Yyyy utca nnn.</p>
-            </div>
-            <div class="mbr-footer-content col-xs-12 col-md-3">
-                <p><strong>Kapcsolat</strong><br>
-                    Email: info@sziveslatas.hu<br>
-                    Telefon: +36 (30) 123-4567
-                </p>
-            </div>
-            <div class="mbr-footer-content col-xs-12 col-md-3">
-                <p><strong>Rólunk</strong><br>
-                    <a class="text-primary" href="#">Rólunk</a><br>
-                    <a class="text-primary" href="#">Impresszum</a><br>
-                    <a class="text-primary" href="#">Stb</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-j" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
-        
-        <div class="container">
-            <p class="text-xs-center">Minden jog fenntartva (c) 2016 Sziveslatas.hu</p>
-        </div>
-    </footer>
 </section>
 
 <script type="text/javascript">

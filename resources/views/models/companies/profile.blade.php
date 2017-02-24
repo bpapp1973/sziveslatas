@@ -16,7 +16,7 @@
 @section('content') 
 @include('flash::message')
 <div id="page-content-wrapper" style="padding-top: 10em">
-    <div class="container">
+    <div class="container mbr-section-full">
     <div style="padding: 3em; background-color: #ffffff">
         @if (Auth::guest()) @include('auth.login') @else 
         <h1>{!! Form::label(null, $companies->title) !!}</h1>

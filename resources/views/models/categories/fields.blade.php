@@ -1,6 +1,6 @@
 <!-- Parent Id Field -->
 <div class="form-group{{ $errors->has('parent_id') ? ' has-error' : '' }}">
-	{!! Form::label('parent_id', 'Parent Id', ['class' => 'col-md-4 control-label']) !!}
+	{!! Form::label('parent_id', 'Főkategória', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::select('parent_id', $parents, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
         @if ($errors->has('parent_id'))
@@ -14,7 +14,7 @@
 
 <!-- Name Field -->
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-    {!! Form::label('name', 'Name', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('name', 'Kategória', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
     	{!! Form::text('name', null, ['class' => 'form-control']) !!}
         @if ($errors->has('name'))

@@ -76,3 +76,5 @@ Route::patch('ads/{ad}/confirm', ['as' => 'ads.confirm', 'uses' => 'AdsControlle
 
 
 Route::resource('highlights', 'HighlightsController');
+
+Route::resource('freetexts', 'FreetextController');

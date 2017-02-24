@@ -103,6 +103,8 @@
                     <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
                     <a class="dropdown-item" href="{!! url('/highlights') !!}">Kiemelések</a>
                     <a class="dropdown-item" href="{!! url('/categories') !!}">Kategóriák</a>
+                    <a class="dropdown-item" href="{!! url('/freetexts/1/edit') !!}">Rólunk</a>
+                    <a class="dropdown-item" href="{!! url('/freetexts/2/edit') !!}">Impresszum</a>
                   </div>
                 </li>
                 @endif
@@ -138,6 +140,42 @@
     </div>
     <!-- Page Content -->
     @yield('content')
+
+    <section class="mbr-section mbr-section-md-padding mbr-footer footer1" id="contacts1-i" style="background-color: rgb(46, 46, 46); padding-top: 10px; padding-bottom: 10px;">
+    
+    <div class="container">
+        <div class="row">
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <!--<div><img src="assets/images/logo.png"></div>-->
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Cím</strong><br>
+                    xxxx Város<br>
+                Yyyy utca nnn.</p>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Kapcsolat</strong><br>
+                    Email: info@sziveslatas.hu<br>
+                    Telefon: +36 (30) 123-4567
+                </p>
+            </div>
+            <div class="mbr-footer-content col-xs-12 col-md-3">
+                <p><strong>Rólunk</strong><br>
+                    <a class="text-primary" href="{!! url("/freetexts/1") !!}">Rólunk</a><br>
+                    <a class="text-primary" href="{!! url("/freetexts/2") !!}">Impresszum</a><br>
+                    <a class="text-primary" href="#">Stb</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-j" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
+        
+        <div class="container">
+            <p class="text-xs-center">Minden jog fenntartva (c) 2016 Sziveslatas.hu</p>
+        </div>
+    </footer>
+</section>
+
     <!-- Scripts -->
     <script src="{{ url('/') }}/assets/web/assets/jquery/jquery.min.js"></script>
     <script src="{{ url('/') }}/assets/tether/tether.min.js"></script>

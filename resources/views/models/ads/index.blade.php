@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div id="page-content-wrapper" style="padding-top: 10em">
-	<div class="container">
+	<div class="container mbr-section-full">
         <div style="padding: 3em; background-color: #ffffff">
 		<h1 class="pull-left">Hirdetések</h1>
 		@if (!Auth::guest() && Auth::user()->roles_id>1)
