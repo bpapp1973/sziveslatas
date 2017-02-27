@@ -5,6 +5,9 @@
     <div class="container mbr-section-full">
     <div style="padding: 3em; background-color: #ffffff">
         <div class="row">
+            @if (Auth::guest()) 
+                @include('auth.login')
+            @else 
             <div class="panel panel-default">
                 <div class="panel-heading">Szöveges dokumentum szerkesztése</div>
                 <div class="panel-body">
@@ -18,6 +21,7 @@
                     {!! Form::close() !!}
                 </div>
             </div>
+            @endif
         </div>
     </div>
     </div>
