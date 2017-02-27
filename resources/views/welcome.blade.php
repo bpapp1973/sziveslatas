@@ -33,6 +33,7 @@
 </style>
 @endsection
 @section('content')
+
 <div class="search-form">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
