@@ -103,8 +103,7 @@
                     <a class="dropdown-item" href="{!! url('/ads/index') !!}">Hirdetések</a>
                     <a class="dropdown-item" href="{!! url('/highlights') !!}">Kiemelések</a>
                     <a class="dropdown-item" href="{!! url('/categories') !!}">Kategóriák</a>
-                    <a class="dropdown-item" href="{!! url('/freetexts/1/edit') !!}">Rólunk</a>
-                    <a class="dropdown-item" href="{!! url('/freetexts/2/edit') !!}">Impresszum</a>
+                    <a class="dropdown-item" href="{!! url('/freetexts') !!}">Dokumentumok</a>
                   </div>
                 </li>
                 @endif
@@ -163,7 +162,7 @@
                 <p><strong>Rólunk</strong><br>
                     <a class="text-primary" href="{!! url("/freetexts/1") !!}">Rólunk</a><br>
                     <a class="text-primary" href="{!! url("/freetexts/2") !!}">Impresszum</a><br>
-                    <a class="text-primary" href="#">Stb</a></p>
+                    <a class="text-primary" href="{!! url("/freetexts/3") !!}">Adatvédelmi nyilatkozat</a></p>
                 </div>
             </div>
         </div>

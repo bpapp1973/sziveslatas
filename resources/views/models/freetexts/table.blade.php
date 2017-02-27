@@ -1,14 +1,12 @@
 <table class="table table-responsive" id="freetexts-table">
     <thead>
-        <th>Title</th>
-        <th>Text</th>
+        <th>Cím</th>
         <th colspan="3">Művelet</th>
     </thead>
     <tbody>
     @foreach($freetexts as $freetext)
         <tr>
             <td>{!! $freetext->title !!}</td>
-            <td>{!! $freetext->text !!}</td>
             <td>
                 {!! Form::open(['route' => ['freetexts.destroy', $freetext->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
