@@ -49,6 +49,7 @@ class Ads extends Model
         'meals_id',
         'payment_id',
         'parking_id',
+        'pets_id',
         'children_discount',
         'created_by',
         'updated_by'
@@ -82,6 +83,7 @@ class Ads extends Model
         'meals_id'      => 'integer',
         'payment_id'    => 'integer',
         'parking_id'    => 'integer',
+        'pets_id'       => 'integer',
         'children_discount' => 'integer',
         'created_by'    => 'integer',
         'updated_by'    => 'integer'
@@ -116,6 +118,7 @@ class Ads extends Model
                            'meals_id',
                            'payment_id',
                            'parking_id',
+                           'pets_id',
                            'children_discount'
     ];
 
