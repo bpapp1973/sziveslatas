@@ -242,7 +242,7 @@
     <div class="form-group{{ $errors->has('payment_id') ? ' has-error' : '' }}">
         {!! Form::label('payment_id', 'Fizetési mód', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::select('payment_id', $payment, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+        {!! Form::select('payment_id', $payment, $ads->payment_id, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
             @if ($errors->has('payment_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('payment_id') }}</strong>
