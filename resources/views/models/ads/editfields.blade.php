@@ -252,26 +252,26 @@
     </div>
 
     <!-- parking Field -->
-    <div class="form-group{{ $errors->has('parking') ? ' has-error' : '' }}">
-        {!! Form::label('parking', 'Parkolás', ['class' => 'col-md-4 control-label']) !!}
+    <div class="form-group{{ $errors->has('parking_id') ? ' has-error' : '' }}">
+        {!! Form::label('parking_id', 'Parkolás', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::select('parking', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
-            @if ($errors->has('parking'))
+        {!! Form::select('parking_id', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+            @if ($errors->has('parking_id'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('parking') }}</strong>
+                    <strong>{{ $errors->first('parking_id') }}</strong>
                 </span>
             @endif
         </div>
     </div>
 
     <!-- pets Field -->
-    <div class="form-group{{ $errors->has('pets') ? ' has-error' : '' }}">
-        {!! Form::label('pest', 'Kisállat hozható', ['class' => 'col-md-4 control-label']) !!}
+    <div class="form-group{{ $errors->has('pets_id') ? ' has-error' : '' }}">
+        {!! Form::label('pets_id', 'Kisállat hozható', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::select('pets', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+        {!! Form::select('pets_id', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
             @if ($errors->has('pets'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('pets') }}</strong>
+                    <strong>{{ $errors->first('pets_id') }}</strong>
                 </span>
             @endif
         </div>
