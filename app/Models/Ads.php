@@ -46,6 +46,10 @@ class Ads extends Model
         'enddate',
         'ticket_url',
         'expireson',
+        'meals_id',
+        'payment_id',
+        'parking_id',
+        'children_discount',
         'created_by',
         'updated_by'
     ];
@@ -75,6 +79,10 @@ class Ads extends Model
         'enddate'       => 'date',
         'ticket_url'    => 'string',
         'expireson'     => 'date',
+        'meals_id'      => 'integer',
+        'payment_id'    => 'integer',
+        'parking_id'    => 'integer',
+        'children_discount' => 'integer',
         'created_by'    => 'integer',
         'updated_by'    => 'integer'
     ];
@@ -104,7 +112,12 @@ class Ads extends Model
 
     protected $nullable = ['visitors',
                            'discountprice',
-                           'price'];
+                           'price',
+                           'meals_id',
+                           'payment_id',
+                           'parking_id',
+                           'children_discount'
+    ];
 
     public static function boot()
     {

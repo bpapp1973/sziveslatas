@@ -104,6 +104,18 @@
     </div>
 </div>
 
+<div class="form-group{{ $errors->has('zipcode') ? ' has-error' : '' }}" >
+    {!! Form::label('zipcode', 'Irányítószám', ['class' => 'col-md-4 control-label']) !!}
+    <div class="col-md-6">
+        {!! Form::text('zipcode', null, ['readonly', 'id' => 'zipcode', 'class' => 'form-control']) !!}
+        @if ($errors->has('zipcode'))
+            <span class="help-block">
+                <strong>{{ $errors->first('zipcode') }}</strong>
+            </span>
+        @endif
+    </div>
+</div>
+
 <!-- Address Field -->
 <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
     {!! Form::label('address', 'Cím', ['class' => 'col-md-4 control-label']) !!}
@@ -134,7 +146,7 @@
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
+    {!! Form::submit('Mentés', ['id' => 'submit', 'class' => 'btn btn-primary']) !!}
     <a href="{!! url('/home') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
 </div>
 

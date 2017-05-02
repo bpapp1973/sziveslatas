@@ -103,8 +103,13 @@ class AdsController extends AppBaseController
             $categories[$element->id]=$element->name;
         }
         $subcategories = Categories::pluck('name','id');
-        $cities = Cities::pluck('name','id');
+        $cities   = Cities::pluck('name','id');
         $counties = Counties::pluck('name', 'id');
+
+        $meals   = $this->getList('models.ads.create','meals_id');
+        $payment = $this->getList('models.ads.create','payment_id');
+        $yesno   = $this->getList('any','yesno');
+
         return view('models.ads.create', ['ads' => $ads,
                                'rooms'          => $rooms,
                                'menucards'      => $menucards,
@@ -112,7 +117,10 @@ class AdsController extends AppBaseController
                                'counties'       => $counties,
                                'cities'         => $cities,
                                'categories'     => $categories,
-                               'subcategories'  => $subcategories
+                               'subcategories'  => $subcategories,
+                               'meals'          => $meals,
+                               'payment'        => $payment,
+                               'yesno'          => $yesno
                                     ]);
     }
 
@@ -264,6 +272,11 @@ class AdsController extends AppBaseController
         foreach ($imagesDB as $element) {
             array_push($images,$dir.$element->filePath);
         }
+
+        $meals   = $this->getList('models.ads.create','meals_id');
+        $payment = $this->getList('models.ads.create','payment_id');
+        $yesno   = $this->getList('any','yesno');
+
         return view('models.ads.edit')->with(['ads' => $ads,
                                     'user'          => Auth::user(),
                                     'counties'      => $counties,
@@ -275,7 +288,10 @@ class AdsController extends AppBaseController
                                     'images'        => $imagesDB,
                                     'rooms'         => $rooms,
                                     'menucards'     => $menucards,
-                                    'comments'      => $comments
+                                    'comments'      => $comments,
+                                    'meals'          => $meals,
+                                    'payment'        => $payment,
+                                    'yesno'          => $yesno
                                     ]);
     }
 
@@ -717,4 +733,18 @@ class AdsController extends AppBaseController
 
         return $diff;
     }
+
+    private function getList($form, $control) {
+        $list = Lists::where([
+                    ['form',      '=', $form],
+                    ['control',   '=', $control],
+                    ['isenabled', '=', true]])->
+                    orderBy('seqid')->
+                    get(['value','seqid']);
+        $retval = array();
+        foreach ($list as $element) {
+            $retval[$element->seqid-1]=$element->value;
+        }
+        return $retval;
+    } 
 }

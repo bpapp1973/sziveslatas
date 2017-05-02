@@ -11,6 +11,31 @@ $('#city').append('<option value="'+cityObj.id+'">'+cityObj.name+'</option>');
 });
 });
 });
+function init() {
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder);
+        });
+    }
+
+function geocodeAddress(geocoder) {
+    var city = document.getElementById('city');
+    var cityText = city.options[city.selectedIndex].text;
+    var address = document.getElementById('address').value;
+    geocoder.geocode({'address': cityText+' '+address}, function(results, status) {
+        if (status === 'OK') {
+            $('#zipcode').val(results[0]["address_components"][4]["long_name"]);
+            alert($('#zipcode').val());
+        } else {
+            alert('Az irányítószám lekérdezése nem sikerült: ' + status);
+        }
+    });
+}
+
+</script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHbrVzDRdwpqAJ82yROIP2L-kzpM7bMhs&callback=init">
 </script>
 @endsection
 @section('content')

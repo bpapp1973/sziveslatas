@@ -200,6 +200,71 @@
         </div>
     </div>
 
+    <!-- meals Field -->
+    <div class="form-group{{ $errors->has('meals_id') ? ' has-error' : '' }}">
+        {!! Form::label('meals_id', 'Ellátás', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+        {!! Form::select('meals_id', $meals, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+            @if ($errors->has('meals_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('meals_id') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <!-- payments Field -->
+    <div class="form-group{{ $errors->has('payment_id') ? ' has-error' : '' }}">
+        {!! Form::label('payment_id', 'Fizetési mód', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+        {!! Form::select('payment_id', $payment, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+            @if ($errors->has('payment_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('payment_id') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <!-- parking Field -->
+    <div class="form-group{{ $errors->has('parking') ? ' has-error' : '' }}">
+        {!! Form::label('parking', 'Parkolás', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+        {!! Form::select('parking', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+            @if ($errors->has('parking'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('parking') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <!-- pets Field -->
+    <div class="form-group{{ $errors->has('pets') ? ' has-error' : '' }}">
+        {!! Form::label('pest', 'Kisállat hozható', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+        {!! Form::select('pets', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+            @if ($errors->has('pets'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('pets') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <!-- children_discount Field -->
+    <div class="form-group{{ $errors->has('children_discount') ? ' has-error' : '' }}">
+        {!! Form::label('children_discount', 'Gyerekkedvezmény', ['class' => 'col-md-4 control-label']) !!}
+        <div class="col-md-6">
+            {!! Form::number('children_discount', null, ['class' => 'form-control']) !!}
+            @if ($errors->has('children_discount'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('children_discount') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+     
 </div>
 
 <div id="catering">

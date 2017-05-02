@@ -29,8 +29,8 @@ hirdetés feladás
 	x megrendelések jóváhagyása
 	- jogosulatlan hozzáférések ellenőrzése és javítása
 	x program esetén megrendelés után átirányítani a hirdető oldalára
-	- kiemelések hozzáadása és megszüntetése 
-	- adminisztráció - hirdetők, hirdetések ellenőrzése, jóváhagyása
+	x kiemelések hozzáadása és megszüntetése 
+	x adminisztráció - hirdetők, hirdetések ellenőrzése, jóváhagyása
 
 
 /************************/
