@@ -229,7 +229,7 @@
     <div class="form-group{{ $errors->has('meals_id') ? ' has-error' : '' }}">
         {!! Form::label('meals_id', 'Ellátás', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::select('meals_id', $meals, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+        {!! Form::select('meals_id', $meals, $ads->meals_id, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
             @if ($errors->has('meals_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('meals_id') }}</strong>
@@ -255,7 +255,7 @@
     <div class="form-group{{ $errors->has('parking_id') ? ' has-error' : '' }}">
         {!! Form::label('parking_id', 'Parkolás', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::select('parking_id', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+        {!! Form::select('parking_id', $yesno, $ads->parking_id, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
             @if ($errors->has('parking_id'))
                 <span class="help-block">
                     <strong>{{ $errors->first('parking_id') }}</strong>
@@ -268,7 +268,7 @@
     <div class="form-group{{ $errors->has('pets_id') ? ' has-error' : '' }}">
         {!! Form::label('pets_id', 'Kisállat hozható', ['class' => 'col-md-4 control-label']) !!}
         <div class="col-md-6">
-        {!! Form::select('pets_id', $yesno, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+        {!! Form::select('pets_id', $yesno, $ads->pets_id, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
             @if ($errors->has('pets'))
                 <span class="help-block">
                     <strong>{{ $errors->first('pets_id') }}</strong>

@@ -413,8 +413,8 @@ h6,
   display: none !important;
 }
 #menu-1 .navbar-caption {
-  color: #ffffff;
-  font-family: 'Gill Sans Ultra', serif;
+  color: #509f4c;
+  font-family: 'Chiller', serif;
   font-size: 22px;
 }
 #menu-1 .navbar-toggler {
@@ -443,22 +443,22 @@ h6,
 }
 #menu-1 .link[aria-expanded="true"],
 #menu-1 .dropdown-menu {
-  background: #509f4c;
+  background: #868686;
 }
 #menu-1 .nav-dropdown-sm .link:focus,
 #menu-1 .nav-dropdown-sm .link:hover,
 #menu-1 .nav-dropdown-sm .dropdown-item:focus,
 #menu-1 .nav-dropdown-sm .dropdown-item:hover {
-  background: #61b25d!important;
+  background: #979797!important;
 }
 #menu-1 .navbar,
 #menu-1 .nav-dropdown-sm,
 #menu-1 .nav-dropdown-sm .link[aria-expanded="true"],
 #menu-1 .nav-dropdown-sm .dropdown-menu {
-  background: #6bb767;
+  background: #9f9f9f;
 }
 #menu-1 .bg-color.transparent .link {
-  color: #7c706b;
+  color: #efefef;
   transition: none;
 }
 #menu-1 .bg-color.transparent.opened .link {

@@ -289,9 +289,9 @@ class AdsController extends AppBaseController
                                     'rooms'         => $rooms,
                                     'menucards'     => $menucards,
                                     'comments'      => $comments,
-                                    'meals'          => $meals,
-                                    'payment'        => $payment,
-                                    'yesno'          => $yesno
+                                    'meals'         => $meals,
+                                    'payment'       => $payment,
+                                    'yesno'         => $yesno
                                     ]);
     }
 
@@ -324,7 +324,7 @@ class AdsController extends AppBaseController
 
         $flash=$this->storeImages($ads->id);
 
-        $this->sendNotifications($id);
+        //$this->sendNotifications($id);
 
         Flash::overlay('A hirdetést módosítottuk');
 
@@ -743,7 +743,7 @@ class AdsController extends AppBaseController
                     get(['value','seqid']);
         $retval = array();
         foreach ($list as $element) {
-            $retval[$element->seqid-1]=$element->value;
+            $retval[$element->seqid]=$element->value;
         }
         return $retval;
     } 

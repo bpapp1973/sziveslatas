@@ -58,9 +58,11 @@
       <nav class="navbar navbar-dropdown navbar-fixed-top">
         <div class="container-fluid">
           <div class="mbr-table">
-            <div class="mbr-table-cell" style="width: 10%">
+            <div class="mbr-table-cell" style="width: 35%; background-color: #EAEAEA">
               <div class="navbar-brand">
-                <a class="navbar-caption" style="color: #ffffff; font-family: Gill Sans Ultra; font-size: 33px;" href="{{ url('/') }}">&nbsp;Sziveslátás.hu</a>
+                  <a href="{{ url('/') }}" class="navbar-logo"><img src="images/sziveslatas_logo.png" alt="Sziveslatas"></a>
+                  
+                  <a class="navbar-caption" href="{{ url('/') }}">Vendéglátók a felejthetetlen élményekért!</a>
               </div>
             </div>
             <div class="mbr-table-cell">
