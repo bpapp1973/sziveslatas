@@ -208,6 +208,9 @@ class AdsController extends AppBaseController
         }
 
 
+        $meals   = $this->getList('models.ads.create','meals_id');
+        $payment = $this->getList('models.ads.create','payment_id');
+        $yesno   = $this->getList('any','yesno');
         //Debugbar::addMessage('Comments', json_encode($comments));
         
         return view('models.ads.show')->with(['ads'            => $ads,
@@ -219,7 +222,11 @@ class AdsController extends AppBaseController
                                               'owner'          => $owner,
                                               'comments'       => $comments,
                                               'favourite'      => $favourite,
-                                              'isordered'      => $isordered]
+                                              'isordered'      => $isordered,
+                                              'meals'          => $meals,
+                                              'payment'        => $payment,
+                                              'yesno'          => $yesno
+                                              ]
                                             );
     }
 

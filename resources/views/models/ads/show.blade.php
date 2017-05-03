@@ -80,6 +80,9 @@
 				<a href="#menucards"   class="btn btn-default">Menüajánlatok</a>
 				<a href="#rooms"       class="btn btn-default">Helyiségek</a>
 				@endif
+				@if($ads->category->parent_id==1)
+				<a href="#services"   class="btn btn-default">Szolgáltatások</a>
+				@endif
 				<a href="#map"         class="btn btn-default">Térkép</a>
 				<a href="#comments"    class="btn btn-default">Hozzászólások</a>
 	        </div>
@@ -93,12 +96,12 @@
 
 		<h1>
 			{!! Form::label(null, $ads->title) !!}
-            @if($ads->discountprice)
-            	&nbsp;
-                -{!! 100-$ads->discountprice/$ads->price*100 !!}%
-                <span class="glyphicon glyphicon-star badge"/>
-            @endif
 		</h1>
+            @if($ads->discountprice)
+                <span class="alert alert-danger">{!! 100-$ads->discountprice/$ads->price*100 !!}% kedvezmény</span>
+                &nbsp;
+                <strong><strike>{!!  $ads->price !!} Ft</strike> helyett {!!  $ads->discountprice !!} Ft</strong>
+            @endif
 		<div class="row">
 			<div class="col-md-6">
 				<div id="galleria">
@@ -149,20 +152,6 @@
 					<div class="col-md-3">Érvényes</div>
 					<div class="col-md-6">{!! date_format($ads->startdate,'Y.m.d') !!} - {!! date_format($ads->enddate,'Y.m.d') !!}</div>
 				</div>
-                @if($ads->price)
-				<div class="row">
-					<div class="col-md-3">Ár</div>
-					<div class="col-md-6">
-                    @if($ads->discountprice)
-                        <strike>{!!  $ads->price !!} Ft</strike>
-                        &nbsp;
-                        <strong>{!! $ads->discountprice !!} Ft</strong>
-                        @else
-                        {!!  $ads->price !!} Ft
-                    @endif
-					</div>
-				</div>
-                @endif
 				<br/><br/>
 				
 
@@ -205,6 +194,42 @@
 			    </div>
 			</div>
 			
+			@if($ads->category->parent_id==1)
+			<section id="services" class="mbr-section" id="pricing-table2-3" style="background-color: rgb(255, 255, 255); padding-top: 120px; padding-bottom: 120px;">
+			    <div class="mbr-section mbr-section__container mbr-section__container--middle">
+			        <div class="container">
+			            <div class="row">
+			                <div class="col-xs-12 text-xs-center">
+			                    <h3 class="mbr-section-title display-2">Szolgáltatások</h3>
+			                    <small class="mbr-section-subtitle">Az alábbi szolgáltatásokat biztosítjuk</small>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+				<div class="row">
+					<div class="col-md-3">Ellátás</div>
+					<div class="col-md-6">{!! $meals[$ads->parking_id] !!}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Fizetési mód</div>
+					<div class="col-md-6">{!! $payment[$ads->parking_id] !!}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Parkolás</div>
+					<div class="col-md-6">{!! $yesno[$ads->parking_id] !!}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Kisállat hozható</div>
+					<div class="col-md-6">{!! $yesno[$ads->pets_id] !!}</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">Gyerekkedvezmény</div>
+					<div class="col-md-6">{!! $ads->children_discount !!} %</div>
+				</div>
+
+			</section>
+			@endif
+
 			@if($ads->category->parent_id==2 || $ads->category->parent_id==3)
 			<section id="menucards" class="mbr-section" id="pricing-table2-3" style="background-color: rgb(255, 255, 255); padding-top: 120px; padding-bottom: 120px;">
 			    <div class="mbr-section mbr-section__container mbr-section__container--middle">

@@ -3,12 +3,6 @@
         <div class="media">
             <div class="media-left media-top">
                 <a href="{!! route('ads.show', [$ad->id]) !!}">
-                    @if($ad->discountprice)
-                    <h5>
-                        -{!! 100-$ad->discountprice/$ad->price*100 !!}%
-                        <span class="glyphicon glyphicon-star badge"/>
-                    </h5>
-                    @endif
                     @if (count($ad->images)==0)
                         <img class="media-object" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri" width="100px">
                     @else
@@ -22,6 +16,11 @@
                     <a href="{!! route('ads.show', [$ad->id]) !!}">
                         {!! $ad->title !!}
                     </a>
+            @if($ad->discountprice)
+                <span class="label label-danger">{!! 100-$ad->discountprice/$ad->price*100 !!}% kedvezmény</span>
+                &nbsp;
+                <strong><strike>{!!  $ad->price !!} Ft</strike> helyett {!!  $ad->discountprice !!} Ft</strong>
+            @endif
                 </h5>
                 <p>{!! $ad->summary !!}</p>
                 <div class="col-md-5">
@@ -35,8 +34,6 @@
                     {!! $ad->phone !!}<br/>
                     {!! $ad->email !!}<br/>
                     @if($ad->discountprice)
-                        <strike>{!!  $ad->price !!} Ft</strike>
-                        &nbsp;
                         <strong>{!! $ad->discountprice !!} Ft</strong>
                     @elseif($ad->price)
                         {!!  $ad->price !!} Ft
@@ -45,7 +42,7 @@
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="Megnézem">Bővebben</a>
-                    @if (null!==Auth::user() && Auth::user()->id==$ad->company->users->first()->id) 
+                    @if (null!==Auth::user() && (Auth::user()->id==$ad->company->users->first()->id) || Auth::user()->roles_id>2) 
                         <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-link btn-xxs' data-toggle="tooltip" data-placement="top" title="Szerkesztem"><i class="glyphicon glyphicon-edit"></i></a>
                             {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['data-recordid' => $ad->id, 'data-toggle'=>'tooltip', 'title'=>'Törlöm', 'class' => 'btn btn-danger btn-xxs delete-btn']) !!}
                     @endif 

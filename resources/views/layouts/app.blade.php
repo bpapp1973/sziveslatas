@@ -58,11 +58,9 @@
       <nav class="navbar navbar-dropdown navbar-fixed-top">
         <div class="container-fluid">
           <div class="mbr-table">
-            <div class="mbr-table-cell" style="width: 35%; background-color: #EAEAEA">
+            <div class="mbr-table-cell" style="width: 20%; background-color: #EAEAEA">
               <div class="navbar-brand">
-                  <a href="{{ url('/') }}" class="navbar-logo"><img src="images/sziveslatas_logo.png" alt="Sziveslatas"></a>
-                  
-                  <a class="navbar-caption" href="{{ url('/') }}">Vendéglátók a felejthetetlen élményekért!</a>
+                  <a href="{{ url('/') }}" class="navbar-logo"><img src="{!! url('/') !!}/images/sziveslatas_logo.png" alt="Sziveslatas" style="height: 4rem"></a>
               </div>
             </div>
             <div class="mbr-table-cell">
