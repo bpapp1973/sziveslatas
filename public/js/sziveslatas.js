@@ -91,7 +91,7 @@ function init() {
     }
 
 function geocodeAddress(geocoder) {
-    alert("geocodeAddress");
+    //alert("geocodeAddress");
     var city = document.getElementById('city');
     var cityText = city.options[city.selectedIndex].text;
     var address = document.getElementById('address').value;
