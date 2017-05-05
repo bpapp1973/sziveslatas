@@ -135,16 +135,18 @@
                             </div>
                             <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}" >
                                 <label class="col-md-4 control-label">Város</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
+
+                                <div class="col-md-4">
                                     <select id="city" name="city" class="form-control">
                                         <option value="0" disabled selected>Válassz</option>
                                         @foreach($cities as $key => $value)
                                         <option value="{{ $key }}"> {{ $value }} </option>
                                         @endforeach
                                     </select>
-                                    <input type="text" name="zipcode" class="input-group-addon" id="zipcode" >
-                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    {!! Form::text('zipcode', null, ['class' => 'form-control', 'readonly', 'id'=>'zipcode']) !!}
+                                </div>
                                     
                                     @if ($errors->has('city'))
                                     <span class="help-block">
@@ -193,32 +195,6 @@ $('#county').on('change',function (e) {
     });
 });
 
-function init() {
-        var geocoder = new google.maps.Geocoder();
-
-        document.getElementById('submit').addEventListener('click', function() {
-            geocodeAddress(geocoder);
-        });
-    }
-
-function geocodeAddress(geocoder) {
-    var city = document.getElementById('city');
-    var cityText = city.options[city.selectedIndex].text;
-    var address = document.getElementById('address').value;
-    geocoder.geocode({'address': cityText+' '+address}, function(results, status) {
-        if (status === 'OK') {
-            document.getElementById('zipcode').html("qwert");
-
-//            document.getElementById('zipcode').text(results[0]["address_components"][4]["long_name"]);
-        } else {
-            alert('Az irányítószám lekérdezése nem sikerült: ' + status);
-        }
-    });
-}
-
-</script>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHbrVzDRdwpqAJ82yROIP2L-kzpM7bMhs&callback=init">
 </script>
 
 @endsection

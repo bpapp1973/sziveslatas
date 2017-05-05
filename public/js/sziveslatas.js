@@ -75,3 +75,36 @@ drpoptions={
         "firstDay": 1
     },    
 };
+
+function init() {
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder);
+        });
+        document.getElementById('city').addEventListener('change', function() {
+            geocodeAddress(geocoder);
+        });
+        document.getElementById('address').addEventListener('change', function() {
+            geocodeAddress(geocoder);
+        });
+    }
+
+function geocodeAddress(geocoder) {
+    alert("geocodeAddress");
+    var city = document.getElementById('city');
+    var cityText = city.options[city.selectedIndex].text;
+    var address = document.getElementById('address').value;
+    try {
+        geocoder.geocode({'address': cityText+' '+address}, function(results, status) {
+            if (status === 'OK') {
+                document.getElementById('zipcode').value=results[0]["address_components"][4]["long_name"];
+            } else {
+                alert('Az irányítószám lekérdezése nem sikerült: ' + status);
+            }
+        });
+
+    } catch(e) {
+        alert('Error: '+e);
+    }
+}

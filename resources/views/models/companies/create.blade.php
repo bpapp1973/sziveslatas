@@ -86,7 +86,10 @@ function deleteTag(element) {
             <div class="panel panel-default">
                 <div class="panel-heading">Hirdető hozzáadása</div>
                 <div class="panel-body">
-                    @include('core-templates::common.errors') {!! Form::open(['route' => 'companies.store']) !!} @include('models.companies.fields') {!! Form::close() !!}
+                    @include('core-templates::common.errors') 
+                    {!! Form::open(['route' => 'companies.store']) !!} 
+                        @include('models.companies.fields') 
+                    {!! Form::close() !!}
                 </div>
             </div>
             @endif

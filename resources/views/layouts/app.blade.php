@@ -203,6 +203,9 @@
     <script src='{{ url('/') }}/fullcalendar/fullcalendar.js'></script>
     <script src='{{ url('/') }}/fullcalendar/locale/hu.js'></script>
     <script src='{{ url('/') }}/fullcalendar/gcal.js'></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_API_KEY')}}&callback=init">
+    </script>
 
     @yield('scripts')
   </body>
