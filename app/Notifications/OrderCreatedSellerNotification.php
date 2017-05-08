@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Models\Ads;
+use App\Models\Orders;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,18 +12,18 @@ use Illuminate\Notifications\Messages\MailMessage;
 class OrderCreatedSellerNotification extends Notification
 {
     use Queueable;
-    public $ads_id;
-    public $ads;
+    public $orders;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($ads_id)
+    public function __construct($orders_id)
     {
-        $this->ads_id = $ads_id;
-        $this->ads = Ads::find($ads_id);
+        $this->orders = Orders::find($orders_id);
+        //$this->ads_id = $this->orders->ads_id;
+        //$this->ads = Ads::find($this->orders->ads_id);
     }
 
     /**
@@ -45,10 +46,14 @@ class OrderCreatedSellerNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Értesítés megrendelésről - '.$this->ads->title)
+                    ->subject('Értesítés megrendelésről - '.$this->orders->ad->title)
                     ->greeting('Szia!')
-                    ->line('Ezt az emailt azért küldtük neked, mert az egyik hirdetésedre megrendelés érkezett:')
-                    ->action('Hirdetés megtekintése', url('ads/'.$this->ads_id))
+                    ->line('Ezt az emailt azért küldtük neked, mert az egyik hirdetésedre megrendelés érkezett.')
+                    ->line('Megrendelő: '.$this->orders->last_name.' '.$this->orders->first_name)
+                    ->line('Email: '.$this->orders->email)
+                    ->line('Telefon: '.$this->orders->phone)
+                    ->line('Időpont: '.$this->orders->start_date.' '.$this->orders->end_date)
+                    ->action('Hirdetés megtekintése', url('ads/'.$this->orders->ads_id))
                     ->line('Kérlek vedd fel a kapcsolatot a megrendelővel.')
                     ;
     }

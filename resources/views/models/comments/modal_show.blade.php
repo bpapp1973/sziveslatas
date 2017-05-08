@@ -17,7 +17,7 @@
                 <div id="comment_modal_show_description"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Bezár</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Bezár</button>
             </div>
         </div>
     </div>

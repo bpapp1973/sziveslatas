@@ -23,7 +23,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" onclick="updateRoom()" class="btn btn-primary" data-dismiss="modal">Módosítás</button>
-        <button type="button" class="nav-link btn btn-warning-outline btn-warning" data-dismiss="modal">Mégsem</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Mégsem</button>
       </div>
     </div>
   </div>

@@ -262,11 +262,11 @@ blockquote, figure {
 	margin: 0 0 1rem
 }
 a {
-	color: #F1C050;
+	color: #f28281;
 	text-decoration: none
 }
 a:focus, a:hover {
-	color: #e2a312;
+	color: #eb3d3c;
 	text-decoration: underline
 }
 a:focus {

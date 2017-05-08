@@ -27,7 +27,7 @@
       <div class="modal-footer">
         <div class="form-group col-sm-12">
           {!! Form::submit('Érdekel', ['class' => 'btn btn-primary']) !!}
-          <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+          <a data-dismiss="modal" class="btn btn-default">Mégsem</a>
         </div>
       </div>
       {!! Form::close() !!}

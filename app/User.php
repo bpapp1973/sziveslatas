@@ -158,9 +158,9 @@ class User extends Authenticatable
         $this->notify(new AdChangedNotification($ads_id));
     }
 
-    public function sendOrderCreatedSellerNotification($ads_id)
+    public function sendOrderCreatedSellerNotification($orders_id)
     {
-        $this->notify(new OrderCreatedSellerNotification($ads_id));
+        $this->notify(new OrderCreatedSellerNotification($orders_id));
     }
 
     public function sendOrderCreatedUserNotification($ads_id)

@@ -41,13 +41,13 @@ class Menucards extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'ads_id' => 'int',
-        'label' => 'string',
-        'title' => 'string',
-        'subtitle' => 'string',
-        'price' => 'int',
-        'pricedesc' => 'string',
+        'id'          => 'integer',
+        'ads_id'      => 'int',
+        'label'       => 'string',
+        'title'       => 'string',
+        'subtitle'    => 'string',
+        'price'       => 'int',
+        'pricedesc'   => 'string',
         'description' => 'string'
     ];
 
@@ -57,7 +57,10 @@ class Menucards extends Model
      * @var array
      */
     public static $rules = [
-        
+        'label'       => 'max:45',
+        'title'       => 'max:45',
+        'subtitle'    => 'max:128',
+        'pricedesc'   => 'max:128'
     ];
 
     public function setPriceAttribute($price)

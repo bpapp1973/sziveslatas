@@ -35,9 +35,9 @@
 </div>
 
 <div class="form-group{{ $errors->has('tax_id') ? ' has-error' : '' }}">
-    {!! Form::label('tax_id', 'Adószám', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('tax_id', 'Adószám (kötőjelek nélkül)', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::text('tax_id', null, ['class' => 'form-control']) !!}
+        {!! Form::text('tax_id', null, ['maxlength'=>'11','data-toggle'=>"tooltip", 'data-placement'=>"left", 'title'=>"Kötőjelek nélkül!", 'class' => 'form-control']) !!}
         @if ($errors->has('tax_id'))
             <span class="help-block">
                 <strong>{{ $errors->first('tax_id') }}</strong>
@@ -228,5 +228,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! url('/home') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+    <a href="{!! url('/home') !!}" class="btn btn-default">Mégsem</a>
 </div>

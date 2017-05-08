@@ -90,8 +90,8 @@ h6,
   background-color: #f28281 !important;
 }
 .btn-primary {
-  background-color: #F98900;
-  border-color: #F98900;
+  background-color: #d14841;
+  border-color: #d14841;
   color: #ffffff;
 }
 .btn-primary:hover,
@@ -100,8 +100,8 @@ h6,
 .btn-primary:active,
 .btn-primary.active {
   color: #ffffff;
-  background-color: #c66d00;
-  border-color: #c66d00;
+  background-color: #ce2d25;
+  border-color: #ce2d25;
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
@@ -413,27 +413,25 @@ h6,
   display: none !important;
 }
 #menu-1 .navbar-caption {
-  color: #509f4c;
-  font-family: 'Chiller', serif;
-  font-size: 22px;
+  color: #ffffff;
 }
 #menu-1 .navbar-toggler {
-  color: #ffffff;
+  color: #41a85f;
 }
 #menu-1 .close-icon::before,
 #menu-1 .close-icon::after {
-  background-color: #ffffff;
+  background-color: #41a85f;
 }
 #menu-1 .link,
 #menu-1 .dropdown-item {
-  color: #ffffff;
+  color: #41a85f;
 }
 #menu-1 .link {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 }
 #menu-1 .dropdown-item,
 #menu-1 .nav-dropdown-sm .link {
-  font-size: 0.921rem;
+  font-size: 0.812rem;
 }
 #menu-1 .link:hover,
 #menu-1 .dropdown-item:hover,
@@ -443,22 +441,23 @@ h6,
 }
 #menu-1 .link[aria-expanded="true"],
 #menu-1 .dropdown-menu {
-  background: #868686;
+  background: #e6e6e6;
 }
 #menu-1 .nav-dropdown-sm .link:focus,
 #menu-1 .nav-dropdown-sm .link:hover,
 #menu-1 .nav-dropdown-sm .dropdown-item:focus,
 #menu-1 .nav-dropdown-sm .dropdown-item:hover {
-  background: #979797!important;
+  background: #f7f7f7!important;
 }
 #menu-1 .navbar,
 #menu-1 .nav-dropdown-sm,
 #menu-1 .nav-dropdown-sm .link[aria-expanded="true"],
 #menu-1 .nav-dropdown-sm .dropdown-menu {
-  background: #9f9f9f;
+  background: #ffffff;
+  border-bottom: solid 0.2rem #41a85f;
 }
 #menu-1 .bg-color.transparent .link {
-  color: #efefef;
+  color: #41a85f;
   transition: none;
 }
 #menu-1 .bg-color.transparent.opened .link {
@@ -472,6 +471,7 @@ h6,
 #menu-1 .dropdown-item[aria-expanded="true"] {
   color: #c1c1c1!important;
 }
+
 #msg-box7-2 .mbr-section-title,
 #msg-box7-2 .lead p {
   color: #fff;

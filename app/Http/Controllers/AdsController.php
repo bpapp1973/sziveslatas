@@ -454,7 +454,7 @@ class AdsController extends AppBaseController
         }
 
         $favourites = Favourites::where('ads_id',$id)->get();
-        Debugbar::addMessage('Favourites', json_encode($favourites));
+        //Debugbar::addMessage('Favourites', json_encode($favourites));
         foreach ($favourites as $favourite) {
             $user = User::find($favourite->users_id);
             $user->sendAdChangedNotification($id);

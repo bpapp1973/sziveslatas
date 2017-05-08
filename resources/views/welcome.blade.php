@@ -38,7 +38,7 @@
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
         <div class="row">
-            <div class="input-group col-md-12" style="background-color: #fff; border: solid 0.2rem #fa8c00; border-radius: 5px">
+            <div class="input-group col-md-12" style="background-color: #fff; border: solid 0.2rem #d14841; border-radius: 5px">
                 <div class="col-md-2">
                     {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Mit keres?', 'class' => 'form-control']) !!}
                 </div>
@@ -58,7 +58,7 @@
                     {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Keres', 'class' => 'typeahead form-control']) !!}
                 </div>
                 <div class="col-md-2">
-                        <button class="btn btn-primary btn-block" style="padding: 0.78rem 0; border: solid 0.2rem #fa8c00;" type="submit">Keresés <span class="glyphicon glyphicon-search"></span></button>
+                        <button class="btn btn-primary btn-block" style="padding: 0.78rem 0; border: solid 0.2rem #d14841;" type="submit">Keresés <span class="glyphicon glyphicon-search"></span></button>
                 </div>
             </div><!-- /input-group -->
         </div>
@@ -170,7 +170,7 @@
         @endfor
     </div>
 </section>
-<section class="mbr-section article article" id="msg-box8-5" style="padding-top: 2em; padding-bottom: 2em; background-color: #fa8c00;">
+<section class="mbr-section article article" id="msg-box8-5" style="padding-top: 2em; padding-bottom: 2em; background-color: #f28281;">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">

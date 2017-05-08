@@ -97,7 +97,7 @@ class OrdersController extends AppBaseController
         $orders = $this->ordersRepository->create($input);
 
         $orders->user->sendOrderCreatedUserNotification($orders->ads_id);
-        $orders->company->users->first()->sendOrderCreatedSellerNotification($orders->ads_id);
+        $orders->company->users->first()->sendOrderCreatedSellerNotification($orders->id);
 
         Flash::success('Emailben értesítettük a hirdetőt a foglalási szándékodról és hamarosan felveszi veled a kapcsolatot.');
 

@@ -61,17 +61,29 @@
 			    	@endif
 			    	@if(Auth::user()->id != $owner->id)
 				    	@if(!$isordered)
-							<a class="btn btn-primary pull-right" data-toggle="modal" data-target="#createOrders">Megveszem</a>
+							<a class="btn btn-primary pull-right" data-toggle="modal" data-target="#createOrders">
+								@if($ads->category->parent_id>1)
+									Érdeklődöm
+								@else
+									Megveszem
+								@endif
+							</a>
 						@endif
 						@if(count($favourite)==0)
-							<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#createFavourites">Érdekel</a>
+							<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#createFavourites">Követem</a>
 						@else
 							<a class="btn btn-secondary pull-right" data-toggle="modal" data-target="#deleteFavourites">Leiratkozom</a>
 						@endif
 					@endif
 				@else
-					<a href="{{ url('/') }}/home" class="btn btn-primary pull-right">Megveszem</a>
-					<a href="{{ url('/') }}/home" class="btn btn-secondary pull-right">Érdekel</a>
+					<a href="{{ url('/') }}/home" class="btn btn-primary pull-right">
+						@if($ads->category->parent_id>1)
+							Érdeklődöm
+						@else
+							Megveszem
+						@endif
+					</a>
+					<a href="{{ url('/') }}/home" class="btn btn-secondary pull-right">Követem</a>
 				@endif
 			</div>
 	        <div class="row">
@@ -160,7 +172,7 @@
 				    <div class="container">
 				        <div class="row">
 				            <div class="col-md-8 col-md-offset-2 text-xs-center">
-				                <h5 class="mbr-section-title display-2" style="color: rgb(250,140,0)">Oszd meg!</h5>
+				                <h5 class="mbr-section-title display-2" style="color: #f28281">Oszd meg!</h5>
 				                <div>
 				                    <div class="mbr-social-likes" data-counters="false">
 				                        <span class="btn btn-social facebook" style="background: #3e5b98" title="Facebook">

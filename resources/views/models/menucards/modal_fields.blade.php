@@ -30,7 +30,7 @@
 <div class="form-group{{ $errors->has('menucard_modal_subtitle') ? ' has-error' : '' }}">
     {!! Form::label('menucard_modal_subtitle', 'Alcím', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-    	{!! Form::text('menucard_modal_subtitle', null, ['class' => 'form-control']) !!}
+    	{!! Form::text('menucard_modal_subtitle', null, ['maxlength'=>'128', 'class' => 'form-control']) !!}
         @if ($errors->has('menucard_modal_subtitle'))
             <span class="help-block">
                 <strong>{{ $errors->first('menucard_modal_subtitle') }}</strong>
@@ -58,7 +58,7 @@
 <div class="form-group{{ $errors->has('menucard_modal_pricedesc') ? ' has-error' : '' }}">
     {!! Form::label('menucard_modal_pricedesc', 'Ár leírás', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-    	{!! Form::text('menucard_modal_pricedesc', null, ['class' => 'form-control']) !!}
+    	{!! Form::text('menucard_modal_pricedesc', null, ['maxlength'=>'128', 'class' => 'form-control']) !!}
         @if ($errors->has('menucard_modal_pricedesc'))
             <span class="help-block">
                 <strong>{{ $errors->first('menucard_modal_pricedesc') }}</strong>

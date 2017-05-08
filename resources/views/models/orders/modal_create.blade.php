@@ -28,12 +28,12 @@
             <div class="form-group col-md-6">A Megrendelem gombra kattintás után új lapon megnyitjuk a rendezvény weblapját</div>
             <div class="form-group col-md-6">
               {!! Form::submit('Megrendelem', ["onclick" => "window.open('" . $ads->ticket_url . "', '_blank')", 'class' => 'btn btn-primary']) !!}
-              <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+              <a data-dismiss="modal" class="btn btn-default">Mégsem</a>
             </div>
           @else
             <div class="form-group col-md-6">
               {!! Form::submit('Megrendelem', ['class' => 'btn btn-primary']) !!}
-              <a data-dismiss="modal" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+              <a data-dismiss="modal" class="btn btn-default">Mégsem</a>
             </div>
           @endif
         </div>

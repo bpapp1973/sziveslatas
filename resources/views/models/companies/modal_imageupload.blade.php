@@ -56,7 +56,7 @@
                        
                         <div class="form-group col-sm-12">
                             {!! Form::submit('Feltöltés', ['class' => 'btn btn-primary']) !!}
-                            {!! Form::submit('Mégsem', ['data-dismiss'=>'modal', 'class' => 'nav-link btn btn-warning-outline btn-warning']) !!}
+                            {!! Form::submit('Mégsem', ['data-dismiss'=>'modal', 'class' => 'btn btn-default']) !!}
                         </div>
 
                         {!! Form::close() !!}

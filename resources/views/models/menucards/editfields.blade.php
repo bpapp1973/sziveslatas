@@ -99,5 +99,5 @@ div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('menucards.index') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+    <a href="{!! route('menucards.index') !!}" class="btn btn-default">Mégsem</a>
 </div>

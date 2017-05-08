@@ -81,7 +81,7 @@ class Companies extends Model
             'name'              => 'required|max:255|unique:companies',
             'title'             => 'max:255',
             'email'             => 'required|email|max:255|unique:companies',
-            'tax_id'            => 'taxid|unique:companies',
+            'tax_id'            => 'max:11|taxid|unique:companies',
             'category'          => 'required|max:10000',
             'subscriptiontype'  => 'required|max:10000',
             'payment'           => 'required|max:10000',

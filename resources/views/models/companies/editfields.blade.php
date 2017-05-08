@@ -228,5 +228,5 @@
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Mentés', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! url('/home') !!}" class="nav-link btn btn-warning-outline btn-warning">Mégsem</a>
+    <a href="{!! url('/home') !!}" class="btn btn-default">Mégsem</a>
 </div>
