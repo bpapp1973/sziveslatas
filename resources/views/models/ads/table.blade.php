@@ -41,10 +41,10 @@
                     <br/>
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="...">
-                    <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-warning' data-toggle="tooltip" data-placement="top" title="Megnézem">Bővebben</a>
+                    <a href="{!! route('ads.show', [$ad->id]) !!}" class='btn btn-default' data-toggle="tooltip" data-placement="top" title="Megnézem">Bővebben</a>
                     @if (Auth::user())
                     @if (null!==Auth::user() && (Auth::user()->id==$ad->company->users->first()->id) || Auth::user()->roles_id>2) 
-                        <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-link btn-xxs' data-toggle="tooltip" data-placement="top" title="Szerkesztem"><i class="glyphicon glyphicon-edit"></i></a>
+                        <a href="{!! route('ads.edit', [$ad->id]) !!}" class='btn btn-default btn-xxs' data-toggle="tooltip" data-placement="top" title="Szerkesztem"><i class="glyphicon glyphicon-edit"></i></a>
                             {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['data-recordid' => $ad->id, 'data-toggle'=>'tooltip', 'title'=>'Törlöm', 'class' => 'btn btn-danger btn-xxs delete-btn']) !!}
                     @endif
                     @endif 
