@@ -61,7 +61,7 @@
                                     <button type="submit" class="btn btn-primary">
                                     <i class="glyphicon glyphicon-log-in"></i>&nbsp;Bejelentkezés
                                     </button>
-                                    <a class="nav-link btn btn-link" href="{{ url('/password/reset') }}">Elfelejtetted a jelszavad?</a>
+                                    <a class="nav-link btn btn-default" href="{{ url('/password/reset') }}">Elfelejtetted a jelszavad?</a>
                                 </div>
                             </div>
                         </form>
