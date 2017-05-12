@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>sziveslátás.hu</title>
+    <title>{{$app['config']['app.name']}}</title>
     <!-- Site made with Mobirise Website Builder v3.8.5, https://mobirise.com -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -154,7 +154,7 @@
             </div>
             <div class="mbr-footer-content col-xs-12 col-md-3">
                 <p><strong>Kapcsolat</strong><br>
-                    Email: info@sziveslatas.hu<br>
+                    Email: info{!! '@'.env('APP_NAME','sziveslatas.hu')!!}<br>
                     Telefon: +36 (30) 123-4567
                 </p>
             </div>
@@ -170,7 +170,7 @@
     <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-j" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
         
         <div class="container">
-            <p class="text-xs-center">Minden jog fenntartva (c) 2016 Sziveslatas.hu</p>
+            <p class="text-xs-center">Minden jog fenntartva (c) 2016 {{env('APP_NAME','sziveslatas.hu')}}</p>
         </div>
     </footer>
 </section>

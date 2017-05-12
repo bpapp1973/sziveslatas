@@ -52,7 +52,7 @@ class ActivateAccount extends Notification
                     ->greeting('Szia!')
                     ->line('Kérlek aktiváld a felhasználó fiókod az alábbi linkre kattintva:')
                     ->action('Fiók aktiválása', url('user/activation', $this->token))
-                    ->line('Ha nem te regisztráltál a sziveslátás.hu-n akkor hagyd figyelmen kívül ezt a levelet.');
+                    ->line('Ha nem te regisztráltál a '.env('APP_NAME','sziveslatas.hu').'-n akkor hagyd figyelmen kívül ezt a levelet.');
     }
 
     /**
