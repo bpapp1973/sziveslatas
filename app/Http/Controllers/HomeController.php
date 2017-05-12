@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         $this->ordersRepository = $ordersRepo;
         $this->adsRepository = $adsRepo;
-        $this->app_name = env('APP_NAME','szíveslátás.hu');
+        $this->app_name = env('APP_NAME','sziveslatas.hu');
         $this->middleware('auth');
     }
 

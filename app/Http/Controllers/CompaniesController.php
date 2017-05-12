@@ -33,7 +33,7 @@ class CompaniesController extends AppBaseController
     public function __construct(CompaniesRepository $companiesRepo)
     {
         $this->companiesRepository = $companiesRepo;
-        $this->app_name = env('APP_NAME','szíveslátás.hu');
+        $this->app_name = env('APP_NAME','sziveslatas.hu');
     }
 
     /**
@@ -58,7 +58,7 @@ class CompaniesController extends AppBaseController
      */
     public function create()
     {
-        if ($this->app_name=='szíveslátás.hu') {
+        if ($this->app_name=='sziveslatas.hu') {
             $cats = Categories::whereNull('parent_id')->get(['name','id']);
             $categories = array();
             foreach ($cats as $element) {
@@ -177,7 +177,7 @@ class CompaniesController extends AppBaseController
         $payment = $this->getList('models.companies.create','payment');
         $subscriptiontype = $this->getList('models.companies.create','subscriptiontype');
 
-        if ($this->app_name=='szíveslátás.hu') {
+        if ($this->app_name=='sziveslatas.hu') {
             $cats = Categories::whereNull('parent_id')->get(['name','id']);
             $categories = array();
             foreach ($cats as $element) {

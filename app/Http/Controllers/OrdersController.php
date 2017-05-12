@@ -27,7 +27,7 @@ class OrdersController extends AppBaseController
     public function __construct(OrdersRepository $ordersRepo)
     {
         $this->ordersRepository = $ordersRepo;
-        $this->app_name = env('APP_NAME','szíveslátás.hu');
+        $this->app_name = env('APP_NAME','sziveslatas.hu');
     }
 
     /**

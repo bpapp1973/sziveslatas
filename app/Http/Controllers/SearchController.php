@@ -22,7 +22,7 @@ class SearchController extends Controller
      */
     public function __construct()
     {
-        $this->app_name = env('APP_NAME','szíveslátás.hu');
+        $this->app_name = env('APP_NAME','sziveslatas.hu');
     }
 
     /**
