@@ -21,7 +21,7 @@ class ConfirmedOrdersCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->where('confirmed','=', '1' );
+        $model = $model->where('confirmed',true );
         return $model;
     }
 }

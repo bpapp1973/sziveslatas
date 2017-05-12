@@ -11,6 +11,8 @@ use App\Repositories\AdsRepository;
 use App\Criteria\MyAdsCriteria;
 use App\Criteria\ConfirmedAdsCriteria;
 use App\Criteria\NotConfirmedAdsCriteria;
+use App\Criteria\ProgramAdsCriteria;
+use App\Criteria\ProgramOrdersCriteria;
 
 use Prettus\Repository\Criteria\RequestCriteria;
 use Illuminate\Http\Request;
@@ -23,6 +25,7 @@ class HomeController extends Controller
     private $ordersRepository;
     /** @var  AdsRepository */
     private $adsRepository;
+    private $app_name;
 
     /**
      * Create a new controller instance.
@@ -33,6 +36,7 @@ class HomeController extends Controller
     {
         $this->ordersRepository = $ordersRepo;
         $this->adsRepository = $adsRepo;
+        $this->app_name = env('APP_NAME','szíveslátás.hu');
         $this->middleware('auth');
     }
 
@@ -49,13 +53,18 @@ class HomeController extends Controller
 
         if (Auth::user()->roles_id == 2) {
             $notConfirmedOrdersCriteria = new NotConfirmedOrdersCriteria();
-
             $this->ordersRepository->pushCriteria(new MyOrdersCriteria());
             $this->ordersRepository->pushCriteria($notConfirmedOrdersCriteria);
+            if ($this->app_name=='gyertekel.hu') {
+              $this->ordersRepository->pushCriteria(new ProgramOrdersCriteria());
+            }
             $orders = $this->ordersRepository->paginate(env('PAGINATION_SIZE'));
             $notConfirmedEvents = $orders;
 
             $this->adsRepository->pushCriteria(new MyAdsCriteria());
+            if ($this->app_name=='gyertekel.hu') {
+              $this->adsRepository->pushCriteria(new ProgramAdsCriteria());
+            }
             $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
             return view('home', [
@@ -66,6 +75,9 @@ class HomeController extends Controller
 
         if (Auth::user()->roles_id >= 3) {
             $this->adsRepository->pushCriteria(new NotConfirmedAdsCriteria());
+            if ($this->app_name=='gyertekel.hu') {
+              $this->adsRepository->pushCriteria(new ProgramAdsCriteria());
+            }
             $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
             return view('home')

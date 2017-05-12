@@ -46,8 +46,9 @@
     </div>
 </div>
 
+@if($categories)
 <div class="form-group{{ $errors->has('parent_id') ? ' has-error' : '' }}" >
-    {!! Form::label('parent_id', 'Kategória', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('parent_id', 'Főkategória', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::select('parent_id', $categories, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
         @if ($errors->has('parent_id'))
@@ -57,9 +58,10 @@
         @endif
     </div>
 </div>
+@endif
 
 <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}" >
-    {!! Form::label('category', 'Alkategória', ['class' => 'col-md-4 control-label']) !!}
+    {!! Form::label('category', 'Kategória', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
         {!! Form::select('category', $subcategories, null, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
         @if ($errors->has('category'))

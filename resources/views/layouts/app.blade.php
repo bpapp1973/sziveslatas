@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{$app['config']['app.name']}}</title>
+    <title>{{env('APP_NAME','szíveslátás.hu')}}</title>
     <!-- Site made with Mobirise Website Builder v3.8.5, https://mobirise.com -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,7 +60,11 @@
           <div class="mbr-table">
             <div class="mbr-table-cell" style="width: 20%">
               <div class="navbar-brand">
+              @if(env('APP_NAME','szíveslátás.hu')=='gyertekel.hu')
+                  <a href="{{ url('/') }}" class="navbar-logo"><img src="{!! url('/') !!}/images/gyertekel_logo.png" alt="Sziveslatas" style="height: 3.75rem"></a>
+              @else
                   <a href="{{ url('/') }}" class="navbar-logo"><img src="{!! url('/') !!}/images/sziveslatas_logo.png" alt="Sziveslatas" style="height: 3.75rem"></a>
+              @endif
               </div>
             </div>
             <div class="mbr-table-cell">
@@ -170,7 +174,7 @@
     <footer class="mbr-small-footer mbr-section mbr-section-nopadding" id="footer1-j" style="background-color: rgb(50, 50, 50); padding-top: 1.75rem; padding-bottom: 1.75rem;">
         
         <div class="container">
-            <p class="text-xs-center">Minden jog fenntartva (c) 2016 {{env('APP_NAME','sziveslatas.hu')}}</p>
+            <p class="text-xs-center">Minden jog fenntartva (c) 2016 {{env('APP_NAME','szíveslátás.hu')}}</p>
         </div>
     </footer>
 </section>

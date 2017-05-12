@@ -25,6 +25,7 @@ class Categories extends Model
 
 
     public $fillable = [
+        'id',
         'parent_id',
         'name',
         'isenabled'

@@ -28,6 +28,7 @@ use Flash;
 use App\Criteria\MyAdsCriteria;
 use App\Criteria\ConfirmedAdsCriteria;
 use App\Criteria\NotConfirmedAdsCriteria;
+use App\Criteria\ProgramAdsCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Debugbar;
@@ -36,10 +37,12 @@ class AdsController extends AppBaseController
 {
     /** @var  AdsRepository */
     private $adsRepository;
+    private $app_name;
 
     public function __construct(AdsRepository $adsRepo)
     {
         $this->adsRepository = $adsRepo;
+        $this->app_name = env('APP_NAME','szíveslátás.hu');
     }
 
     /**
@@ -51,6 +54,9 @@ class AdsController extends AppBaseController
     public function index(Request $request)
     {
         $this->adsRepository->pushCriteria(new RequestCriteria($request));
+        if ($this->app_name=='gyertekel.hu') {
+          $this->adsRepository->pushCriteria(new ProgramAdsCriteria());
+        }
         $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.ads.index')
@@ -67,6 +73,9 @@ class AdsController extends AppBaseController
     {
         $this->adsRepository->pushCriteria(new RequestCriteria($request));
         $this->adsRepository->pushCriteria(new NotConfirmedAdsCriteria());
+        if ($this->app_name=='gyertekel.hu') {
+          $this->adsRepository->pushCriteria(new ProgramAdsCriteria());
+        }
         $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.ads.index')
@@ -82,6 +91,9 @@ class AdsController extends AppBaseController
     public function myAds(Request $request)
     {
         $this->adsRepository->pushCriteria(new MyAdsCriteria());
+        if ($this->app_name=='gyertekel.hu') {
+          $this->adsRepository->pushCriteria(new ProgramAdsCriteria());
+        }
         $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
         return view('models.ads.index')
@@ -97,12 +109,23 @@ class AdsController extends AppBaseController
         $ads = new Ads;
         $rooms = new Rooms;
         $menucards = new Menucards;
-        $cats = Categories::whereNull('parent_id')->get(['name','id']);
-        $categories = array();
-        foreach ($cats as $element) {
-            $categories[$element->id]=$element->name;
+        
+        if ($this->app_name=='gyertekel.hu') {
+            $categories = array();
+            $subcats = Categories::where('parent_id',4)->get(['name','id']);
+            $subcategories = array();
+            foreach ($subcats as $element) {
+                $subcategories[$element->id]=$element->name;
+            }
+        } else {
+            $cats = Categories::whereNull('parent_id')->get(['name','id']);
+            $categories = array();
+            foreach ($cats as $element) {
+                $categories[$element->id]=$element->name;
+            }
+            $subcategories = array();
         }
-        $subcategories = Categories::pluck('name','id');
+
         $cities   = Cities::pluck('name','id');
         $counties = Counties::pluck('name', 'id');
 
@@ -251,12 +274,22 @@ class AdsController extends AppBaseController
         $menucards = $ads->menucards;
         $comments = $ads->comments;
 
-        $cats = Categories::whereNull('parent_id')->get(['name','id']);
-        $categories = array();
-        foreach ($cats as $element) {
-            $categories[$element->id]=$element->name;
+        if ($this->app_name=='gyertekel.hu') {
+            $categories = array();
+            $subcats = Categories::where('parent_id',4)->get(['name','id']);
+            $subcategories = array();
+            foreach ($subcats as $element) {
+                $subcategories[$element->id]=$element->name;
+            }
+        } else {
+            $cats = Categories::whereNull('parent_id')->get(['name','id']);
+            $categories = array();
+            foreach ($cats as $element) {
+                $categories[$element->id]=$element->name;
+            }
+            $subcategories = array();
         }
-        $subcategories = Categories::pluck('name','id');
+
         $cities = Cities::pluck('name','id');
         $counties = Counties::pluck('name', 'id');
         $tags = Tags::where([['container_type', '=','ad'],

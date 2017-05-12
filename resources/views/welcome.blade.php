@@ -38,10 +38,12 @@
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
         <div class="row">
-            <div class="input-group col-md-12" style="background-color: #fff; border: solid 0.2rem #d14841; border-radius: 5px">
+                <div class="input-group col-md-12" style="background-color: #fff; border: solid 0.2rem #d14841; border-radius: 5px">
+                @if($categories)
                 <div class="col-md-2">
                     {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Mit keres?', 'class' => 'form-control']) !!}
                 </div>
+                @endif
                 <div class="col-md-2">
                     {!! Form::select('category', $subcategories, null, ['id' => 'category', 'placeholder' => 'Válasszon', 'class' => 'form-control']) !!}
                 </div>
@@ -54,7 +56,11 @@
                 <div class="col-md-2">
                     {!! Form::text('citysearch', null, ['id' => 'citysearch', 'autocomplete'=>'off','placeholder' => 'Város', 'class' => 'typeahead form-control']) !!}
                 </div>
+                @if($categories)
                 <div class="col-md-2">
+                @else
+                <div class="col-md-4">
+                @endif
                     {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Keres', 'class' => 'typeahead form-control']) !!}
                 </div>
                 <div class="col-md-2">

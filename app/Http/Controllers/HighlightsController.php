@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ads;
+use App\Models\Categories;
 use App\Http\Requests\CreateHighlightsRequest;
 use App\Http\Requests\UpdateHighlightsRequest;
 use App\Repositories\HighlightsRepository;
@@ -16,10 +17,12 @@ class HighlightsController extends AppBaseController
 {
     /** @var  HighlightsRepository */
     private $highlightsRepository;
+    private $app_name;
 
     public function __construct(HighlightsRepository $highlightsRepo)
     {
         $this->highlightsRepository = $highlightsRepo;
+        $this->app_name = env('APP_NAME','szíveslátás.hu');
     }
 
     /**
@@ -31,9 +34,16 @@ class HighlightsController extends AppBaseController
     public function index(Request $request)
     {
         $this->highlightsRepository->pushCriteria(new RequestCriteria($request));
-        $highlights = $this->highlightsRepository->all();
+        $highlights = $this->highlightsRepository->findByField('site',$this->app_name)->all();
 
-        $ads = Ads::where('isvalid','1')->get(['id','title','summary','highlighted','description']);
+        if ($this->app_name=='gyertekel.hu') {
+            $programs = Categories::where('parent_id',4)->get(['id']);
+            $ads = Ads::where('isvalid','1')
+                ->whereIn('categories_id',$programs)
+                ->get(['id','title','summary','highlighted','description']);
+        } else {
+            $ads = Ads::where(['isvalid'=>'1'])->get(['id','title','summary','highlighted','description']);
+        }
 
         return view('models.highlights.index')
             ->with(['highlights'=> $highlights,

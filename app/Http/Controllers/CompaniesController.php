@@ -28,10 +28,12 @@ class CompaniesController extends AppBaseController
 {
     /** @var  CompaniesRepository */
     private $companiesRepository;
+    private $app_name;
 
     public function __construct(CompaniesRepository $companiesRepo)
     {
         $this->companiesRepository = $companiesRepo;
+        $this->app_name = env('APP_NAME','szíveslátás.hu');
     }
 
     /**
@@ -56,12 +58,21 @@ class CompaniesController extends AppBaseController
      */
     public function create()
     {
-        $cats = Categories::whereNull('parent_id')->get(['name','id']);
-        $categories = array();
-        foreach ($cats as $element) {
-            $categories[$element->id]=$element->name;
+        if ($this->app_name=='szíveslátás.hu') {
+            $cats = Categories::whereNull('parent_id')->get(['name','id']);
+            $categories = array();
+            foreach ($cats as $element) {
+                $categories[$element->id]=$element->name;
+            }
+            $subcategories = array();
+        } else {
+            $categories = array();
+            $subcats = Categories::where('parent_id',4)->get(['name','id']);
+            $subcategories = array();
+            foreach ($subcats as $element) {
+                $subcategories[$element->id]=$element->name;
+            }
         }
-        $subcategories = ['' => ''];
         $cities = ['' => ''];
         $counties = Counties::pluck('name', 'id');
         $payment = $this->getList('models.companies.create','payment');
@@ -166,14 +177,23 @@ class CompaniesController extends AppBaseController
         $payment = $this->getList('models.companies.create','payment');
         $subscriptiontype = $this->getList('models.companies.create','subscriptiontype');
 
-        $cats = Categories::whereNull('parent_id')->get(['name','id']);
-        $categories = array();
-        foreach ($cats as $element) {
-            $categories[$element->id]=$element->name;
+        if ($this->app_name=='szíveslátás.hu') {
+            $cats = Categories::whereNull('parent_id')->get(['name','id']);
+            $categories = array();
+            foreach ($cats as $element) {
+                $categories[$element->id]=$element->name;
+            }
+            $subcategories = Categories::pluck('name', 'id');
+        } else {
+            $categories = array();
+            $subcats = Categories::where('parent_id',4)->get(['name','id']);
+            $subcategories = array();
+            foreach ($subcats as $element) {
+                $subcategories[$element->id]=$element->name;
+            }
         }
         
         $cities = Cities::pluck('name', 'id');
-        $subcategories = Categories::pluck('name', 'id');
 
         $tags = Tags::where([['container_type', '=','company'],
                              ['container_id',   '=',$companies->id],
@@ -277,8 +297,17 @@ class CompaniesController extends AppBaseController
             $logo = url('/').'/images/companies/'.$companies->id.'/'.$logo[0]->filePath;
         }
 
-        $ads = Ads::where([['companies_id',$id],
-                           ['isvalid','1']])->get(['id','title','summary','highlighted','description']);
+        if ($this->app_name=='gyertekel.hu') {
+            $programs = Categories::where('parent_id',4)->get(['id']);
+            $ads = Ads::where('isvalid','1')
+                ->where('companies_id',$id)
+                ->whereIn('categories_id',$programs)
+                ->get(['id','title','summary','highlighted','description']);
+        } else {
+            $ads = Ads::where([['companies_id',$id],
+                               ['isvalid','1']])->get(['id','title','summary','highlighted','description']);
+        }
+
         //$ads = $companies->ads->where('isvalid','1');
         //$ads = $ads->get(['title','summary']);
 

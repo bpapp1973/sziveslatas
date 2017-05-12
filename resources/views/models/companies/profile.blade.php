@@ -96,7 +96,7 @@
                     <div class="container">
                         <div class="card cart-block">
                             <div class="card-img">
-                            @if($companies->highlight1ad)
+                            @if(isset($companies->highlight1ad))
                                 @if (count($companies->highlight1ad->images)==0)
                                     <img class="card-img-top" src="http://fpoimg.com/500?text=Kép nélkül&font=calibri">
                                 @else
@@ -120,7 +120,7 @@
                     <div class="container">
                         <div class="card cart-block">
                             <div class="card-img">
-                            @if($companies->highlight2ad)
+                            @if(isset($companies->highlight2ad))
                                 @if (count($companies->highlight2ad->images)==0)
                                     <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
                                 @else
@@ -144,7 +144,7 @@
                     <div class="container">
                         <div class="card cart-block">
                             <div class="card-img">
-                            @if($companies->highlight3ad)
+                            @if(isset($companies->highlight3ad))
                                 @if (count($companies->highlight3ad->images)==0)
                                     <img class="card-img-top" src="http://fpoimg.com/100?text=Kép nélkül&font=calibri">
                                 @else

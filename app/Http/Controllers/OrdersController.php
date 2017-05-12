@@ -13,6 +13,7 @@ use Flash;
 use App\Criteria\MyOrdersCriteria;
 use App\Criteria\ConfirmedOrdersCriteria;
 use App\Criteria\NotConfirmedOrdersCriteria;
+use App\Criteria\ProgramOrdersCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use Debugbar;
@@ -21,10 +22,12 @@ class OrdersController extends AppBaseController
 {
     /** @var  OrdersRepository */
     private $ordersRepository;
+    private $app_name;
 
     public function __construct(OrdersRepository $ordersRepo)
     {
         $this->ordersRepository = $ordersRepo;
+        $this->app_name = env('APP_NAME','szíveslátás.hu');
     }
 
     /**
@@ -36,6 +39,9 @@ class OrdersController extends AppBaseController
     public function index(Request $request)
     {
         $this->ordersRepository->pushCriteria(new RequestCriteria($request));
+            if ($this->app_name=='gyertekel.hu') {
+              $this->ordersRepository->pushCriteria(new ProgramOrdersCriteria());
+            }
         $orders = $this->ordersRepository->all();
 
         return view('models.orders.index')
@@ -54,14 +60,21 @@ class OrdersController extends AppBaseController
         $notConfirmedOrdersCriteria = new NotConfirmedOrdersCriteria();
 
         $this->ordersRepository->pushCriteria(new MyOrdersCriteria());
+/*
+        if ($this->app_name=='gyertekel.hu') {
+            $this->ordersRepository->pushCriteria(new ProgramOrdersCriteria());
+        }
+*/
         $this->ordersRepository->pushCriteria($confirmedOrdersCriteria);
         $orders = $this->ordersRepository->all();
         $confirmedEventsArray = $this->generateEvents($orders);
+//        Debugbar::addMessage($confirmedEventsArray,'confirmedEventsArray');
         $this->ordersRepository->popCriteria($confirmedOrdersCriteria);
 
         $this->ordersRepository->pushCriteria($notConfirmedOrdersCriteria);
         $orders = $this->ordersRepository->all();
         $notConfirmedEventsArray = $this->generateEvents($orders);
+//        Debugbar::addMessage($notConfirmedEventsArray,'notConfirmedEventsArray');
 
         return view('models.orders.calendar', [
                         'confirmedevents' => $confirmedEventsArray,

@@ -29,7 +29,7 @@ class MyOrdersCriteria implements CriteriaInterface
             $model = $model->where('companies_id','=', Auth::user()->companies->first()->id );
         }
         elseif (Auth::user()->roles_id>=3) {
-            # code...
+            $model = $model->where('companies_id','=', Auth::user()->companies->first()->id );
         }
         return $model;
     }

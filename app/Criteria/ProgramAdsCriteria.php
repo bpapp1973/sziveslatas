@@ -5,11 +5,13 @@ namespace App\Criteria;
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
+use App\Models\Categories;
+
 /**
- * Class NotConfirmedOrdersCriteria
+ * Class ProgramAdsCriteria
  * @package namespace App\Criteria;
  */
-class NotConfirmedOrdersCriteria implements CriteriaInterface
+class ProgramAdsCriteria implements CriteriaInterface
 {
     /**
      * Apply criteria in query repository
@@ -21,7 +23,8 @@ class NotConfirmedOrdersCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $model = $model->where('confirmed','<>', true );
+        $programs = Categories::where('parent_id',4)->get(['id']);
+        $model = $model->whereIn('categories_id', $programs );
         return $model;
     }
 }

@@ -13,6 +13,18 @@ use Debugbar;
 
 class SearchController extends Controller
 {
+    private $app_name;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->app_name = env('APP_NAME','szíveslátás.hu');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -20,13 +32,22 @@ class SearchController extends Controller
      */
     public function index()
     {
-        $cats = Categories::whereNull('parent_id')->get(['name','id']);
-        $categories = array();
-        foreach ($cats as $element) {
-            $categories[$element->id]=$element->name;
+        if ($this->app_name=='gyertekel.hu') {
+            $categories = array();
+            $subcats = Categories::where('parent_id',4)->get(['name','id']);
+            $subcategories = array();
+            foreach ($subcats as $element) {
+                $subcategories[$element->id]=$element->name;
+            }
+        } else {
+            $cats = Categories::whereNull('parent_id')->get(['name','id']);
+            $categories = array();
+            foreach ($cats as $element) {
+                $categories[$element->id]=$element->name;
+            }
+            $subcategories = array();
         }
-        $subcategories = array();//Categories::pluck('name','id');
-        $highlights = Highlights::all();
+        $highlights = Highlights::where('site',$this->app_name)->get();
         return view('welcome', ['categories' => $categories,
                                 'subcategories' => $subcategories,
                                 'highlights' => $highlights
@@ -68,6 +89,9 @@ class SearchController extends Controller
         $query = [['isvalid','=',1]];
         $textsearch="";
 
+        if($this->app_name=='gyertekel.hu') {
+            $input['parent_id']=4;
+        }
         if(isset($input['category']) && $input['category']!="") {
             array_push($query, ["categories_id","=",$input['category']]);
         }
