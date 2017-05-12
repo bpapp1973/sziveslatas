@@ -56,7 +56,7 @@
 </div>
 
 
-@if($categories)
+@if(count($categories)>0)
 <div class="form-group{{ $errors->has('parent_id') ? ' has-error' : '' }}" >
     {!! Form::label('parent_id', 'Főkategória', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
