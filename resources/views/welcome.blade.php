@@ -38,7 +38,11 @@
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="container">
         <div class="row">
+                @if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
+                <div class="input-group col-md-12" style="background-color: #fff; border: solid 0.2rem #fa8c00; border-radius: 5px">
+                @else
                 <div class="input-group col-md-12" style="background-color: #fff; border: solid 0.2rem #d14841; border-radius: 5px">
+                @endif
                 @if($categories)
                 <div class="col-md-2">
                     {!! Form::select('parent_id', $categories, null, ['id' => 'parent_id', 'placeholder' => 'Mit keres?', 'class' => 'form-control']) !!}
@@ -64,7 +68,11 @@
                     {!! Form::text('textsearch', null, ['id' => 'textsearch', 'autocomplete'=>'off', 'placeholder' => 'Keres', 'class' => 'typeahead form-control']) !!}
                 </div>
                 <div class="col-md-2">
+                @if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
+                        <button class="btn btn-primary btn-block" style="padding: 0.78rem 0; border: solid 0.2rem #fa8c00;" type="submit">Keresés <span class="glyphicon glyphicon-search"></span></button>
+                @else
                         <button class="btn btn-primary btn-block" style="padding: 0.78rem 0; border: solid 0.2rem #d14841;" type="submit">Keresés <span class="glyphicon glyphicon-search"></span></button>
+                @endif
                 </div>
             </div><!-- /input-group -->
         </div>
@@ -176,7 +184,11 @@
         @endfor
     </div>
 </section>
+@if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
+<section class="mbr-section article article" id="msg-box8-5" style="padding-top: 2em; padding-bottom: 2em; background-color: #fa8c00;">
+@else
 <section class="mbr-section article article" id="msg-box8-5" style="padding-top: 2em; padding-bottom: 2em; background-color: #f28281;">
+@endif
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 text-xs-center">

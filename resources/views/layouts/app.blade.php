@@ -16,13 +16,25 @@
     <link rel="stylesheet" href="{{ url('/') }}/assets/et-line-font-plugin/style.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap-material-design-font/css/material.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/tether/tether.min.css">
+
+    @if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
+    <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap/css/gyertekel.bootstrap.min.css">
+    @else
     <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap/css/bootstrap.min.css">
+    @endif
+
     <link rel="stylesheet" href="{{ url('/') }}/assets/socicon/css/socicon.min.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/animate.css/animate.min.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/dropdown/css/style.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/theme/css/style.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/mobirise-gallery/style.css">
+
+    @if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
+    <link rel="stylesheet" href="{{ url('/') }}/assets/mobirise/css/gyertekel.mbr-additional.css" type="text/css">
+    @else
     <link rel="stylesheet" href="{{ url('/') }}/assets/mobirise/css/mbr-additional.css" type="text/css">
+    @endif
+
     <link rel='stylesheet' href='{{ url('/') }}/assets/bootstrap-glyphicons/css/bootstrap.min.css' />
     <link rel='stylesheet' href='{{ url('/') }}/assets/gill-sans-ultrabold/stylesheet.css' />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />    

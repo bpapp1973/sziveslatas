@@ -172,7 +172,11 @@
 				    <div class="container">
 				        <div class="row">
 				            <div class="col-md-8 col-md-offset-2 text-xs-center">
+				            @if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
+				                <h5 class="mbr-section-title display-2" style="color: #fa8c00">Oszd meg!</h5>
+				            @else
 				                <h5 class="mbr-section-title display-2" style="color: #f28281">Oszd meg!</h5>
+				            @endif
 				                <div>
 				                    <div class="mbr-social-likes" data-counters="false">
 				                        <span class="btn btn-social facebook" style="background: #3e5b98" title="Facebook">

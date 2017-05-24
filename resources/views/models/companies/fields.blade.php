@@ -72,6 +72,7 @@
     </div>
 </div>
 
+@if(env('APP_NAME','sziveslatas.hu')!='gyertekel.hu')
 <div class="form-group{{ $errors->has('subscriptiontype') ? ' has-error' : '' }}" >
     {!! Form::label('subscriptiontype', 'Előfizetés típusa', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
@@ -95,6 +96,7 @@
         @endif
     </div>
 </div>
+@endif
 
 <div class="form-group{{ $errors->has('county') ? ' has-error' : '' }}" >
     {!! Form::label('county', 'Megye', ['class' => 'col-md-4 control-label']) !!}
@@ -183,7 +185,11 @@
 <div class="form-group{{ $errors->has('licence') ? ' has-error' : '' }}">
     {!! Form::label('licence', 'Érvényes', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
+    @if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
+        {!! Form::hidden('licence', '9999-12-31', ['class' => 'form-control', 'readonly']) !!}
+    @else
         {!! Form::date('licence', null, ['class' => 'form-control', 'readonly']) !!}
+    @endif
         @if ($errors->has('licence'))
             <span class="help-block">
                 <strong>{{ $errors->first('licence') }}</strong>

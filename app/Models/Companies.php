@@ -84,7 +84,7 @@ class Companies extends Model
             'tax_id'            => 'max:11|taxid|unique:companies',
             'category'          => 'required|max:10000',
             'subscriptiontype'  => 'required|max:10000',
-            'payment'           => 'required|max:10000',
+            'payment'           => 'max:10000',
             'city'              => 'required|max:10000',
             'address'           => 'required|max:255',
             'contact'           => 'required|max:255',
@@ -101,7 +101,7 @@ class Companies extends Model
     public static $updateRules = [
             'category'          => 'required|max:10000',
             'subscriptiontype'  => 'required|max:10000',
-            'payment'           => 'required|max:10000',
+            'payment'           => 'max:10000',
             'city'              => 'required|max:10000',
             'address'           => 'required|max:255',
             'contact'           => 'required|max:255',
