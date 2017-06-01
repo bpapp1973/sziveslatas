@@ -98,7 +98,6 @@ class CompaniesController extends AppBaseController
     public function store(CreateCompaniesRequest $request)
     {
         $input = $request->all();
-        $input['licence']='9999-12-31';
 
         $companies = $this->companiesRepository->create($input);
         $user = User::find(Auth::user()->id);
