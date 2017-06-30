@@ -68,7 +68,7 @@ class HomeController extends Controller
             $ads = $this->adsRepository->paginate(env('PAGINATION_SIZE'));
 
             return view('home', [
-                            'notconfirmedevents' => $notConfirmedEvents,
+                            'notconfirmedevents' => $orders,
                             'ads'                => $ads
                         ]);
         }

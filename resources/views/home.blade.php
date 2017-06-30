@@ -41,8 +41,10 @@
                                     <tbody>
                                     @foreach($notconfirmedevents as $orders)
                                         <tr>
+                                        @if(array_key_exists('ad',$orders))
                                             <td><a href="{!! route('orders.show', [$orders->id]) !!}">{!! $orders->ad->title !!}</a></td>
                                             <td>{!! $orders->last_name !!} {!! $orders->first_name !!}</td>
+                                        @endif
                                         </tr>
                                     @endforeach
                                     </tbody>

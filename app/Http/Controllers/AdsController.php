@@ -287,7 +287,11 @@ class AdsController extends AppBaseController
             foreach ($cats as $element) {
                 $categories[$element->id]=$element->name;
             }
+            $subcats = Categories::where('parent_id',$ads->category->parent_id)->get(['name','id']);
             $subcategories = array();
+            foreach ($subcats as $element) {
+                $subcategories[$element->id]=$element->name;
+            }
         }
 
         $cities = Cities::pluck('name','id');
@@ -362,7 +366,7 @@ class AdsController extends AppBaseController
 
         $menucards = $this->saveMenucards($_REQUEST['hiddenmenucards'], $id);
 
-        $flash=$this->storeImages($ads->id);
+        $images=$this->storeImages($ads->id);
 
         //$this->sendNotifications($id);
 
@@ -511,7 +515,7 @@ class AdsController extends AppBaseController
  
         $destinationPath = 'images/companies/'.Auth::user()->companies->first()->id.'/tmp';
         $fileName = Input::file('file')->getClientOriginalName(); 
-        $upload_success = Input::file('file')->move($destinationPath, $fileName);
+        $upload_success = Input::file('file')->move($destinationPath);
 
         if ($upload_success) {
             return Response::json('success', 200);
