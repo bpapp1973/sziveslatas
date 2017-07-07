@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Debugbar;
 
 class ImagesController extends AppBaseController
 {
@@ -138,17 +139,23 @@ class ImagesController extends AppBaseController
      */
     public function destroy($id)
     {
-        $images = $this->imagesRepository->findWithoutFail($id);
+        $image = $this->imagesRepository->findWithoutFail($id);
 
-        if (empty($images)) {
-            Flash::error('A Images nem találjuk');
+        if (empty($image)) {
+            Flash::error('A képet nem találjuk');
 
             return redirect(route('home'));
         }
 
+        $path = realpath('images/companies/'.Auth::user()->companies->first()->id.'/'.$image->container_id.'/'.$image->filepath);
+
+        unlink($path);
+
+        Debugbar::info($path);
+
         $this->imagesRepository->delete($id);
 
-        Flash::success('A Images töröltük');
+        Flash::success('A képet töröltük');
 
         return redirect(route('home'));
     }

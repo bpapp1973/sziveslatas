@@ -23,6 +23,7 @@
 <script type="text/javascript" src="{{ asset('lightbox/js/lightbox.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/sziveslatas.js') }}"></script>
 <script>
+var token = "{{ Session::getToken() }}";
 $('#county').on('change', function(e) {
 var county = e.target.value;
 //ajax
@@ -70,7 +71,9 @@ $(document).ready(function() {
 
 function removeImage(id) {
     //alert(id);
-    $.get('{{ url(' / ') }}/delete-image?id=' + id, function() {
+
+    $.get('{{ url("/") }}/delete-image?id=' + id, {"_token":token})
+        .done(function(data) {
             alert("A képet sikeresen eltávolítottuk");
         })
         .fail(function(xhr, status, error) {
@@ -119,6 +122,7 @@ Dropzone.options.myDropzone = {
         <div class="row">
             @if (Auth::guest()) @include('auth.login') @else 
             @include('flash::message')
+            <div id="error"></div>
             <div class="panel panel-default">
                 <div class="panel-heading">Hirdetés szerkesztése
                 </div>
