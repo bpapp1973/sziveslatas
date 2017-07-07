@@ -148,7 +148,8 @@ return [
         'enddate'          => 'záró dátum',
         'startdate'        => 'kezdő dátum',
         'expireson'        => 'lejárati dátum',
-        'summary'          => 'rövid leírás'
+        'summary'          => 'rövid leírás',
+        'categories id'    => 'kategória'
     ],
 
 ];

@@ -97,6 +97,7 @@ class Ads extends Model
     public static $rules = [
         'title'         => 'required|max:255',
         'summary'       => 'required|max:512',
+        'categories_id' => 'required',
         'website'       => 'max:255',
         'responsible'   => 'max:255',
         'phone'         => 'max:255',
