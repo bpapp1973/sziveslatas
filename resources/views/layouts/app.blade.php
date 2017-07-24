@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap-material-design-font/css/material.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/tether/tether.min.css">
 
+
     @if(env('APP_NAME','sziveslatas.hu')=='gyertekel.hu')
     <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap/css/gyertekel.bootstrap.min.css">
     @else
