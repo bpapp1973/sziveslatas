@@ -9,7 +9,7 @@
         "laravel/framework": "5.3.*",
         "phpoffice/phpexcel": "dev-master",
         "infyomlabs/laravel-generator": "5.3.x-dev",
-        "laravelcollective/html": "dev-master",
+        "laravelcollective/html": "5.3.*",
         "infyomlabs/core-templates": "5.3.x-dev",
         "doctrine/dbal": "~2.3",
         "barryvdh/laravel-debugbar": "^2.3",

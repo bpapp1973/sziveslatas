@@ -38,9 +38,9 @@ $('#parent_id').on('change', function(e) {
 var parent_id = e.target.value;
 //ajax
 $.get('{{ url('/') }}/category-dropdown?parent_id=' + parent_id, function(data) {
-$('#category').empty();
+$('#categories_id').empty();
 $.each(data, function(index, categoryObj) {
-$('#category').append('<option value="' + categoryObj.id + '">' + categoryObj.name + '</option>');
+$('#categories_id').append('<option value="' + categoryObj.id + '">' + categoryObj.name + '</option>');
 });
 });
 toggleElements(parent_id);

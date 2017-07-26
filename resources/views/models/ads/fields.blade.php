@@ -70,13 +70,13 @@
 </div>
 @endif
 
-<div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}" >
-    {!! Form::label('category', 'Kategória', ['class' => 'col-md-4 control-label']) !!}
+<div class="form-group{{ $errors->has('categories_id') ? ' has-error' : '' }}" >
+    {!! Form::label('categories_id', 'Kategória', ['class' => 'col-md-4 control-label']) !!}
     <div class="col-md-6">
-        {!! Form::select('category', $subcategories, $user->companies->first()->categories_id, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
-        @if ($errors->has('category'))
+        {!! Form::select('categories_id', $subcategories, $user->companies->first()->categories_id, ['class' => 'form-control', 'placeholder' => 'Válassz']) !!}
+        @if ($errors->has('categories_id'))
             <span class="help-block">
-                <strong>{{ $errors->first('category') }}</strong>
+                <strong>{{ $errors->first('categories_id') }}</strong>
             </span>
         @endif
     </div>
