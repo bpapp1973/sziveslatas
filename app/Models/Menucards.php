@@ -63,6 +63,31 @@ class Menucards extends Model
         'pricedesc'   => 'max:128'
     ];
 
+    protected $nullable = ['label',
+                           'title',
+                           'subtitle',
+                           'pricedesc'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::saving(function($model) {
+            $model->beforeSave();
+        });
+    }
+    /**
+     * Set empty nullable fields to null
+     */
+    public function beforeSave()
+    {
+        foreach ($this->attributes as $key => &$value) {
+            if (in_array($key, $this->nullable)) {
+                empty($value) and $value = null;
+            }
+        } 
+    }
+
     public function setPriceAttribute($price)
     {
         $this->attributes['price'] = $this->nullIfEmpty($price);
