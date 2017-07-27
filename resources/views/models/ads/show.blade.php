@@ -53,9 +53,10 @@
 			                {!! Form::hidden('title', $ads->title, ['id' => 'title']) !!}
 			                {!! Form::hidden('summary', $ads->summary, ['id' => 'summary']) !!}
 			                {!! Form::hidden('description', $ads->description, ['id' => 'description']) !!}
+			                {!! Form::hidden('categories_id', $ads->categories_id, ['id' => 'categories_id']) !!}
 			                {!! Form::hidden('isvalid', 1, ['id' => 'isvalid']) !!}
 			                </div>
-			                <button class="btn btn-success pull-right" type="submit">Engedélyezem</button>
+			                <button id="approve" class="btn btn-success pull-right" type="submit">Engedélyezem</button>
 			            {!! Form::close() !!}
 						@endif
 			    	@endif

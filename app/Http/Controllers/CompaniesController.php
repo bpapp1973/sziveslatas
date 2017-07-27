@@ -305,7 +305,7 @@ class CompaniesController extends AppBaseController
                 ->get(['id','title','summary','highlighted','description']);
         } else {
             $ads = Ads::where([['companies_id',$id],
-                               ['isvalid','1']])->get(['id','title','summary','highlighted','description']);
+                               ['isvalid','1']])->get(['id','title','summary','highlighted','description','categories_id']);
         }
 
         //$ads = $companies->ads->where('isvalid','1');

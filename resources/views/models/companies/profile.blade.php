@@ -219,6 +219,7 @@
                     title:ads[id]["title"],
                     summary:ads[id]["summary"],
                     description:ads[id]["description"],
+                    categories_id:ads[id]["categories_id"],
                     highlighted:"1",
                     boxId:boxId
                 },
@@ -226,6 +227,7 @@
                 var responseText;
                 $("#errors").html("");
                 responseText = xhr.responseText;
+                //alert(responseText);
                 $("#errors").html(responseText);
             },
             complete: function(data){
