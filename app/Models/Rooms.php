@@ -44,7 +44,6 @@ class Rooms extends Model
         'id' => 'integer',
         'ads_id' => 'integer',
         'name' => 'string',
-        'area' => 'integer',
         'seats' => 'integer',
         'assets' => 'string',
         'price' => 'integer',
@@ -57,8 +56,33 @@ class Rooms extends Model
      * @var array
      */
     public static $rules = [
-        
     ];
+
+    protected $nullable = ['area',
+                           'seats',
+                           'assets',
+                           'price',
+                           'description'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::saving(function($model) {
+            $model->beforeSave();
+        });
+    }
+    /**
+     * Set empty nullable fields to null
+     */
+    public function beforeSave()
+    {
+        foreach ($this->attributes as $key => &$value) {
+            if (in_array($key, $this->nullable)) {
+                empty($value) and $value = null;
+            }
+        } 
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
